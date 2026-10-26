@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: round-2-merges-problem-sync
+expected_outcome: |
+  Runde 2 gruppiert nach Story (US-0050, US-0051, Übergreifend zuletzt), durchnummeriert, enthält beide problem-sync-Fragen genau einmal mit 🗣️ Alex bzw. Alex/Pocock, 🧩 fr-writer (ggf. grilling + fr-writer) und den Angaben 🏷️ 📐 🧪 aus dem Bericht; eigene Fragen mit 🗣️ Pocock 🧩 grilling.
+context:
+  scaffold_script: place-files.sh

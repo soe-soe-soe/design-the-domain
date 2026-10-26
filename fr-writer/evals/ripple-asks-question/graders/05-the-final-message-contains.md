@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-The final message contains no question about a difference between FR and code
+No open point is about a difference between FR and code

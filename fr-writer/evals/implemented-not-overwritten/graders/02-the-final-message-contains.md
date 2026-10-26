@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-The final message contains a question with 'Case: overwrite-implemented' and Ref FR-fristen-001/S1, under story US-0009
+FR-fristen-001 has an '## Open' entry for S1 with source fr-writer, Case: overwrite-implemented and Story: US-0009

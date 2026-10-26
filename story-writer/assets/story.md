@@ -27,4 +27,4 @@ Funktionalität: <Titel>
 
 ## Open
 
-- **ACn:** <was nicht entschieden ist> – changes: <welches Dann>
+- **ACn** (story-writer): <Frage, mit „ja“ annehmbar> – Recommendation: <Antwort> – Changes: <welches Dann>

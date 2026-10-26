@@ -1,64 +1,66 @@
 ---
 name: story-writer
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into domain-model/problem-space/stories/. Use from problem-sync after every answered round of /grill-story, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into domain-model/problem-space/stories/ and marks what is still open. Use from problem-sync after every answered round of /grill-story, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Story-Writer
 
 You package business decisions into **stories**: short, with a why, followed by acceptance
-criteria (AC) in Gherkin. A story describes a **change**. The living target state is kept by
-the functional requirements (skill `fr-writer`), not by the story.
+criteria (AC) in Gherkin. A story describes a **change**; the living target state is kept by
+the functional requirements (skill `fr-writer`).
 
-You run after every answered round of a grill session that interviews the user. Others ask
-the questions: the grilling itself and `fr-writer`. You write only what is decided and make gaps
-visible in the story without reporting them as questions.
+You write what is decided and mark what is still open, in the story itself. You ask nothing:
+`/grill-story` reads the open points and decides when to ask them.
 
-Language: methodology terms, headings, status values and IDs are English; story content
-(title, role sentence, why, scenarios) is German, as the problem space is German.
+Language: methodology terms, headings, tags, status values, IDs and field labels are English;
+story content (title, role sentence, why, scenarios, open questions) is German.
 
 ## Steps
 
-1. **Read the situation.** Read the input (the answers of the last round plus the prompt that
-   started the session), `domain-model/problem-space/domain-map.md`, the glossaries of the
-   subdomains involved (`domain-model/glossaries/`), the ADRs under `docs/adr/` as far as they
-   touch the topic, and all stories under `domain-model/problem-space/stories/`.
+1. **Read the situation.** The input (the answers of the last round plus the idea that started
+   the session), `domain-model/problem-space/domain-map.md`, the glossaries of the subdomains
+   involved (`domain-model/glossaries/`), the ADRs under `docs/adr/` that touch the topic, and
+   all stories under `domain-model/problem-space/stories/`.
 
-2. **Cut.** A story is a change a business person recognises as one thing. For each change in
-   the input:
-   - If a story on the same topic has status `draft` or `ready`, continue that one.
-   - If the matching story is `done`, leave it untouched. Create a new story and reference
-     the old one under `Supersedes in part` (e.g. "button blue" → "button red").
+2. **Assign.** A story is a change a business person recognises as one thing. For each change
+   in the input:
+   - A story on the same topic with status `draft` or `ready` is continued; a `ready` story you
+     change goes back to `draft`.
+   - If the matching story is `done`, leave it untouched: create a new story and reference the
+     old one under `Supersedes in part` (e.g. "button blue" → "button red").
    - Otherwise create a new story with the next free number (`US-0001`, `US-0002`, … across
      all stories).
 
-3. **Write the AC.** Every statement in an AC is **backed** (conversation, glossary, ADR,
-   code) or **inconsequential** (wording, order, example names). Everything else is a
-   **gap**. Gherkin rules: [references/gherkin.md](references/gherkin.md).
-
-4. **Record gaps.** A gap becomes an open point only if a different answer would change a
-   **Dann**, i.e. observable behaviour, **and** it concerns the topic of a decision in the
-   input. What the input does not address at all (e.g. the display, when it only decides the
-   counting rule) is no open point of this story. For an open point:
-   - A Dann stands only where the outcome is decided. If it is open, write the scenario
-     without Dann and mark it `# open: <what is undecided>`, or leave the scenario out until it
-     is decided. An invented outcome with `# open` next to it is a guess.
-   - Add the point under `## Open`. It stays there for readers of the story; the grill
-     session does not ask it.
+3. **Check.** Every statement in an AC is **backed** (conversation, glossary, ADR, code) or
+   **inconsequential** (wording, order, example names). Everything else is a **gap**. A gap is
+   an open point only if a different answer would change a **Dann**, i.e. observable
+   behaviour, and it concerns the topic of a decision in the input without being settled by
+   it. What the input does not address at all (e.g. the display, when it only decides the
+   counting rule) is no open point, and neither is re-asking what it decided (e.g. whether
+   problems on a Nachweis count, when the input defined the problem signal through Fristen).
    Gaps that change no Dann you write in the obvious reading without recording them.
 
-5. **Resolve open points.** If the input answers an open point of an existing story, take the
-   answer into the AC and remove the marker and the entry under `## Open`.
+4. **Write.** The story by the template [assets/story.md](assets/story.md), the AC by
+   [references/gherkin.md](references/gherkin.md). A Dann stands only where the outcome is
+   decided; an invented outcome is a guess.
 
-6. **Set the status.** `draft` while `## Open` has entries, otherwise `ready`. Only the
-   implementation sets `done`, never you.
+5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in
+   the term "Open point" in `domain-model/glossaries/_methodology.md`: a new AC whose outcome is
+   open has no Dann, or is left out until decided. Each open point gets one entry under
+   `## Open`, in the format of that term, with source `story-writer` and the field `Changes`.
 
-You are done when every decision of the input stands in an AC or is recorded as an open point.
+6. **Resolve what is answered.** If the input answers an open point, take the answer into the
+   AC, remove `@open` and the entry under `## Open`.
+
+You are done when every decision of the input stands in an AC or is marked open.
+
+**Status** is not yours: a new story starts as `draft`, `/grill-story` sets `ready` when the
+session closes, the implementation sets `done`.
 
 ## Story file
 
-File name `domain-model/problem-space/stories/US-0042-problemsignale.md` (number, then a short
-German slug). Structure exactly as in the template [assets/story.md](assets/story.md); read it
-before you write the first story.
+`domain-model/problem-space/stories/US-0042-problemsignale.md` (number, then a short German
+slug), structured exactly as the template.
 
 - The line `Als … möchte ich …` has no "damit": the why has its own section.
 - `Supersedes in part` and `## Open` are omitted when there is nothing to enter.
@@ -67,11 +69,10 @@ before you write the first story.
 
 ## Report
 
-Your last message is the report, exactly in this form. problem-sync passes it on; the grill
-session groups its next round of questions by these stories:
+Your last message is the report, exactly in this form; it names what changed, not what is open:
 
 ```
 Stories:
 - US-0042: Problemsignale in der Projektübersicht (new, draft)
-- US-0039: Erinnerung vor Fristablauf (continued, ready)
+- US-0039: Erinnerung vor Fristablauf (continued, draft)
 ```

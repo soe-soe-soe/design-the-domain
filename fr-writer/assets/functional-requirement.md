@@ -19,6 +19,10 @@ Funktionalität: <Regel oder Fähigkeit>
     Dann <beobachtbares Ergebnis>
 ```
 
+## Open
+
+- **Sn** (fr-writer): <Frage, mit „ja“ annehmbar> – Recommendation: <Antwort> – Story: US-NNNN · Case: <ripple | overwrite-implemented | glossary | ownership | consistency> · Type: <FR type> · Test level: <Unit | Integration | E2E>
+
 ## History
 
 - US-NNNN: created (AC1 → S1, AC2 → S2)

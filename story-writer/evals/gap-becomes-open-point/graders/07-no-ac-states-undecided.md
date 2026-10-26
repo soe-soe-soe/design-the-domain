@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-No AC states undecided behaviour as a concrete Dann step (e.g. 'erhält sofort eine E-Mail', repeated reminders, reminder after rescheduling); undecided outcomes are left without a Dann (marked '# open: …') or omitted
+No AC states undecided behaviour as a concrete Dann step; an AC whose outcome is open carries the tag @open and has no Dann, or is omitted, and no '# open' comment is used

@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-Every FR scenario carries the tags @US-0001 and @planned and is numbered S1, S2, …
+Every scenario written or changed for US-0001 carries @US-0001 and @planned; new scenarios continue the numbering of their FR

@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-Every question in the final message has Case ripple, overwrite-implemented, glossary, ownership or consistency, and none is about a difference between FR and code
+The final message lists the changed FRs and contains no 'Questions' section

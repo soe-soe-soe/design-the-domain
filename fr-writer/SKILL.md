@@ -11,7 +11,7 @@ criteria (AC) of the stories over into FR scenarios and look for **contradiction
 existing state** the conversation cannot see.
 
 You write what is decided and mark what is still open, in the FR itself. You ask nothing:
-`/grill-story` reads the open points and decides when to ask them.
+`/problem-definition` reads the open points and decides when to ask them.
 
 You write only FRs under `domain-model/problem-space/<subdomain>/` and the domain map. Stories,
 glossaries and ADRs you only read. FRs contain no code locations; the link to the code is the
@@ -48,7 +48,7 @@ Which business objects a subdomain has stands in the sections of its glossary
    it there by the template [assets/domain-map.md](assets/domain-map.md): a new subdomain with
    type `open`, a relationship in business terms.
 
-3. **Check.** An AC leads to an open point in five cases only:
+3. **Check.** An AC leads to an open point in six cases only:
    - **ripple:** the change touches another FR the story says nothing about, e.g. a new
      overdue threshold and the FR "Problemsignale" that builds on overdue. The story leaves
      open whether the other FR follows.
@@ -62,6 +62,9 @@ Which business objects a subdomain has stands in the sections of its glossary
    - **consistency:** a rule links two business objects (e.g. Nachweis and Antrag) and the input
      does not say whether it must hold at once or may follow shortly after; the answer decides
      whether it is an invariant of one business object or a policy between two.
+   - **existing-data:** an AC adds or changes what a business object holds or how it is
+     derived (a new Wert, a changed status set), instances of it already exist, and no AC says
+     what becomes of them. The answer is a scenario of an FR of type Data Migration.
 
    A difference to the code is no open point: it is the delta to be implemented. Contradictions
    with ADRs the grilling asks itself.
@@ -87,7 +90,7 @@ Which business objects a subdomain has stands in the sections of its glossary
    scenario for the contradicting AC until the answer is in; otherwise the new scenario, without
    Dann while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that FR, in
    the format of the term "Open point" in `domain-model/glossaries/_methodology.md`, with source
-   `fr-writer` and the fields `Story`, `Case`, `Type`, `Test level`, and for **glossary**
+   `fr-writer` and the fields `Story`, `Case`, `Type`, and for **glossary**
    `Glossary` (glossary and term, e.g. `fristen.md: Problem`).
 
 6. **Resolve what is answered.** If a story now answers an open point (a later round decided
@@ -113,7 +116,7 @@ The FR header knows only `Status: valid` or `Status: obsolete`. `## Open` is omi
 ## Report
 
 Your last message is the report, exactly in this form. It names what changed; `Sn open` marks a
-scenario that got a new open point, so `/grill-story` knows which FRs to read – the point itself
+scenario that got a new open point, so `/problem-definition` knows which FRs to read – the point itself
 stands only in the FR:
 
 ```

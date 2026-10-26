@@ -1,6 +1,6 @@
 ---
 name: story-writer
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into domain-model/problem-space/stories/ and marks what is still open. Use from problem-sync after every answered round of /grill-story, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into domain-model/problem-space/stories/ and marks what is still open. Use from problem-sync after every answered round of /problem-definition, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Story-Writer
@@ -10,7 +10,7 @@ criteria (AC) in Gherkin. A story describes a **change**; the living target stat
 the functional requirements (skill `fr-writer`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/grill-story` reads the open points and decides when to ask them.
+`/problem-definition` reads the open points and decides when to ask them.
 
 Language: methodology terms, headings, tags, status values, IDs and field labels are English;
 story content (title, role sentence, why, scenarios, open questions) is German.
@@ -54,7 +54,7 @@ story content (title, role sentence, why, scenarios, open questions) is German.
 
 You are done when every decision of the input stands in an AC or is marked open.
 
-**Status** is not yours: a new story starts as `draft`, `/grill-story` sets `ready` when the
+**Status** is not yours: a new story starts as `draft`, `/problem-definition` sets `ready` when the
 session closes, the implementation sets `done`.
 
 ## Story file

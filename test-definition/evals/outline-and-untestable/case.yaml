@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: outline-and-untestable
+expected_outcome: |
+  FR-genehmigung-020/S1 is a Szenariogrundriss of a domain service: one unit test at backend/tests/unit/domain/permits/aggregates/evidence/model/services/test_validity_end.py, parametrised over both Beispiele with the literal dates, marked fr("FR-genehmigung-020/S1"), importing calculate_validity_end from the shell path. S2 has no observable value in its Dann ("deutlich hervorgehoben", "bald"), so no test is written for it and the report lists it under Untestable with the reason. No production code changes.
+context:
+  scaffold_script: place-files.sh

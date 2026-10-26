@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: not-migrated-context-with-facade
-expected_outcome: |
-  FR-fristen-013/S1 belongs to the context deadlines, which is not migrated: the placement names the current file (service.py, DeadlineService.get_signals) and a target path under application/queries/. Rejected evidences belong to permits, so the report lists a new or changed PermitsFacade method used by deadlines under Interfaces, without asking a question.
-context:
-  scaffold_script: place-files.sh

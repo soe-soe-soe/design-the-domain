@@ -83,7 +83,7 @@ Without test:
 Relationships:
 - Fristen → Genehmigung: erledigte Fristen erscheinen in der Nachweishistorie
 Questions:
-1. Ref: <glossary>.md: <term> or FR-<subdomain>-NNN/Sn · Type: <FR type> · Test level: <Unit | Integration | E2E> · Case: <glossary | adr | test-vs-code | suspicious-branch | duplicate-rule>
+1. Ref: <glossary>.md: <term> or FR-<subdomain>-NNN/Sn · Type: <FR type> · Case: <glossary | adr | test-vs-code | suspicious-branch | duplicate-rule>
    Question: <was auffällt, als Entscheidung formuliert>?
    Recommendation: <Antwort mit Begründung>.
 ```

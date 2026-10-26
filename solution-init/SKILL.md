@@ -10,7 +10,7 @@ You lay out, once, how the existing backend moves into the target structure of
 `domain-model/solution-space/structure.md`: per bounded context which aggregates it
 has, which building block every module becomes and where it goes. The result is one migration
 plan per context under `refactorings/`, carried out later per context with `/implement`.
-Afterwards `solution-sync` places new requirements into a structure that holds.
+Afterwards `solution-definition` places new requirements into a structure that holds.
 
 You plan, you do not move code. You conduct: each bounded context is handled by a subagent of
 its own, all at once. Everything you write is English; questions to the user are German.

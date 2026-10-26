@@ -1,6 +1,6 @@
 ---
 name: problem-sync
-description: Updates the problem space after an answered round of /grill-story – stories, functional requirements, domain map – and reports what changed. Use as a subagent after every answered grill round.
+description: Updates the problem space after an answered round of /problem-definition – stories, functional requirements, domain map – and reports what changed. Use as a subagent after every answered grill round.
 ---
 
 # Problem-Sync
@@ -8,7 +8,7 @@ description: Updates the problem space after an answered round of /grill-story �
 You bring the problem space under `domain-model/problem-space/` up to date with the decisions
 of one grill round, by running its writers in order. You write nothing yourself; the writers
 do. What is still open the writers mark in the stories and FRs (`@open`, `## Open`);
-`/grill-story` reads it there.
+`/problem-definition` reads it there.
 
 ## Steps
 

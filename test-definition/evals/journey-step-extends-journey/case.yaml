@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: journey-step-extends-journey
+expected_outcome: |
+  The story changes what a user does and sees, so besides the backend scenario test for FR-genehmigung-024/S1 (integration, through POST /evidences/{id}/reject, marked fr("FR-genehmigung-024/S1"), result read through the facade) the skill adds one step to the existing journey frontend/e2e/journeys/genehmigung/nachweis.spec.ts – after "Nachweis geht in Prüfung", tagged @US-0047, happy path only, driven through PermitsPage – and adds the page-object method it needs to frontend/e2e/pages/PermitsPage.ts. No new spec file, no production code changes.
+context:
+  scaffold_script: place-files.sh

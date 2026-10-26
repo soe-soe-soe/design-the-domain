@@ -34,14 +34,20 @@ You ask nothing; what you cannot test you report.
      space, and the implementation arms them one at a time.
 
 3. **Write a scenario test per planned scenario.**
+   Worked examples for unit, command, policy and journey:
+   [references/scenario-to-test.md](references/scenario-to-test.md); read it before the first test.
    - Level, seam and path by the table in `structure.md`; the test imports the building block
      from the path of the placement.
    - Name and marker by `structure.md`; one main test per scenario. A Szenariogrundriss becomes
      one test parametrised over its Beispiele.
    - Angenommen → arrange, Wenn → act (exactly one call at the seam), Dann → assert. Expected
      values are the literals of the Dann, never computed the way the code would.
-   - A scenario that already has a test with its marker: change that test, do not add one.
-   - An `@obsolete` scenario: delete its test.
+   - Test data by the rule in `structure.md`: what the scenario names stands in the test body,
+     wiring comes from fixtures, a builder fixture `make_<aggregate>` fills the rest.
+   - A scenario that already has a test with its marker: change that test where it is – even
+     at a path that does not mirror the code yet, moving it belongs to the context's
+     migration – and rename it after the new statement; do not add a second test.
+   - An `@obsolete` scenario: delete its test, and the file if nothing else is left in it.
    - **Data Migration:** downgrade to the revision before the shell's migration, seed the old
      state, upgrade, and check the new state. The seam is the stored data itself, so reading
      it directly is right here.

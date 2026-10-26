@@ -1,0 +1,9 @@
+from typing import Protocol
+
+from .root import Evidence
+
+
+class EvidenceRepository(Protocol):
+    async def get(self, evidence_id: str) -> Evidence: ...
+    async def list_for_procedure(self, procedure_id: str) -> list[Evidence]: ...
+    async def save(self, evidence: Evidence) -> None: ...

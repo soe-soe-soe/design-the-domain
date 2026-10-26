@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: obsolete-scenario-deletes-test
+expected_outcome: |
+  FR-fristen-001/S4 is obsolete: the skill deletes its test (marked FR-fristen-001/S4) from backend/tests/unit/domain/deadlines/test_signals.py, keeps the file with the tests of S1–S3 unchanged, and writes no new test. The report lists the deleted test under Removed. No production code changes.
+context:
+  scaffold_script: place-files.sh

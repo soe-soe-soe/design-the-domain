@@ -107,6 +107,15 @@ below a scenario) carry no marker.
 
 - **Not-migrated context:** the seam is the method the placement names (e.g.
   `DeadlineService.get_signals`) as long as the context has no endpoint or facade for it.
+- **Test data:** everything the scenario names (its Angenommen) stands visibly in the test
+  body, with the scenario's literal values; a reader checks the test against the scenario
+  without opening a fixture. Wiring – database session, repositories, facades, services, API
+  client – comes from fixtures in the nearest `conftest.py`. An aggregate built in several tests
+  gets a builder fixture `make_<aggregate>` in its context's `conftest.py`: keyword arguments for
+  what a scenario names, defaults for everything else. Unit tests construct values and
+  aggregates directly. Integration tests store the arranged state through the repository or a
+  command, never through SQL – except a migration test, whose seam is the stored data. "Heute"
+  is passed in as a fixed date, never read from the clock.
 - **Names:** `test_<scenario statement in English, snake_case>`, e.g.
   `test_deadline_is_overdue_from_due_date`; the ID stands in the marker. A Szenariogrundriss
   becomes one test parametrised over its Beispiele.

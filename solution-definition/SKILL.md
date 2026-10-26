@@ -20,7 +20,8 @@ questions to the user are German.
 ## Steps
 
 1. **Read the situation.** The story from the input (status `ready`) and every FR scenario
-   tagged with it and `@planned`, `domain-model/glossaries/` (subdomain row → bounded context
+   tagged with it and `@planned` or `@obsolete` (an obsolete one gets a row naming the code that
+   goes away; the implementation removes it, the shell does not), `domain-model/glossaries/` (subdomain row → bounded context
    and folders; business object → aggregate root), `domain-model/solution-space/structure.md`
    and `context-map.md`, ADR 008 and 009, and the code of every context involved: its folder
    layout, facade and the building blocks the scenarios touch.

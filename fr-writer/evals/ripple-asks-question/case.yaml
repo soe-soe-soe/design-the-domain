@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: ripple-asks-question
+expected_outcome: |
+  FR-fristen-001 S1 wird auf die neue Grenze geändert (@US-0008 @planned, History). FR-fristen-002 bleibt unverändert, dazu eine Frage (Case ripple), ob das Problemsignal am Fälligkeitstag entfällt.
+context:
+  scaffold_script: place-files.sh

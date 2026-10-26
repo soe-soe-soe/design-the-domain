@@ -11,3 +11,5 @@ Du bist der Story-Writer für eine laufende Grill-Session. Antworten der letzten
 - Begründung: Fristen der Behörde dürfen nicht verstreichen, Verlängerungen müssen rechtzeitig beantragt werden.
 
 Mehr wurde zu dem Thema nicht entschieden. Schreib die Stories und gib die Rückmeldung an die Session.
+
+Input files: domain-model/problem-space/domain-map.md

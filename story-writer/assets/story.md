@@ -1,30 +1,30 @@
 # US-NNNN: <Titel als Aussage>
 
-Status: Entwurf · Thema: <Thema der Grill-Session> · Datum: JJJJ-MM-TT
-Ersetzt teilweise: US-NNNN (AKn)
+Status: draft · Topic: <Thema der Grill-Session> · Date: YYYY-MM-DD
+Supersedes in part: US-NNNN (ACn)
 
 Als <Rolle> möchte ich <Fähigkeit>.
 
-## Warum
+## Why
 
 <1–3 Sätze: welches Problem, welche Entscheidung.>
 
-## Inhalt
+## Content
 
 <Kurz, was sich ändert.>
 
-## Akzeptanzkriterien
+## Acceptance criteria
 
 ```gherkin
 # language: de
 Funktionalität: <Titel>
 
-  Szenario: AK1 – <erwartetes Verhalten>
+  Szenario: AC1 – <erwartetes Verhalten>
     Angenommen <Ausgangslage>
     Wenn <genau ein Auslöser>
     Dann <beobachtbares Ergebnis>
 ```
 
-## Offen
+## Open
 
-- **AKn:** <was nicht entschieden ist> – ändert: <welches Dann>
+- **ACn:** <was nicht entschieden ist> – changes: <welches Dann>

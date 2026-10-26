@@ -16,3 +16,5 @@ Du bist der Story-Writer für eine laufende Grill-Session. Antworten der letzten
 - Begründung: Projektleitungen übersehen heute überfällige Fristen, weil sie nur im Projekt selbst sichtbar sind.
 
 Schreib die Stories und gib die Rückmeldung an die Session.
+
+Input files: domain-model/problem-space/domain-map.md

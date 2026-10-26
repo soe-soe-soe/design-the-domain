@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: new-story-creates-frs
+expected_outcome: |
+  Neue FRs unter domain-model/problem-space/fristen/ mit DDD-Typ, Szenarien mit @US-0001 @planned, History mit AC → S, Rückmeldung 'Questions: none'.
+context:
+  scaffold_script: place-files.sh

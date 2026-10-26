@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: new-story-creates-frs
-expected_outcome: |
-  Neue FRs unter requirements/deadlines/ mit DDD-Typ, Szenarien mit @US-0001 @geplant, Historie mit AK → S, Rückmeldung 'Fragen: keine'.
-context:
-  scaffold_script: place-files.sh

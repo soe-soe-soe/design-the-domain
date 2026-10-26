@@ -1,13 +1,13 @@
-# Gherkin für Akzeptanzkriterien
+# Gherkin for acceptance criteria
 
-Akzeptanzkriterien sind Fachtext. Aus jedem Szenario wird später genau ein Test, deshalb muss
-jedes für sich prüfbar sein.
+Acceptance criteria are business text in German. Each scenario later becomes exactly one test,
+so each must be testable on its own.
 
-## Schlüsselwörter (deutsch)
+## Keywords (German)
 
-`# language: de` steht in der ersten Zeile des Blocks.
+`# language: de` is the first line of the block.
 
-| Deutsch | Englisch |
+| German | English |
 |---|---|
 | Funktionalität | Feature |
 | Grundlage | Background |
@@ -19,40 +19,40 @@ jedes für sich prüfbar sein.
 | Dann | Then |
 | Und / Aber | And / But |
 
-## Regeln
+## Rules
 
-- **Fachlich, nicht bedienend.** Schreibe, was geschieht, nicht, was geklickt wird:
-  „Wenn die Frist erledigt wird“ statt „Wenn ich auf den Haken klicke“. UI-Details nur, wenn die
-  Oberfläche selbst die Anforderung ist.
-- **Ein Verhalten pro Szenario.** Genau ein `Wenn`, die `Dann` prüfen dessen Folgen. Zwei
-  Auslöser ergeben zwei Szenarien.
-- **Konkrete Beispielwerte.** Echte Daten, Beträge und Status statt „ein Datum“ oder „X“. Der
-  erwartete Wert im `Dann` stammt aus der Entscheidung, nicht aus einer Rechnung, die der Code
-  ebenso anstellen würde.
-- **Wertetabellen als Szenariogrundriss.** Wird dieselbe Regel mit mehreren Werten geprüft
-  (Grenzen, Berechnungen), schreibe einen `Szenariogrundriss` mit `Beispiele` statt mehrerer
-  fast gleicher Szenarien.
-- **Glossarbegriffe.** Verwende die Begriffe aus den Glossaren der Subdomänen, nicht die Wörter hinter „Nicht: …“.
-- **Grenzen und Gegenfälle.** Gilt eine Regel ab einer Schwelle, gehört der Fall direkt
-  darunter dazu. Gilt sie für einen Mandanten, Status oder eine Rolle, gehört der
-  ausgeschlossene Fall dazu.
-- **Name = Nummer + Aussage.** `Szenario: AK2 – Frist ohne Datum ist nie überfällig`. Die
-  Aussage ist das erwartete Verhalten, kein Thema („Fristen ohne Datum“).
+- **Business, not clicks.** Write what happens, not what is clicked: "Wenn die Frist erledigt
+  wird" instead of "Wenn ich auf den Haken klicke". UI details only when the UI itself is the
+  requirement.
+- **One behaviour per scenario.** Exactly one `Wenn`; the `Dann` check its consequences. Two
+  triggers make two scenarios.
+- **Concrete example values.** Real dates, amounts and statuses instead of "ein Datum" or
+  "X". The expected value in the `Dann` comes from the decision, not from a calculation the
+  code would make as well.
+- **Value tables as Szenariogrundriss.** If the same rule is checked with several values
+  (boundaries, calculations), write a `Szenariogrundriss` with `Beispiele` instead of several
+  near-identical scenarios.
+- **Glossary terms.** Use the terms of the subdomain glossaries, not the words after
+  "Avoid: …".
+- **Boundaries and counter-cases.** If a rule applies from a threshold, the case just below it
+  belongs in. If it applies to a tenant, status or role, the excluded case belongs in.
+- **Name = number + statement.** `Szenario: AC2 – Frist ohne Datum ist nie überfällig`. The
+  statement is the expected behaviour, not a topic ("Fristen ohne Datum").
 
-## Beispiel: Szenariogrundriss
+## Example: Szenariogrundriss
 
 ```gherkin
 # language: de
 Funktionalität: Überfällige Fristen
 
-  Szenariogrundriss: AK1 – Überfällig ab dem Fälligkeitstag
+  Szenariogrundriss: AC1 – Überfällig ab dem Fälligkeitstag
     Angenommen eine Frist ist fällig am <fällig>
     Wenn heute der 16.10.2026 ist
     Dann ist die Frist <ergebnis>
 
     Beispiele:
-      | fällig     | ergebnis        |
-      | 15.10.2026 | überfällig      |
-      | 16.10.2026 | überfällig      |
+      | fällig     | ergebnis         |
+      | 15.10.2026 | überfällig       |
+      | 16.10.2026 | überfällig       |
       | 17.10.2026 | nicht überfällig |
 ```

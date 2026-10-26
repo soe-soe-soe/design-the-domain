@@ -33,7 +33,8 @@ write the migration plan. You change no code. Target structure and FR type mappi
    systems go to `adapters/<system>/`.
 
 3. **Move the tests along.** Each test file gets the mirrored target path of the code it
-   tests; markers stay.
+   tests, out of `tests/unit/` or `tests/integration/` into `tests/domain/<context>/…`
+   (`structure.md`, section Tests); markers stay.
 
 4. **Collect findings.** A question arises only if
    - an invariant or command spans two aggregates (**aggregate-cut**),

@@ -85,9 +85,33 @@ All names English, `snake_case` for folders, files and functions, `PascalCase` f
 ## Tests
 
 Why it is this way: ADR 012. A test mirrors the code it tests:
-`backend/tests/<unit|integration>/domain/<context>/<path of the building block>/test_<file>.py`;
-in a context not yet migrated it mirrors the current file and moves with it. It imports the
-building block from that path, so it turns green only where the placement put the code.
+`backend/tests/domain/<context>/<path of the building block>/test_<file>.py`. It imports the
+building block from that path, so it turns green only where the placement put the code. The
+tree under `backend/tests/` is the tree under `backend/` minus what has no test of its own
+(repository, endpoint, schema), plus the test infrastructure:
+
+```
+backend/tests/
+├── conftest.py               registers the plugins below (pytest_plugins), nothing else
+├── plugins/levels.py         marks each test unit or integration from its path
+├── fixtures/<concern>.py     shared fixtures, one module per concern (database.py)
+├── core/                     mirrors backend/core/
+├── ops/migrations/           mirrors backend/ops/migrations/
+└── domain/<context>/
+    ├── conftest.py           builders make_<aggregate> of this context
+    ├── facade/test_facade.py
+    └── aggregates/<aggregate>/model/…, application/…
+```
+
+**Level from the path:** under `domain/`, a path through `model/` is a unit test, any other an
+integration test; `ops/` is integration, the rest unit. `tests/plugins/levels.py` sets the
+marker, CI and local runs select with `pytest -m unit` or `pytest -m integration`. The level is
+never a folder.
+
+**Not-migrated context:** its tests stay in the former layout
+`backend/tests/<unit|integration>/domain/<context>/test_<current file>.py`, where the folder
+names the level, and move to the mirrored path with the migration of their context. A new test
+in such a context goes there as well.
 
 **Scenario test:** proves one FR scenario, `@pytest.mark.fr("FR-<subdomain>-NNN/Sn")`, exactly
 one main test per scenario. **Interface test:** checks a facade method a story adds or changes,
@@ -110,7 +134,8 @@ below a scenario) carry no marker.
 - **Test data:** everything the scenario names (its Angenommen) stands visibly in the test
   body, with the scenario's literal values; a reader checks the test against the scenario
   without opening a fixture. Wiring – database session, repositories, facades, services, API
-  client – comes from fixtures in the nearest `conftest.py`. An aggregate built in several tests
+  client – comes from fixtures: shared ones in `tests/fixtures/`, a context's own in the
+  `conftest.py` of its test folder. An aggregate built in several tests
   gets a builder fixture `make_<aggregate>` in its context's `conftest.py`: keyword arguments for
   what a scenario names, defaults for everything else. Unit tests construct values and
   aggregates directly. Integration tests store the arranged state through the repository or a
@@ -120,8 +145,8 @@ below a scenario) carry no marker.
   `test_deadline_is_overdue_from_due_date`; the ID stands in the marker. A Szenariogrundriss
   becomes one test parametrised over its Beispiele.
 - **Migrations:** the test of a migration lives at
-  `backend/tests/integration/ops/migrations/versions/test_<file>.py`. Once, globally,
-  `backend/tests/integration/ops/migrations/test_migration_chain.py` runs every revision up and
+  `backend/tests/ops/migrations/versions/test_<file>.py`. Once, globally,
+  `backend/tests/ops/migrations/test_migration_chain.py` runs every revision up and
   down and checks with `alembic check` that models and migrations agree.
 - **Before the implementation** the tests are red: the shell raises `NotImplementedError`. They
   are committed together with the implementation, never `xfail`.

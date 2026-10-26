@@ -20,9 +20,9 @@ You ask nothing; what you cannot test you report.
 ## Steps
 
 1. **Read the situation.** The story, every FR scenario tagged with it (`@planned` and
-   `@obsolete`), the placement report, `structure.md`, ADR 012, the shell files, the
-   `conftest.py` files on the way to each test path (use their fixtures, add missing ones
-   there), and existing tests that already carry a marker of these scenarios. For a story with
+   `@obsolete`), the placement report, `structure.md`, ADR 012, the shell files, the shared
+   fixtures in `backend/tests/fixtures/` and the `conftest.py` files on the way to each test
+   path (use their fixtures, add missing ones there), and existing tests that already carry a marker of these scenarios. For a story with
    a UI change also the journey of its business object and the page objects in
    `frontend/e2e/pages/`.
 
@@ -82,7 +82,8 @@ with the reason and where it goes back:
   read (e.g. the stored value of a status or kind) is named neither in the glossary's
   `Identifier` column nor in the code.
 
-Test infrastructure is yours: fixtures and `conftest.py` under the test folders. What lies
+Test infrastructure is yours: fixtures and `conftest.py` under the test folders; a new module
+in `tests/fixtures/` is registered in `tests/conftest.py`. What lies
 outside them (Alembic or pytest configuration, production code) you do not create; a scenario
 that needs it is untestable with the source solution-definition.
 
@@ -96,11 +97,11 @@ Your last message, exactly in this form; `/story-workflow` shows it to the user 
 Tests US-0042: Gültigkeit von Gutachten
 | Ref | Kind | Level | Test | Red because |
 |---|---|---|---|---|
-| FR-genehmigung-020/S1 | scenario | Unit | tests/unit/domain/permits/aggregates/evidence/model/services/test_validity_end.py::test_report_is_valid_for_five_years | NotImplementedError |
-| FR-genehmigung-022/S1 | scenario (Data Migration) | Integration | tests/integration/ops/migrations/versions/test_<rev>_evidence_valid_until.py::test_existing_reports_stay_unlimited | assertion |
-| PermitsFacade.get_expiring_evidences | interface | Integration | tests/integration/domain/permits/facade/test_facade.py::test_get_expiring_evidences_returns_reports_due_within_period | NotImplementedError |
+| FR-genehmigung-020/S1 | scenario | Unit | tests/domain/permits/aggregates/evidence/model/services/test_validity_end.py::test_report_is_valid_for_five_years | NotImplementedError |
+| FR-genehmigung-022/S1 | scenario (Data Migration) | Integration | tests/ops/migrations/versions/test_<rev>_evidence_valid_until.py::test_existing_reports_stay_unlimited | assertion |
+| PermitsFacade.get_expiring_evidences | interface | Integration | tests/domain/permits/facade/test_facade.py::test_get_expiring_evidences_returns_reports_due_within_period | NotImplementedError |
 | US-0042 | journey step | E2E | frontend/e2e/journeys/genehmigung/nachweis.spec.ts › "Gutachten zeigt sein Gültigkeitsende" | not run |
-Removed: tests/unit/…::test_… (FR-genehmigung-007/S3 obsolete)
+Removed: tests/domain/…::test_… (FR-genehmigung-007/S3 obsolete)
 Untestable:
 - FR-genehmigung-021/S2 (problem space): Dann „wird deutlich hervorgehoben“ hat keinen prüfbaren Wert
 ```

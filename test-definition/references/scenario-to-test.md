@@ -19,7 +19,7 @@ Worked examples of the rules in `SKILL.md` and `domain-model/solution-space/stru
       | 2          | 1        | 3       |
 ```
 
-`tests/unit/domain/deadlines/model/services/test_problem_signals.py`:
+`tests/domain/deadlines/model/services/test_problem_signals.py`:
 
 ```python
 import pytest
@@ -54,7 +54,7 @@ def test_problem_signals_count_overdue_deadlines_and_problem_evidences(overdue, 
     Und ihr Erledigungsdatum ist der 18.11.2026
 ```
 
-`tests/integration/domain/deadlines/aggregates/manual_deadline/application/commands/test_complete_deadline.py`:
+`tests/domain/deadlines/aggregates/manual_deadline/application/commands/test_complete_deadline.py`:
 
 ```python
 from datetime import date
@@ -93,7 +93,7 @@ async def test_completed_deadline_is_done(api_client, make_manual_deadline, dead
     Dann nennt die Historie des Nachweises die erledigte Frist
 ```
 
-`tests/integration/domain/permits/aggregates/evidence/application/policies/test_on_deadline_done.py`:
+`tests/domain/permits/aggregates/evidence/application/policies/test_on_deadline_done.py`:
 
 ```python
 import pytest

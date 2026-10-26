@@ -8,7 +8,7 @@ identifiers in the glossary English as in the code.
 ## Sources, by reliability
 
 1. **Tests** of your folders (`backend/tests/unit/domain/<folder>/`,
-   `backend/tests/integration/domain/<folder>/`): executable examples of behaviour. One test or
+   `backend/tests/integration/domain/<folder>/`, after the migration `backend/tests/domain/<folder>/`): executable examples of behaviour. One test or
    parametrised group yields one scenario.
 2. **Rules** under `backend/domain/<folder>/regeln/` or the building blocks under `model/`
    (ADR 008): the business rules.

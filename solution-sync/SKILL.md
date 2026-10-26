@@ -1,6 +1,6 @@
 ---
 name: solution-sync
-description: Places the planned FR scenarios of ready stories into the backend's solution space – bounded context, aggregate, building block, file, interfaces, schema – writes the placement /implement works from, and reports boundary conflicts as questions. Use once after /grill-with-docs and before /implement, or when the user asks where a requirement goes in the backend.
+description: Places the planned FR scenarios of ready stories into the backend's solution space – bounded context, aggregate, building block, file, interfaces, schema – writes the placement /implement-story works from, and reports boundary conflicts as questions. Use once after /grill-with-docs and before /implement-story, or when the user asks where a requirement goes in the backend.
 ---
 
 # Solution-Sync
@@ -12,7 +12,7 @@ for **boundary conflicts** the problem space cannot see. Only those become quest
 
 You read the problem space (stories, FRs, domain map) and never write into it. You write the
 **placement** of each story under `domain-model/solution-space/placements/`, the spec
-`/implement` works from, and the bridge: the solution-space columns (`Solution space`,
+`/implement-story` works from, and the bridge: the solution-space columns (`Solution space`,
 `Identifier`) of glossary rows whose code name you decide. Everything you write is English;
 questions to the user are German.
 
@@ -48,7 +48,7 @@ questions to the user are German.
      new name would collide with one.
 
    A difference between today's code and the placement is no question: it is the delta
-   `/implement` closes. A scenario waiting for an answer stays unplaced.
+   `/implement-story` closes. A scenario waiting for an answer stays unplaced.
 
 4. **Write the placement**, one file per story:
    `domain-model/solution-space/placements/US-NNNN-<slug>.md` (same name as the story), by the

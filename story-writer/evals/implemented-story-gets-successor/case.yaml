@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: implemented-story-gets-successor
+expected_outcome: |
+  US-0007 (umgesetzt) bleibt unverändert. Eine neue Story US-0008 verweist mit 'Ersetzt teilweise: US-0007 (AK1)' auf sie und beschreibt die neue Grenze mit Grenzfällen.
+context:
+  scaffold_script: place-files.sh

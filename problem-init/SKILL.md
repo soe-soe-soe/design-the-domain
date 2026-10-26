@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 You derive the problem-space model under `domain-model/` for code that already exists:
 glossary, business objects and FRs per subdomain, the scenarios from the existing tests, and in
-each of those tests the reference to its scenario. Afterwards `fr-writer` has an existing state
+each of those tests the reference to its scenario. Afterwards `problem-fr-writer` has an existing state
 to find contradictions against.
 
 You conduct: each subdomain is handled by a subagent of its own, all at once. You start them,

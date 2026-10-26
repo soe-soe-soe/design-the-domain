@@ -32,7 +32,7 @@ identifiers in the glossary English as in the code.
    description, that becomes a question. You sort existing rows into the matching section.
 
 3. **Cut FRs**, one FR per rule or capability, type by
-   `.claude/skills/fr-writer/references/fr-types.md`:
+   `.claude/skills/problem-fr-writer/references/fr-types.md`:
    - A rule module yields one or more FRs (Invariant, Domain Service, Policy).
    - Plain creating, changing and deleting of a business object yields **one** Command FR per
      business object ("Frist verwalten") with scenarios for validations and permissions only,
@@ -42,13 +42,13 @@ identifiers in the glossary English as in the code.
      triggering subdomain.
    - A foreign system (Auth0, ALKIS, e-mail) yields an Anti-Corruption Layer FR.
 
-   Layout and template as in `fr-writer`: `domain-model/problem-space/<subdomain>/<business-object>/`
+   Layout and template as in `problem-fr-writer`: `domain-model/problem-space/<subdomain>/<business-object>/`
    or directly in the subdomain, template
-   `.claude/skills/fr-writer/assets/functional-requirement.md`, numbers per subdomain from `001`.
+   `.claude/skills/problem-fr-writer/assets/functional-requirement.md`, numbers per subdomain from `001`.
    FRs contain no code locations.
 
 4. **Write scenarios.** Per test (or parametrised group) one scenario in Gherkin by
-   `.claude/skills/story-writer/references/gherkin.md`, phrased on the level of the FR's rule,
+   `.claude/skills/problem-story-writer/references/gherkin.md`, phrased on the level of the FR's rule,
    with the test's concrete values. Code without a test gets a scenario from the code and is
    listed under "without test" in the report; you write no test for it. Every scenario carries
    `@existing @unconfirmed`. History: `- existing: created (problem-init, <YYYY-MM-DD>)`.

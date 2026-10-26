@@ -1,6 +1,6 @@
 ---
 name: test-definition
-description: Writes the tests of a placed story before its implementation – one scenario test per planned FR scenario, interface tests for facade methods, migration tests, the journey step for a UI change – red against the shell of solution-definition. Use as the step after solution-definition in /implement-story, or when the user wants the tests of a story written first.
+description: Writes the tests of a placed story before its implementation – one scenario test per planned FR scenario, interface tests for facade methods, migration tests, the journey step for a UI change – red against the shell of solution-definition. Use as the step after solution-definition in /story-workflow, or when the user wants the tests of a story written first.
 ---
 
 # Test-Definition
@@ -84,7 +84,7 @@ Even without a single test written, your last message is the report.
 
 ## Report
 
-Your last message, exactly in this form; `/implement-story` shows it to the user for review:
+Your last message, exactly in this form; `/story-workflow` shows it to the user for review:
 
 ```
 Tests US-0042: Gültigkeit von Gutachten

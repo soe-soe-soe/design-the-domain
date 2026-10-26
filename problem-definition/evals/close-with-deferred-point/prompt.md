@@ -40,13 +40,13 @@ So sind die bisherigen Runden gelaufen (alle beantwortet):
 
 ➡️ (beantwortet)
 
-🗣️ Alex   🧩 fr-writer   🏷️ fristen.md: Abgeleitete Frist   📐 Policy
+🗣️ Alex   🧩 problem-fr-writer   🏷️ fristen.md: Abgeleitete Frist   📐 Policy
 
 ❓ **Q6** - **Verschobene Fälligkeit**: Wird nach dem Verschieben erneut erinnert?
 
 ➡️ (beantwortet)
 
-🗣️ Alex/Pocock   🧩 grilling + fr-writer   🏷️ FR-fristen-006/S9   📐 Policy
+🗣️ Alex/Pocock   🧩 grilling + problem-fr-writer   🏷️ FR-fristen-006/S9   📐 Policy
 
 ### 🌐 Übergreifend
 ❓ **Q7** - **Absender-Adresse**: Von welcher Adresse gehen die Mails raus?
@@ -63,14 +63,14 @@ So sind die bisherigen Runden gelaufen (alle beantwortet):
 
 🗣️ Pocock   🧩 grilling
 
-Der letzte problem-sync meldet: Stories: US-0050 (continued, draft), US-0051 (continued, draft); FRs: unverändert, ohne offene Punkte. Dein Grilling hat keine offenen Fragen mehr.
+Der letzte Bericht der Writer meldet: Stories: US-0050 (continued, draft), US-0051 (continued, draft); FRs: unverändert, ohne offene Punkte. Dein Grilling hat keine offenen Fragen mehr.
 
 ## Abschlussrunde
 ❓ **Q9** - **Sammelmail**: Gibt es statt einzelner Mails eine wöchentliche Sammelmail für alle, die Erinnerungen abbestellt haben?
 
 ➡️ Nein, wer abbestellt, bekommt keine Mails; eine Sammelmail wäre eine eigene Story.
 
-🗣️ Alex 🧩 story-writer 🏷️ US-0051/AC2
+🗣️ Alex 🧩 problem-story-writer 🏷️ US-0051/AC2
 
 Meine Antwort auf Q9: „Das vertage ich, darüber entscheide ich später.“
 

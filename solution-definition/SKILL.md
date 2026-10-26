@@ -1,6 +1,6 @@
 ---
 name: solution-definition
-description: Places the planned FR scenarios of a ready story into the backend's solution space – bounded context, aggregate, building block, file, interfaces, schema – builds the shell of new files and symbols without behaviour, and reports boundary conflicts as questions. Use as the first step of /implement-story, or when the user asks where a requirement goes in the backend.
+description: Places the planned FR scenarios of a ready story into the backend's solution space – bounded context, aggregate, building block, file, interfaces, schema – builds the shell of new files and symbols without behaviour, and reports boundary conflicts as questions. Use as the first step of /story-workflow, or when the user asks where a requirement goes in the backend.
 ---
 
 # Solution-Definition
@@ -37,6 +37,11 @@ questions to the user are German.
    - **Schema change:** each new table or column, as an Alembic migration.
    - **Names:** English identifiers for new terms; enter them in the solution-space columns of
      the term's glossary row.
+   - **Stored values:** a scenario that names a value of a set (a kind, a status) whose stored
+     form a test must write or read – a data migration, a query filtering on it – gets that
+     form into the `Identifier` column of the value's glossary row, from the code or decided
+     here (`EvidenceKind.SOUND_REPORT` = `sound_report`). Otherwise `test-definition` would have
+     to guess it.
 
 3. **Check for conflicts.** A question arises in four cases only:
    - **boundary:** the scenario needs data or behaviour that two contexts could own, and the

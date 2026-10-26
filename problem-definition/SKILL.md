@@ -90,11 +90,12 @@ the round's decisions; it runs in its own context so the interview stays lean. I
 
 4. **Close.** The session is done when your frontier is empty, every open point of the session
    is answered or deferred, and the user confirms the shared understanding (as `grilling`
-   requires). Then set `Status: ready` in every story of the session without entries under
-   `## Open`; the others stay `draft`. Tell the user which stories are `ready` and which are
-   still `draft` with their deferred points, and name the next step of the feature workflow in
+   requires). Then edit the header line of every story file of the session without entries
+   under `## Open` to `Status: ready` – the file is the record, saying it is not enough; the
+   others stay `draft`. Only then tell the user which stories are `ready` and which are still
+   `draft` with their deferred points, and name the next step of the feature workflow in
    `CLAUDE.md`.
 
 You are done when every decision of the session stands in a story or an FR, every term the
-stories use is in a glossary, every open point is answered or deferred, and the user has
-confirmed.
+stories use is in a glossary, every open point is answered or deferred, the user has
+confirmed, and every story without open points says `Status: ready` in its file.

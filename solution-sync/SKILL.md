@@ -29,8 +29,8 @@ user are German.
    - **Aggregate and level:** the FR's business object names the aggregate. No business object,
      or the rule spans several aggregates → context level.
    - **Building block and file:** by the FR type table and naming rules of the structure; reuse
-     an existing file if it already holds this rule, otherwise name the new file. Not-migrated
-     context: current layering plus target path.
+     an existing file if it already holds this rule, otherwise name the new file. Mark every
+     file `(exists)` or `(new)`. Not-migrated context: current layering plus target path.
    - **Interfaces:** each new or changed endpoint (`api/`) and facade method (`facade/`), and
      each domain event a command must raise for a policy.
    - **Schema change:** each new table or column, as an Alembic migration.
@@ -38,8 +38,9 @@ user are German.
      the term's glossary row.
 
 3. **Check for conflicts.** A question arises in four cases only:
-   - **boundary:** the scenario needs data or behaviour of another context its facade does not
-     offer, and it is unclear which context owns it.
+   - **boundary:** the scenario needs data or behaviour that two contexts could own, and the
+     glossary does not settle which one. If the glossary names the owner, a missing facade method
+     is no question: list it under Interfaces.
    - **aggregate-cut:** an invariant spans two aggregates, or one command must change two
      aggregates consistently.
    - **misplacement:** the rule belongs to subdomain X, but the data or code it needs lives in
@@ -58,21 +59,20 @@ for one of your questions.
 Your last message, exactly in this form:
 
 ```
-Placement US-0042: Nachbesserung abgelehnter Nachweise
+Placement US-0042: Gültigkeit von Gutachten
 | Scenario | Type | Context / aggregate | Building block → file |
 |---|---|---|---|
-| FR-genehmigung-014/S1 | Invariant | permits / evidence | invariant → aggregates/evidence/model/invariants/permitted_transitions.py (exists) |
-| FR-fristen-013/S1 | Query | deadlines (not migrated) | query → service.py `DeadlineService.get_signals`; target application/queries/project_signals.py |
+| FR-genehmigung-020/S1 | Domain Service | permits / evidence | domain service → aggregates/evidence/model/services/validity_end.py (new) |
+| FR-fristen-021/S1 | Query | deadlines (not migrated) | query → service.py `DeadlineService.get_all`; target application/queries/start_page_deadlines.py |
+| FR-genehmigung-021/S1 | Query | permits / procedure | – waits for question 1 |
 Interfaces:
-- api: POST /evidences/{id}/reject → aggregates/evidence/application/commands/reject_evidence.py
-- facade: PermitsFacade.get_rejected_evidences (new), used by deadlines
-- event: EvidenceRejected (aggregates/evidence/model/events/evidence_rejected.py)
-Schema: evidence.rejection_reason (text, nullable)
-Glossary: genehmigung.md „Abgelehnt“ → Value Object, `EvidenceStatus.REJECTED`
+- facade: PermitsFacade.get_expiring_evidences (new), used by deadlines
+Schema: evidence.valid_until (date, nullable)
+Glossary: genehmigung.md „Gültig bis“ → Value Object, `Evidence.valid_until`
 Questions:
-1. Story: US-0042 · Ref: FR-fristen-013/S1 · Type: Query · Case: boundary
-   Question: Soll Fristen abgelehnte Nachweise über die Fassade der Genehmigung lesen statt sie selbst zu speichern?
-   Recommendation: Ja, der Nachweis gehört der Genehmigung; Fristen ist nachgelagert.
+1. Story: US-0042 · Ref: FR-genehmigung-021/S1 · Type: Query · Case: boundary
+   Question: Soll der Antrag die Anschrift der Projektgesellschaft über die Fassade des Projekts lesen, statt eine eigene Kopie am Antrag zu speichern?
+   Recommendation: Ja, die Projektgesellschaft gehört dem Projekt; eine Kopie am Antrag veraltet unbemerkt.
 ```
 
 Omit `Interfaces`, `Schema` or `Glossary` when empty. Without questions it reads

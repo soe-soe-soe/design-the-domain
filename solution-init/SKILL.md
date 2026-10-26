@@ -7,7 +7,7 @@ disable-model-invocation: true
 # Solution-Init
 
 You lay out, once, how the existing backend moves into the target structure of
-`.claude/skills/solution-sync/references/structure.md`: per bounded context which aggregates it
+`domain-model/solution-space/structure.md`: per bounded context which aggregates it
 has, which building block every module becomes and where it goes. The result is one migration
 plan per context under `refactorings/`, carried out later per context with `/implement`.
 Afterwards `solution-sync` places new requirements into a structure that holds.

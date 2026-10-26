@@ -1,6 +1,6 @@
 ---
 name: problem-sync
-description: Updates the problem space after an answered round of /grill-with-docs – stories, functional requirements, domain map – and returns the questions for the next round. Use as a subagent after every answered grill round.
+description: Updates the problem space after an answered round of /grill-story – stories, functional requirements, domain map – and returns the questions for the next round. Use as a subagent after every answered grill round.
 ---
 
 # Problem-Sync

@@ -2,7 +2,7 @@
 
 You classify the existing code of one bounded context into aggregates and building blocks and
 write the migration plan. You change no code. Target structure and FR type mapping:
-`.claude/skills/solution-sync/references/structure.md`; terms:
+`domain-model/solution-space/structure.md`; terms:
 `domain-model/glossaries/_methodology.md`.
 
 ## Sources

@@ -45,7 +45,7 @@ Which business objects a subdomain has stands in the sections of its glossary
    it there by the template [assets/domain-map.md](assets/domain-map.md): a new subdomain with
    type `open`, a relationship in business terms.
 
-3. **Check for contradictions** before you write. A question arises in three cases only:
+3. **Check for contradictions** before you write. A question arises in five cases only:
    - **ripple:** the change touches another FR the story says nothing about, e.g. a new
      overdue threshold and the FR "Problemsignale" that builds on overdue. The story leaves
      open whether the other FR follows.
@@ -56,6 +56,11 @@ Which business objects a subdomain has stands in the sections of its glossary
      or hangs on a term whose meaning the glossary leaves open. Ask only if a scenario's
      outcome depends on it; wording and style are no case. The AC waits for the answer. You do
      not change the glossary; the grilling maintains it.
+   - **ownership:** a new term or rule fits more than one subdomain, or none in the domain map,
+     and the input does not say which one owns it. Ask which subdomain it belongs to.
+   - **consistency:** a rule links two business objects (e.g. Nachweis and Antrag) and the input
+     does not say whether it must hold at once or may follow shortly after. Ask which; the answer
+     decides whether it is an invariant of one business object or a policy between two.
 
    A difference to the code is no question: it is the delta to be implemented. The grilling
    asks about contradictions with ADRs itself.
@@ -107,7 +112,7 @@ Questions:
    Recommendation: Ja, das Glossar beschreibt das Problemsignal über „überfällig“.
 ```
 
-`Case` is `ripple`, `overwrite-implemented` or `glossary`; for `glossary`, `Ref` names glossary
+`Case` is `ripple`, `overwrite-implemented`, `glossary`, `ownership` or `consistency`; for `glossary`, `Ref` names glossary
 and term (`fristen.md: Problem`). An AC waiting for an answer appears once in the FR list, even
 if several questions concern it. `Domain map` lists what you added, otherwise `unchanged`.
 Without questions it reads `Questions: none`. Phrase each question so that "ja" accepts your

@@ -1,6 +1,6 @@
 ---
 name: story-writer
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into domain-model/problem-space/stories/. Use from problem-sync after every answered round of /grill-with-docs, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into domain-model/problem-space/stories/. Use from problem-sync after every answered round of /grill-story, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Story-Writer

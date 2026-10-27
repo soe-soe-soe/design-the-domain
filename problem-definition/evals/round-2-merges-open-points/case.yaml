@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: round-2-merges-open-points
 expected_outcome: |
-  Runde 2 gruppiert nach Story (US-0050, US-0051, Übergreifend zuletzt), durchnummeriert, enthält beide offenen Punkte aus den FRs genau einmal mit 🗣️ Alex bzw. Alex/Pocock, 🧩 problem-fr-writer (ggf. grilling + problem-fr-writer) und den Angaben 🏷️ 📐 aus dem Bericht; eigene Fragen mit 🗣️ Pocock 🧩 grilling.
+  Runde 2 gruppiert nach Story (US-0050, US-0051, Übergreifend zuletzt), durchnummeriert, enthält beide offenen Punkte aus den FRs genau einmal mit 🗣️ Alex bzw. Alex/Pocock, 🧩 problem-fr-writer (ggf. grilling + problem-fr-writer) und der Referenz mit Typ-Icon (📋) und 📐 aus dem Bericht; eigene Fragen mit 🗣️ Pocock 🧩 grilling.
 context:
   scaffold_script: place-files.sh

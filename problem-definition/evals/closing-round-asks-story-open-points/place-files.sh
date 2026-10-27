@@ -5,6 +5,7 @@ set -eu
 here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/../../../../.." && pwd)"
 cp "$repo/CLAUDE.md" "$repo/GLOSSARY-MAP.md" .
+mkdir -p .claude/skills/templates && cp "$repo/.claude/skills/templates/output-format.md" .claude/skills/templates/
 cp -R "$repo/domain-model" .
 mkdir -p docs && cp -R "$repo/docs/adr" docs/
 if [ -d "$here/files" ]; then cp -R "$here/files/." .; fi

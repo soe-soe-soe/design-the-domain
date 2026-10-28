@@ -1,13 +1,14 @@
 # Output format
 
-Shared by the project's skills for what they show the user; not a skill itself. A skill that
-uses it says so and reads this file once per session.
+Shared by the pts skills for what they show the user; not a skill itself. A skill that uses it
+says so and reads this file once per session. Values in angle quotes are keys of the project
+config `.claude/pts.md`.
 
 ## Context block
 
 A message that follows reads of artifacts not yet listed in the session starts with this block,
 one item per new artifact, linked to its file. Never listed: the user's prompt (idea text,
-ticket link, images), `CLAUDE.md`, and `README.md` or other index files of a folder.
+ticket link, images), `‹project-rules›`, and `README.md` or other index files of a folder.
 
 ```
 **Kontext**
@@ -23,14 +24,14 @@ anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-f
 
 | Space | Icon | Type | Where |
 |---|---|---|---|
-| Problem | 📘 | story | `domain-model/problem-space/stories/` |
-| Problem | 📋 | FR | `domain-model/problem-space/<subdomain>/` |
-| Problem | 📄 | domain-map, glossary, GLOSSARY-MAP | `domain-model/`, `docs/domain/` |
-| Solution | 🗂️ | structure, context-map | `domain-model/solution-space/` |
-| Solution | 🏛️ | ADR, decision-record | `docs/adr/`, `decision-records/` of a skill |
-| Solution | 📘 | refactoring | `refactorings/` |
-| Solution | ⚙️ | frontend, backend, migration | code, schema, Alembic |
-| Solution | 🧪 | test | `tests/`, journeys |
+| Problem | 📘 | story | `‹stories›/` |
+| Problem | 📋 | FR | `‹problem-space›/<subdomain>/` |
+| Problem | 📄 | domain-map, glossary, glossary-map | `‹domain-map›`, `‹glossaries›`, `‹glossary-map›` |
+| Solution | 🗂️ | structure, context-map | `‹structure›`, `‹context-map›` |
+| Solution | 🏛️ | ADR, decision-record | `‹adr›`, `decision-records/` of a skill |
+| Solution | 📘 | refactoring | `‹refactorings›` |
+| Solution | ⚙️ | frontend, backend, migration | code, schema, `‹migrations›` |
+| Solution | 🧪 | test | `‹backend-tests›`, `‹e2e-journeys›` |
 | External | 🔗 | web | laws, authority sites, documentation |
 
 An artifact of a type not in the table is a document: 📄 with its own type name.

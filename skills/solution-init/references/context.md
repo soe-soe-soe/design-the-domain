@@ -1,20 +1,21 @@
 # Plan one bounded context
 
 You classify the existing code of one bounded context into aggregates and building blocks and
-write the migration plan. You change no code. Target structure and FR type mapping:
-`domain-model/solution-space/structure.md`; terms:
-`domain-model/glossaries/_methodology.md`.
+write the migration plan. You change no code. Values in angle quotes are keys of the project
+config `.claude/pts.md`. Target structure and FR type mapping:
+`‹structure›`; terms:
+`‹methodology-glossary›`.
 
 ## Sources
 
-1. The code of your folders: models, repositories, services, routers, schemas, `regeln/`,
-   facade, initializers, clients.
+1. The code of your folders: models, repositories, services, routers, schemas, rule
+   modules, facade, initializers, clients.
 2. The glossary of your subdomain: business objects with aggregate root, solution-space column
    and identifiers.
-3. The FRs of your subdomain (`domain-model/problem-space/<subdomain>/`): their type tells the
-   building block of the code that implements them; tests with `@pytest.mark.fr` lead from a
+3. The FRs of your subdomain (`‹problem-space›/<subdomain>/`): their type tells the
+   building block of the code that implements them; tests with `‹scenario-marker›` lead from a
    scenario to that code.
-4. ADR 007–011 and the refactorings under `refactorings/` touching your folders.
+4. the ADRs `‹architecture-adrs›` and the refactorings under `‹refactorings›` touching your folders.
 
 ## Steps
 
@@ -26,15 +27,14 @@ write the migration plan. You change no code. Target structure and FR type mappi
 
 2. **Assign every module.** Each class or function with logic becomes exactly one building
    block at aggregate or context level, with its target file. Split modules that hold several
-   blocks (`regeln/evidence_status.py` → invariants, specifications, value objects). A service
+   blocks (e.g. one rules module → invariants, specifications, value objects). A service
    method that writes is a command, one that reads a query; a response mapper goes to the
-   query. Routers become `api/endpoints/`, schemas `api/schemas/`, facade methods stay as thin
-   forwards in `facade/facade.py`, its dataclasses go to `facade/types/`. Clients of foreign
-   systems go to `adapters/<system>/`.
+   query. Routers, schemas, facade, its types and clients of foreign systems go where `‹structure›`
+   puts them; facade methods stay thin forwards.
 
 3. **Move the tests along.** Each test file gets the mirrored target path of the code it
-   tests, out of `tests/unit/` or `tests/integration/` into `tests/domain/<context>/…`
-   (`structure.md`, section Tests); markers stay.
+   tests, under `‹backend-tests›` as `‹structure›` (section Tests) lays
+   it out; markers stay.
 
 4. **Collect findings.** A question arises only if
    - an invariant or command spans two aggregates (**aggregate-cut**),
@@ -47,7 +47,7 @@ write the migration plan. You change no code. Target structure and FR type mappi
 
 ## Migration plan
 
-`refactorings/solution-structure-<context>.md`, in the form of the other refactorings (Goal,
+`‹refactorings›/solution-structure-<context>.md`, in the form of the other refactorings (Goal,
 Why, Current state, Target state, Before starting), with Target state as:
 
 ```
@@ -71,7 +71,7 @@ Aggregates: evidence, procedure, application_component, cost_item
 Modules: 64 assigned (invariant 6, specification 4, domain service 5, factory 2, command 18, query 14, policy 1, api 9, adapter 0, other 5)
 Boundary violations: 3
 - areas imports domain.permits.models past the facade (2 files)
-Plan: refactorings/solution-structure-permits.md
+Plan: ‹refactorings›/solution-structure-permits.md
 Questions:
 1. Ref: <file or FR-…/Sn> · Type: <FR type or building block> · Case: <aggregate-cut | boundary | misplacement | glossary-identifier>
    Question: <was auffällt, als Entscheidung formuliert>?

@@ -11,32 +11,37 @@ acceptance criteria, FR scenarios, glossary terms. The craft comes from Pocock's
 `grilling` (the interview) and `domain-modeling` (glossary and ADRs); this skill runs the rounds
 the project's way, lets the writers update the problem space in between and alone decides which
 questions are asked.
-It is the problem-space counterpart of `/story-workflow`.
 
-Called as `/problem-definition <feature idea>`. Everything you say to the user is German.
+**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
+angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+It is the problem-space counterpart of `/pts:story-workflow`.
+
+Called as `/pts:problem-definition <feature idea>`. Everything you say to the user is in
+`‹content-language›`.
 
 ## Open points
 
-The writers (`problem-story-writer`, `problem-fr-writer`) ask nothing; they mark what is open where it belongs. A
+The writers (`pts:problem-story-writer`, `pts:problem-fr-writer`) ask nothing; they mark what is open where it belongs. A
 scenario or AC with an open point carries the tag `@open`, and the story or FR lists the point
 under `## Open`, in the format of the term "Open point" in
-`domain-model/glossaries/_methodology.md`: reference, source skill, question, recommendation,
+`‹methodology-glossary›`: reference, source skill, question, recommendation,
 fields. The **session's open points** are those in the stories and FRs the session created or
 changed (the ones the writers' reports name).
 
 ## Output format
 
-Read `.claude/skills/templates/output-format.md` before your first message and follow it: the context block at
+Read `${CLAUDE_PLUGIN_ROOT}/templates/output-format.md` before your first message and follow it: the context block at
 the start of a message after new reads, the artifact icons in every reference. Artifacts the
 ground subagent read count as read by you.
 
 ## Writing the problem space
 
-After every answered round, one subagent brings `domain-model/problem-space/` up to date with
+After every answered round, one subagent brings `‹problem-space›/` up to date with
 the round's decisions; it runs in its own context so the interview stays lean. Its brief:
 
-> Run the skill `problem-story-writer` with the answers of this round: <answers> and the idea that
-> started the session: <idea>. Then run the skill `problem-fr-writer` with the stories its
+> Call the Skill tool with `pts:problem-story-writer` with the answers of this round: <answers> and the idea that
+> started the session: <idea>. Then call it with `pts:problem-fr-writer` for the stories its
 > report names. Write nothing yourself; the writers do. Your last message joins both reports,
 > exactly in this form:
 >
@@ -53,11 +58,11 @@ the round's decisions; it runs in its own context so the interview stays lean. I
 
 1. **Read the ground** in one subagent, so the files stay out of the interview. Its brief:
 
-   > Read `GLOSSARY-MAP.md`, the glossaries it names for the subdomains this idea touches:
-   > <idea>, `domain-model/problem-space/domain-map.md`, the stories under
-   > `domain-model/problem-space/stories/` with status `draft` on the same topic, and whatever
+   > Read `‹glossary-map›`, the glossaries it names for the subdomains this idea touches:
+   > <idea>, `‹domain-map›`, the stories under
+   > `‹stories›/` with status `draft` on the same topic, and whatever
    > else the idea points to. Change nothing. Your last message has exactly these parts:
-   > `Kontext:` one line per file read, in the format of `.claude/skills/templates/output-format.md`;
+   > `Kontext:` one line per file read, in the format of `${CLAUDE_PLUGIN_ROOT}/templates/output-format.md`;
    > `Stand:` the current state of the topic in at most 15 lines; `Begriffe:` every glossary
    > term the idea touches with its one-line description; `Drafts:` each draft story on the
    > topic with its open points, or `keine`.
@@ -65,10 +70,10 @@ the round's decisions; it runs in its own context so the interview stays lean. I
    The session may continue those drafts, including their open points. When a question needs
    more than the report gives, read the file yourself.
 
-2. **Load the craft.** Call the Skill tool with `mattpocock-skills:grilling` and with
-   `mattpocock-skills:domain-modeling`. Follow both, with the project's rules on top: glossary
-   rows go into the subdomain glossaries in the table format of `CLAUDE.md` (section
-   „Fachmodell“), not into a root `GLOSSARY.md`.
+2. **Load the craft.** Call the Skill tool with `‹skill-grilling›` and with
+   `‹skill-domain-modeling›`. Follow both, with the project's rules on top: glossary
+   rows go into the subdomain glossaries in the table format of `‹project-rules›`, not into
+   a root `GLOSSARY.md`.
 
 3. **Run the rounds.**
    - **Rounds follow `grilling`:** each round asks its frontier, so its length depends on what is
@@ -91,16 +96,16 @@ the round's decisions; it runs in its own context so the interview stays lean. I
    - **Provenance line.** Every question ends, below the ➡️ recommendation, with one line whose
      entries are separated by a space; entries that do not exist yet are left out:
 
-     🗣️ Alex/Pocock 🧩 problem-fr-writer 📋 FR-fristen-003/S2 📐 Domain Service
+     🗣️ ‹user›/Pocock 🧩 problem-fr-writer 📋 FR-fristen-003/S2 📐 Domain Service
 
-     🗣️ is `Alex` for an open point, `Pocock` for a question only your grilling frontier has,
-     and `Alex/Pocock` only when your frontier already held the same question before you read
+     🗣️ is `‹user›` for an open point, `Pocock` for a question only your grilling frontier has,
+     and `‹user›/Pocock` only when your frontier already held the same question before you read
      the open points (ask it once). 🧩 names the skill that raised it: `grilling` for your own,
      the source skill of the open point for its questions, both joined with ` + ` for a shared
      one (`grilling + problem-fr-writer`). The reference entry uses the icon of the referenced
      artifact's type from the context block: for an open point its reference
      (`📋 FR-fristen-002/S1`, `📘 US-0042/AC2`), and 📐 its field `Type`; your own questions may
-     carry a reference to the artifact they rest on (`📘 refactorings/planungsrecht-zur-flaeche.md`,
+     carry a reference to the artifact they rest on (`📘 ‹refactorings›/planungsrecht-zur-flaeche.md`,
      `⚙️ Nachweis-Zeitstrahl`), never to a glossary term.
    - **Deferring.** The user may defer an open point instead of answering it. It stays in its
      story or FR, and you do not ask it again in this session.
@@ -111,7 +116,7 @@ the round's decisions; it runs in its own context so the interview stays lean. I
    under `## Open` to `Status: ready` – the file is the record, saying it is not enough; the
    others stay `draft`. Only then tell the user which stories are `ready` and which are still
    `draft` with their deferred points, and name the next step of the feature workflow in
-   `CLAUDE.md`.
+   `‹project-rules›`.
 
 You are done when every decision of the session stands in a story or an FR, every term the
 stories use is in a glossary, every open point is answered or deferred, the user has

@@ -1,12 +1,12 @@
 # FR types
 
 The type stands as a DDD term in the FR header. It decides the building block in the solution
-space (skill `solution-definition`, table in `domain-model/solution-space/structure.md`), and
+space (skill `solution-definition`, table in `‹structure›`), and
 through it the test level; the problem space names no test level.
 
 | Type | Sign in the AC | Example |
 |---|---|---|
-| Invariant | "darf nur", "nie", permitted transitions | Nachweisstatus only via permitted transitions (ADR 007) |
+| Invariant | "darf nur", "nie", permitted transitions | Nachweisstatus only via permitted transitions |
 | Domain Service | "gilt als", "ergibt sich aus", "wird berechnet" | Überfälligkeit, Problemsignale, IRR, Phase aus Antragsstatus |
 | Policy | "wenn X geschieht, dann …" across a subdomain boundary | Frist erledigt → entry in the Nachweishistorie |
 | Command | user creates, changes, deletes, advances | Projekt anlegen, Frist abhaken |

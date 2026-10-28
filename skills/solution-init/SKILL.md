@@ -6,30 +6,34 @@ disable-model-invocation: true
 
 # Solution-Init
 
-You lay out, once, how the existing backend moves into the target structure of
-`domain-model/solution-space/structure.md`: per bounded context which aggregates it
+You lay out, once, how the existing backend (`‹backend›`) moves into the target structure of
+`‹structure›`: per bounded context which aggregates it
 has, which building block every module becomes and where it goes. The result is one migration
-plan per context under `refactorings/`, carried out later per context with `/implement`.
-Afterwards `solution-definition` places new requirements into a structure that holds.
+plan per context under `‹refactorings›`, carried out later per context. Afterwards
+`pts:solution-definition` places new requirements into a structure that holds.
 
 You plan, you do not move code. You conduct: each bounded context is handled by a subagent of
-its own, all at once. Everything you write is English; questions to the user are German.
+its own, all at once. Everything you write is English; questions to the user are in `‹content-language›`.
+
+**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
+angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 ## Steps
 
-1. **Clarify scope.** Read the subdomain rows of `domain-model/glossaries/*.md` (bounded
+1. **Clarify scope.** Read the subdomain rows of `‹glossaries›/*.md` (bounded
    context and its folders) and ask the user with AskUserQuestion whether to plan one context,
    several or all; for several, let them choose. If the call names contexts
-   (`/solution-init permits deadlines`), skip the question. `backend/core/` is out of scope.
-   Read `refactorings/solution-init-seed.md` if it exists: it lists code locations formerly
+   (`/pts:solution-init permits deadlines`), skip the question. `‹backend-shared›` is out of scope.
+   Read `‹refactorings›/solution-init-seed.md` if it exists: it lists code locations formerly
    kept in the FRs; hand each subagent its part.
 
 2. **Start subagents**, all in **one** message so they run in parallel: one per context, with
    this brief:
 
    > Plan the migration of the bounded context `<context>` (folders: `<folders>`, subdomain
-   > `<subdomain>`) by `.claude/skills/solution-init/references/context.md`. Write only
-   > `refactorings/solution-structure-<context>.md`. Your last message is the report in the
+   > `<subdomain>`) by `${CLAUDE_SKILL_DIR}/references/context.md` (project config:
+   > `.claude/pts.md`). Write only `‹refactorings›/solution-structure-<context>.md`. Your last message is the report in the
    > form the reference prescribes.
 
 3. **Reconcile** once all reports are in:
@@ -37,14 +41,14 @@ its own, all at once. Everything you write is English; questions to the user are
      another context (e.g. Planungsrecht from `projects` to `areas`), keep the move in the
      receiving context's plan and reference it from the other.
    - **Facade usage:** every call a plan routes through another context's facade must exist in
-     that context's planned `facade/facade.py`.
-   - **Context map:** run `python backend/ops/generate_context_map.py`; it rewrites
-     `domain-model/solution-space/context-map.md` from today's code.
-   - **Seed:** delete `refactorings/solution-init-seed.md` once every context in it is planned.
+     that context's planned facade (`‹structure›`).
+   - **Context map:** run `‹context-map-command›`; it rewrites
+     `‹context-map›` from today's code.
+   - **Seed:** delete `‹refactorings›/solution-init-seed.md` once every context in it is planned.
 
 4. **Report.** To the user, per context: aggregates, number of modules per building block,
    boundary violations found (imports bypassing a facade). Below that the subagents' questions
-   in the grill-session format (CLAUDE.md, provenance line with `🧩 solution-init`), grouped per
+   in the question format of `/pts:problem-definition` (provenance line with `🧩 solution-init`), grouped per
    context. Finally the
    question which context to migrate first.
 

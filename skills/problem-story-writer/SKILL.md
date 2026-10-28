@@ -1,26 +1,30 @@
 ---
 name: problem-story-writer
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into domain-model/problem-space/stories/ and marks what is still open. Use from the writing subagent of /problem-definition after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹stories›/ and marks what is still open. Use from the writing subagent of /problem-definition after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Problem-Story-Writer
 
 You package business decisions into **stories**: short, with a why, followed by acceptance
 criteria (AC) in Gherkin. A story describes a **change**; the living target state is kept by
-the functional requirements (skill `problem-fr-writer`).
+the functional requirements (skill `pts:problem-fr-writer`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/problem-definition` reads the open points and decides when to ask them.
+`/pts:problem-definition` reads the open points and decides when to ask them.
+
+**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
+angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 Language: methodology terms, headings, tags, status values, IDs and field labels are English;
-story content (title, role sentence, why, scenarios, open questions) is German.
+story content (title, role sentence, why, scenarios, open questions) is in `‹content-language›`.
 
 ## Steps
 
 1. **Read the situation.** The input (the answers of the last round plus the idea that started
-   the session), `domain-model/problem-space/domain-map.md`, the glossaries of the subdomains
-   involved (`domain-model/glossaries/`), the ADRs under `docs/adr/` that touch the topic, and
-   all stories under `domain-model/problem-space/stories/`.
+   the session), `‹domain-map›`, the glossaries of the subdomains
+   involved (`‹glossaries›/`), the ADRs under `‹adr›` that touch the topic, and
+   all stories under `‹stories›/`.
 
 2. **Assign.** A story is a change a business person recognises as one thing. For each change
    in the input:
@@ -45,7 +49,7 @@ story content (title, role sentence, why, scenarios, open questions) is German.
    decided; an invented outcome is a guess.
 
 5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in
-   the term "Open point" in `domain-model/glossaries/_methodology.md`: a new AC whose outcome is
+   the term "Open point" in `‹methodology-glossary›`: a new AC whose outcome is
    open has no Dann, or is left out until decided. Each open point gets one entry under
    `## Open`, in the format of that term, with source `problem-story-writer` and the field `Changes`.
 
@@ -54,13 +58,13 @@ story content (title, role sentence, why, scenarios, open questions) is German.
 
 You are done when every decision of the input stands in an AC or is marked open.
 
-**Status** is not yours: a new story starts as `draft`, `/problem-definition` sets `ready` when the
+**Status** is not yours: a new story starts as `draft`, `/pts:problem-definition` sets `ready` when the
 session closes, the implementation sets `done`.
 
 ## Story file
 
-`domain-model/problem-space/stories/US-0042-problemsignale.md` (number, then a short German
-slug), structured exactly as the template.
+`‹stories›/US-0042-problemsignale.md` (number, then a short slug in
+`‹content-language›`), structured exactly as the template.
 
 - The line `Als … möchte ich …` has no "damit": the why has its own section.
 - `Supersedes in part` and `## Open` are omitted when there is nothing to enter.

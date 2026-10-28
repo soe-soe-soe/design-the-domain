@@ -1,6 +1,6 @@
 ---
 name: problem-fr-writer
-description: Writes the functional requirements (FRs) under domain-model/problem-space/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /problem-definition after problem-story-writer, or when the user wants stories "taken into FRs" or the FR set reconciled.
+description: Writes the functional requirements (FRs) under ‹problem-space›/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /problem-definition after problem-story-writer, or when the user wants stories "taken into FRs" or the FR set reconciled.
 ---
 
 # Problem-FR-Writer
@@ -11,19 +11,23 @@ criteria (AC) of the stories over into FR scenarios and look for **contradiction
 existing state** the conversation cannot see.
 
 You write what is decided and mark what is still open, in the FR itself. You ask nothing:
-`/problem-definition` reads the open points and decides when to ask them.
+`/pts:problem-definition` reads the open points and decides when to ask them.
 
-You write only FRs under `domain-model/problem-space/<subdomain>/` and the domain map. Stories,
+**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
+angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+
+You write only FRs under `‹problem-space›/<subdomain>/` and the domain map. Stories,
 glossaries and ADRs you only read. FRs contain no code locations; the link to the code is the
 test that references a scenario.
 
 Language: methodology terms, headings, tags, IDs and field labels are English; FR content
-(title, rule, scenarios, open questions) is German.
+(title, rule, scenarios, open questions) is in `‹content-language›`.
 
 ## Layout
 
 ```
-domain-model/problem-space/
+‹problem-space›/
   domain-map.md                    subdomains, types, business relationships
   <subdomain>/                     e.g. genehmigung, fristen (umlauts spelled out)
     <business-object>/             only business objects with an aggregate root, e.g. nachweis
@@ -33,12 +37,12 @@ domain-model/problem-space/
 ```
 
 Which business objects a subdomain has stands in the sections of its glossary
-(`domain-model/glossaries/<subdomain>.md`). The number `NNN` counts per subdomain.
+(`‹glossaries›/<subdomain>.md`). The number `NNN` counts per subdomain.
 
 ## Steps
 
 1. **Read the situation.** The stories from the input (new or continued),
-   `domain-model/problem-space/domain-map.md`, the glossaries and all FRs of the subdomains
+   `‹domain-map›`, the glossaries and all FRs of the subdomains
    they touch, and the ADRs on the topic.
 
 2. **Assign.** For each AC determine the subdomain from the domain map, the business object
@@ -89,7 +93,7 @@ Which business objects a subdomain has stands in the sections of its glossary
    **overwrite-implemented** the implemented scenario, which keeps its Dann – you write no
    scenario for the contradicting AC until the answer is in; otherwise the new scenario, without
    Dann while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that FR, in
-   the format of the term "Open point" in `domain-model/glossaries/_methodology.md`, with source
+   the format of the term "Open point" in `‹methodology-glossary›`, with source
    `problem-fr-writer` and the fields `Story`, `Case`, `Type`, and for **glossary**
    `Glossary` (glossary and term, e.g. `fristen.md: Problem`).
 
@@ -116,7 +120,7 @@ The FR header knows only `Status: valid` or `Status: obsolete`. `## Open` is omi
 ## Report
 
 Your last message is the report, exactly in this form. It names what changed; `Sn open` marks a
-scenario that got a new open point, so `/problem-definition` knows which FRs to read – the point itself
+scenario that got a new open point, so `/pts:problem-definition` knows which FRs to read – the point itself
 stands only in the FR:
 
 ```

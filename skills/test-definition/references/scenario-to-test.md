@@ -1,8 +1,10 @@
 # From scenario to test
 
-Worked examples of the rules in `SKILL.md` and `domain-model/solution-space/structure.md`
-(section Tests). The scenarios are German, the code is English. Paths are relative to
-`backend/`; the context `deadlines` is shown as if migrated.
+Worked examples of the rules in `SKILL.md` and `‹structure›`
+(section Tests), taken from a Python backend (pytest, FastAPI) with a Playwright UI; another
+stack follows the same pattern with its own `‹structure›`. The scenarios are German, the code
+is English. Paths are relative to the backend root; the context `deadlines` is shown as if
+migrated.
 
 ## Unit: a Szenariogrundriss of a domain service
 

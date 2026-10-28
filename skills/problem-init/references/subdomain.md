@@ -2,19 +2,20 @@
 
 You describe what the code of a subdomain does today as a problem-space model: glossary,
 business objects, FRs and scenarios. You describe, you do not implement: code and test logic
-stay unchanged. Problem-space content is German, methodology terms and headings English,
+stay unchanged. Values in angle quotes (`‹backend-tests›`) are keys of the project config
+`.claude/pts.md`. Problem-space content is in `‹content-language›`, methodology terms and headings English,
 identifiers in the glossary English as in the code.
 
 ## Sources, by reliability
 
-1. **Tests** of your folders (`backend/tests/unit/domain/<folder>/`,
-   `backend/tests/integration/domain/<folder>/`, after the migration `backend/tests/domain/<folder>/`): executable examples of behaviour. One test or
+1. **Tests** of your folders under `‹backend-tests›` (where `‹structure›` puts them, or still
+   in the layout before the migration): executable examples of behaviour. One test or
    parametrised group yields one scenario.
-2. **Rules** under `backend/domain/<folder>/regeln/` or the building blocks under `model/`
-   (ADR 008): the business rules.
+2. **Rules** in the code of your folders under `‹backend›`, or the building blocks of
+   `‹structure›` (ADRs `‹architecture-adrs›`): the business rules.
 3. **Facade, routers, services:** commands, queries and what other subdomains call.
-4. **Cross-check:** the subdomain's glossary, `domain-model/glossaries/_methodology.md`
-   (glossary type), `domain-model/problem-space/domain-map.md`, the ADRs under `docs/adr/`,
+4. **Cross-check:** the subdomain's glossary, `‹methodology-glossary›`
+   (glossary type), `‹domain-map›`, the ADRs under `‹adr›`,
    `docs/domain/`.
 
 ## Steps
@@ -24,7 +25,7 @@ identifiers in the glossary English as in the code.
    (history, contacts, assignments) is an entity of that root and gets no folder. Folder name
    German, lower case, umlauts spelled out, words joined by hyphens (`manuelle-frist`).
 
-2. **Extend the glossary** (`domain-model/glossaries/<subdomain>.md`, format in CLAUDE.md):
+2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format in `‹project-rules›`):
    one section per business object with its row `Business Object | … | Aggregate Root`. Add
    rows for terms your FRs need that are missing: entities, values, domain events, commands,
    queries, derived concepts. The description comes from code, docstrings and tests; what you
@@ -32,7 +33,7 @@ identifiers in the glossary English as in the code.
    description, that becomes a question. You sort existing rows into the matching section.
 
 3. **Cut FRs**, one FR per rule or capability, type by
-   `.claude/skills/problem-fr-writer/references/fr-types.md`:
+   `skills/problem-fr-writer/references/fr-types.md` in the plugin root:
    - A rule module yields one or more FRs (Invariant, Domain Service, Policy).
    - Plain creating, changing and deleting of a business object yields **one** Command FR per
      business object ("Frist verwalten") with scenarios for validations and permissions only,
@@ -42,21 +43,21 @@ identifiers in the glossary English as in the code.
      triggering subdomain.
    - A foreign system (Auth0, ALKIS, e-mail) yields an Anti-Corruption Layer FR.
 
-   Layout and template as in `problem-fr-writer`: `domain-model/problem-space/<subdomain>/<business-object>/`
+   Layout and template as in `problem-fr-writer`: `‹problem-space›/<subdomain>/<business-object>/`
    or directly in the subdomain, template
-   `.claude/skills/problem-fr-writer/assets/functional-requirement.md`, numbers per subdomain from `001`.
+   `skills/problem-fr-writer/assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
    FRs contain no code locations.
 
 4. **Write scenarios.** Per test (or parametrised group) one scenario in Gherkin by
-   `.claude/skills/problem-story-writer/references/gherkin.md`, phrased on the level of the FR's rule,
+   `skills/problem-story-writer/references/gherkin.md` in the plugin root, phrased on the level of the FR's rule,
    with the test's concrete values. Code without a test gets a scenario from the code and is
    listed under "without test" in the report; you write no test for it. Every scenario carries
    `@existing @unconfirmed`. History: `- existing: created (problem-init, <YYYY-MM-DD>)`.
 
-5. **Reference tests.** Every test that yielded a scenario gets the marker
-   `@pytest.mark.fr("FR-<subdomain>-NNN/Sn")` directly above `def` (once for a parametrised
-   group, above `class` for a class whose tests all check the same scenario). Otherwise you
-   change nothing in the test; add `import pytest` where it is missing.
+5. **Reference tests.** Every test that yielded a scenario gets the scenario marker
+   (`‹scenario-marker›`), once for a parametrised group or for a test class whose tests all
+   check the same scenario. Otherwise you change nothing in the test beyond the import the
+   marker needs.
 
 6. **Collect findings.** A question arises only if
    - code or test contradicts a glossary description or an ADR,

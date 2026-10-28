@@ -1,0 +1,10 @@
+{
+  "name": "pts",
+  "version": "0.1.0",
+  "description": "Problem, test and solution space skills for domain-driven development: stories and functional requirements, behaviour-free solution shells, red tests before implementation.",
+  "author": {
+    "name": "Sören Bock",
+    "email": "soeren@ein-bock.de"
+  },
+  "repository": "https://github.com/soe-soe-soe/problem-test-solution-skills"
+}

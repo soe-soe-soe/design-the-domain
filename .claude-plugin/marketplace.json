@@ -1,0 +1,15 @@
+{
+  "name": "problem-test-solution-skills",
+  "description": "Marketplace for the pts plugin: problem, test and solution space skills.",
+  "owner": {
+    "name": "Sören Bock",
+    "email": "soeren@ein-bock.de"
+  },
+  "plugins": [
+    {
+      "name": "pts",
+      "source": "./",
+      "description": "Problem, test and solution space skills for domain-driven development."
+    }
+  ]
+}

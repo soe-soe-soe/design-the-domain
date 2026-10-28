@@ -6,8 +6,8 @@ uses it says so and reads this file once per session.
 ## Context block
 
 A message that follows reads of artifacts not yet listed in the session starts with this block,
-one item per new artifact, linked to its file. The user's prompt (idea text, ticket link,
-images) and `CLAUDE.md` are never listed.
+one item per new artifact, linked to its file. Never listed: the user's prompt (idea text,
+ticket link, images), `CLAUDE.md`, and `README.md` or other index files of a folder.
 
 ```
 **Kontext**
@@ -33,5 +33,7 @@ anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-f
 | Solution | 🧪 | test | `tests/`, journeys |
 | External | 🔗 | web | laws, authority sites, documentation |
 
+An artifact of a type not in the table is a document: 📄 with its own type name.
+
 Subdomain, business object, rule or variant are terms, not artifacts: they live in a glossary
-or an FR and are referenced through it.
+or an FR. A reference names artifacts only, never a term (`📄 Verantwortlicher` is wrong).

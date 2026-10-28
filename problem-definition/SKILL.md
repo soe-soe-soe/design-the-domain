@@ -100,8 +100,8 @@ the round's decisions; it runs in its own context so the interview stays lean. I
      one (`grilling + problem-fr-writer`). The reference entry uses the icon of the referenced
      artifact's type from the context block: for an open point its reference
      (`📋 FR-fristen-002/S1`, `📘 US-0042/AC2`), and 📐 its field `Type`; your own questions may
-     carry a reference to what they refer to (`📘 refactorings/planungsrecht-zur-flaeche.md`,
-     `⚙️ Nachweis-Zeitstrahl`).
+     carry a reference to the artifact they rest on (`📘 refactorings/planungsrecht-zur-flaeche.md`,
+     `⚙️ Nachweis-Zeitstrahl`), never to a glossary term.
    - **Deferring.** The user may defer an open point instead of answering it. It stays in its
      story or FR, and you do not ask it again in this session.
 

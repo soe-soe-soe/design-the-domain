@@ -19,7 +19,8 @@ The table is split into problem and solution space. Types carry the artifact's n
 repository (`glossary`, `context-map`, `ADR`); icons group them: stories and refactorings (📘),
 FRs (📋), problem-space documents (📄), solution-space documents (🗂️), decisions (🏛️), code
 (⚙️), tests (🧪), the web (🔗). Subdomain, business object, rule or variant are terms in a
-glossary or an FR, not artifact types. What the user passed in – idea text, ticket link, images – is
+glossary or an FR, not artifact types, and a reference never points at a term. An artifact
+of a type the table lacks is a document (📄); folder index files like `README.md` are not listed. What the user passed in – idea text, ticket link, images – is
 the prompt and is not listed.
 
 ## Considered alternatives

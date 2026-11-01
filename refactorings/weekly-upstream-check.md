@@ -27,9 +27,14 @@ the workflow relies on), not the new one (should pts take an upstream change ove
   any machine or a cloud scheduled task can run the check.
 - The old file `last-checked.txt` is removed.
 
-## Before starting
+## Done
 
-- Decide where the task runs: stays local on the Mac, or becomes a cloud scheduled task on this
-  repository (then it can update *Last checked* itself and commit it).
-- Carry the last checked commit over from `last-checked.txt` into *Last checked*, if it is newer
-  than `4ae2317`.
+- Cloud scheduled task "Pocock-Skills: wöchentliche Upstream-Prüfung" (`trig_018xPKGg84XQPHjwNduobQ3V`),
+  Mondays 19:43 Europe/Berlin, push notification to the phone. It runs the brief of
+  `docs/upstream.md`, updates *Last checked* and pushes it to `main`.
+
+## Left
+
+- Disable or delete the local task `pocock-skills-watch` on the Mac and its `last-checked.txt`;
+  carry its last checked commit into *Last checked* first if it is newer than `4ae2317`.
+- Delete this file afterwards.

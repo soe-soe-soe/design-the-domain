@@ -143,7 +143,8 @@ The FR header knows `Status: valid` or `Status: obsolete` for an active FR and
 
 ## Report
 
-Your last message is the report, exactly in this form. It names what changed; `Sn open` marks a
+Your last message is the report, exactly in this form and nothing else – no notes, assumptions or
+explanations before or after it: what is open stands in the files. It names what changed; `Sn open` marks a
 scenario that got a new open point, so `/pts:problem-definition` knows which FRs to read – the point itself
 stands only in the FR:
 
@@ -157,5 +158,5 @@ Parallel:
 Domain map: unchanged
 ```
 
-`Domain map` lists what you added, otherwise `unchanged`. `Parallel` is omitted when no planned
-file holds a change of another story to a scenario this story changes.
+`Domain map` lists what you added, otherwise `unchanged`. Without a change of another story to a
+scenario this story changes, the whole `Parallel` section is left out – no heading, no "none".

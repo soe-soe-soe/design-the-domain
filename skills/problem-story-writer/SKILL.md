@@ -64,7 +64,8 @@ template [assets/story.md](assets/story.md); read it.
 
 5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in
    the term "Open point" in `‹methodology-glossary›`: a new AC whose outcome is
-   open has no Dann, or is left out until decided. Each open point gets one entry under
+   open has no Dann, or is left out until decided. Open is any part of the outcome the answer could
+change – also how many, when or to whom; then the AC has no Dann at all, never a provisional one. Each open point gets one entry under
    `## Open`, in the format of that term, with source `problem-story-writer` and the field `Changes`.
 
 6. **Resolve what is answered.** If the input answers an open point, take the answer into the

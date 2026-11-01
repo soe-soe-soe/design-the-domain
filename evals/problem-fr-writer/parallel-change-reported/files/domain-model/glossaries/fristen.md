@@ -1,0 +1,12 @@
+# Fristen
+
+Stichtage in Projekten und persönlich und was an Projekten als Problem auffällt.
+
+| Problem space | Term | Solution space | Identifier | Description |
+|---|---|---|---|---|
+| Subdomain | Fristen | Bounded Context | `deadlines`; folders: `deadlines` | Stichtage, ihre Verantwortlichen und die Problemsignale je Projekt. |
+| Business Object | Frist | Aggregate Root | `Deadline` | Ein Stichtag mit Fälligkeitsdatum, Verantwortlicher und Erledigt-Status. |
+| Derived Concept | Überfällig | Domain Service | `is_overdue` | Eine offene Frist, deren Fälligkeitsdatum erreicht ist. |
+| Derived Concept | Problemsignal | Domain Service | `ProjectSignals` | Was in der Projektübersicht an einem Projekt als Problem auffällt: überfällige Fristen und als Problem gekennzeichnete Fristen. |
+| Value | Problem | Value Object | `problem` | Kennzeichnung einer Frist als Problem. |
+| Value | Notiz | Value Object | `note` | Freitext an einer Frist. |

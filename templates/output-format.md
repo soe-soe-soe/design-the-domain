@@ -7,7 +7,8 @@ config `.claude/pts.md`.
 ## Context block
 
 A message that follows reads of artifacts not yet listed in the session starts with this block,
-one item per new artifact, linked to its file. Never listed: the user's prompt (requirement text,
+one list item per new artifact, linked to its file – never several artifacts in one item, not even
+files of the same type. Never listed: the user's prompt (requirement text,
 ticket link, images), `‹project-rules›`, and `README.md` or other index files of a folder.
 
 ```

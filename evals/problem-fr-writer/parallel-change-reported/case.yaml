@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: parallel-change-reported
+expected_outcome: |
+  US-0039 (ready) hat in der geplanten Datei von FR-fristen-001 bereits S1 geändert. US-0008 ändert S1 ebenfalls: problem-fr-writer schreibt seine Änderung dazu, lässt die von US-0039 stehen, meldet die Überschneidung unter Parallel und macht daraus keinen offenen Punkt.
+context:
+  scaffold_script: place-files.sh

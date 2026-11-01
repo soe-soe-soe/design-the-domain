@@ -25,7 +25,9 @@ identifiers in the glossary English as in the code.
    (history, contacts, assignments) is an entity of that root and gets no folder. Folder name
    German, lower case, umlauts spelled out, words joined by hyphens (`manuelle-frist`).
 
-2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format in `‹project-rules›`):
+2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format by
+   `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md` unless `‹project-rules›` sets its own; a new glossary
+   gets its row in `‹glossary-map›` by `${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`):
    one section per business object with its row `Business Object | … | Aggregate Root`. Add
    rows for terms your FRs need that are missing: entities, values, domain events, commands,
    queries, derived concepts. The description comes from code, docstrings and tests; what you

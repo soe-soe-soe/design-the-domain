@@ -34,7 +34,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    > Initialise the subdomain `<subdomain>` (folders: `<from the subdomain row of its
    > glossary>`) by `${CLAUDE_SKILL_DIR}/references/subdomain.md`
    > (plugin root: `${CLAUDE_PLUGIN_ROOT}`, project config: `.claude/pts.md`). Write only in
-   > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md` and in
+   > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md`, its row in `‹glossary-map›` and in
    > tests of your folders under `‹backend-tests›`. Your last message is the
    > report in the form the reference prescribes.
 

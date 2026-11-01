@@ -84,8 +84,9 @@ FR stays untouched until its story is done. Its brief:
 
 2. **Load the craft.** Call the Skill tool with `‹skill-grilling›` and with
    `‹skill-domain-modeling›`. Follow both, with the project's rules on top: glossary
-   rows go into the subdomain glossaries in the table format of `‹project-rules›`, not into
-   a root `GLOSSARY.md`.
+   rows go into the subdomain glossaries under `‹glossaries›/`, not into a root `GLOSSARY.md`, in
+   the format of `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md` unless `‹project-rules›` sets its own;
+   a new glossary gets its row in `‹glossary-map›` by `${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`.
 
 3. **Run the rounds.**
    - **Rounds follow `grilling`:** each round asks its frontier, so its length depends on what is

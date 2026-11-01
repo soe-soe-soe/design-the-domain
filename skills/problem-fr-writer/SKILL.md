@@ -39,7 +39,6 @@ Language: methodology terms, headings, tags, IDs and field labels are English; F
         FR-<subdomain>-MMM-<slug>.md a new FR (Kind new), not active yet
     FR-<subdomain>-NNN-<slug>.md   rules without own business object, e.g. of a value
     planned/                       their planned changes
-    subdomain-<name>/              provisional subdomain (see its README), FR IDs of the host
 ```
 
 Which business objects a subdomain has stands in the sections of its glossary

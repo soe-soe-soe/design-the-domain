@@ -129,9 +129,9 @@ class RequirementsTest(unittest.TestCase):
         self.old = os.getcwd()
         os.chdir(self.tmp.name)
         self.write(".claude/pts.md", CONFIG)
-        self.write("ps/fristen/frist/FR-fristen-003-erinnerung.md", ACTIVE)
-        self.write("ps/fristen/frist/planned/FR-fristen-003-erinnerung.md", PLANNED)
-        self.write("ps/fristen/frist/planned/FR-fristen-010-sammelmail.md", NEW_FR)
+        self.write("ps/fristen/frist/policies/FR-fristen-003-erinnerung.md", ACTIVE)
+        self.write("ps/fristen/frist/policies/planned/FR-fristen-003-erinnerung.md", PLANNED)
+        self.write("ps/fristen/frist/policies/planned/FR-fristen-010-sammelmail.md", NEW_FR)
         self.write("ps/requirements/planned/US-0060-erinnerung.md", STORY)
 
     def tearDown(self):
@@ -151,7 +151,7 @@ class RequirementsTest(unittest.TestCase):
     def test_complete_merges_moves_and_dates(self):
         code, out = self.run_cmd("complete", "US-0060")
         self.assertEqual(code, 0, out)
-        active = Path("ps/fristen/frist/FR-fristen-003-erinnerung.md").read_text()
+        active = Path("ps/fristen/frist/policies/FR-fristen-003-erinnerung.md").read_text()
         self.assertIn("Erinnert 3 Tage vor Fälligkeit.", active)
         self.assertIn("@US-0060\n  Szenario: S1 – Erinnerung 3 Tage vorher", active)
         self.assertIn("@US-0050\n  Szenario: S2", active)
@@ -159,23 +159,23 @@ class RequirementsTest(unittest.TestCase):
         self.assertIn("Szenario: S4 – Wöchentliche Sammelmail", active)
         self.assertNotIn("@planned", active)
         self.assertNotIn("@base-", active)
-        new = Path("ps/fristen/frist/FR-fristen-010-sammelmail.md").read_text()
+        new = Path("ps/fristen/frist/policies/FR-fristen-010-sammelmail.md").read_text()
         self.assertIn("Status: valid", new)
         self.assertNotIn("## Changes", new)
-        self.assertFalse(Path("ps/fristen/frist/planned").exists())
+        self.assertFalse(Path("ps/fristen/frist/policies/planned").exists())
         story = Path("ps/requirements/US-0060-erinnerung.md").read_text()
         self.assertRegex(story, r"Status: done · .* · doneAt: \d{4}-\d\d-\d\d")
         self.assertFalse(Path("ps/requirements/planned/US-0060-erinnerung.md").exists())
 
     def test_stale_base_is_a_conflict_and_writes_nothing(self):
         self.write(
-            "ps/fristen/frist/FR-fristen-003-erinnerung.md",
+            "ps/fristen/frist/policies/FR-fristen-003-erinnerung.md",
             ACTIVE.replace("@US-0050\n  Szenario: S1", "@US-0058\n  Szenario: S1"),
         )
         code, out = self.run_cmd("complete", "US-0060")
         self.assertEqual(code, 2)
         self.assertIn("last changed by @US-0058", out)
-        self.assertTrue(Path("ps/fristen/frist/planned/FR-fristen-003-erinnerung.md").exists())
+        self.assertTrue(Path("ps/fristen/frist/policies/planned/FR-fristen-003-erinnerung.md").exists())
         self.assertIn("in-progress", Path("ps/requirements/planned/US-0060-erinnerung.md").read_text())
 
     def test_parallel_story_in_same_planned_file(self):
@@ -186,7 +186,7 @@ class RequirementsTest(unittest.TestCase):
             "```\n",
             "\n  @US-0061 @planned @base-US-0050\n  Szenario: S1 – Erinnerung 5 Tage vorher\n    Dann x\n```\n",
         )
-        self.write("ps/fristen/frist/planned/FR-fristen-003-erinnerung.md", text)
+        self.write("ps/fristen/frist/policies/planned/FR-fristen-003-erinnerung.md", text)
         code, out = self.run_cmd("check", "US-0061")
         self.assertEqual(code, 2)
         self.assertIn("also changed by @US-0060", out)
@@ -194,9 +194,9 @@ class RequirementsTest(unittest.TestCase):
     def test_cancel_removes_changes_and_moves_story(self):
         code, out = self.run_cmd("cancel", "US-0060")
         self.assertEqual(code, 0, out)
-        self.assertFalse(Path("ps/fristen/frist/planned").exists())
+        self.assertFalse(Path("ps/fristen/frist/policies/planned").exists())
         self.assertIn("Status: cancelled", Path("ps/requirements/cancelled/US-0060-erinnerung.md").read_text())
-        self.assertEqual(Path("ps/fristen/frist/FR-fristen-003-erinnerung.md").read_text(), ACTIVE)
+        self.assertEqual(Path("ps/fristen/frist/policies/FR-fristen-003-erinnerung.md").read_text(), ACTIVE)
 
     def test_history_latest_first(self):
         self.run_cmd("complete", "US-0060")

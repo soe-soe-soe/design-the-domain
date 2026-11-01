@@ -1,5 +1,7 @@
 <!--
-Active FR – the implemented target state. Lies in ‹problem-space›/<subdomain>/[<business-object>/].
+Active FR – the implemented target state. Lies in ‹problem-space›/<subdomain>/[<business-object>/]<type-folder>/ (folder per FR type, see
+references/fr-types.md). A Policy adds `· Process: [<Name>](process-<slug>.md) · Trigger: <event |
+schedule: <wann>>` to the header line.
 Only `requirements.py complete` writes it (and problem-init for code taken over); problem-fr-writer
 writes the planned file next to it (assets/planned-functional-requirement.md). Each scenario
 carries the tag of the story that last changed it, or @existing. The history of an FR is not

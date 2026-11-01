@@ -33,15 +33,19 @@ Language: methodology terms, headings, tags, IDs and field labels are English; F
   domain-map.md                    subdomains, types, business relationships
   <subdomain>/                     e.g. genehmigung, fristen (umlauts spelled out)
     <business-object>/             only business objects with an aggregate root, e.g. nachweis
-      FR-<subdomain>-NNN-<slug>.md   active FR, implemented
-      planned/
-        FR-<subdomain>-NNN-<slug>.md planned changes of that FR, same file name
-        FR-<subdomain>-MMM-<slug>.md a new FR (Kind new), not active yet
-    FR-<subdomain>-NNN-<slug>.md   rules without own business object, e.g. of a value
-    planned/                       their planned changes
+      <type-folder>/               one per FR type, created with its first FR: invariants,
+                                   domain-services, policies, commands, queries, acl, data-migrations
+        FR-<subdomain>-NNN-<slug>.md   active FR, implemented
+        planned/
+          FR-<subdomain>-NNN-<slug>.md planned changes of that FR, same file name
+          FR-<subdomain>-MMM-<slug>.md a new FR (Kind new), not active yet
+      policies/
+        process-<slug>.md          the process its policies belong to (assets/process.md)
+    <type-folder>/                 FRs without own business object, e.g. rules of a value
 ```
 
-Which business objects a subdomain has stands in the sections of its glossary
+The type folder follows the FR type ([references/fr-types.md](references/fr-types.md)); a
+changed type moves the FR. Which business objects a subdomain has stands in the sections of its glossary
 (`‹glossaries›/<subdomain>.md`). The number `NNN` counts per subdomain, across active and planned
 FRs. One planned file per FR holds the changes of every story touching it; its format, the
 change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
@@ -56,6 +60,10 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
 2. **Assign.** For each AC determine the subdomain from the domain map, the business object
    from the glossary and the FR type by [references/fr-types.md](references/fr-types.md). A
    query belongs to the subdomain that supplies the data, a policy to the one that triggers it.
+   Each policy belongs to one process: an existing one whose chain it continues, or a new
+   process file by [assets/process.md](assets/process.md) in the `policies/` folder where the
+   chain starts. Add the policy as a step to its process; a policy in another subdomain links
+   the process file there.
    Does an AC need a subdomain or a relationship between subdomains the domain map lacks, add
    it there by the template [assets/domain-map.md](assets/domain-map.md): a new subdomain with
    type `open`, a relationship in business terms.

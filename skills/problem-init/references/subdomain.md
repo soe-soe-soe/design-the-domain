@@ -45,8 +45,9 @@ identifiers in the glossary English as in the code.
      triggering subdomain.
    - A foreign system (Auth0, ALKIS, e-mail) yields an Anti-Corruption Layer FR.
 
-   Layout and template as in `problem-fr-writer`: `‹problem-space›/<subdomain>/<business-object>/`
-   or directly in the subdomain, template
+   Layout and template as in `problem-fr-writer`:
+   `‹problem-space›/<subdomain>/[<business-object>/]<type-folder>/`, each Policy in a process
+   (`skills/problem-fr-writer/assets/process.md` in the plugin root), template
    `skills/problem-fr-writer/assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
    FRs contain no code locations.
 

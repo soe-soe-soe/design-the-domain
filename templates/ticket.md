@@ -34,9 +34,17 @@ Linear MCP server).
 | Team | `‹ticket-team›` |
 | Project | `‹ticket-project›`; none for `–` |
 | Assignee | `‹ticket-assignee›`; none for `–` |
-| Labels | one per subdomain of the story's FRs (`## Functional requirements`), named as in the column `Subdomain` of `‹domain-map›`; a provisional subdomain takes its host's label. A label missing in the ticket system is reported, not created. None when `‹ticket-labels›` is `–`. |
+| Labels | one per subdomain of the story's FRs (`## Functional requirements`), named as in the column `Subdomain` of `‹domain-map›`; a provisional subdomain takes its host's label. A label missing in the ticket system: see *Missing label*. None when `‹ticket-labels›` is `–`. |
 | Status | the story status mapped by the table *Ticket status* in `.claude/pts.md` |
 | Description | the template below, in `‹content-language›` |
+
+## Missing label
+
+Before the sync, compare the labels the stories need with those of `‹ticket-team›`. For the
+missing ones ask the user once, all in one question (AskUserQuestion, multi-select): which to
+create in `‹ticket-team›`, named exactly as in `‹domain-map›`. Create the confirmed ones through
+the connector, then sync. A label the user declines is left off the ticket and named in the
+report; the next sync asks again. Never create a label without that answer.
 
 ## Description
 

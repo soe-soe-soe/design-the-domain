@@ -48,12 +48,3 @@ python3 scripts/requirements.py complete   US-0042
 python3 scripts/requirements.py cancel   US-0042
 python3 scripts/requirements.py history  FR-deadlines-003
 ```
-
-## Developing
-
-Load the working copy instead of the installed plugin with `claude --plugin-dir <this repo>`
-and `/reload-plugins` after an edit. Evals live under `evals/<skill>/<case>/` and run with
-`claude plugin eval .`; the `problem-definition` cases need `PTS_EVAL_PROJECT` pointing at a
-project checkout with `.claude/pts.md`, the others bring their files and use
-`evals/fixtures/pts.md`. Decision records stay with their skill under `decision-records/`. The script's tests run
-with `python3 -m unittest discover scripts`.

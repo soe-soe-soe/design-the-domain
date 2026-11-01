@@ -1,12 +1,12 @@
 ---
 name: problem-definition
-description: Grills a feature idea into ready stories – Pocock's grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-story-writer and problem-fr-writer, their open points asked in the following rounds.
+description: Grills a requirement into ready stories – Pocock's grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-story-writer and problem-fr-writer, their open points asked in the following rounds.
 disable-model-invocation: true
 ---
 
 # Problem-Definition
 
-You interview the user about a feature until its problem space is settled: stories with
+You interview the user about a requirement until its problem space is settled: stories with
 acceptance criteria, FR scenarios, glossary terms. The craft comes from Pocock's skills
 `grilling` (the interview) and `domain-modeling` (glossary and ADRs); this skill runs the rounds
 the project's way, lets the writers update the problem space in between and alone decides which
@@ -17,7 +17,7 @@ angle quotes (`‹stories›`) is one of its keys. Without the file, stop and po
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 It is the problem-space counterpart of `/pts:story-workflow`.
 
-Called as `/pts:problem-definition <feature idea>`. Everything you say to the user is in
+Called as `/pts:problem-definition <requirement>`. Everything you say to the user is in
 `‹content-language›`.
 
 ## Open points
@@ -40,8 +40,8 @@ ground subagent read count as read by you.
 After every answered round, one subagent brings `‹problem-space›/` up to date with
 the round's decisions; it runs in its own context so the interview stays lean. Its brief:
 
-> Call the Skill tool with `pts:problem-story-writer` with the answers of this round: <answers> and the idea that
-> started the session: <idea>. Then call it with `pts:problem-fr-writer` for the stories its
+> Call the Skill tool with `pts:problem-story-writer` with the answers of this round: <answers> and the requirement that
+> started the session: <requirement>. Then call it with `pts:problem-fr-writer` for the stories its
 > report names. Write nothing yourself; the writers do. Your last message joins both reports,
 > exactly in this form:
 >
@@ -58,13 +58,13 @@ the round's decisions; it runs in its own context so the interview stays lean. I
 
 1. **Read the ground** in one subagent, so the files stay out of the interview. Its brief:
 
-   > Read `‹glossary-map›`, the glossaries it names for the subdomains this idea touches:
-   > <idea>, `‹domain-map›`, the stories under
+   > Read `‹glossary-map›`, the glossaries it names for the subdomains this requirement touches:
+   > <requirement>, `‹domain-map›`, the stories under
    > `‹stories›/` with status `draft` on the same topic, and whatever
-   > else the idea points to. Change nothing. Your last message has exactly these parts:
+   > else the requirement points to. Change nothing. Your last message has exactly these parts:
    > `Kontext:` one line per file read, in the format of `${CLAUDE_PLUGIN_ROOT}/templates/output-format.md`;
    > `Stand:` the current state of the topic in at most 15 lines; `Begriffe:` every glossary
-   > term the idea touches with its one-line description; `Drafts:` each draft story on the
+   > term the requirement touches with its one-line description; `Drafts:` each draft story on the
    > topic with its open points, or `keine`.
 
    The session may continue those drafts, including their open points. When a question needs
@@ -79,7 +79,7 @@ the round's decisions; it runs in its own context so the interview stays lean. I
    - **Rounds follow `grilling`:** each round asks its frontier, so its length depends on what is
      open, in grilling's question format (`❓ **Qn** - **<Titel>**: …`, then `➡️` with a
      recommendation for every question).
-   - **Round 1** is grilling alone, on the idea and what step 1 found.
+   - **Round 1** is grilling alone, on the requirement and what step 1 found.
    - **After every answered round** start one subagent with the brief below and wait for it.
      Then read the `## Open` sections of the stories and FRs its report names, and build the
      next round: your
@@ -93,8 +93,9 @@ the round's decisions; it runs in its own context so the interview stays lean. I
      Number the questions across the whole session: round 1 starts at Q1, every later round
      continues with the number after the last question of the previous round, across all groups.
      Only a new session starts again at Q1.
-   - **Provenance line.** Every question ends, below the ➡️ recommendation, with one line whose
-     entries are separated by a space; entries that do not exist yet are left out:
+   - **Provenance line.** The last line of every question, below the ➡️ recommendation and below
+     any answer options – nothing of the question follows it. Its entries are separated by a
+     space; entries that do not exist yet are left out:
 
      🗣️ ‹user›/Pocock 🧩 problem-fr-writer 📋 FR-fristen-003/S2 📐 Domain Service
 

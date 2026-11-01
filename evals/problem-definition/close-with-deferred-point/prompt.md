@@ -5,7 +5,7 @@ timeout_seconds: 900
 allowed_tools: [Read, Glob, Grep, Skill, Write, Edit, Bash, Agent]
 ---
 
-/pts:problem-definition Feature-Idee: Verantwortliche sollen vor Ablauf einer Frist per E-Mail erinnert werden.
+/pts:problem-definition Requirement: Verantwortliche sollen vor Ablauf einer Frist per E-Mail erinnert werden.
 
 So sind die bisherigen Runden gelaufen (alle beantwortet):
 

@@ -21,7 +21,7 @@ story content (title, role sentence, why, scenarios, open questions) is in `‹c
 
 ## Steps
 
-1. **Read the situation.** The input (the answers of the last round plus the idea that started
+1. **Read the situation.** The input (the answers of the last round plus the requirement that started
    the session), `‹domain-map›`, the glossaries of the subdomains
    involved (`‹glossaries›/`), the ADRs under `‹adr›` that touch the topic, and
    all stories under `‹stories›/`.

@@ -2,7 +2,7 @@
 
 A Claude Code plugin for domain-driven feature work in three spaces:
 
-- **Problem space:** `/pts:problem-definition` grills a feature idea into ready user stories and
+- **Problem space:** `/pts:problem-definition` grills a requirement into ready user stories and
   functional requirements (FRs) with Gherkin scenarios; `problem-story-writer` and
   `problem-fr-writer` write them, `/pts:problem-init` derives the model from existing code.
 - **Solution space:** `solution-definition` places a story's scenarios into bounded contexts,

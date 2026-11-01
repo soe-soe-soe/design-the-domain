@@ -6,20 +6,7 @@ exactly one test, so each must be testable on its own.
 ## Keywords
 
 The keywords are Gherkin's dialect of `‹problem-space-language›`; `# language: <code>` (`en`, `de`,
-…) is the first line of the block. The rules and examples use the English keywords; other
-dialects map one to one, e.g. German:
-
-| English | German |
-|---|---|
-| Feature | Funktionalität |
-| Background | Grundlage |
-| Scenario | Szenario |
-| Scenario Outline | Szenariogrundriss |
-| Examples | Beispiele |
-| Given | Angenommen |
-| When | Wenn |
-| Then | Dann |
-| And / But | Und / Aber |
+…) is the first line of the block. The rules and examples use the English keywords.
 
 ## Rules
 

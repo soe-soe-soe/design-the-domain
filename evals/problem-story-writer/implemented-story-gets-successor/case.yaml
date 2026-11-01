@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: implemented-story-gets-successor
 expected_outcome: |
-  US-0007 (done) bleibt unverändert. Eine neue Story US-0008 verweist mit 'Supersedes in part: US-0007 (AC1)' auf sie und beschreibt die neue Grenze mit Grenzfällen.
+  US-0007 (done) stays unchanged. A new story US-0008 refers to it with 'Supersedes in part: US-0007 (AC1)' and describes the new threshold with boundary cases.
 context:
   scaffold_script: place-files.sh

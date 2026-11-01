@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: round-1-grilling-only
 expected_outcome: |
-  Runde 1 auf Deutsch, nur Fragen aus dem Grilling (Pococks Format mit nummerierten Fragen und Empfehlung), jede mit Herkunftszeile `🗣️ Pocock   🧩 grilling`, ohne Story-Gruppierung, ohne problem-sync-Lauf und ohne geschriebene Stories.
+  Round 1 in German, only grilling questions (Pocock's format with numbered questions and a recommendation), each with the provenance line `🗣️ Pocock   🧩 grilling`, without story grouping, without a writing subagent and without written stories.
 context:
   scaffold_script: place-files.sh

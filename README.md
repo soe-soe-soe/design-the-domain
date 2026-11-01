@@ -48,3 +48,7 @@ python3 scripts/requirements.py complete   US-0042
 python3 scripts/requirements.py cancel   US-0042
 python3 scripts/requirements.py history  FR-deadlines-003
 ```
+
+## License
+
+MIT, see [LICENSE](LICENSE).

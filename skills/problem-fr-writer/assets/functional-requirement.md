@@ -1,6 +1,6 @@
 <!--
 Active FR – the implemented target state. Lies in ‹problem-space›/<subdomain>/[<business-object>/].
-Only `requirements.py close` writes it (and problem-init for code taken over); problem-fr-writer
+Only `requirements.py complete` writes it (and problem-init for code taken over); problem-fr-writer
 writes the planned file next to it (assets/planned-functional-requirement.md). Each scenario
 carries the tag of the story that last changed it, or @existing. The history of an FR is not
 kept here: `requirements.py history FR-<subdomain>-NNN` derives it from the done stories.

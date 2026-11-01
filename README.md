@@ -40,13 +40,13 @@ Stories live in `‹requirements›/` (done), `planned/` (draft, ready, in-progr
 the status flow stands in [skills/problem-story-writer/assets/story.md](skills/problem-story-writer/assets/story.md).
 An active FR is the implemented state; the writers put changes into one planned file per FR in
 `planned/` next to it. [scripts/requirements.py](scripts/requirements.py) (Python 3, standard
-library) checks, closes and cancels stories and prints an FR's history:
+library) checks, completes and cancels stories and prints an FR's history:
 
 ```
-python3 scripts/requirements.py check   US-0042
-python3 scripts/requirements.py close   US-0042
-python3 scripts/requirements.py cancel  US-0042
-python3 scripts/requirements.py history FR-fristen-003
+python3 scripts/requirements.py check    US-0042
+python3 scripts/requirements.py complete   US-0042
+python3 scripts/requirements.py cancel   US-0042
+python3 scripts/requirements.py history  FR-fristen-003
 ```
 
 ## Developing

@@ -29,7 +29,7 @@ Cases, at least:
   the active scenario now carries `@US-0058` → `requirements.py check` fails in step 1, the story
   goes back to `draft`, nothing else is written.
 - Optional, once the above are stable: **close-sets-done** – a story whose tests are already
-  green → `requirements.py close` merges into the active FR, the story is `done` with `doneAt`
+  green → `requirements.py complete` merges into the active FR, the story is `done` with `doneAt`
   and moved out of `planned/`, one commit, `Lessons: none`.
 
 ## Before starting

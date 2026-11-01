@@ -20,7 +20,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 You write only planned FRs (`planned/` below an FR folder), the domain map, and in a story the
 section `## Functional requirements`. Active FRs, the rest of a story, glossaries and ADRs you
-only read: an active FR changes only through `requirements.py close` when its story is done. FRs contain no code locations; the link to the code is the
+only read: an active FR changes only through `requirements.py complete` when its story is done. FRs contain no code locations; the link to the code is the
 test that references a scenario.
 
 Language: methodology terms, headings, tags, IDs and field labels are English; FR content

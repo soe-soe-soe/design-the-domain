@@ -74,7 +74,7 @@ You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
 `/pts:problem-definition` sets `ready` when the session closes, `/pts:story-workflow` sets
-`in-progress`, `requirements.py close` sets `done`, `requirements.py cancel` sets `cancelled`.
+`in-progress`, `requirements.py complete` sets `done`, `requirements.py cancel` sets `cancelled`.
 
 ## Story file
 

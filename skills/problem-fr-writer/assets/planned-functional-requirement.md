@@ -1,7 +1,7 @@
 <!--
 Planned FR – the changes not yet implemented. Lies in planned/ below the folder of the active FR,
 with the same file name; a new FR gets its own name there. One planned file per FR holds the
-changes of every story touching it; `requirements.py close` merges one story's changes into the
+changes of every story touching it; `requirements.py complete` merges one story's changes into the
 active FR and removes them here, the file goes once no change is left.
 
 ## Changes   one line per story: Kind new (FR does not exist yet), edit, or deletion (the whole

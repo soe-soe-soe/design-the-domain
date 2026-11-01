@@ -148,8 +148,8 @@ class RequirementsTest(unittest.TestCase):
             code = req.main(["requirements.py", *args])
         return code, out.getvalue()
 
-    def test_close_merges_moves_and_dates(self):
-        code, out = self.run_cmd("close", "US-0060")
+    def test_complete_merges_moves_and_dates(self):
+        code, out = self.run_cmd("complete", "US-0060")
         self.assertEqual(code, 0, out)
         active = Path("ps/fristen/frist/FR-fristen-003-erinnerung.md").read_text()
         self.assertIn("Erinnert 3 Tage vor Fälligkeit.", active)
@@ -172,7 +172,7 @@ class RequirementsTest(unittest.TestCase):
             "ps/fristen/frist/FR-fristen-003-erinnerung.md",
             ACTIVE.replace("@US-0050\n  Szenario: S1", "@US-0058\n  Szenario: S1"),
         )
-        code, out = self.run_cmd("close", "US-0060")
+        code, out = self.run_cmd("complete", "US-0060")
         self.assertEqual(code, 2)
         self.assertIn("last changed by @US-0058", out)
         self.assertTrue(Path("ps/fristen/frist/planned/FR-fristen-003-erinnerung.md").exists())
@@ -199,7 +199,7 @@ class RequirementsTest(unittest.TestCase):
         self.assertEqual(Path("ps/fristen/frist/FR-fristen-003-erinnerung.md").read_text(), ACTIVE)
 
     def test_history_latest_first(self):
-        self.run_cmd("close", "US-0060")
+        self.run_cmd("complete", "US-0060")
         self.write(
             "ps/requirements/US-0050-erinnerung.md",
             "# US-0050: Erinnerung\n\nStatus: done · createdAt: 2026-09-01 · doneAt: 2026-09-10\n\n"

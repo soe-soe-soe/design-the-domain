@@ -3,12 +3,12 @@
 
 Commands (run from the project root, which holds .claude/pts.md):
 
-  requirements.py check   US-0042   base and parallel check of the story's planned FR changes
-  requirements.py close   US-0042   merge the story's planned FR changes into the active FRs,
+  requirements.py check    US-0042   base and parallel check of the story's planned FR changes
+  requirements.py complete US-0042   merge the story's planned FR changes into the active FRs,
                                     set it done with doneAt and move it out of planned/
-  requirements.py cancel  US-0042   drop the story's planned FR changes, set it cancelled and
+  requirements.py cancel   US-0042   drop the story's planned FR changes, set it cancelled and
                                     move it to cancelled/
-  requirements.py history FR-x-NNN  the stories that changed an FR, the latest first
+  requirements.py history  FR-x-NNN  the stories that changed an FR, the latest first
 
 Exit codes: 0 ok, 1 usage or setup error, 2 conflict (nothing written).
 Python 3.9+, standard library only.
@@ -354,13 +354,13 @@ def write_all(writes: dict[Path, str | None], moves: list[tuple[Path, Path, str]
         src.unlink()
 
 
-def cmd_close(cfg: dict[str, str], story: str, today: str) -> int:
+def cmd_complete(cfg: dict[str, str], story: str, today: str) -> int:
     requirements, problem_space = Path(cfg["requirements"]), Path(cfg["problem-space"])
     story_path = find_story(requirements, story)
     story_text = story_path.read_text(encoding="utf-8")
     status = header_fields(story_text).get("Status")
     if status != "in-progress":
-        print(f"{story} has status {status}; only an in-progress story closes")
+        print(f"{story} has status {status}; only an in-progress story can be completed")
         return 2
     problems = check(problem_space, story)
     if problems:
@@ -376,7 +376,7 @@ def cmd_close(cfg: dict[str, str], story: str, today: str) -> int:
         merged.append(f"{target.as_posix()} ({fr.changes[story][0]})")
     story_text = set_header_field(set_header_field(story_text, "Status", "done"), "doneAt", today)
     write_all(writes, [(story_path, requirements / story_path.name, story_text)])
-    print(f"Closed {story}: {requirements / story_path.name}")
+    print(f"Completed {story}: {requirements / story_path.name}")
     print("\n".join(f"- {m}" for m in merged) or "- no planned FR changes")
     return 0
 
@@ -423,15 +423,15 @@ def cmd_history(cfg: dict[str, str], fr_id: str) -> int:
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) != 3 or argv[1] not in ("check", "close", "cancel", "history"):
+    if len(argv) != 3 or argv[1] not in ("check", "complete", "cancel", "history"):
         print(__doc__)
         return 1
     try:
         cfg = read_config()
         if argv[1] == "check":
             return cmd_check(cfg, argv[2])
-        if argv[1] == "close":
-            return cmd_close(cfg, argv[2], _dt.date.today().isoformat())
+        if argv[1] == "complete":
+            return cmd_complete(cfg, argv[2], _dt.date.today().isoformat())
         if argv[1] == "cancel":
             return cmd_cancel(cfg, argv[2])
         return cmd_history(cfg, argv[2])

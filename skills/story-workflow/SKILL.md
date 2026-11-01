@@ -62,7 +62,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    spec = the story and its FR scenarios, standards include `‹structure›` and `‹test-strategy-adr›`. Fix what
    it finds that the spec or the repo's standards require.
 
-7. **Close.** Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py close US-0042`. It
+7. **Close.** Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py complete US-0042`. It
    checks the base once more, merges the story's planned changes into the active FRs, sets
    `Status: done` and `doneAt`, and moves the story to `‹requirements›/` – all or nothing. On a
    conflict it writes nothing: show its report and stop before committing; the story stays
@@ -77,5 +77,5 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
 
 You are done when every planned scenario of the story has a passing test with its marker, every
 facade method of the placement its interface test, the full suite and `‹typecheck›` are green, the
-review's findings are resolved, the story is `done` – merged by `requirements.py close` – in
+review's findings are resolved, the story is `done` – merged by `requirements.py complete` – in
 one commit, and the lessons are reported.

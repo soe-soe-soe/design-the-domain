@@ -12,7 +12,7 @@ Status flow – this comment is guidance for the skills and is not copied into a
 | ready → draft | problem-story-writer | the story changes (any edit of a ready story) |
 | ready → in-progress | /pts:story-workflow step 1 | `requirements.py check` passes |
 | in-progress → draft | problem-story-writer | the story changes; story-workflow must run again, its shell and tests are reworked |
-| in-progress → done | `requirements.py close` (story-workflow step 7) | `requirements.py check` passes; merges the planned FR changes, sets doneAt, moves the file to ‹requirements›/ |
+| in-progress → done | `requirements.py complete` (story-workflow step 7) | `requirements.py check` passes; merges the planned FR changes, sets doneAt, moves the file to ‹requirements›/ |
 | draft, ready, in-progress → cancelled | `requirements.py cancel`, on the user's decision | drops the planned FR changes, moves the file to ‹requirements›/cancelled/ |
 
 done and cancelled are final: the file is never edited again. A change to a done story is a new

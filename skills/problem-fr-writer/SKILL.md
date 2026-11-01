@@ -32,8 +32,8 @@ folders) is English as the project config states.
 ```
 ‹problem-space›/
   domain-map.md                    subdomains, types, business relationships
-  <subdomain>/                     e.g. genehmigung, fristen (umlauts spelled out)
-    <business-object>/             only business objects with an aggregate root, e.g. nachweis
+  <subdomain>/                     e.g. permits, deadlines (umlauts spelled out)
+    <business-object>/             only business objects with an aggregate root, e.g. evidence
       <type-folder>/               one per FR type, created with its first FR: invariants,
                                    domain-services, policies, commands, queries, acl, data-migrations
         FR-<subdomain>-NNN-<slug>.md   active FR, implemented
@@ -71,7 +71,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
 
 3. **Check.** An AC leads to an open point in six cases only:
    - **ripple:** the change touches another FR the story says nothing about, e.g. a new
-     overdue threshold and the FR "Problemsignale" that builds on overdue. The story leaves
+     overdue threshold and the FR "problem signals" that builds on overdue. The story leaves
      open whether the other FR follows.
    - **overwrite-implemented:** an AC contradicts a scenario of an active FR (without
      `@unconfirmed`), and the story does not supersede it via `Supersedes in part`.
@@ -80,7 +80,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
      wording and style are no case. You do not change the glossary; the grilling maintains it.
    - **ownership:** a new term or rule fits more than one subdomain, or none in the domain map,
      and the input does not say which one owns it.
-   - **consistency:** a rule links two business objects (e.g. Nachweis and Antrag) and the input
+   - **consistency:** a rule links two business objects (e.g. evidence and application) and the input
      does not say whether it must hold at once or may follow shortly after; the answer decides
      whether it is an invariant of one business object or a policy between two.
    - **existing-data:** an AC adds or changes what a business object holds or how it is
@@ -96,8 +96,8 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    [assets/planned-functional-requirement.md](assets/planned-functional-requirement.md),
    creating the file (and the `planned/` folder) if needed:
    - **Phrase it on the FR's rule.** A scenario checks exactly the rule of its FR. Do not take
-     an AC verbatim if it checks another rule as well: "Die Projektübersicht zeigt 1
-     Problemsignal" becomes "Dann gilt die Frist als überfällig" in the FR "Überfälligkeit" (example in German);
+     an AC verbatim if it checks another rule as well: "Then the project overview shows 1
+     problem signal" becomes "Then the deadline counts as overdue" in the FR "Overdue deadline";
      the count belongs to the FR of the problem signals.
    - **Kind.** The story's line under `## Changes`: `edit` if an active FR of the same rule
      exists, `new` if not – with the next free FR number of the subdomain; for **ownership**
@@ -112,7 +112,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
      stays taken.
    - **Story reference.** Write the section `## Functional requirements` of the story: one line
      per FR with its kind and which AC became which scenario
-     (`- FR-fristen-003 (edit): AC1 → S1, AC2 → S3 obsolete`). It replaces the history an FR
+     (`- FR-deadlines-003 (edit): AC1 → S1, AC2 → S3 obsolete`). It replaces the history an FR
      used to keep: `requirements.py history` reads it.
 
 5. **Mark what is open** – in planned files only, never in an active FR. The scenario an open
@@ -123,7 +123,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    Then step while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that planned file, in
    the format of the term "Open point" in `‹methodology-glossary›`, with source
    `problem-fr-writer` and the fields `Story`, `Case`, `Type`, and for **glossary**
-   `Glossary` (glossary and term, e.g. `fristen.md: Problem`).
+   `Glossary` (glossary and term, e.g. `deadlines.md: problem`).
 
 6. **Resolve what is answered.** If a story now answers an open point (a later round decided
    it), carry the answer into the scenario, remove `@open` and the entry under `## Open`; for
@@ -158,11 +158,11 @@ stands only in the FR:
 
 ```
 FRs:
-- FR-fristen-001: Überfälligkeit einer Frist (edit, S1 changed)
-- FR-fristen-002: Zählung der Problemsignale (edit, S1 open)
-- FR-fristen-004: Fristerinnerung per E-Mail (new)
+- FR-deadlines-001: Overdue deadline (edit, S1 changed)
+- FR-deadlines-002: Counting problem signals (edit, S1 open)
+- FR-deadlines-004: Deadline reminder by e-mail (new)
 Parallel:
-- FR-fristen-001/S1: also changed by US-0039 (ready)
+- FR-deadlines-001/S1: also changed by US-0039 (ready)
 Domain map: unchanged
 ```
 

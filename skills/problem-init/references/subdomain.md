@@ -25,7 +25,7 @@ states.
    own and usually has its own repository, service or router. What only changes with a root
    (history, contacts, assignments) is an entity of that root and gets no folder. Folder name
    in `‹problem-space-language›`, lower case, umlauts and other special letters spelled out, words
-   joined by hyphens (`manuelle-frist`).
+   joined by hyphens (`manual-deadline`).
 
 2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format by
    `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md` unless `‹project-rules›` sets its own; a new glossary
@@ -40,7 +40,7 @@ states.
    `skills/problem-fr-writer/references/fr-types.md` in the plugin root:
    - A rule module yields one or more FRs (Invariant, Domain Service, Policy).
    - Plain creating, changing and deleting of a business object yields **one** Command FR per
-     business object ("Frist verwalten") with scenarios for validations and permissions only,
+     business object ("Manage deadline") with scenarios for validations and permissions only,
      not one FR per endpoint.
    - A query with logic of its own (selection, visibility, order) yields a Query FR.
    - A call into another subdomain that reacts to something yields a Policy FR in the
@@ -79,20 +79,20 @@ carries `@existing @unconfirmed` and every test a scenario came from references 
 Your last message, exactly in this form:
 
 ```
-Subdomain: fristen
-Business objects: Manuelle Frist
+Subdomain: deadlines
+Business objects: Manual deadline
 FRs: 6 (scenarios: 31, without test: 4)
-- FR-fristen-001: Überfälligkeit einer Frist (Domain Service, 4 scenarios)
+- FR-deadlines-001: Overdue deadline (Domain Service, 4 scenarios)
 - …
 Tests with reference: 27
 Without test:
-- FR-fristen-003/S5: Teamübersicht ohne Recht zeigt nur eigene Termine
+- FR-deadlines-003/S5: team overview without permission shows only own deadlines
 Relationships:
-- Fristen → Genehmigung: erledigte Fristen erscheinen in der Nachweishistorie
+- Deadlines → Permits: done deadlines appear in the evidence history
 Questions:
 1. Ref: <glossary>.md: <term> or FR-<subdomain>-NNN/Sn · Type: <FR type> · Case: <glossary | adr | test-vs-code | suspicious-branch | duplicate-rule>
-   Question: <was auffällt, als Entscheidung formuliert>?
-   Recommendation: <Antwort mit Begründung>.
+   Question: <what stands out, phrased as a decision>?
+   Recommendation: <answer with reason>.
 ```
 
 Without questions it reads `Questions: none`. Phrase each question so that "yes" in `‹problem-space-language›` accepts your

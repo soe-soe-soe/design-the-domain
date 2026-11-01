@@ -103,16 +103,16 @@ Your last message, exactly in this form; `/pts:story-workflow` shows it to the u
 Example (from a Python backend with a TypeScript UI):
 
 ```
-Tests US-0042: Gültigkeit von Gutachten
+Tests US-0042: Validity of expert reports
 | Ref | Kind | Level | Test | Red because |
 |---|---|---|---|---|
-| FR-genehmigung-020/S1 | scenario | Unit | tests/domain/permits/aggregates/evidence/model/services/test_validity_end.py::test_report_is_valid_for_five_years | not-implemented |
-| FR-genehmigung-022/S1 | scenario (Data Migration) | Integration | tests/ops/migrations/versions/test_<rev>_evidence_valid_until.py::test_existing_reports_stay_unlimited | assertion |
+| FR-permits-020/S1 | scenario | Unit | tests/domain/permits/aggregates/evidence/model/services/test_validity_end.py::test_report_is_valid_for_five_years | not-implemented |
+| FR-permits-022/S1 | scenario (Data Migration) | Integration | tests/ops/migrations/versions/test_<rev>_evidence_valid_until.py::test_existing_reports_stay_unlimited | assertion |
 | PermitsFacade.get_expiring_evidences | interface | Integration | tests/domain/permits/facade/test_facade.py::test_get_expiring_evidences_returns_reports_due_within_period | not-implemented |
-| US-0042 | journey step | E2E | frontend/e2e/journeys/genehmigung/nachweis.spec.ts › "Gutachten zeigt sein Gültigkeitsende" | not run |
-Removed: tests/domain/…::test_… (FR-genehmigung-007/S3 obsolete)
+| US-0042 | journey step | E2E | frontend/e2e/journeys/permits/evidence.spec.ts › "expert report shows its validity end" | not run |
+Removed: tests/domain/…::test_… (FR-permits-007/S3 obsolete)
 Untestable:
-- FR-genehmigung-021/S2 (problem space): Dann „wird deutlich hervorgehoben“ hat keinen prüfbaren Wert
+- FR-permits-021/S2 (problem space): Then "is clearly highlighted" has no checkable value
 ```
 
 Omit `Removed` when empty; `Untestable: none` when everything has a test.

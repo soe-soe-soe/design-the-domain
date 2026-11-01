@@ -50,12 +50,12 @@ FR stays untouched until its story is done. Its brief:
 >
 > ```
 > Stories:
-> - US-0042: Problemsignale in der Projektübersicht (new, draft)
+> - US-0042: Problem signals in the project overview (new, draft)
 > FRs:
-> - FR-fristen-002: Zählung der Problemsignale (S3 new)
-> - FR-fristen-001: Überfälligkeit einer Frist (S1 open)
+> - FR-deadlines-002: Counting problem signals (S3 new)
+> - FR-deadlines-001: Overdue deadline (S1 open)
 > Parallel:
-> - FR-fristen-001/S1: also changed by US-0039 (ready)
+> - FR-deadlines-001/S1: also changed by US-0039 (ready)
 > Domain map: unchanged
 > ```
 >
@@ -104,7 +104,7 @@ FR stays untouched until its story is done. Its brief:
      step 4.
    - **Group by story.** From round 2 on, put each question under the story it belongs to,
      `### 📘 US-0042: <title>`, questions without a story last under `### 🌐 <cross-cutting>`
-     (the word in `‹problem-space-language›`, e.g. „Übergreifend“).
+     (the word in `‹problem-space-language›`, e.g. "Cross-cutting").
      Number the questions across the whole session: round 1 starts at Q1, every later round
      continues with the number after the last question of the previous round, across all groups.
      Only a new session starts again at Q1.
@@ -112,7 +112,7 @@ FR stays untouched until its story is done. Its brief:
      any answer options – nothing of the question follows it. Its entries are separated by a
      space; entries that do not exist yet are left out:
 
-     🗣️ ‹user›/Pocock 🧩 problem-fr-writer 📋 FR-fristen-003/S2 📐 Domain Service
+     🗣️ ‹user›/Pocock 🧩 problem-fr-writer 📋 FR-deadlines-003/S2 📐 Domain Service
 
      🗣️ is `‹user›` for an open point, `Pocock` for a question only your grilling frontier has,
      and `‹user›/Pocock` only when your frontier already held the same question before you read
@@ -120,9 +120,9 @@ FR stays untouched until its story is done. Its brief:
      the source skill of the open point for its questions, both joined with ` + ` for a shared
      one (`grilling + problem-fr-writer`). The reference entry uses the icon of the referenced
      artifact's type from the context block: for an open point its reference
-     (`📋 FR-fristen-002/S1`, `📘 US-0042/AC2`), and 📐 its field `Type`; your own questions may
-     carry a reference to the artifact they rest on (`📘 ‹refactorings›/planungsrecht-zur-flaeche.md`,
-     `⚙️ Nachweis-Zeitstrahl`), never to a glossary term.
+     (`📋 FR-deadlines-002/S1`, `📘 US-0042/AC2`), and 📐 its field `Type`; your own questions may
+     carry a reference to the artifact they rest on (`📘 ‹refactorings›/planning-law-to-area.md`,
+     `⚙️ evidence timeline`), never to a glossary term.
    - **Parallel changes.** A `Parallel` entry of the writers (or a `Planned` entry of step 1 the
      session's changes touch) means another story changes the same scenario. Ask it in the next
      round under its story, with these options and your recommendation:

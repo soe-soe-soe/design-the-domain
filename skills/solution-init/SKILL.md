@@ -40,7 +40,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 3. **Reconcile** once all reports are in:
    - **Cross-context moves:** if two plans claim the same module, or one plan moves code into
-     another context (e.g. Planungsrecht from `projects` to `areas`), keep the move in the
+     another context (e.g. planning law from `projects` to `areas`), keep the move in the
      receiving context's plan and reference it from the other.
    - **Facade usage:** every call a plan routes through another context's facade must exist in
      that context's planned facade (`‹structure›`).

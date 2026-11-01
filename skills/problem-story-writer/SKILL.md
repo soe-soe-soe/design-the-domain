@@ -56,7 +56,7 @@ template [assets/story.md](assets/story.md); read it.
    behaviour, and it concerns the topic of a decision in the input without being settled by
    it. What the input does not address at all (e.g. the display, when it only decides the
    counting rule) is no open point, and neither is re-asking what it decided (e.g. whether
-   problems on a Nachweis count, when the input defined the problem signal through Fristen).
+   problems on an evidence count, when the input defined the problem signal through deadlines).
    Gaps that change no Then step you write in the obvious reading without recording them.
 
 4. **Write.** The story by the template [assets/story.md](assets/story.md) (without its
@@ -79,7 +79,7 @@ You are done when every decision of the input stands in an AC or is marked open.
 
 ## Story file
 
-`‹requirements›/planned/US-0042-problemsignale.md` (number, then a short slug in
+`‹requirements›/planned/US-0042-problem-signals.md` (number, then a short slug in
 `‹problem-space-language›`), structured exactly as the template.
 
 - `createdAt` is set when the story is created and never changed; `doneAt` and `External` are
@@ -99,7 +99,7 @@ Your last message is the report, exactly in this form; it names what changed, no
 
 ```
 Stories:
-- US-0042: Problemsignale in der Projektübersicht (new, draft)
-- US-0039: Erinnerung vor Fristablauf (continued, draft)
-- US-0035: Sammelmail (continued, in-progress → draft: shell and tests to rework)
+- US-0042: Problem signals in the project overview (new, draft)
+- US-0039: Reminder before a deadline expires (continued, draft)
+- US-0035: Digest e-mail (continued, in-progress → draft: shell and tests to rework)
 ```

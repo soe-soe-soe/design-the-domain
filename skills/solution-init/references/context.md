@@ -52,7 +52,7 @@ Why, Current state, Target state, Before starting), with Target state as:
 
 ```
 ### Aggregates
-- evidence (root `EvidenceDB` → `aggregates/evidence/model/root.py`): Nachweis
+- evidence (root `EvidenceDB` → `aggregates/evidence/model/root.py`): evidence
 ### Moves
 | Current | Building block | Target |
 |---|---|---|
@@ -74,8 +74,8 @@ Boundary violations: 3
 Plan: ‹refactorings›/solution-structure-permits.md
 Questions:
 1. Ref: <file or FR-…/Sn> · Type: <FR type or building block> · Case: <aggregate-cut | boundary | misplacement | glossary-identifier>
-   Question: <was auffällt, als Entscheidung formuliert>?
-   Recommendation: <Antwort mit Begründung>.
+   Question: <what stands out, phrased as a decision>?
+   Recommendation: <answer with reason>.
 ```
 
 Without questions it reads `Questions: none`. Phrase each question so that "yes" in `‹problem-space-language›` accepts your

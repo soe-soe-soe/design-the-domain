@@ -46,7 +46,7 @@ library) checks, completes and cancels stories and prints an FR's history:
 python3 scripts/requirements.py check    US-0042
 python3 scripts/requirements.py complete   US-0042
 python3 scripts/requirements.py cancel   US-0042
-python3 scripts/requirements.py history  FR-fristen-003
+python3 scripts/requirements.py history  FR-deadlines-003
 ```
 
 ## Developing

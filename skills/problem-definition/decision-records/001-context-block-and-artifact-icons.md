@@ -4,7 +4,7 @@
 
 ## Context
 
-The skill opened a session with a sentence like "I read the issue, the glossary Fläche, the
+The skill opened a session with a sentence like "I read the issue, the glossary of the area, the
 refactoring plan …". The user could not tell what "the issue" was, and the list was hard to
 scan. Questions referred to the same artifacts with a generic 🏷️.
 

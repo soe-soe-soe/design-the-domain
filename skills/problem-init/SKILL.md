@@ -25,7 +25,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 1. **Clarify scope.** Read `‹domain-map›` and ask the user with
    AskUserQuestion whether to initialise one subdomain, several or all; for several, let them
-   choose. If the call already names subdomains (`/pts:problem-init fristen projekt`), skip the
+   choose. If the call already names subdomains (`/pts:problem-init deadlines project`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
 2. **Start subagents**, all in **one** message so they run in parallel, each with the model

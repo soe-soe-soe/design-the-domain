@@ -15,7 +15,7 @@ into every later session without anyone noticing.
 
 - `skills/problem-init/SKILL.md` and `references/subdomain.md` exist, no `evals/problem-init/`.
 - The skill asks the scope with AskUserQuestion unless the call names subdomains
-  (`/pts:problem-init fristen projekt`) and runs one subagent per subdomain in parallel.
+  (`/pts:problem-init deadlines project`) and runs one subagent per subdomain in parallel.
 
 ## Target state
 

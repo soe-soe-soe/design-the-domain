@@ -10,6 +10,6 @@ verbatim, so the evals measured copying, not the skill.
 
 ## Decision
 
-The worked examples come from another subdomain (Fristen) than the eval cases (mostly
-Genehmigung) and never share a story, FR or file name with them. A new eval case checks this
+The worked examples come from another subdomain (deadlines) than the eval cases (mostly
+permits) and never share a story, FR or file name with them. A new eval case checks this
 before it is added.

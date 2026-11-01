@@ -10,8 +10,8 @@ acceptance criterion.
 
 ## Decision
 
-What becomes of existing data is phrased in business terms ("Bestehende Nachweise ohne
-Gültigkeitsdatum gelten als unbefristet") and becomes an FR of the new type **Data Migration**.
+What becomes of existing data is phrased in business terms ("Existing evidences without
+a validity date count as unlimited") and becomes an FR of the new type **Data Migration**.
 problem-fr-writer marks an open point of the new case **existing-data** when a story changes what a
 business object holds and no AC says what becomes of its existing instances.
 

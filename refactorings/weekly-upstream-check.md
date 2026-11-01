@@ -29,9 +29,13 @@ the workflow relies on), not the new one (should pts take an upstream change ove
 
 ## Done
 
-- Cloud scheduled task "Pocock-Skills: wöchentliche Upstream-Prüfung" (`trig_018xPKGg84XQPHjwNduobQ3V`),
-  Mondays 19:43 Europe/Berlin, push notification to the phone. It runs the brief of
-  `docs/upstream.md`, updates *Last checked* and pushes it to `main`.
+- Cloud scheduled task "Pocock-Skills: wöchentliche Upstream-Prüfung" (`trig_01XcUNJNAs5NwmSZ39M8vS6u`),
+  Mondays 19:43 Europe/Berlin. It wakes the standing session "Pocock-Skills: wöchentliche
+  Upstream-Prüfung" (`session_01VNMRUP6T7fS5MMMupBazvL`, this repository attached), which runs the
+  brief of `docs/upstream.md`, updates *Last checked*, pushes it to `main` and sends a push
+  notification. A task that starts a fresh session each time does not work here: such sessions
+  get no repository attached and cannot reach this private repository.
+- Test run on 2026-11-01: no upstream changes since `4ae2317`.
 
 ## Left
 

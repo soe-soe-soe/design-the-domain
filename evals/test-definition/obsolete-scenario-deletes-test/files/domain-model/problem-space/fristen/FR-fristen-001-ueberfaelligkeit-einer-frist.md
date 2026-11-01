@@ -30,14 +30,9 @@ Funktionalität: Überfälligkeit einer Frist
     Wenn heute der 16.10.2026 ist
     Dann ist die Frist nicht überfällig
 
-  @US-0052 @obsolete
+  @existing
   Szenario: S4 – Eine Frist ohne Zieltermin ist nie überfällig
     Angenommen eine offene Frist hat keinen Zieltermin
     Wenn heute der 16.10.2026 ist
     Dann ist die Frist nicht überfällig
 ```
-
-## History
-
-- existing: created (problem-init, 2026-10-26)
-- US-0052: S4 obsolete (AC1 – every Frist has a Zieltermin)

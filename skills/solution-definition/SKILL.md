@@ -18,14 +18,17 @@ of the placement (step 4), which changes no behaviour. Everything you write is E
 questions to the user are in `‹content-language›`.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 ## Steps
 
-1. **Read the situation.** The story from the input (status `ready`) and every FR scenario
-   tagged with it and `@planned` or `@obsolete` (an obsolete one gets a row naming the code that
-   goes away; the implementation removes it, the shell does not), `‹glossaries›/` (subdomain row → bounded context
+1. **Read the situation.** The story from the input (status `ready` or `in-progress`, under
+   `‹requirements›/planned/`), every scenario tagged with it in the planned FR files (`planned/`
+   below the FR folders) and the active FR each one changes. A planned scenario is changed
+   (its `Sn` exists in the active FR), new, or `@obsolete` (it gets a row naming the code that
+   goes away; the implementation removes it, the shell does not); a change line `Kind: deletion`
+   makes every scenario of the active FR obsolete. Further: `‹glossaries›/` (subdomain row → bounded context
    and folders; business object → aggregate root), `‹structure›`
    and `‹context-map›`, the ADRs `‹architecture-adrs›`, and the code of every context involved: its folder
    layout, facade and the building blocks the scenarios touch.
@@ -79,6 +82,9 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    - **Never** change the body of an existing symbol.
 
    Then run `‹typecheck›` and `‹test-all›`: both are as green as before.
+
+Scenario references (`FR-…/Sn`) always use the number of the active FR; the planned file keeps
+it.
 
 You are done when every planned scenario of the story has a building block and file, or waits
 for one of your questions, and – without open questions – the shell stands and the suite is

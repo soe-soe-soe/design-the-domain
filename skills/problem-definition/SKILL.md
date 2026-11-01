@@ -13,7 +13,7 @@ the project's way, lets the writers update the problem space in between and alon
 questions are asked.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 It is the problem-space counterpart of `/pts:story-workflow`.
 
@@ -38,7 +38,10 @@ ground subagent read count as read by you.
 ## Writing the problem space
 
 After every answered round, one subagent brings `‹problem-space›/` up to date with
-the round's decisions; it runs in its own context so the interview stays lean. Its brief:
+the round's decisions; it runs in its own context so the interview stays lean. Start it with the
+model `‹model-writer›` (leave the model out for `inherit`). The writers put stories into
+`‹requirements›/planned/` and FR changes into the planned files next to the active FRs; an active
+FR stays untouched until its story is done. Its brief:
 
 > Call the Skill tool with `pts:problem-story-writer` with the answers of this round: <answers> and the requirement that
 > started the session: <requirement>. Then call it with `pts:problem-fr-writer` for the stories its
@@ -51,24 +54,33 @@ the round's decisions; it runs in its own context so the interview stays lean. I
 > FRs:
 > - FR-fristen-002: Zählung der Problemsignale (S3 new)
 > - FR-fristen-001: Überfälligkeit einer Frist (S1 open)
+> Parallel:
+> - FR-fristen-001/S1: also changed by US-0039 (ready)
 > Domain map: unchanged
 > ```
+>
+> `Parallel` only when the FR writer reports one.
 
 ## Steps
 
-1. **Read the ground** in one subagent, so the files stay out of the interview. Its brief:
+1. **Read the ground** in one subagent with the model `‹model-ground›`, so the files stay out
+   of the interview. Its brief:
 
    > Read `‹glossary-map›`, the glossaries it names for the subdomains this requirement touches:
    > <requirement>, `‹domain-map›`, the stories under
-   > `‹stories›/` with status `draft` on the same topic, and whatever
+   > `‹requirements›/planned/` on the same topic, the planned FR files (`planned/` below the FR
+   > folders) of the subdomains it touches, and whatever
    > else the requirement points to. Change nothing. Your last message has exactly these parts:
    > `Kontext:` one line per file read, in the format of `${CLAUDE_PLUGIN_ROOT}/templates/output-format.md`;
    > `Stand:` the current state of the topic in at most 15 lines; `Begriffe:` every glossary
-   > term the requirement touches with its one-line description; `Drafts:` each draft story on the
-   > topic with its open points, or `keine`.
+   > term the requirement touches with its one-line description; `Drafts:` each story in
+   > `planned/` on the topic with its status and open points, or `keine`; `Geplant:` each planned
+   > FR change of another story on the topic (`FR-…/Sn – US-…, Status`), or `keine`.
 
-   The session may continue those drafts, including their open points. When a question needs
-   more than the report gives, read the file yourself.
+   The session may continue those stories, including their open points; a `ready` or
+   `in-progress` one falls back to `draft` when it changes (its template says so). `done` and
+   `cancelled` stories are final: a change to them is a new story. When a question needs more
+   than the report gives, read the file yourself.
 
 2. **Load the craft.** Call the Skill tool with `‹skill-grilling›` and with
    `‹skill-domain-modeling›`. Follow both, with the project's rules on top: glossary
@@ -108,17 +120,39 @@ the round's decisions; it runs in its own context so the interview stays lean. I
      (`📋 FR-fristen-002/S1`, `📘 US-0042/AC2`), and 📐 its field `Type`; your own questions may
      carry a reference to the artifact they rest on (`📘 ‹refactorings›/planungsrecht-zur-flaeche.md`,
      `⚙️ Nachweis-Zeitstrahl`), never to a glossary term.
+   - **Parallel changes.** A `Parallel` entry of the writers (or a `Geplant` entry of step 1 the
+     session's changes touch) means another story changes the same scenario. Ask it in the next
+     round under its story, with these options and your recommendation:
+     **combine** – the change goes into one of the two stories;
+     **sequence** – this story waits for the other; it is closed against the other's result, so
+     a story that closes first makes the later one fail `requirements.py check` and come back here;
+     **take out** – the overlapping part becomes a story of its own and stays `draft` with the
+     point deferred, so this session can close without it.
+     Provenance `🧩 problem-fr-writer` with the scenario as reference.
    - **Deferring.** The user may defer an open point instead of answering it. It stays in its
      story or FR, and you do not ask it again in this session.
+   - **Cancelling.** If the user drops a story of the session altogether, run
+     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py cancel US-0042`; it removes the
+     story's planned FR changes and moves it to `‹requirements›/cancelled/`.
 
 4. **Close.** The session is done when your frontier is empty, every open point of the session
    is answered or deferred, and the user confirms the shared understanding (as `grilling`
-   requires). Then edit the header line of every story file of the session without entries
-   under `## Open` to `Status: ready` – the file is the record, saying it is not enough; the
-   others stay `draft`. Only then tell the user which stories are `ready` and which are still
-   `draft` with their deferred points, and name the next step of the feature workflow in
-   `‹project-rules›`.
+   requires). Then, for every story of the session:
+   - **Validate draft → ready** by the status flow in the comment of
+     `${CLAUDE_PLUGIN_ROOT}/skills/problem-story-writer/assets/story.md`: no entry under
+     `## Open`, no AC tagged `@open`, every AC under `## Functional requirements`, and
+     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py check US-0042` exits 0.
+   - If it holds, edit its header line to `Status: ready` – the file is the record, saying it is
+     not enough. Otherwise it stays `draft`; a failing check you name with its output.
+   - **Ticket system.** Unless `‹ticket-system›` is `none`: create or update one ticket per story
+     in `‹ticket-project›` through the project's connector for it – title, status, the story
+     file's path – and write the ticket's ID into the story header as `External: <ID>` if it has
+     none. Only this direction: never take content back from the ticket.
+
+   Only then tell the user which stories are `ready` and which are still `draft` with their
+   deferred points, and name the next step of the feature workflow in `‹project-rules›`.
 
 You are done when every decision of the session stands in a story or an FR, every term the
 stories use is in a glossary, every open point is answered or deferred, the user has
-confirmed, and every story without open points says `Status: ready` in its file.
+confirmed, every story that passes the validation says `Status: ready` in its file, and – with
+a ticket system – every story of the session has its `External` ID.

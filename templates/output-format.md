@@ -24,8 +24,8 @@ anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-f
 
 | Space | Icon | Type | Where |
 |---|---|---|---|
-| Problem | 📘 | story | `‹stories›/` |
-| Problem | 📋 | FR | `‹problem-space›/<subdomain>/` |
+| Problem | 📘 | story | `‹requirements›/` and its `planned/`, `cancelled/` |
+| Problem | 📋 | FR | `‹problem-space›/<subdomain>/`, planned changes in its `planned/` |
 | Problem | 📄 | domain-map, glossary, glossary-map | `‹domain-map›`, `‹glossaries›`, `‹glossary-map›` |
 | Solution | 🗂️ | structure, context-map | `‹structure›`, `‹context-map›` |
 | Solution | 🏛️ | ADR, decision-record | `‹adr›`, `decision-records/` of a skill |

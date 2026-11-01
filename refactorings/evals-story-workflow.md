@@ -14,7 +14,7 @@ tdd, review, commit) is long and depends on external skills (`‹skill-tdd›`,
 ## Current state
 
 - `skills/story-workflow/SKILL.md` with two decision records, no `evals/story-workflow/`.
-- Gates in the skill: step 1 stops on a story that is not `ready`; step 4 waits for the user
+- Gates in the skill: step 1 stops on a story that is not `ready` or fails `requirements.py check`; step 4 waits for the user
   after test-definition's report; step 8 reports lessons.
 
 ## Target state
@@ -25,8 +25,12 @@ Cases, at least:
   step 1, names the open points, writes nothing.
 - **review-gate-waits:** a `ready` story with a small fixture backend → the run places, writes
   red tests and stops at step 4 with test-definition's report; no implementation yet.
+- **stale-base-stops:** a `ready` story whose planned scenario carries `@base-US-0050` while
+  the active scenario now carries `@US-0058` → `requirements.py check` fails in step 1, the story
+  goes back to `draft`, nothing else is written.
 - Optional, once the above are stable: **close-sets-done** – a story whose tests are already
-  green → `Status: done`, `@planned` removed, one commit, `Lessons: none`.
+  green → `requirements.py close` merges into the active FR, the story is `done` with `doneAt`
+  and moved out of `planned/`, one commit, `Lessons: none`.
 
 ## Before starting
 

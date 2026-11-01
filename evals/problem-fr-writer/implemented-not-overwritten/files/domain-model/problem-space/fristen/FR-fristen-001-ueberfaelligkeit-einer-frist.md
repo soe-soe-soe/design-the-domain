@@ -25,7 +25,3 @@ Funktionalität: Überfälligkeit einer Frist
     Wenn heute der 16.10.2026 ist
     Dann gilt die Frist nicht als überfällig
 ```
-
-## History
-
-- US-0007: created (AC1 → S1, AC2 → S2)

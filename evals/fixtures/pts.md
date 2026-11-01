@@ -15,8 +15,8 @@ files come from (a Python backend with a TypeScript UI). Paths are relative to t
 
 | Key | Meaning | Value |
 |---|---|---|
-| `problem-space` | Root of the problem space: FRs per subdomain | `domain-model/problem-space` |
-| `stories` | User stories | `domain-model/problem-space/stories` |
+| `problem-space` | Root of the problem space: FRs per subdomain, planned changes in `planned/` below each FR folder | `domain-model/problem-space` |
+| `requirements` | User stories: done ones in the folder, open ones (draft, ready, in-progress) in `planned/`, cancelled ones in `cancelled/` | `domain-model/problem-space/requirements` |
 | `domain-map` | Subdomains, types, business relationships | `domain-model/problem-space/domain-map.md` |
 | `glossaries` | One glossary per subdomain | `domain-model/glossaries` |
 | `methodology-glossary` | Methodology terms, among them "Open point" | `domain-model/glossaries/_methodology.md` |
@@ -72,3 +72,26 @@ them in this project.
 | `skill-domain-modeling` | Glossary and ADR craft | `mattpocock-skills:domain-modeling` |
 | `skill-tdd` | Test-driven development loop | `mattpocock-skills:tdd` |
 | `skill-code-review` | Review against spec and standards | `mattpocock-skills:code-review` |
+
+## Ticket system
+
+Optional. The repository stays the source of truth: the skills write stories to a ticket system
+one way (title, status, link to the story file), never read acceptance criteria back. The
+ticket's ID goes into the story header as `External`.
+
+| Key | Meaning | Value |
+|---|---|---|
+| `ticket-system` | `none`, `linear` or `jira`, used through the project's connector for it | `none` |
+| `ticket-project` | Team or project key in the ticket system | <key, or – for none> |
+
+## Models
+
+Model of the subagents the skills start: `inherit` (the session's model), `haiku`, `sonnet` or
+`opus`. The skills themselves run on the model of whoever calls them; only a subagent's model
+can be set per project.
+
+| Key | Meaning | Value |
+|---|---|---|
+| `model-ground` | Subagent reading the ground in /pts:problem-definition (reads and summarises) | `inherit` |
+| `model-writer` | Subagent running problem-story-writer and problem-fr-writer (finds open points) | `inherit` |
+| `model-init` | Subagents of /pts:problem-init and /pts:solution-init, one per subdomain or context | `inherit` |

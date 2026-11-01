@@ -34,10 +34,26 @@ A Claude Code plugin for domain-driven feature work in three spaces:
    }
    ```
 
+## Requirements and FRs
+
+Stories live in `‹requirements›/` (done), `planned/` (draft, ready, in-progress) and `cancelled/`;
+the status flow stands in [skills/problem-story-writer/assets/story.md](skills/problem-story-writer/assets/story.md).
+An active FR is the implemented state; the writers put changes into one planned file per FR in
+`planned/` next to it. [scripts/requirements.py](scripts/requirements.py) (Python 3, standard
+library) checks, closes and cancels stories and prints an FR's history:
+
+```
+python3 scripts/requirements.py check   US-0042
+python3 scripts/requirements.py close   US-0042
+python3 scripts/requirements.py cancel  US-0042
+python3 scripts/requirements.py history FR-fristen-003
+```
+
 ## Developing
 
 Load the working copy instead of the installed plugin with `claude --plugin-dir <this repo>`
 and `/reload-plugins` after an edit. Evals live under `evals/<skill>/<case>/` and run with
 `claude plugin eval .`; the `problem-definition` cases need `PTS_EVAL_PROJECT` pointing at a
 project checkout with `.claude/pts.md`, the others bring their files and use
-`evals/fixtures/pts.md`. Decision records stay with their skill under `decision-records/`.
+`evals/fixtures/pts.md`. Decision records stay with their skill under `decision-records/`. The script's tests run
+with `python3 -m unittest discover scripts`.

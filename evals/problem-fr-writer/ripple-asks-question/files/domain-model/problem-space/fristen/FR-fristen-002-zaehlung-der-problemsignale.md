@@ -25,7 +25,3 @@ Funktionalität: Problemsignale je Projekt
     Wenn heute der 16.10.2026 ist
     Dann zählt das Projekt 2 Problemsignale
 ```
-
-## History
-
-- US-0005: created (AC1 → S1, AC2 → S2)

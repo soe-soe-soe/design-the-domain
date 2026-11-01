@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-In FR-fristen-001, scenario S1 now says a deadline due today is not overdue (number S1 kept) and carries @US-0008 and @planned
+The active FR-fristen-001 is unchanged; in its planned file (fristen/planned/FR-fristen-001-…) scenario S1 says a deadline due today is not overdue (number S1 kept) and carries @US-0008, @planned and @base-US-0007

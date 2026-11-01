@@ -12,4 +12,4 @@ Stories:
 
 Gleiche die FRs ab und gib die Rückmeldung an die Session.
 
-Input files: domain-model/problem-space/stories/US-0007-ueberfaellige-fristen.md, domain-model/problem-space/stories/US-0009-faelligkeitstag-nicht-ueberfaellig.md, domain-model/problem-space/fristen/FR-fristen-001-ueberfaelligkeit-einer-frist.md, domain-model/problem-space/domain-map.md
+Input files: domain-model/problem-space/requirements/US-0007-ueberfaellige-fristen.md, domain-model/problem-space/requirements/planned/US-0009-faelligkeitstag-nicht-ueberfaellig.md, domain-model/problem-space/fristen/FR-fristen-001-ueberfaelligkeit-einer-frist.md, domain-model/problem-space/domain-map.md

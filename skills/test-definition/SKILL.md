@@ -18,13 +18,14 @@ touch production code, the problem space or the glossaries. Code and comments ar
 You ask nothing; what you cannot test you report.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 ## Steps
 
-1. **Read the situation.** The story, every FR scenario tagged with it (`@planned` and
-   `@obsolete`), the placement report, `‹structure›`, `‹test-strategy-adr›`, the shell files, the shared
+1. **Read the situation.** The story, every scenario tagged with it in the planned FR files
+   (`planned/` below the FR folders; changed, new and `@obsolete` ones, and for a change line
+   `Kind: deletion` every scenario of the active FR), the active FRs they change, the placement report, `‹structure›`, `‹test-strategy-adr›`, the shell files, the shared
    fixtures in `‹test-fixtures›` and the `conftest.py` files on the way to each test
    path (use their fixtures, add missing ones there), and existing tests that already carry a marker of these scenarios. For a story with
    a UI change also the journey of its business object and the page objects in
@@ -48,6 +49,8 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
      values are the literals of the Dann, never computed the way the code would.
    - Test data by the rule in `‹structure›`: what the scenario names stands in the test body,
      wiring comes from fixtures, a builder fixture `make_<aggregate>` fills the rest.
+   - The marker names the scenario as `FR-…/Sn` with the number of the active FR – the planned
+     file keeps it – never the path of the planned file.
    - A scenario that already has a test with its marker: change that test where it is – even
      at a path that does not mirror the code yet, moving it belongs to the context's
      migration – and rename it after the new statement; do not add a second test.

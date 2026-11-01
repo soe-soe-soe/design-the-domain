@@ -1,6 +1,6 @@
 ---
 name: problem-story-writer
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹stories›/ and marks what is still open. Use from the writing subagent of /problem-definition after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /problem-definition after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Problem-Story-Writer
@@ -13,27 +13,41 @@ You write what is decided and mark what is still open, in the story itself. You 
 `/pts:problem-definition` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 Language: methodology terms, headings, tags, status values, IDs and field labels are English;
 story content (title, role sentence, why, scenarios, open questions) is in `‹content-language›`.
+
+## Where stories live
+
+```
+‹requirements›/
+  US-0007-….md        done – final, never edited
+  planned/US-0042-….md  draft, ready, in-progress – the only stories you write
+  cancelled/US-0031-….md  cancelled – final, never edited
+```
+
+The status flow and what each transition requires stand in the comment at the top of the
+template [assets/story.md](assets/story.md); read it.
 
 ## Steps
 
 1. **Read the situation.** The input (the answers of the last round plus the requirement that started
    the session), `‹domain-map›`, the glossaries of the subdomains
    involved (`‹glossaries›/`), the ADRs under `‹adr›` that touch the topic, and
-   all stories under `‹stories›/`.
+   all stories under `‹requirements›/` and its subfolders.
 
 2. **Assign.** A story is a change a business person recognises as one thing. For each change
    in the input:
-   - A story on the same topic with status `draft` or `ready` is continued; a `ready` story you
-     change goes back to `draft`.
-   - If the matching story is `done`, leave it untouched: create a new story and reference the
-     old one under `Supersedes in part` (e.g. "button blue" → "button red").
+   - A story on the same topic in `planned/` (status `draft`, `ready` or `in-progress`) is
+     continued. A `ready` or `in-progress` story you change goes back to `draft`; for
+     `in-progress` say so in the report, because its shell and tests were built on the old
+     version.
+   - If the matching story is `done` or `cancelled`, leave it untouched: create a new story and
+     reference a done one under `Supersedes in part` (e.g. "button blue" → "button red").
    - Otherwise create a new story with the next free number (`US-0001`, `US-0002`, … across
-     all stories).
+     all stories in all three folders).
 
 3. **Check.** Every statement in an AC is **backed** (conversation, glossary, ADR, code) or
    **inconsequential** (wording, order, example names). Everything else is a **gap**. A gap is
@@ -44,9 +58,9 @@ story content (title, role sentence, why, scenarios, open questions) is in `‹c
    problems on a Nachweis count, when the input defined the problem signal through Fristen).
    Gaps that change no Dann you write in the obvious reading without recording them.
 
-4. **Write.** The story by the template [assets/story.md](assets/story.md), the AC by
-   [references/gherkin.md](references/gherkin.md). A Dann stands only where the outcome is
-   decided; an invented outcome is a guess.
+4. **Write.** The story by the template [assets/story.md](assets/story.md) (without its
+   comment), the AC by [references/gherkin.md](references/gherkin.md). A Dann stands only where
+   the outcome is decided; an invented outcome is a guess.
 
 5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in
    the term "Open point" in `‹methodology-glossary›`: a new AC whose outcome is
@@ -58,15 +72,20 @@ story content (title, role sentence, why, scenarios, open questions) is in `‹c
 
 You are done when every decision of the input stands in an AC or is marked open.
 
-**Status** is not yours: a new story starts as `draft`, `/pts:problem-definition` sets `ready` when the
-session closes, the implementation sets `done`.
+**Status** is not yours beyond the two moves above: a new story starts as `draft`,
+`/pts:problem-definition` sets `ready` when the session closes, `/pts:story-workflow` sets
+`in-progress`, `requirements.py close` sets `done`, `requirements.py cancel` sets `cancelled`.
 
 ## Story file
 
-`‹stories›/US-0042-problemsignale.md` (number, then a short slug in
+`‹requirements›/planned/US-0042-problemsignale.md` (number, then a short slug in
 `‹content-language›`), structured exactly as the template.
 
+- `createdAt` is set when the story is created and never changed; `doneAt` and `External` are
+  not yours – leave them out of a new story.
 - The line `Als … möchte ich …` has no "damit": the why has its own section.
+- `## Functional requirements` belongs to `pts:problem-fr-writer`: leave it out of a new story
+  and do not change it.
 - `Supersedes in part` and `## Open` are omitted when there is nothing to enter.
 - AC numbers are fixed: a dropped AC stays as `Szenario: AC2 – entfallen`, freed numbers are
   never reused. Tests and FRs reference them later.
@@ -79,4 +98,5 @@ Your last message is the report, exactly in this form; it names what changed, no
 Stories:
 - US-0042: Problemsignale in der Projektübersicht (new, draft)
 - US-0039: Erinnerung vor Fristablauf (continued, draft)
+- US-0035: Sammelmail (continued, in-progress → draft: shell and tests to rework)
 ```

@@ -52,7 +52,8 @@ identifiers in the glossary English as in the code.
    `skills/problem-story-writer/references/gherkin.md` in the plugin root, phrased on the level of the FR's rule,
    with the test's concrete values. Code without a test gets a scenario from the code and is
    listed under "without test" in the report; you write no test for it. Every scenario carries
-   `@existing @unconfirmed`. History: `- existing: created (problem-init, <YYYY-MM-DD>)`.
+   `@existing @unconfirmed`. Write the active FR directly (template without its comment), no
+   planned file: the code already implements it.
 
 5. **Reference tests.** Every test that yielded a scenario gets the scenario marker
    (`‹scenario-marker›`), once for a parametrised group or for a test class whose tests all

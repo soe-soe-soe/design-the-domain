@@ -17,7 +17,7 @@ English; problem-space content (glossary descriptions, FR rules, scenarios, ques
 user) is in `‹content-language›`.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 ## Steps
@@ -27,7 +27,8 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    choose. If the call already names subdomains (`/pts:problem-init fristen projekt`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
-2. **Start subagents**, all in **one** message so they run in parallel: one per subdomain,
+2. **Start subagents**, all in **one** message so they run in parallel, each with the model
+   `‹model-init›` (leave the model out for `inherit`): one per subdomain,
    with this brief:
 
    > Initialise the subdomain `<subdomain>` (folders: `<from the subdomain row of its

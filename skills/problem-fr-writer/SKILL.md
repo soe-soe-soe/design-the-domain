@@ -1,24 +1,26 @@
 ---
 name: problem-fr-writer
-description: Writes the functional requirements (FRs) under ‹problem-space›/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /problem-definition after problem-story-writer, or when the user wants stories "taken into FRs" or the FR set reconciled.
+description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /problem-definition after problem-story-writer, or when the user wants stories "taken into FRs" or the FR set reconciled.
 ---
 
 # Problem-FR-Writer
 
-An **FR** is the current target state of one rule or capability, assigned to exactly one
+An **FR** is the implemented target state of one rule or capability, assigned to exactly one
 subdomain. Stories describe changes, FRs the result of all changes. You carry the acceptance
-criteria (AC) of the stories over into FR scenarios and look for **contradictions with the
-existing state** the conversation cannot see.
+criteria (AC) of the stories over into **planned FRs** – the change next to the active FR,
+merged into it only when the story is done – and look for **contradictions with the existing
+state** the conversation cannot see.
 
 You write what is decided and mark what is still open, in the FR itself. You ask nothing:
 `/pts:problem-definition` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹stories›`) is one of its keys. Without the file, stop and point the user to the
+angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
-You write only FRs under `‹problem-space›/<subdomain>/` and the domain map. Stories,
-glossaries and ADRs you only read. FRs contain no code locations; the link to the code is the
+You write only planned FRs (`planned/` below an FR folder), the domain map, and in a story the
+section `## Functional requirements`. Active FRs, the rest of a story, glossaries and ADRs you
+only read: an active FR changes only through `requirements.py close` when its story is done. FRs contain no code locations; the link to the code is the
 test that references a scenario.
 
 Language: methodology terms, headings, tags, IDs and field labels are English; FR content
@@ -31,19 +33,26 @@ Language: methodology terms, headings, tags, IDs and field labels are English; F
   domain-map.md                    subdomains, types, business relationships
   <subdomain>/                     e.g. genehmigung, fristen (umlauts spelled out)
     <business-object>/             only business objects with an aggregate root, e.g. nachweis
-      FR-<subdomain>-NNN-<slug>.md
+      FR-<subdomain>-NNN-<slug>.md   active FR, implemented
+      planned/
+        FR-<subdomain>-NNN-<slug>.md planned changes of that FR, same file name
+        FR-<subdomain>-MMM-<slug>.md a new FR (Kind new), not active yet
     FR-<subdomain>-NNN-<slug>.md   rules without own business object, e.g. of a value
+    planned/                       their planned changes
     subdomain-<name>/              provisional subdomain (see its README), FR IDs of the host
 ```
 
 Which business objects a subdomain has stands in the sections of its glossary
-(`‹glossaries›/<subdomain>.md`). The number `NNN` counts per subdomain.
+(`‹glossaries›/<subdomain>.md`). The number `NNN` counts per subdomain, across active and planned
+FRs. One planned file per FR holds the changes of every story touching it; its format, the
+change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
+[assets/planned-functional-requirement.md](assets/planned-functional-requirement.md) – read it.
 
 ## Steps
 
 1. **Read the situation.** The stories from the input (new or continued),
-   `‹domain-map›`, the glossaries and all FRs of the subdomains
-   they touch, and the ADRs on the topic.
+   `‹domain-map›`, the glossaries and all FRs of the subdomains they touch – active and planned
+   – and the ADRs on the topic.
 
 2. **Assign.** For each AC determine the subdomain from the domain map, the business object
    from the glossary and the FR type by [references/fr-types.md](references/fr-types.md). A
@@ -56,8 +65,8 @@ Which business objects a subdomain has stands in the sections of its glossary
    - **ripple:** the change touches another FR the story says nothing about, e.g. a new
      overdue threshold and the FR "Problemsignale" that builds on overdue. The story leaves
      open whether the other FR follows.
-   - **overwrite-implemented:** an AC contradicts an implemented scenario (without `@planned`
-     and `@unconfirmed`), and the story does not supersede it via `Supersedes in part`.
+   - **overwrite-implemented:** an AC contradicts a scenario of an active FR (without
+     `@unconfirmed`), and the story does not supersede it via `Supersedes in part`.
    - **glossary:** a scenario you must write contradicts the description of a glossary term,
      or hangs on a term whose meaning the glossary leaves open, and its outcome depends on it;
      wording and style are no case. You do not change the glossary; the grilling maintains it.
@@ -71,51 +80,66 @@ Which business objects a subdomain has stands in the sections of its glossary
      what becomes of them. The answer is a scenario of an FR of type Data Migration.
 
    A difference to the code is no open point: it is the delta to be implemented. Contradictions
-   with ADRs the grilling asks itself.
+   with ADRs the grilling asks itself. A planned file that already holds a change of **another
+   story** to the same scenario is no open point of yours either: report it under `Parallel`,
+   and `/pts:problem-definition` takes it into the interview.
 
-4. **Write.** For each AC, by the template
-   [assets/functional-requirement.md](assets/functional-requirement.md):
+4. **Write.** For each AC, into the planned file of its FR by the template
+   [assets/planned-functional-requirement.md](assets/planned-functional-requirement.md),
+   creating the file (and the `planned/` folder) if needed:
    - **Phrase it on the FR's rule.** A scenario checks exactly the rule of its FR. Do not take
      an AC verbatim if it checks another rule as well: "Die Projektübersicht zeigt 1
      Problemsignal" becomes "Dann gilt die Frist als überfällig" in the FR "Überfälligkeit";
      the count belongs to the FR of the problem signals.
-   - If it belongs to an existing FR of the same rule, change the matching scenario (number
-     stays) or append the next `Sn`; otherwise create an FR with the next free number of the
-     subdomain. For **ownership**, create it in the subdomain you recommend.
-   - Each scenario carries the tag of its story and, while that story is not done, `@planned`.
-     Once a story is `done`, remove `@planned` from its scenarios.
-   - An AC marked as dropped (`entfallen`) makes its scenario `@obsolete`; the number stays
-     taken.
-   - Record in the history which AC became which scenario.
+   - **Kind.** The story's line under `## Changes`: `edit` if an active FR of the same rule
+     exists, `new` if not – with the next free FR number of the subdomain; for **ownership**
+     in the subdomain you recommend –, `deletion` if the story drops the rule altogether.
+     `Rule: changed` and the new rule text under `## Rule` if the story changes the rule.
+   - **Numbers stay those of the active FR.** A changed scenario keeps its `Sn` and gets
+     `@base-<tag>` with the story tag the active scenario carries now; a new scenario takes the
+     next free `Sn` across the active FR and the planned file. Tests reference these numbers.
+   - Each scenario carries the tag of its story and `@planned`.
+   - An AC marked as dropped (`entfallen`) makes its scenario `@obsolete`
+     (`Szenario: Sn – entfällt: <Titel>`); the number stays taken.
+   - **Story reference.** Write the section `## Functional requirements` of the story: one line
+     per FR with its kind and which AC became which scenario
+     (`- FR-fristen-003 (edit): AC1 → S1, AC2 → S3 obsolete`). It replaces the history an FR
+     used to keep: `requirements.py history` reads it.
 
-5. **Mark what is open.** The scenario an open point concerns carries the tag `@open` (meaning
-   as in the term "Open point"): for **ripple** the scenario of the other FR, for
-   **overwrite-implemented** the implemented scenario, which keeps its Dann – you write no
-   scenario for the contradicting AC until the answer is in; otherwise the new scenario, without
-   Dann while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that FR, in
+5. **Mark what is open** – in planned files only, never in an active FR. The scenario an open
+   point concerns carries the tag `@open` (meaning as in the term "Open point"): for **ripple**
+   and **overwrite-implemented** a copy of the active scenario in the planned file of its FR,
+   with its Dann, `@base-<tag>` and a change line `Kind: edit` for the story – you write no
+   scenario for a contradicting AC until the answer is in; otherwise the new scenario, without
+   Dann while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that planned file, in
    the format of the term "Open point" in `‹methodology-glossary›`, with source
    `problem-fr-writer` and the fields `Story`, `Case`, `Type`, and for **glossary**
    `Glossary` (glossary and term, e.g. `fristen.md: Problem`).
 
 6. **Resolve what is answered.** If a story now answers an open point (a later round decided
    it), carry the answer into the scenario, remove `@open` and the entry under `## Open`; for
-   **ownership** move the FR if the answer names another subdomain.
+   **ownership** move the planned FR if the answer names another subdomain. An answer that
+   leaves the other FR as it is removes the copied scenario, and the story's change line when
+   nothing of the story is left; a planned file without change lines is deleted.
 
-You are done when every AC of the input stories stands in a scenario, every open point is
-marked, and every subdomain and relationship you used stands in the domain map.
+You are done when every AC of the input stories stands in a scenario of a planned file, every
+story names its FRs under `## Functional requirements`, every open point is marked, and every
+subdomain and relationship you used stands in the domain map.
 
 ## Tags per scenario
 
 | Tag | Meaning |
 |---|---|
-| `@US-0042` | Story that last changed the scenario |
+| `@US-0042` | Active FR: story that last changed the scenario. Planned file: story the change belongs to |
 | `@existing` | Taken from existing code (problem-init), without story |
-| `@planned` | The story is not implemented yet |
+| `@planned` | Planned file only: the change is not implemented yet |
+| `@base-US-0042` | Planned file only: story tag of the active scenario the change was written against (`@base-existing`) |
 | `@unconfirmed` | Derived from code, not yet confirmed by the user |
 | `@open` | An open point in `## Open` concerns this scenario |
 | `@obsolete` | No longer applies; the number is never reused |
 
-The FR header knows only `Status: valid` or `Status: obsolete`. `## Open` is omitted when there is nothing to enter.
+The FR header knows `Status: valid` or `Status: obsolete` for an active FR and
+`Status: planned` for a planned file. `## Open` is omitted when there is nothing to enter.
 
 ## Report
 
@@ -125,10 +149,13 @@ stands only in the FR:
 
 ```
 FRs:
-- FR-fristen-001: Überfälligkeit einer Frist (S1 changed)
-- FR-fristen-002: Zählung der Problemsignale (S1 open)
+- FR-fristen-001: Überfälligkeit einer Frist (edit, S1 changed)
+- FR-fristen-002: Zählung der Problemsignale (edit, S1 open)
 - FR-fristen-004: Fristerinnerung per E-Mail (new)
+Parallel:
+- FR-fristen-001/S1: also changed by US-0039 (ready)
 Domain map: unchanged
 ```
 
-`Domain map` lists what you added, otherwise `unchanged`.
+`Domain map` lists what you added, otherwise `unchanged`. `Parallel` is omitted when no planned
+file holds a change of another story to a scenario this story changes.

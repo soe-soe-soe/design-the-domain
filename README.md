@@ -49,6 +49,14 @@ python3 scripts/requirements.py cancel   US-0042
 python3 scripts/requirements.py history  FR-fristen-003
 ```
 
+## Ticket system
+
+Optional, one way from the repository: with `ticket-system` set in `.claude/pts.md`, every story
+gets a ticket (Linear or Jira through the project's connector) by
+[templates/ticket.md](templates/ticket.md) – title, team, project, assignee, labels per subdomain,
+mapped status, and a description with role sentence, why, AC titles, FRs and a link to the story
+file. The ticket ID is kept in the story as `External`.
+
 ## Developing
 
 Load the working copy instead of the installed plugin with `claude --plugin-dir <this repo>`

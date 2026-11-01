@@ -133,7 +133,8 @@ FR stays untouched until its story is done. Its brief:
      story or FR, and you do not ask it again in this session.
    - **Cancelling.** If the user drops a story of the session altogether, run
      `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py cancel US-0042`; it removes the
-     story's planned FR changes and moves it to `‹requirements›/cancelled/`.
+     story's planned FR changes and moves it to `‹requirements›/cancelled/`. With a ticket
+     system, sync the story by `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md`.
 
 4. **Close.** The session is done when your frontier is empty, every open point of the session
    is answered or deferred, and the user confirms the shared understanding (as `grilling`
@@ -144,10 +145,9 @@ FR stays untouched until its story is done. Its brief:
      `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py check US-0042` exits 0.
    - If it holds, edit its header line to `Status: ready` – the file is the record, saying it is
      not enough. Otherwise it stays `draft`; a failing check you name with its output.
-   - **Ticket system.** Unless `‹ticket-system›` is `none`: create or update one ticket per story
-     in `‹ticket-project›` through the project's connector for it – title, status, the story
-     file's path – and write the ticket's ID into the story header as `External: <ID>` if it has
-     none. Only this direction: never take content back from the ticket.
+   - **Ticket system.** Unless `‹ticket-system›` is `none`: sync every story of the session – draft
+     ones too – by `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md`, and write a new ticket's ID into
+     the story header as `External: <ID>`.
 
    Only then tell the user which stories are `ready` and which are still `draft` with their
    deferred points, and name the next step of the feature workflow in `‹project-rules›`.

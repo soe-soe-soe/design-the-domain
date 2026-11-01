@@ -1,0 +1,60 @@
+# Ticket template
+
+Shared by `/pts:problem-definition` and `/pts:story-workflow` when `‹ticket-system›` is not
+`none`; not a skill itself. Values in angle quotes are keys of the project config
+`.claude/pts.md`. The ticket system is reached through the project's connector for it (e.g. the
+Linear MCP server).
+
+## Rules
+
+- **The repository is the source of truth.** Sync goes one way, story → ticket. Nothing is read
+  back from the ticket; edits to its fields are overwritten by the next sync, comments stay and
+  are never read.
+- **One ticket per story,** draft stories included. Its ID goes into the story header as
+  `External: <ID>` (e.g. `External: VIN-123`) when the ticket is created; a story with an
+  `External` ID is updated, never created twice.
+- **Every sync writes all fields** of the table below, the description and the link included –
+  so the link follows the file when it moves from `planned/` to `‹requirements›/` or
+  `cancelled/`.
+
+## When
+
+| Moment | Who | Sync |
+|---|---|---|
+| Session closes | `/pts:problem-definition` step 4 | every story of the session: create without `External`, update with |
+| Story cancelled | `/pts:problem-definition` after `requirements.py cancel` | the story, status cancelled, link into `cancelled/` |
+| Implementation starts | `/pts:story-workflow` step 1 | the story, status in-progress |
+| Story done | `/pts:story-workflow` step 7, after `requirements.py complete` | the story, status done, link into `‹requirements›/` |
+
+## Fields
+
+| Field | Value |
+|---|---|
+| Title | `US-0042: <story title>` |
+| Team | `‹ticket-team›` |
+| Project | `‹ticket-project›`; none for `–` |
+| Assignee | `‹ticket-assignee›`; none for `–` |
+| Labels | one per subdomain of the story's FRs (`## Functional requirements`), named as in the column `Subdomain` of `‹domain-map›`; a provisional subdomain takes its host's label. A label missing in the ticket system is reported, not created. None when `‹ticket-labels›` is `–`. |
+| Status | the story status mapped by the table *Ticket status* in `.claude/pts.md` |
+| Description | the template below, in `‹content-language›` |
+
+## Description
+
+````markdown
+<Rollensatz der Story: Als … möchte ich …>
+
+**Warum:** <Abschnitt Why der Story>
+
+**Akzeptanzkriterien:**
+- AC1 – <Titel des Szenarios>
+- AC2 – <Titel des Szenarios>
+
+**Functional Requirements:** FR-fristen-002 (edit), FR-fristen-004 (new)
+
+**Offene Punkte:** <Anzahl der Einträge unter ## Open; Zeile entfällt ohne offene Punkte>
+
+**Quelle:** [US-0042-<slug>.md](<‹repository-url›>/<path of the story file>)
+````
+
+Acceptance criteria as titles only, never Gherkin: the scenarios live in the repository. Dropped
+ACs (`entfallen`) are left out.

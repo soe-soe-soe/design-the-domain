@@ -82,14 +82,28 @@ them in this project.
 
 ## Ticket system
 
-Optional. The repository stays the source of truth: the skills write stories to a ticket system
-one way (title, status, link to the story file), never read acceptance criteria back. The
-ticket's ID goes into the story header as `External`.
+Optional. The repository stays the source of truth: stories are written one way to the ticket
+system by `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md` (fields, description, when), never read
+back. The ticket's ID goes into the story header as `External`.
 
 | Key | Meaning | Value |
 |---|---|---|
 | `ticket-system` | `none`, `linear` or `jira`, used through the project's connector for it | `none` |
-| `ticket-project` | Team or project key in the ticket system | <key, or – for none> |
+| `ticket-team` | Team (key) the tickets belong to | <team key, or – for none> |
+| `ticket-project` | Project the tickets are assigned to, or `–` | `–` |
+| `ticket-assignee` | Assignee of every ticket, or `–` | `–` |
+| `ticket-labels` | `subdomain` (a label per subdomain of the story's FRs, named as in the domain map) or `–` | `subdomain` |
+| `repository-url` | Base URL for links to files on the default branch | <e.g. https://github.com/<owner>/<repo>/blob/main> |
+
+### Ticket status
+
+| Story status | Ticket status |
+|---|---|
+| draft | Backlog |
+| ready | Todo |
+| in-progress | In Progress |
+| done | Done |
+| cancelled | Canceled |
 
 ## Models
 

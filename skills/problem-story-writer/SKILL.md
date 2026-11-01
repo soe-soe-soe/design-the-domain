@@ -16,8 +16,9 @@ You write what is decided and mark what is still open, in the story itself. You 
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
-Language: methodology terms, headings, tags, status values, IDs and field labels are English;
-story content (title, role sentence, why, scenarios, open questions) is in `‹content-language›`.
+Language: story content (title, role sentence, why, scenarios with their Gherkin keywords, open
+questions) is in `‹problem-space-language›`; methodology (headings, tags, status values, IDs, field
+labels) is English as the project config states.
 
 ## Where stories live
 
@@ -51,20 +52,20 @@ template [assets/story.md](assets/story.md); read it.
 
 3. **Check.** Every statement in an AC is **backed** (conversation, glossary, ADR, code) or
    **inconsequential** (wording, order, example names). Everything else is a **gap**. A gap is
-   an open point only if a different answer would change a **Dann**, i.e. observable
+   an open point only if a different answer would change a **Then** step, i.e. observable
    behaviour, and it concerns the topic of a decision in the input without being settled by
    it. What the input does not address at all (e.g. the display, when it only decides the
    counting rule) is no open point, and neither is re-asking what it decided (e.g. whether
    problems on a Nachweis count, when the input defined the problem signal through Fristen).
-   Gaps that change no Dann you write in the obvious reading without recording them.
+   Gaps that change no Then step you write in the obvious reading without recording them.
 
 4. **Write.** The story by the template [assets/story.md](assets/story.md) (without its
-   comment), the AC by [references/gherkin.md](references/gherkin.md). A Dann stands only where
+   comment), the AC by [references/gherkin.md](references/gherkin.md). A Then step stands only where
    the outcome is decided; an invented outcome is a guess.
 
 5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in
    the term "Open point" in `‹methodology-glossary›`: a new AC whose outcome is
-   open has no Dann, or is left out until decided. Each open point gets one entry under
+   open has no Then step, or is left out until decided. Each open point gets one entry under
    `## Open`, in the format of that term, with source `problem-story-writer` and the field `Changes`.
 
 6. **Resolve what is answered.** If the input answers an open point, take the answer into the
@@ -79,15 +80,17 @@ You are done when every decision of the input stands in an AC or is marked open.
 ## Story file
 
 `‹requirements›/planned/US-0042-problemsignale.md` (number, then a short slug in
-`‹content-language›`), structured exactly as the template.
+`‹problem-space-language›`), structured exactly as the template.
 
 - `createdAt` is set when the story is created and never changed; `doneAt` and `External` are
   not yours – leave them out of a new story.
-- The line `Als … möchte ich …` has no "damit": the why has its own section.
+- The role sentence (`As a … I want …`, in `‹problem-space-language›`) has no "so that": the why
+  has its own section.
 - `## Functional requirements` belongs to `pts:problem-fr-writer`: leave it out of a new story
   and do not change it.
 - `Supersedes in part` and `## Open` are omitted when there is nothing to enter.
-- AC numbers are fixed: a dropped AC stays as `Szenario: AC2 – entfallen`, freed numbers are
+- AC numbers are fixed: a dropped AC stays as `Scenario: AC2 – dropped` (keyword and word in
+  `‹problem-space-language›`), freed numbers are
   never reused. Tests and FRs reference them later.
 
 ## Report

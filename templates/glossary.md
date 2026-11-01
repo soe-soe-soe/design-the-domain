@@ -1,9 +1,10 @@
 <!--
 Glossary of one subdomain – ‹glossaries›/<subdomain>.md, file name as the subdomain folder
-(lower case, umlauts spelled out). A glossary format in ‹project-rules› overrides this template.
+(lower case, umlauts spelled out). A glossary format in ‹project-rules› overrides this template. Headings of the table columns and
+the Problem space / Solution space kinds are methodology (English); the placeholders are English.
 
-- One table per section, always these five columns. Term and Description in ‹content-language›,
-  Identifier as in the code (English).
+- One table per section, always these five columns. Term and Description in ‹problem-space-language›,
+  Solution space and Identifier in ‹solution-space-language› as in the code.
 - The first table holds the Subdomain row (folders: the code folders of the bounded context) and
   the terms that belong to no business object (values, derived concepts of the subdomain).
 - One section `## <Business Object>` per business object with an aggregate root; its first row is
@@ -16,18 +17,18 @@ Glossary of one subdomain – ‹glossaries›/<subdomain>.md, file name as the 
   `Avoid: …`. No rules – they stand in the FRs.
 This comment is not copied into a glossary.
 -->
-# <Subdomäne>
+# <subdomain>
 
-<Wofür die Subdomäne fachlich steht, ein Satz.>
+<What the subdomain stands for in business terms, one sentence.>
 
 | Problem space | Term | Solution space | Identifier | Description |
 |---|---|---|---|---|
-| Subdomain | <Subdomäne> | Bounded Context | `<context>`; folders: `<folder>` | <was fachlich dazugehört> |
+| Subdomain | <subdomain> | Bounded Context | `<context>`; folders: `<folder>` | <what belongs to it in business terms> |
 
 ## <Business Object>
 
 | Problem space | Term | Solution space | Identifier | Description |
 |---|---|---|---|---|
-| Business Object | <Begriff> | Aggregate Root | `<Class>` (`<path>`) | <Bedeutung>. Avoid: <Synonym>. |
-| Value | <Begriff> | Value Object | `<Class>` | <Bedeutung, bei Aufzählungen die Werte> |
-| Command | <Begriff> | Command | `<function>` | <was sich fachlich ändert> |
+| Business Object | <term> | Aggregate Root | `<Class>` (`<path>`) | <meaning>. Avoid: <synonym>. |
+| Value | <term> | Value Object | `<Class>` | <meaning; for an enumeration its values> |
+| Command | <term> | Command | `<function>` | <what changes in business terms> |

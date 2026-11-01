@@ -23,8 +23,9 @@ section `## Functional requirements`. Active FRs, the rest of a story, glossarie
 only read: an active FR changes only through `requirements.py complete` when its story is done. FRs contain no code locations; the link to the code is the
 test that references a scenario.
 
-Language: methodology terms, headings, tags, IDs and field labels are English; FR content
-(title, rule, scenarios, open questions) is in `‹content-language›`.
+Language: FR and process content (title, rule, scenarios with their Gherkin keywords, open
+questions) is in `‹problem-space-language›`; methodology (headings, tags, IDs, field labels, type
+folders) is English as the project config states.
 
 ## Layout
 
@@ -96,7 +97,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    creating the file (and the `planned/` folder) if needed:
    - **Phrase it on the FR's rule.** A scenario checks exactly the rule of its FR. Do not take
      an AC verbatim if it checks another rule as well: "Die Projektübersicht zeigt 1
-     Problemsignal" becomes "Dann gilt die Frist als überfällig" in the FR "Überfälligkeit";
+     Problemsignal" becomes "Dann gilt die Frist als überfällig" in the FR "Überfälligkeit" (example in German);
      the count belongs to the FR of the problem signals.
    - **Kind.** The story's line under `## Changes`: `edit` if an active FR of the same rule
      exists, `new` if not – with the next free FR number of the subdomain; for **ownership**
@@ -107,7 +108,8 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
      next free `Sn` across the active FR and the planned file. Tests reference these numbers.
    - Each scenario carries the tag of its story and `@planned`.
    - An AC marked as dropped (`entfallen`) makes its scenario `@obsolete`
-     (`Szenario: Sn – entfällt: <Titel>`); the number stays taken.
+     (`Scenario: Sn – dropped: <title>`, keyword and word in `‹problem-space-language›`); the number
+     stays taken.
    - **Story reference.** Write the section `## Functional requirements` of the story: one line
      per FR with its kind and which AC became which scenario
      (`- FR-fristen-003 (edit): AC1 → S1, AC2 → S3 obsolete`). It replaces the history an FR
@@ -116,9 +118,9 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
 5. **Mark what is open** – in planned files only, never in an active FR. The scenario an open
    point concerns carries the tag `@open` (meaning as in the term "Open point"): for **ripple**
    and **overwrite-implemented** a copy of the active scenario in the planned file of its FR,
-   with its Dann, `@base-<tag>` and a change line `Kind: edit` for the story – you write no
+   with its Then steps, `@base-<tag>` and a change line `Kind: edit` for the story – you write no
    scenario for a contradicting AC until the answer is in; otherwise the new scenario, without
-   Dann while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that planned file, in
+   Then step while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that planned file, in
    the format of the term "Open point" in `‹methodology-glossary›`, with source
    `problem-fr-writer` and the fields `Story`, `Case`, `Type`, and for **glossary**
    `Glossary` (glossary and term, e.g. `fristen.md: Problem`).

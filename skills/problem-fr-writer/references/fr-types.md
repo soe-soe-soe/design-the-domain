@@ -4,7 +4,7 @@ The type stands as a DDD term in the FR header. It decides the building block in
 space (skill `solution-definition`, table in `‹structure›`), and
 through it the test level; the problem space names no test level.
 
-| Type | Folder | Sign in the AC | Example |
+| Type | Folder | Sign in the AC (German phrases from the pilot project; read them in `‹problem-space-language›`) | Example |
 |---|---|---|---|
 | Invariant | `invariants/` | "darf nur", "nie", permitted transitions | Nachweisstatus only via permitted transitions |
 | Domain Service | `domain-services/` | "gilt als", "ergibt sich aus", "wird berechnet" | Überfälligkeit, Problemsignale, IRR, Phase aus Antragsstatus |
@@ -19,7 +19,7 @@ one, and is created with its first FR.
 
 ## Boundaries
 
-- **Calculated value in a view:** if the Dann checks a calculated value ("zeigt 2
+- **Calculated value in a view:** if the Then step checks a calculated value ("zeigt 2
   Problemsignale"), the AC belongs to the Domain Service, even if the value appears in a view.
   Query only for what the view itself decides: which entries, who sees what, in which order.
 - **Domain event:** an event is no FR. That it occurs is a scenario of the triggering

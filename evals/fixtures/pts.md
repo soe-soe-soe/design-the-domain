@@ -7,9 +7,12 @@ files come from (a Python backend with a TypeScript UI). Paths are relative to t
 
 | Key | Meaning | Value |
 |---|---|---|
-| `content-language` | Language of problem-space content and of everything said to the user | German |
+| `problem-space-language` | Language of the problem space – stories, FRs and their scenarios (Gherkin keywords via `# language:`), process files, glossary terms and descriptions, domain map, folder names and slugs of subdomains and business objects – and of everything said to the user | German |
+| `solution-space-language` | Language of the solution space – identifiers, code comments, docstrings, commit messages, solution-space documents and the solution-space columns of the glossaries | English |
 | `user` | Name of the person answering the grilling, used in the provenance line (`🗣️`) | Alex |
 | `project-rules` | File with the project's rules: commit convention, feature workflow; a glossary or glossary-map format here overrides the plugin templates | `CLAUDE.md` |
+
+Methodology (template headings, field labels, tags, IDs, status values) stays English.
 
 ## Problem space
 

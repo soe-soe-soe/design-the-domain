@@ -10,6 +10,8 @@ A message that follows reads of artifacts not yet listed in the session starts w
 one item per new artifact, linked to its file. Never listed: the user's prompt (requirement text,
 ticket link, images), `‹project-rules›`, and `README.md` or other index files of a folder.
 
+The heading and the descriptions are in ‹problem-space-language› (German here: **Kontext**).
+
 ```
 **Kontext**
 - 📄 glossary: [flaeche.md](domain-model/glossaries/flaeche.md)

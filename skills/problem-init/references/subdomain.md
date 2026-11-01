@@ -3,8 +3,9 @@
 You describe what the code of a subdomain does today as a problem-space model: glossary,
 business objects, FRs and scenarios. You describe, you do not implement: code and test logic
 stay unchanged. Values in angle quotes (`‹backend-tests›`) are keys of the project config
-`.claude/pts.md`. Problem-space content is in `‹content-language›`, methodology terms and headings English,
-identifiers in the glossary English as in the code.
+`.claude/pts.md`. Problem-space content is in `‹problem-space-language›`, identifiers in the
+glossary in `‹solution-space-language›` as in the code, methodology English as the project config
+states.
 
 ## Sources, by reliability
 
@@ -23,7 +24,8 @@ identifiers in the glossary English as in the code.
 1. **Determine business objects.** A business object is an aggregate root: it changes on its
    own and usually has its own repository, service or router. What only changes with a root
    (history, contacts, assignments) is an entity of that root and gets no folder. Folder name
-   German, lower case, umlauts spelled out, words joined by hyphens (`manuelle-frist`).
+   in `‹problem-space-language›`, lower case, umlauts and other special letters spelled out, words
+   joined by hyphens (`manuelle-frist`).
 
 2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format by
    `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md` unless `‹project-rules›` sets its own; a new glossary
@@ -93,5 +95,5 @@ Questions:
    Recommendation: <Antwort mit Begründung>.
 ```
 
-Without questions it reads `Questions: none`. Phrase each question so that "ja" accepts your
+Without questions it reads `Questions: none`. Phrase each question so that "yes" in `‹problem-space-language›` accepts your
 recommendation.

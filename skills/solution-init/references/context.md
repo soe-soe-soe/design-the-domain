@@ -23,7 +23,7 @@ config `.claude/pts.md`. Target structure and FR type mapping:
    consistent. Start from the glossary's aggregate roots; check each against the code (own
    repository, own commands, referenced by ID from elsewhere). A folder of today is no
    aggregate by itself: a folder may hold several aggregates or be part of one. Name each
-   aggregate in English singular (`evidence`, `procedure`).
+   aggregate in `‹solution-space-language›`, singular (`evidence`, `procedure`).
 
 2. **Assign every module.** Each class or function with logic becomes exactly one building
    block at aggregate or context level, with its target file. Split modules that hold several
@@ -78,5 +78,5 @@ Questions:
    Recommendation: <Antwort mit Begründung>.
 ```
 
-Without questions it reads `Questions: none`. Phrase each question so that "ja" accepts your
+Without questions it reads `Questions: none`. Phrase each question so that "yes" in `‹problem-space-language›` accepts your
 recommendation.

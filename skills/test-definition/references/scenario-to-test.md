@@ -2,11 +2,11 @@
 
 Worked examples of the rules in `SKILL.md` and `‹structure›`
 (section Tests), taken from a Python backend (pytest, FastAPI) with a Playwright UI; another
-stack follows the same pattern with its own `‹structure›`. The scenarios are German, the code
-is English. Paths are relative to the backend root; the context `deadlines` is shown as if
+stack follows the same pattern with its own `‹structure›`. The scenarios are German
+(`‹problem-space-language›` of that project), the code English (`‹solution-space-language›`). Paths are relative to the backend root; the context `deadlines` is shown as if
 migrated.
 
-## Unit: a Szenariogrundriss of a domain service
+## Unit: a Scenario Outline of a domain service
 
 ```gherkin
   @US-0061 @planned
@@ -42,7 +42,7 @@ def test_problem_signals_count_overdue_deadlines_and_problem_evidences(overdue, 
 ```
 
 - One scenario, one test: the Beispiele become the parameters, row by row, as literals.
-- Angenommen → the arguments, Wenn → the one call, Dann → one assertion.
+- Given → the arguments, When → the one call, Then → one assertion.
 - No fixture: a unit test constructs what it needs.
 
 ## Integration: a command through its endpoint
@@ -82,7 +82,7 @@ async def test_completed_deadline_is_done(api_client, make_manual_deadline, dead
 - What the scenario names (title, due date, day of completion) stands in the test;
   `make_manual_deadline` fills the rest with defaults, `api_client` and `deadlines_facade` are
   wiring.
-- Two Dann lines check one behaviour: one test, two assertions on the same result.
+- Two Then lines check one behaviour: one test, two assertions on the same result.
 - The result is read through the facade, not through the repository or SQL.
 
 ## Integration: a policy across a context boundary
@@ -140,6 +140,6 @@ test("Frist wird abgehakt", { tag: "@US-0062" }, async () => {
 
 - Only the happy path; the edge cases stay in the backend tests.
 - New page-object methods (`completeDeadline`) go into the page object of the module, locating
-  by role and German label or text.
+  by role and label or text as the UI shows them.
 - The step continues where the previous step left the business object; data it needs beyond
   that is set up through the API in `beforeAll`, not by clicking.

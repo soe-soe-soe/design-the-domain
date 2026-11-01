@@ -14,8 +14,8 @@ You read the problem space (stories, FRs, domain map) and never write into it. T
 your report, the input of `test-definition` and the implementation in the same session; you
 write no file for it. You write two things: the bridge – the solution-space columns
 (`Solution space`, `Identifier`) of glossary rows whose code name you decide – and the **shell**
-of the placement (step 4), which changes no behaviour. Everything you write is English;
-questions to the user are in `‹content-language›`.
+of the placement (step 4), which changes no behaviour. Everything you write is in
+`‹solution-space-language›`; questions to the user are in `‹problem-space-language›`.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -44,7 +44,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
      them, and
      each domain event a command must raise for a policy.
    - **Schema change:** each new table or column, as a migration (`‹migrations›`).
-   - **Names:** English identifiers for new terms; enter them in the solution-space columns of
+   - **Names:** identifiers in `‹solution-space-language›` for new terms; enter them in the solution-space columns of
      the term's glossary row.
    - **Stored values:** a scenario that names a value of a set (a kind, a status) whose stored
      form a test must write or read – a data migration, a query filtering on it – gets that
@@ -124,4 +124,4 @@ Questions:
 ```
 
 Omit `Interfaces`, `Schema`, `Glossary` or `Shell` when empty. Phrase each question so that
-"ja" accepts your recommendation.
+"yes" in `‹problem-space-language›` accepts your recommendation.

@@ -8,7 +8,7 @@ Status flow – this comment is guidance for the skills and is not copied into a
 | Transition | Who | Valid only if |
 |---|---|---|
 | (new) → draft | problem-story-writer | next free number; file in ‹requirements›/planned/; createdAt set |
-| draft → ready | /pts:problem-definition at close | no entry under ## Open, no AC tagged @open, every AC has a Dann or is `entfallen`, every AC maps to a scenario under ## Functional requirements, `requirements.py check` passes |
+| draft → ready | /pts:problem-definition at close | no entry under ## Open, no AC tagged @open, every AC has a Then step or is dropped, every AC maps to a scenario under ## Functional requirements, `requirements.py check` passes |
 | ready → draft | problem-story-writer | the story changes (any edit of a ready story) |
 | ready → in-progress | /pts:story-workflow step 1 | `requirements.py check` passes |
 | in-progress → draft | problem-story-writer | the story changes; story-workflow must run again, its shell and tests are reworked |
@@ -20,32 +20,36 @@ story that names it under `Supersedes in part`.
 
 Header fields: `External` only with a ticket system (`‹ticket-system›`), `doneAt` only once done,
 `Supersedes in part` only when there is something to enter.
--->
-# US-NNNN: <Titel als Aussage>
 
-Status: draft · Topic: <Thema der Grill-Session> · createdAt: YYYY-MM-DD · doneAt: YYYY-MM-DD · External: <ID im Ticketsystem>
+Language: headings and field labels stay English (methodology); title, role sentence, texts,
+Gherkin keywords (`# language: <code>`) and open questions are in ‹problem-space-language›. The
+placeholders below are English.
+-->
+# US-NNNN: <title as a statement>
+
+Status: draft · Topic: <topic of the grill session> · createdAt: YYYY-MM-DD · doneAt: YYYY-MM-DD · External: <ID in the ticket system>
 Supersedes in part: US-NNNN (ACn)
 
-Als <Rolle> möchte ich <Fähigkeit>.
+As a <role> I want <capability>.
 
 ## Why
 
-<1–3 Sätze: welches Problem, welche Entscheidung.>
+<1–3 sentences: which problem, which decision.>
 
 ## Content
 
-<Kurz, was sich ändert.>
+<In short, what changes.>
 
 ## Acceptance criteria
 
 ```gherkin
-# language: de
-Funktionalität: <Titel>
+# language: en
+Feature: <title>
 
-  Szenario: AC1 – <erwartetes Verhalten>
-    Angenommen <Ausgangslage>
-    Wenn <genau ein Auslöser>
-    Dann <beobachtbares Ergebnis>
+  Scenario: AC1 – <expected behaviour>
+    Given <starting situation>
+    When <exactly one trigger>
+    Then <observable result>
 ```
 
 ## Functional requirements
@@ -54,4 +58,4 @@ Funktionalität: <Titel>
 
 ## Open
 
-- **ACn** (problem-story-writer): <Frage, mit „ja“ annehmbar> – Recommendation: <Antwort> – Changes: <welches Dann>
+- **ACn** (problem-story-writer): <question, accepted by "yes"> – Recommendation: <answer> – Changes: <which Then>

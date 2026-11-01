@@ -12,9 +12,10 @@ each of those tests the reference to its scenario. Afterwards `pts:problem-fr-wr
 to find contradictions against.
 
 You conduct: each subdomain is handled by a subagent of its own, all at once. You start them,
-reconcile their results and report to the user. Methodology terms, headings and tags are
-English; problem-space content (glossary descriptions, FR rules, scenarios, questions to the
-user) is in `‹content-language›`.
+reconcile their results and report to the user. Problem-space content (glossary terms and
+descriptions, FR rules, scenarios, questions to the user) is in `‹problem-space-language›`,
+glossary identifiers in `‹solution-space-language›` as in the code; methodology is English as the
+project config states.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the

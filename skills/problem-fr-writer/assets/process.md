@@ -10,15 +10,15 @@ Every Policy FR names its process in its header; a policy of another subdomain l
 - No rules and no scenarios here: they stand in the FRs.
 This comment is not copied into a process file.
 -->
-# Process: <Name des Ablaufs>
+# Process: <name of the process>
 
-Subdomain: <subdomain> · Business object: <business object or –> · Trigger: <FR-<subdomain>-NNN | schedule: <wann>>
+Subdomain: <subdomain> · Business object: <business object or –> · Trigger: <FR-<subdomain>-NNN | schedule: <when>>
 
 ## Goal
 
-<Was der Ablauf fachlich erreicht, ein Satz.>
+<What the process achieves in business terms, one sentence.>
 
 ## Steps
 
-1. [FR-<subdomain>-NNN](../commands/FR-<subdomain>-NNN-<slug>.md) (Command): <Auslöser> → <Ereignis>
-2. [FR-<subdomain>-MMM](FR-<subdomain>-MMM-<slug>.md) (Policy): auf <Ereignis> → <Reaktion>
+1. [FR-<subdomain>-NNN](../commands/FR-<subdomain>-NNN-<slug>.md) (Command): <trigger> → <event>
+2. [FR-<subdomain>-MMM](FR-<subdomain>-MMM-<slug>.md) (Policy): on <event> → <reaction>

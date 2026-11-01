@@ -14,7 +14,7 @@ Your input is the story and the placement report of `pts:solution-definition` fr
 session, with its shell built (`Shell` section, `Questions: none`). Without it, stop and say so.
 
 You write tests and test code only: files under `‹backend-tests›`, `‹e2e-journeys›` and `‹e2e-pages›`. You never
-touch production code, the problem space or the glossaries. Code and comments are English.
+touch production code, the problem space or the glossaries. Code and comments are in `‹solution-space-language›`.
 You ask nothing; what you cannot test you report.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
@@ -43,10 +43,10 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    [references/scenario-to-test.md](references/scenario-to-test.md); read it before the first test.
    - Level, seam and path by the table in `‹structure›`; the test imports the building block
      from the path of the placement.
-   - Name and marker by `‹structure›`; one main test per scenario. A Szenariogrundriss becomes
+   - Name and marker by `‹structure›`; one main test per scenario. A Scenario Outline becomes
      one test parametrised over its Beispiele.
-   - Angenommen → arrange, Wenn → act (exactly one call at the seam), Dann → assert. Expected
-     values are the literals of the Dann, never computed the way the code would.
+   - Given → arrange, When → act (exactly one call at the seam), Then → assert. Expected
+     values are the literals of the Then steps, never computed the way the code would.
    - Test data by the rule in `‹structure›`: what the scenario names stands in the test body,
      wiring comes from fixtures, a builder fixture `make_<aggregate>` fills the rest.
    - The marker names the scenario as `FR-…/Sn` with the number of the active FR – the planned
@@ -83,7 +83,7 @@ if the story changes the UI, and no production code is changed.
 
 A scenario is untestable when the test would have to guess. Write no test for it and report it
 with the reason and where it goes back:
-- **problem space** – the Dann has no observable value (no number, status or text to assert),
+- **problem space** – the Then step has no observable value (no number, status or text to assert),
   or the Angenommen lacks a value the test needs; the grilling missed it.
 - **solution-definition** – the placement gives it no seam, or a value the test must store or
   read (e.g. the stored value of a status or kind) is named neither in the glossary's

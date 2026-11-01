@@ -4,7 +4,10 @@
 # files are laid over it.
 set -eu
 here="$(cd "$(dirname "$0")" && pwd)"
-project="${PTS_EVAL_PROJECT:?set PTS_EVAL_PROJECT to a project checkout that has .claude/pts.md}"
+# PTS_EVAL_PROJECT, or the path in evals/.pts-eval-project (local, not committed): the eval runner
+# does not pass the shell environment to scaffold scripts.
+project="${PTS_EVAL_PROJECT:-$(cat "$here/../../.pts-eval-project" 2>/dev/null || true)}"
+: "${project:?set PTS_EVAL_PROJECT or write a project checkout with .claude/pts.md into evals/.pts-eval-project}"
 cp "$project/CLAUDE.md" "$project/GLOSSARY-MAP.md" .
 mkdir -p .claude && cp "$project/.claude/pts.md" .claude/
 cp -R "$project/domain-model" .

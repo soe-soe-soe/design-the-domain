@@ -1,7 +1,7 @@
 ---
 type: llm
-focus: files
+focus: {source: file, path: backend/tests/unit/domain/deadlines/test_rules.py}
 weight: 1
 ---
 
-The three tests in backend/tests/unit/domain/deadlines/test_rules.py each carry @pytest.mark.fr("FR-fristen-NNN/Sn") naming an existing scenario; their bodies are unchanged
+Each of the three tests carries @pytest.mark.fr("FR-fristen-NNN/Sn"); the test bodies (asserts and calls) are as before: is_overdue for a past date and for no due date, reminder_days("behoerde") == 7

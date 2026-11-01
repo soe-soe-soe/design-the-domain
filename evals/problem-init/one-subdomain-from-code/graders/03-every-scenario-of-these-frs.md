@@ -1,7 +1,7 @@
 ---
 type: llm
-focus: files
+focus: trace
 weight: 1
 ---
 
-Every scenario of these FRs carries @existing and @unconfirmed
+The FRs the run wrote (by the subagent's report or the run's checks) carry @existing and @unconfirmed on every scenario, and the report names no '## History' section

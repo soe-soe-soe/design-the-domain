@@ -19,9 +19,7 @@ A Claude Code plugin for domain-driven feature work in three spaces:
    itself knows no project.
 2. Keep the code structure (building blocks, test levels, markers) in the document the config
    names under `structure`.
-3. Install the craft skills the config names under *External skills* (by default
-   [mattpocock/skills](https://github.com/mattpocock/skills)).
-4. Add the marketplace and enable the plugin in the project's `.claude/settings.json`:
+3. Add the marketplace and enable the plugin in the project's `.claude/settings.json`:
 
    ```json
    {
@@ -33,6 +31,13 @@ A Claude Code plugin for domain-driven feature work in three spaces:
      "enabledPlugins": { "pts@problem-test-solution-skills": true }
    }
    ```
+
+## Craft skills
+
+`grilling`, `domain-modeling`, `tdd`, `code-review` and `codebase-design` come with the plugin.
+They are based on [mattpocock/skills](https://github.com/mattpocock/skills) (MIT,
+[THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)); what was taken over and changed, and the weekly
+check against upstream, stand in [docs/upstream.md](docs/upstream.md).
 
 ## Requirements and FRs
 

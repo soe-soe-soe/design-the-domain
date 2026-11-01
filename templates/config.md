@@ -68,18 +68,6 @@ Run from the project root; a value may change directory first.
 | `e2e-list` | List the UI tests without running them | <command> |
 | `e2e-file` | Run one UI test file | <command with <file>> |
 
-## External skills
-
-The pts skills lean on skills of other plugins for the craft. Name them as the Skill tool knows
-them in this project.
-
-| Key | Meaning | Value |
-|---|---|---|
-| `skill-grilling` | Interview technique | `mattpocock-skills:grilling` |
-| `skill-domain-modeling` | Glossary and ADR craft | `mattpocock-skills:domain-modeling` |
-| `skill-tdd` | Test-driven development loop | `mattpocock-skills:tdd` |
-| `skill-code-review` | Review against spec and standards | `mattpocock-skills:code-review` |
-
 ## Ticket system
 
 Optional. The repository stays the source of truth: stories are written one way to the ticket

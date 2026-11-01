@@ -8,8 +8,8 @@ without re-testing what `solution-definition` and `test-definition` evals alread
 ## Why
 
 It is one of the two user-facing workflows and has no eval. A full run (placement, red tests,
-tdd, review, commit) is long and depends on external skills (`‹skill-tdd›`,
-`‹skill-code-review›`), so the cheap, decisive parts are worth testing first.
+tdd, review, commit) is long and depends on the craft skills (`pts:tdd`,
+`pts:code-review`), so the cheap, decisive parts are worth testing first.
 
 ## Current state
 
@@ -34,7 +34,7 @@ Cases, at least:
 
 ## Before starting
 
-- Decide how the evals provide the external skills (installed in the eval environment or
-  stubbed); without them steps 5 and 6 cannot run.
+- The craft skills `pts:tdd` and `pts:code-review` come with the plugin; a full run still needs
+  a runnable backend in the fixture for steps 5 and 6.
 - Check that `max_turns`/`timeout_seconds` suffice for the review-gate case – it runs two
   skills before stopping.

@@ -1,2 +1,3 @@
 evals/.pts-eval-project
 evals/results/
+__pycache__/

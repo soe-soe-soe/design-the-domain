@@ -8,7 +8,7 @@ description: Writes the tests of a placed story before its implementation – on
 You turn the scenarios of a story into tests before the code exists. The scenario is the
 specification; the test makes it executable (Specification by Example). Where each test goes,
 at which level and with which marker follows from `‹structure›`,
-section Tests; why, from `‹test-strategy-adr›`. What a good test is comes from Pocock's skill `tdd`.
+section Tests; why, from `‹test-strategy-adr›`. What a good test is comes from the skill `pts:tdd`.
 
 Your input is the story and the placement report of `pts:solution-definition` from the same
 session, with its shell built (`Shell` section, `Questions: none`). Without it, stop and say so.
@@ -31,12 +31,10 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    a UI change also the journey of its business object and the page objects in
    `‹e2e-pages›`.
 
-2. **Load the craft.** Call the Skill tool with `‹skill-tdd›`. Follow what it says a
-   good test is, its anti-patterns and its mocking rules. Two project rules stand above it:
-   - The **seams are agreed** by the table in `‹structure›`; you do not ask for them.
-   - You **do not run the loop**: no production code, no green phase. Writing all tests of a
-     story first is no horizontal slicing here – the scenarios are settled in the problem
-     space, and the implementation arms them one at a time.
+2. **Load the craft.** Call the Skill tool with `pts:tdd`. Follow what it says a good test is,
+   its anti-patterns, its mocking rules and its seams (agreed in `‹structure›`). You **do not run
+   the loop**: no production code, no green phase – writing the scenario tests first is the
+   exception `tdd` names.
 
 3. **Write a scenario test per planned scenario.**
    Worked examples for unit, command, policy and journey:

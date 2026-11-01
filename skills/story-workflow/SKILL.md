@@ -1,6 +1,6 @@
 ---
 name: story-workflow
-description: Implements a ready story – placed and shelled with solution-definition, tests written first with test-definition, made green with Pocock's tdd, reviewed with Pocock's code-review – and closes it.
+description: Implements a ready story – placed and shelled with solution-definition, tests written first with test-definition, made green with tdd, reviewed with code-review – and closes it.
 disable-model-invocation: true
 ---
 
@@ -10,8 +10,8 @@ You implement one story. Its spec lives in the problem space: the story (why and
 criteria) and its FR scenarios (the rules) – the planned changes in the `planned/` files next to
 the active FRs, tagged with the story. Where the code goes follows from
 `‹structure›`, applied by `pts:solution-definition`; which tests prove
-it, from `pts:test-definition` (`‹test-strategy-adr›`). The craft comes from Pocock's skills `tdd` and
-`code-review`; this skill feeds them the project's artefacts and closes the story afterwards.
+it, from `pts:test-definition` (`‹test-strategy-adr›`). The craft comes from the skills `pts:tdd` and
+`pts:code-review`; this skill feeds them the project's artefacts and closes the story afterwards.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -47,18 +47,16 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
 4. **Review gate.** Show the user test-definition's report and wait. They check that each test
    says what its scenario means; change the tests by their answer before you go on.
 
-5. **Make them green.** Call the Skill tool with `‹skill-tdd›` and follow its loop,
-   with these project rules on top:
+5. **Make them green.** Call the Skill tool with `pts:tdd` and follow its loop:
    - The red tests of step 3 are your "red". Take them one at a time: make one green, then the
      next. Tests the implementation needs below a scenario you add by `tdd`, without marker.
-   - The seams are agreed in `‹structure›`; you do not ask for them.
    - A test of step 3 changes only if it is wrong against its scenario – then tell the user.
      Selectors in page objects may follow the UI; assertions may not.
    - Schema changes fill the migration of the shell. Run `‹typecheck›` and the single test file
      (`‹test-file›`) regularly, `‹test-all›` once at the end, and the touched journey with
      `‹e2e-file›` if the story changed one.
 
-6. **Review.** Call the Skill tool with `‹skill-code-review›`: fixed point from step 1,
+6. **Review.** Call the Skill tool with `pts:code-review`: fixed point from step 1,
    spec = the story and its FR scenarios, standards include `‹structure›` and `‹test-strategy-adr›`. Fix what
    it finds that the spec or the repo's standards require.
 

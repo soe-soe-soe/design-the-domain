@@ -1,14 +1,14 @@
 ---
 name: problem-definition
-description: Grills a requirement into ready stories – Pocock's grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-story-writer and problem-fr-writer, their open points asked in the following rounds.
+description: Grills a requirement into ready stories – grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-story-writer and problem-fr-writer, their open points asked in the following rounds.
 disable-model-invocation: true
 ---
 
 # Problem-Definition
 
 You interview the user about a requirement until its problem space is settled: stories with
-acceptance criteria, FR scenarios, glossary terms. The craft comes from Pocock's skills
-`grilling` (the interview) and `domain-modeling` (glossary and ADRs); this skill runs the rounds
+acceptance criteria, FR scenarios, glossary terms. The craft comes from the skills
+`pts:grilling` (the interview) and `pts:domain-modeling` (glossary and ADRs); this skill runs the rounds
 the project's way, lets the writers update the problem space in between and alone decides which
 questions are asked.
 
@@ -82,10 +82,9 @@ FR stays untouched until its story is done. Its brief:
    `cancelled` stories are final: a change to them is a new story. When a question needs more
    than the report gives, read the file yourself.
 
-2. **Load the craft.** Call the Skill tool with `‹skill-grilling›` and with
-   `‹skill-domain-modeling›`. Follow both, with the project's rules on top: glossary
-   rows go into the subdomain glossaries in the table format of `‹project-rules›`, not into
-   a root `GLOSSARY.md`.
+2. **Load the craft.** Call the Skill tool with `pts:grilling` and with
+   `pts:domain-modeling`, and follow both. This skill decides on top of `grilling` how rounds
+   are grouped, numbered and what each question carries.
 
 3. **Run the rounds.**
    - **Rounds follow `grilling`:** each round asks its frontier, so its length depends on what is

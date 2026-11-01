@@ -14,6 +14,10 @@ compares them.
 
 ## Current state
 
+- **Why the glossary map exists:** Pocock's `domain-modeling` (`‹skill-domain-modeling›`), which
+  problem-definition loads for the interview, looks for `GLOSSARY-MAP.md` in the project root and
+  only there. The map is the entry point for that skill, not a pts invention; it cannot simply be
+  deleted while pts relies on `domain-modeling`.
 - `skills/problem-fr-writer/assets/domain-map.md`: per subdomain Type, Glossary link,
   Description; plus the relationships.
 - `templates/glossary-map.md`: per glossary file the Subdomain and what it covers; plus the
@@ -26,18 +30,18 @@ compares them.
 
 Pick one of these (recommendation first):
 
-1. **Drop the glossary map.** `‹domain-map›` is the index; its Glossary column already links
-   every glossary, the methodology glossary gets a line below the subdomain table.
-   problem-definition reads `‹domain-map›` instead. Removes a config key and a template.
-2. **Drop the Glossary column from the domain map.** The domain map stays purely about
-   subdomains and relationships; the glossary map is the only index of glossaries.
+1. **Drop the Glossary column from the domain map.** The domain map stays purely about
+   subdomains and relationships; the glossary map, which `domain-modeling` needs anyway, is the
+   only index of glossaries.
+2. **Drop the glossary map.** Only possible if `domain-modeling` no longer needs it (check its
+   current version) or pts stops using `domain-modeling`; then `‹domain-map›` is the index.
 3. **Keep both, generate one.** A script builds the glossary map from the domain map; more
    machinery for little gain.
 
 ## Before starting
 
-- Check whether a project outside pts relies on `‹glossary-map›` (the pilot project has
-  `GLOSSARY-MAP.md` in its root, see its refactoring for the pts migration).
+- Check what the current `domain-modeling` reads from `GLOSSARY-MAP.md` (path, format), so
+  the template `templates/glossary-map.md` stays compatible with it.
 - Option 1 or 2 changes `templates/config.md`, `evals/fixtures/pts.md`,
   `templates/output-format.md`, problem-definition step 1 and 2, problem-init and the
   domain-map fixtures of the evals.

@@ -20,7 +20,7 @@ files come from (a Python backend with a TypeScript UI). Paths are relative to t
 | `domain-map` | Subdomains, types, business relationships | `domain-model/problem-space/domain-map.md` |
 | `glossaries` | One glossary per subdomain | `domain-model/glossaries` |
 | `methodology-glossary` | Methodology terms, among them "Open point" | `domain-model/glossaries/_methodology.md` |
-| `glossary-map` | Index of the glossaries | `domain-model/glossaries/_glossary-map.md` |
+| `glossary-map` | Index of the glossaries; in the project root, because Pocock's `domain-modeling` looks for it only there | `GLOSSARY-MAP.md` |
 
 ## Solution space
 

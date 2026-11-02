@@ -18,7 +18,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 It is the problem-space counterpart of `/pts:story-workflow`.
 
 Called as `/pts:problem-definition <requirement>`. Everything you say to the user is in
-`‹content-language›`.
+`‹problem-space-language›`.
 
 ## Open points
 
@@ -50,12 +50,12 @@ FR stays untouched until its story is done. Its brief:
 >
 > ```
 > Stories:
-> - US-0042: Problemsignale in der Projektübersicht (new, draft)
+> - US-0042: Problem signals in the project overview (new, draft)
 > FRs:
-> - FR-fristen-002: Zählung der Problemsignale (S3 new)
-> - FR-fristen-001: Überfälligkeit einer Frist (S1 open)
+> - FR-deadlines-002: Counting problem signals (S3 new)
+> - FR-deadlines-001: Overdue deadline (S1 open)
 > Parallel:
-> - FR-fristen-001/S1: also changed by US-0039 (ready)
+> - FR-deadlines-001/S1: also changed by US-0039 (ready)
 > Domain map: unchanged
 > ```
 >
@@ -71,11 +71,12 @@ FR stays untouched until its story is done. Its brief:
    > `‹requirements›/planned/` on the same topic, the planned FR files (`planned/` below the FR
    > folders) of the subdomains it touches, and whatever
    > else the requirement points to. Change nothing. Your last message has exactly these parts:
-   > `Kontext:` one line per file read, in the format of `${CLAUDE_PLUGIN_ROOT}/templates/output-format.md`;
-   > `Stand:` the current state of the topic in at most 15 lines; `Begriffe:` every glossary
+   > `Context:` one line per file read, in the format of `${CLAUDE_PLUGIN_ROOT}/templates/output-format.md`;
+   > `State:` the current state of the topic in at most 15 lines; `Terms:` every glossary
    > term the requirement touches with its one-line description; `Drafts:` each story in
-   > `planned/` on the topic with its status and open points, or `keine`; `Geplant:` each planned
-   > FR change of another story on the topic (`FR-…/Sn – US-…, Status`), or `keine`.
+   > `planned/` on the topic with its status and open points, or `none`; `Planned:` each planned
+   > FR change of another story on the topic (`FR-…/Sn – US-…, Status`), or `none`. Labels
+   > English, content in `‹problem-space-language›`.
 
    The session may continue those stories, including their open points; a `ready` or
    `in-progress` one falls back to `draft` when it changes (its template says so). `done` and
@@ -83,12 +84,15 @@ FR stays untouched until its story is done. Its brief:
    than the report gives, read the file yourself.
 
 2. **Load the craft.** Call the Skill tool with `pts:grilling` and with
-   `pts:domain-modeling`, and follow both. This skill decides on top of `grilling` how rounds
-   are grouped, numbered and what each question carries.
+   `pts:domain-modeling`, and follow both. `domain-modeling` writes glossary rows into the
+   subdomain glossaries under `‹glossaries›/` by `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md`
+   (unless `‹project-rules›` sets its own format) and a new glossary's row into `‹glossary-map›`.
+   This skill decides on top of `grilling` how rounds are grouped, numbered and what each
+   question carries.
 
 3. **Run the rounds.**
    - **Rounds follow `grilling`:** each round asks its frontier, so its length depends on what is
-     open, in grilling's question format (`❓ **Qn** - **<Titel>**: …`, then `➡️` with a
+     open, in grilling's question format (`❓ **Qn** - **<title>**: …`, then `➡️` with a
      recommendation for every question).
    - **Round 1** is grilling alone, on the requirement and what step 1 found.
    - **After every answered round** start one subagent with the brief below and wait for it.
@@ -107,8 +111,8 @@ FR stays untouched until its story is done. Its brief:
      `start` – the next question number: Q1 in round 1, afterwards the number the previous run
      printed on standard error (`next question number: N`), so numbering runs across the whole session;
      `group` – `false` for round 1, `true` from round 2 on (headings per story, questions without
-     a story last); `closing` – `true` for the closing round; `stories` – the session's stories;
-     `deferred` – the open points the user deferred (`FR-fristen-013/S2`, `US-0051/AC2`);
+     a story last under `crosscutting` – the word in `‹problem-space-language›`, e.g. "Cross-cutting"); `closing` – `true` for the closing round; `stories` – the session's stories;
+     `deferred` – the open points the user deferred (`FR-deadlines-013/S2`, `US-0051/AC2`);
      `questions` – your own frontier: `title`, `body` (options included), `recommendation`, and
      where they apply `story`, `ref` (the artifact the question rests on, never a glossary term),
      `type` (FR type), `source` (a skill other than `grilling` that raised it) and `same_as` (the
@@ -117,7 +121,7 @@ FR stays untouched until its story is done. Its brief:
    - **Provenance line** (written by the script, for reading it): 🗣️ who raised the question –
      `‹user›` for an open point, `grilling` for your own, `‹user›/grilling` for a shared one;
      🧩 the skill; the referenced artifact with the icon of its type; 📐 the FR type.
-   - **Parallel changes.** A `Parallel` entry of the writers (or a `Geplant` entry of step 1 the
+   - **Parallel changes.** A `Parallel` entry of the writers (or a `Planned` entry of step 1 the
      session's changes touch) means another story changes the same scenario. Ask it in the next
      round under its story, with these options and your recommendation:
      **combine** – the change goes into one of the two stories;

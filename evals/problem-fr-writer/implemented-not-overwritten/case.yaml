@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: implemented-not-overwritten
 expected_outcome: |
-  US-0009 widerspricht dem umgesetzten S1 (@US-0007) ohne 'Supersedes in part'. Das aktive S1 bleibt unverändert; die geplante Datei von FR-fristen-001 enthält eine Kopie von S1 mit @open und einer Frage im Case 'overwrite-implemented'.
+  US-0009 contradicts the implemented S1 (@US-0007) without 'Supersedes in part'. The active S1 stays unchanged; the planned file of FR-fristen-001 holds a copy of S1 with @open and a question in case 'overwrite-implemented'.
 context:
   scaffold_script: place-files.sh

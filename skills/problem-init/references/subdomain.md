@@ -3,8 +3,9 @@
 You describe what the code of a subdomain does today as a problem-space model: glossary,
 business objects, FRs and scenarios. You describe, you do not implement: code and test logic
 stay unchanged. Values in angle quotes (`‹backend-tests›`) are keys of the project config
-`.claude/pts.md`. Problem-space content is in `‹content-language›`, methodology terms and headings English,
-identifiers in the glossary English as in the code.
+`.claude/pts.md`. Problem-space content is in `‹problem-space-language›`, identifiers in the
+glossary in `‹solution-space-language›` as in the code, methodology English as the project config
+states.
 
 ## Sources, by reliability
 
@@ -23,9 +24,12 @@ identifiers in the glossary English as in the code.
 1. **Determine business objects.** A business object is an aggregate root: it changes on its
    own and usually has its own repository, service or router. What only changes with a root
    (history, contacts, assignments) is an entity of that root and gets no folder. Folder name
-   German, lower case, umlauts spelled out, words joined by hyphens (`manuelle-frist`).
+   in `‹problem-space-language›`, lower case, umlauts and other special letters spelled out, words
+   joined by hyphens (`manual-deadline`).
 
-2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format in `‹project-rules›`):
+2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format by
+   `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md` unless `‹project-rules›` sets its own; a new glossary
+   gets its row in `‹glossary-map›` by `${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`):
    one section per business object with its row `Business Object | … | Aggregate Root`. Add
    rows for terms your FRs need that are missing: entities, values, domain events, commands,
    queries, derived concepts. The description comes from code, docstrings and tests; what you
@@ -36,15 +40,16 @@ identifiers in the glossary English as in the code.
    `skills/problem-fr-writer/references/fr-types.md` in the plugin root:
    - A rule module yields one or more FRs (Invariant, Domain Service, Policy).
    - Plain creating, changing and deleting of a business object yields **one** Command FR per
-     business object ("Frist verwalten") with scenarios for validations and permissions only,
+     business object ("Manage deadline") with scenarios for validations and permissions only,
      not one FR per endpoint.
    - A query with logic of its own (selection, visibility, order) yields a Query FR.
    - A call into another subdomain that reacts to something yields a Policy FR in the
      triggering subdomain.
    - A foreign system (Auth0, ALKIS, e-mail) yields an Anti-Corruption Layer FR.
 
-   Layout and template as in `problem-fr-writer`: `‹problem-space›/<subdomain>/<business-object>/`
-   or directly in the subdomain, template
+   Layout and template as in `problem-fr-writer`:
+   `‹problem-space›/<subdomain>/[<business-object>/]<type-folder>/`, each Policy in a process
+   (`skills/problem-fr-writer/assets/process.md` in the plugin root), template
    `skills/problem-fr-writer/assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
    FRs contain no code locations.
 
@@ -74,21 +79,21 @@ carries `@existing @unconfirmed` and every test a scenario came from references 
 Your last message, exactly in this form:
 
 ```
-Subdomain: fristen
-Business objects: Manuelle Frist
+Subdomain: deadlines
+Business objects: Manual deadline
 FRs: 6 (scenarios: 31, without test: 4)
-- FR-fristen-001: Überfälligkeit einer Frist (Domain Service, 4 scenarios)
+- FR-deadlines-001: Overdue deadline (Domain Service, 4 scenarios)
 - …
 Tests with reference: 27
 Without test:
-- FR-fristen-003/S5: Teamübersicht ohne Recht zeigt nur eigene Termine
+- FR-deadlines-003/S5: team overview without permission shows only own deadlines
 Relationships:
-- Fristen → Genehmigung: erledigte Fristen erscheinen in der Nachweishistorie
+- Deadlines → Permits: done deadlines appear in the evidence history
 Questions:
 1. Ref: <glossary>.md: <term> or FR-<subdomain>-NNN/Sn · Type: <FR type> · Case: <glossary | adr | test-vs-code | suspicious-branch | duplicate-rule>
-   Question: <was auffällt, als Entscheidung formuliert>?
-   Recommendation: <Antwort mit Begründung>.
+   Question: <what stands out, phrased as a decision>?
+   Recommendation: <answer with reason>.
 ```
 
-Without questions it reads `Questions: none`. Phrase each question so that "ja" accepts your
+Without questions it reads `Questions: none`. Phrase each question so that "yes" in `‹problem-space-language›` accepts your
 recommendation.

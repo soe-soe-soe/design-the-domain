@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: ground-model-from-config
 expected_outcome: |
-  Mit model-ground haiku in .claude/pts.md startet problem-definition den Subagent für die Ausgangslage mit dem Modell haiku und stellt danach Runde 1.
+  With model-ground haiku in .claude/pts.md, problem-definition starts the subagent for the ground with the model haiku and then asks round 1.
 context:
   scaffold_script: place-files.sh

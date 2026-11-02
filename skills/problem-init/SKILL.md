@@ -12,9 +12,10 @@ each of those tests the reference to its scenario. Afterwards `pts:problem-fr-wr
 to find contradictions against.
 
 You conduct: each subdomain is handled by a subagent of its own, all at once. You start them,
-reconcile their results and report to the user. Methodology terms, headings and tags are
-English; problem-space content (glossary descriptions, FR rules, scenarios, questions to the
-user) is in `‹content-language›`.
+reconcile their results and report to the user. Problem-space content (glossary terms and
+descriptions, FR rules, scenarios, questions to the user) is in `‹problem-space-language›`,
+glossary identifiers in `‹solution-space-language›` as in the code; methodology is English as the
+project config states.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -24,7 +25,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 1. **Clarify scope.** Read `‹domain-map›` and ask the user with
    AskUserQuestion whether to initialise one subdomain, several or all; for several, let them
-   choose. If the call already names subdomains (`/pts:problem-init fristen projekt`), skip the
+   choose. If the call already names subdomains (`/pts:problem-init deadlines project`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
 2. **Start subagents**, all in **one** message so they run in parallel, each with the model
@@ -34,7 +35,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    > Initialise the subdomain `<subdomain>` (folders: `<from the subdomain row of its
    > glossary>`) by `${CLAUDE_SKILL_DIR}/references/subdomain.md`
    > (plugin root: `${CLAUDE_PLUGIN_ROOT}`, project config: `.claude/pts.md`). Write only in
-   > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md` and in
+   > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md`, its row in `‹glossary-map›` and in
    > tests of your folders under `‹backend-tests›`. Your last message is the
    > report in the form the reference prescribes.
 

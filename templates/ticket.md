@@ -36,7 +36,7 @@ Linear MCP server).
 | Assignee | `‹ticket-assignee›`; none for `–` |
 | Labels | one per subdomain of the story's FRs (`## Functional requirements`), named as in the column `Subdomain` of `‹domain-map›`; a provisional subdomain takes its host's label. A label missing in the ticket system: see *Missing label*. None when `‹ticket-labels›` is `–`. |
 | Status | the story status mapped by the table *Ticket status* in `.claude/pts.md` |
-| Description | the template below, in `‹content-language›` |
+| Description | the template below, its texts in `‹problem-space-language›` |
 
 ## Missing label
 
@@ -49,20 +49,21 @@ report; the next sync asks again. Never create a label without that answer.
 ## Description
 
 ````markdown
-<Rollensatz der Story: Als … möchte ich …>
+<role sentence of the story: As … I want …>
 
-**Warum:** <Abschnitt Why der Story>
+**<Why>:** <section Why of the story>
 
-**Akzeptanzkriterien:**
-- AC1 – <Titel des Szenarios>
-- AC2 – <Titel des Szenarios>
+**<Acceptance criteria>:**
+- AC1 – <title of the scenario>
+- AC2 – <title of the scenario>
 
-**Functional Requirements:** FR-fristen-002 (edit), FR-fristen-004 (new)
+**Functional Requirements:** FR-deadlines-002 (edit), FR-deadlines-004 (new)
 
-**Offene Punkte:** <Anzahl der Einträge unter ## Open; Zeile entfällt ohne offene Punkte>
+**<Open points>:** <number of entries under ## Open; line left out without open points>
 
-**Quelle:** [US-0042-<slug>.md](<‹repository-url›>/<path of the story file>)
+**<Source>:** [US-0042-<slug>.md](<‹repository-url›>/<path of the story file>)
 ````
 
-Acceptance criteria as titles only, never Gherkin: the scenarios live in the repository. Dropped
-ACs (`entfallen`) are left out.
+Labels in angle brackets are written in `‹problem-space-language›` (e.g. „Warum“, „Akzeptanzkriterien“,
+„Offene Punkte“, „Quelle“ for German). Acceptance criteria as titles only, never Gherkin: the
+scenarios live in the repository. Dropped ACs are left out.

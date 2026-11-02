@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: ripple-asks-question
 expected_outcome: |
-  Die geplante Datei von FR-fristen-001 ändert S1 auf die neue Grenze (@US-0008 @planned @base-US-0007), die Story nennt FR-fristen-001 unter Functional requirements. Die aktiven FRs bleiben unverändert; die geplante Datei von FR-fristen-002 enthält eine Kopie des betroffenen Szenarios mit @open und eine Frage (Case ripple), ob das Problemsignal am Fälligkeitstag entfällt.
+  The planned file of FR-fristen-001 changes S1 to the new threshold (@US-0008 @planned @base-US-0007), the story names FR-fristen-001 under Functional requirements. The active FRs stay unchanged; the planned file of FR-fristen-002 holds a copy of the affected scenario with @open and a question (case ripple) whether the problem signal on the due date goes away.
 context:
   scaffold_script: place-files.sh

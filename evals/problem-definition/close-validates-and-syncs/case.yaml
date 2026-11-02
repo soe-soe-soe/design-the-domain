@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: close-validates-and-syncs
 expected_outcome: |
-  Abschluss: US-0050 hat keine offenen Punkte, aber `requirements.py check` meldet eine parallele Änderung (Base von FR-fristen-009/S6 veraltet) – sie bleibt draft, der Bericht nennt die Ausgabe. US-0051 bleibt draft mit dem vertagten Punkt. Der Ticket-Sync nach Linear (Team EVAL) ist ohne Connector nicht möglich: Der Lauf meldet das, erfindet keine External-ID und schreibt keine.
+  Close: US-0050 has no open points, but `requirements.py check` reports a parallel change (stale base of FR-fristen-009/S6) – it stays draft and the report names the output. US-0051 stays draft with its deferred point. The ticket sync to Linear (team EVAL) is not possible without a connector: the run says so, invents no External ID and writes none.
 context:
   scaffold_script: place-files.sh

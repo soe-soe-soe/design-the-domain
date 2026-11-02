@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: cancelled-story-not-continued
 expected_outcome: |
-  Eine verworfene Story US-0013 zum selben Thema liegt in cancelled/. Sie bleibt unverändert, die Antworten landen in einer neuen Story US-0014 in planned/, ohne Supersedes auf die verworfene Story.
+  A cancelled story US-0013 on the same topic lies in cancelled/. It stays unchanged; the answers go into a new story US-0014 in planned/, without Supersedes on the cancelled story.
 context:
   scaffold_script: place-files.sh

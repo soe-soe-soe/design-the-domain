@@ -17,7 +17,7 @@ it, from `pts:test-definition` (`‹test-strategy-adr›`). The craft comes from
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
-Called as `/pts:story-workflow US-0042`. Code, comments, docstrings and commits are English.
+Called as `/pts:story-workflow US-0042`. Code, comments, docstrings and commits are in `‹solution-space-language›`.
 
 A question to the user here means the grilling missed something or the structure does not fit.
 Ask only what blocks the work, and report each question as a lesson (step 8).
@@ -41,7 +41,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    the ground for the tests.
 
 3. **Define the tests.** Call the Skill tool with `pts:test-definition` with the story and the placement
-   report. If it reports untestable scenarios, ask the user how each Dann is meant and run it
+   report. If it reports untestable scenarios, ask the user how each Then step is meant and run it
    again with the answers.
 
 4. **Review gate.** Show the user test-definition's report and wait. They check that each test

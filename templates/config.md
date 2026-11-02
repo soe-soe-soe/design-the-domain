@@ -14,9 +14,15 @@ methodology's default layout; keep them unless the project already has another.
 
 | Key | Meaning | Value |
 |---|---|---|
-| `content-language` | Language of problem-space content and of everything said to the user | German |
+| `problem-space-language` | Language of the problem space – stories, FRs and their scenarios (Gherkin keywords via `# language:`), process files, glossary terms and descriptions, domain map, folder names and slugs of subdomains and business objects – and of everything said to the user | English |
+| `solution-space-language` | Language of the solution space – identifiers, code comments, docstrings, commit messages, solution-space documents and the solution-space columns of the glossaries | English |
 | `user` | Name of the person answering the grilling, used in the provenance line (`🗣️`) | <name> |
-| `project-rules` | File with the project's rules: glossary table format, commit convention, feature workflow | `CLAUDE.md` |
+| `project-rules` | File with the project's rules: commit convention, feature workflow; a glossary or glossary-map format here overrides the plugin templates | `CLAUDE.md` |
+
+Methodology – template headings, field labels, tags, IDs, status values, change kinds, type
+folders, report labels of the writers – is English in every project: it is the plugin's structure
+and `scripts/requirements.py` parses it. Everything else follows the two language keys; a skill that
+writes or says something names the key it follows.
 
 ## Problem space
 
@@ -27,7 +33,7 @@ methodology's default layout; keep them unless the project already has another.
 | `domain-map` | Subdomains, types, business relationships | `domain-model/problem-space/domain-map.md` |
 | `glossaries` | One glossary per subdomain | `domain-model/glossaries` |
 | `methodology-glossary` | Methodology terms, among them "Open point" | `domain-model/glossaries/_methodology.md` |
-| `glossary-map` | Index of the glossaries | `GLOSSARY-MAP.md` |
+| `glossary-map` | Index of the glossaries, read by `domain-modeling` and problem-definition | `GLOSSARY-MAP.md` |
 
 ## Solution space
 

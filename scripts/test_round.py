@@ -100,7 +100,7 @@ class RoundTest(unittest.TestCase):
         self.assertIn("### 📘 US-0050: Erinnerung vor Fristablauf", out)
         self.assertIn("**Q5** - **Abgeleitete Frist sieben Tage vor Fälligkeit**", out)
         self.assertIn("🗣️ Alex 🧩 problem-fr-writer 📋 FR-fristen-013/S2 📄 fristen.md: Abgeleitete Frist 📐 Policy", out)
-        self.assertLess(out.index("US-0050"), out.index("### 🌐 Übergreifend"))
+        self.assertLess(out.index("US-0050"), out.index("### 🌐 Cross-cutting"))
         self.assertIn("**Q6** - **Absender**", out)
         self.assertNotIn("Sammelmail", out)  # story points wait for the closing round
 

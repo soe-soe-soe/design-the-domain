@@ -14,7 +14,7 @@ Your input is the story and the placement report of `pts:solution-definition` fr
 session, with its shell built (`Shell` section, `Questions: none`). Without it, stop and say so.
 
 You write tests and test code only: files under `‹backend-tests›`, `‹e2e-journeys›` and `‹e2e-pages›`. You never
-touch production code, the problem space or the glossaries. Code and comments are English.
+touch production code, the problem space or the glossaries. Code and comments are in `‹solution-space-language›`.
 You ask nothing; what you cannot test you report.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
@@ -41,10 +41,10 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    [references/scenario-to-test.md](references/scenario-to-test.md); read it before the first test.
    - Level, seam and path by the table in `‹structure›`; the test imports the building block
      from the path of the placement.
-   - Name and marker by `‹structure›`; one main test per scenario. A Szenariogrundriss becomes
+   - Name and marker by `‹structure›`; one main test per scenario. A Scenario Outline becomes
      one test parametrised over its Beispiele.
-   - Angenommen → arrange, Wenn → act (exactly one call at the seam), Dann → assert. Expected
-     values are the literals of the Dann, never computed the way the code would.
+   - Given → arrange, When → act (exactly one call at the seam), Then → assert. Expected
+     values are the literals of the Then steps, never computed the way the code would.
    - Test data by the rule in `‹structure›`: what the scenario names stands in the test body,
      wiring comes from fixtures, a builder fixture `make_<aggregate>` fills the rest.
    - The marker names the scenario as `FR-…/Sn` with the number of the active FR – the planned
@@ -81,7 +81,7 @@ if the story changes the UI, and no production code is changed.
 
 A scenario is untestable when the test would have to guess. Write no test for it and report it
 with the reason and where it goes back:
-- **problem space** – the Dann has no observable value (no number, status or text to assert),
+- **problem space** – the Then step has no observable value (no number, status or text to assert),
   or the Angenommen lacks a value the test needs; the grilling missed it.
 - **solution-definition** – the placement gives it no seam, or a value the test must store or
   read (e.g. the stored value of a status or kind) is named neither in the glossary's
@@ -101,16 +101,16 @@ Your last message, exactly in this form; `/pts:story-workflow` shows it to the u
 Example (from a Python backend with a TypeScript UI):
 
 ```
-Tests US-0042: Gültigkeit von Gutachten
+Tests US-0042: Validity of expert reports
 | Ref | Kind | Level | Test | Red because |
 |---|---|---|---|---|
-| FR-genehmigung-020/S1 | scenario | Unit | tests/domain/permits/aggregates/evidence/model/services/test_validity_end.py::test_report_is_valid_for_five_years | not-implemented |
-| FR-genehmigung-022/S1 | scenario (Data Migration) | Integration | tests/ops/migrations/versions/test_<rev>_evidence_valid_until.py::test_existing_reports_stay_unlimited | assertion |
+| FR-permits-020/S1 | scenario | Unit | tests/domain/permits/aggregates/evidence/model/services/test_validity_end.py::test_report_is_valid_for_five_years | not-implemented |
+| FR-permits-022/S1 | scenario (Data Migration) | Integration | tests/ops/migrations/versions/test_<rev>_evidence_valid_until.py::test_existing_reports_stay_unlimited | assertion |
 | PermitsFacade.get_expiring_evidences | interface | Integration | tests/domain/permits/facade/test_facade.py::test_get_expiring_evidences_returns_reports_due_within_period | not-implemented |
-| US-0042 | journey step | E2E | frontend/e2e/journeys/genehmigung/nachweis.spec.ts › "Gutachten zeigt sein Gültigkeitsende" | not run |
-Removed: tests/domain/…::test_… (FR-genehmigung-007/S3 obsolete)
+| US-0042 | journey step | E2E | frontend/e2e/journeys/permits/evidence.spec.ts › "expert report shows its validity end" | not run |
+Removed: tests/domain/…::test_… (FR-permits-007/S3 obsolete)
 Untestable:
-- FR-genehmigung-021/S2 (problem space): Dann „wird deutlich hervorgehoben“ hat keinen prüfbaren Wert
+- FR-permits-021/S2 (problem space): Then "is clearly highlighted" has no checkable value
 ```
 
 Omit `Removed` when empty; `Untestable: none` when everything has a test.

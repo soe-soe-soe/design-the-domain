@@ -25,7 +25,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 ‹glossary-map›              index: the glossaries, the domain map, the context map
 ‹domain-map›                subdomains, their types and business relationships
 ‹glossaries›/
-  <subdomain>.md            one glossary per subdomain, a table (GLOSSARY-FORMAT.md)
+  <subdomain>.md            one glossary per subdomain, a table (templates/glossary.md)
   _methodology.md           methodology terms (‹methodology-glossary›), block format
 ‹adr›/                      architecture decisions, numbered as the folder already numbers them
 ```
@@ -63,8 +63,9 @@ cancellation is possible. Which is right?"
 
 When a term is resolved, add or change its row in `‹glossaries›/<subdomain>.md` right there.
 Don't batch these up: capture them as they happen. Use the format in
-[GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md); where `‹project-rules›` says more about the glossary,
-it wins. Leave the solution-space columns empty when the code name is not decided yet:
+`${CLAUDE_PLUGIN_ROOT}/templates/glossary.md`; where `‹project-rules›` sets its own glossary
+format, it wins. A new glossary gets its row in `‹glossary-map›` by
+`${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`. Leave the solution-space columns empty when the code name is not decided yet:
 `pts:solution-definition` fills them.
 
 The glossary is totally devoid of implementation details beyond the code name in its

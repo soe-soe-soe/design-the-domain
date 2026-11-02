@@ -11,17 +11,19 @@ one list item per new artifact, linked to its file – never several artifacts i
 files of the same type. Never listed: the user's prompt (requirement text,
 ticket link, images), `‹project-rules›`, and `README.md` or other index files of a folder.
 
+The heading and the descriptions are in ‹problem-space-language› (English here).
+
 ```
-**Kontext**
-- 📄 glossary: [flaeche.md](domain-model/glossaries/flaeche.md)
-- 📘 refactoring: [planungsrecht-zur-flaeche.md](refactorings/planungsrecht-zur-flaeche.md)
-- ⚙️ frontend: Abschnitt Planungsrecht in der Projektübersicht
+**Context**
+- 📄 glossary: [area.md](domain-model/glossaries/area.md)
+- 📘 refactoring: [planning-law-to-area.md](refactorings/planning-law-to-area.md)
+- ⚙️ frontend: planning law section in the project overview
 ```
 
 ## Artifact icons
 
 The type is the artifact's name in the repository; the icon groups. A reference to an artifact
-anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-fristen-002/S1`.
+anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-deadlines-002/S1`.
 
 | Space | Icon | Type | Where |
 |---|---|---|---|
@@ -38,4 +40,4 @@ anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-f
 An artifact of a type not in the table is a document: 📄 with its own type name.
 
 Subdomain, business object, rule or variant are terms, not artifacts: they live in a glossary
-or an FR. A reference names artifacts only, never a term (`📄 Verantwortlicher` is wrong).
+or an FR. A reference names artifacts only, never a term (`📄 responsible person` is wrong).

@@ -49,10 +49,14 @@ library) checks, completes and cancels stories and prints an FR's history:
 
 ```
 python3 scripts/requirements.py check    US-0042
-python3 scripts/requirements.py complete   US-0042
+python3 scripts/requirements.py complete US-0042
 python3 scripts/requirements.py cancel   US-0042
-python3 scripts/requirements.py history  FR-fristen-003
+python3 scripts/requirements.py history  FR-deadlines-003
 ```
+
+[scripts/round.py](scripts/round.py) renders each round of `/pts:problem-definition`: the model
+supplies its own questions, the script adds the writers' open points, numbers, groups and writes
+the provenance lines.
 
 ## Ticket system
 
@@ -62,14 +66,7 @@ gets a ticket (Linear or Jira through the project's connector) by
 mapped status, and a description with role sentence, why, AC titles, FRs and a link to the story
 file. The ticket ID is kept in the story as `External`.
 
-## Developing
+## License
 
-Load the working copy instead of the installed plugin with `claude --plugin-dir <this repo>`
-and `/reload-plugins` after an edit. Evals live under `evals/<skill>/<case>/` and run with
-`claude plugin eval . --scaffold --allow-tools Bash Write Edit` (`--tag problem-space` for the
-problem space); shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. The
-`problem-definition` cases need a project checkout with `.claude/pts.md`: its path in
-`evals/.pts-eval-project` (not committed; the runner does not pass the environment to scaffold
-scripts) or in `PTS_EVAL_PROJECT`. They switch the ticket sync off, so no eval creates real
-tickets. The other cases bring their files and use `evals/fixtures/pts.md`. Decision records stay with their skill under `decision-records/`. The script's tests run
-with `python3 -m unittest discover scripts`.
+MIT, see [LICENSE](LICENSE). The craft skills based on mattpocock/skills carry its MIT license in
+[THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).

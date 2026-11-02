@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: gap-becomes-open-point
 expected_outcome: |
-  Eine Story im Status draft. Wie viele Tage vor Ablauf erinnert wird (und ob bei Fristen ohne Verantwortliche) ist nicht entschieden und steht als offener Punkt unter Open in der Story, statt geraten zu werden. Die Rückmeldung stellt keine Fragen.
+  A story in status draft. How many days before expiry the reminder goes out (and whether for deadlines without a responsible person) is not decided and stands as an open point under Open in the story instead of being guessed. The report asks no questions.
 context:
   scaffold_script: place-files.sh

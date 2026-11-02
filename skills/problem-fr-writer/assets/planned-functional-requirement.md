@@ -10,14 +10,14 @@ active FR and removes them here, the file goes once no change is left.
 ## Rule      only when a change line says Rule: changed (for Kind new always).
 ## Scenarios only the scenarios a story changes, adds or drops, numbered as in the active FR:
             - changed: same Sn, full new text, tags @US-NNNN @planned @base-<tag>
-            - dropped: same Sn, `Szenario: Sn – entfällt: <Titel>`, tags @US-NNNN @planned @obsolete @base-<tag>
+            - dropped: same Sn, `Scenario: Sn – dropped: <title>`, tags @US-NNNN @planned @obsolete @base-<tag>
             - new:     next free Sn across the active FR and this file, tags @US-NNNN @planned
             @base-<tag> is the story tag the active scenario carried when the change was written
             (@base-US-0050, @base-existing); a differing tag at close is a parallel change.
 ## Open      as in the active FR's open points; omitted when empty.
 This comment is not copied into an FR file.
 -->
-# FR-<subdomain>-NNN: <Regel oder Fähigkeit>
+# FR-<subdomain>-NNN: <rule or capability>
 
 Subdomain: <subdomain> · Business object: <business object or –> · Type: <FR type> · Status: planned
 
@@ -27,27 +27,27 @@ Subdomain: <subdomain> · Business object: <business object or –> · Type: <FR
 
 ## Rule
 
-<Die Regel nach der Änderung, in Glossarbegriffen.>
+<The rule after the change, in glossary terms.>
 
 ## Scenarios
 
 ```gherkin
-# language: de
-Funktionalität: <Regel oder Fähigkeit>
+# language: en
+Feature: <rule or capability>
 
   @US-NNNN @planned @base-US-NNNN
-  Szenario: S1 – <geändertes Verhalten>
-    Angenommen <Ausgangslage>
-    Wenn <genau ein Auslöser>
-    Dann <beobachtbares Ergebnis>
+  Scenario: S1 – <changed behaviour>
+    Given <starting situation>
+    When <exactly one trigger>
+    Then <observable result>
 
   @US-NNNN @planned
-  Szenario: S4 – <neues Verhalten>
-    Angenommen <Ausgangslage>
-    Wenn <genau ein Auslöser>
-    Dann <beobachtbares Ergebnis>
+  Scenario: S4 – <new behaviour>
+    Given <starting situation>
+    When <exactly one trigger>
+    Then <observable result>
 ```
 
 ## Open
 
-- **Sn** (problem-fr-writer): <Frage, mit „ja“ annehmbar> – Recommendation: <Antwort> – Story: US-NNNN · Case: <ripple | overwrite-implemented | glossary | ownership | consistency | existing-data> · Type: <FR type>
+- **Sn** (problem-fr-writer): <question, accepted by "yes"> – Recommendation: <answer> – Story: US-NNNN · Case: <ripple | overwrite-implemented | glossary | ownership | consistency | existing-data> · Type: <FR type>

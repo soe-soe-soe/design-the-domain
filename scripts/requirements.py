@@ -23,7 +23,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 CONFIG = Path(".claude/pts.md")
-SCENARIO_RE = re.compile(r"^(\s*)(Szenariogrundriss|Szenario|Scenario Outline|Scenario):\s*S(\d+)\b")
+# Any Gherkin dialect: a keyword (letters and spaces) followed by ": S<n>" – the plugin numbers
+# scenarios S1, S2, …, so the keyword itself does not matter (‹problem-space-language›).
+SCENARIO_RE = re.compile(r"^(\s*)([^\W\d_][^\W\d_ ]*(?: [^\W\d_]+)*):\s*S(\d+)\b")
 TAG_LINE_RE = re.compile(r"^\s*@\S")
 STORY_TAG_RE = re.compile(r"^@(US-\d+|existing)$")
 CHANGE_RE = re.compile(r"^- (US-\d+) · Kind: (new|edit|deletion)(?: · Rule: (changed|unchanged))?\s*$")
@@ -118,7 +120,7 @@ class Scenario:
 @dataclass
 class FrFile:
     path: Path
-    before: list[str]  # lines up to and including the gherkin header (fence, language, Funktionalität)
+    before: list[str]  # lines up to and including the gherkin header (fence, language, Feature line)
     scenarios: list[Scenario]
     after: list[str]  # closing fence and everything below
     changes: dict[str, tuple[str, str]] = field(default_factory=dict)  # story -> (kind, rule)

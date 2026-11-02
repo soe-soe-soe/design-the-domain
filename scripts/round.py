@@ -13,14 +13,14 @@ line. Input (keys in English, texts in the session's language):
     "closing": false,                 true: also ask the open points of the stories
     "stories": ["US-0050", "US-0051"],the session's stories, in heading order
     "deferred": ["US-0051/AC2"],      open points the user deferred – never asked again
-    "crosscutting": "Übergreifend",   optional heading for questions without a story
+    "crosscutting": "Cross-cutting",  heading for questions without a story, in the problem-space language
     "questions": [                    the model's own questions
       {"title": "…", "body": "…", "recommendation": "…",
        "story": "US-0050",            optional; without it the question is cross-cutting
-       "ref": "FR-fristen-006/S9",    optional: artifact the question rests on
+       "ref": "FR-deadlines-006/S9", optional: artifact the question rests on
        "type": "Policy",              optional: FR type for 📐
        "source": "grilling",          optional: skill that raised it (default grilling)
-       "same_as": "FR-fristen-013/S2" optional: the open point this question also asks}
+       "same_as": "FR-deadlines-013/S2" optional: the open point this question also asks}
     ]
   }
 
@@ -158,7 +158,7 @@ def render(data: dict, cfg: dict[str, str]) -> str:
         if not block:
             continue
         if group:
-            out.append(f"### 📘 {key}: {story_title(cfg, key)}" if key else f"### 🌐 {data.get('crosscutting', 'Übergreifend')}")
+            out.append(f"### 📘 {key}: {story_title(cfg, key)}" if key else f"### 🌐 {data.get('crosscutting', 'Cross-cutting')}")
             out.append("")
         for k, (_, title, body, rec, line) in enumerate(block):
             if k:

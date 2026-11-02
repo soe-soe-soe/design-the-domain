@@ -1,15 +1,15 @@
 # Domain Map
 
-<Domäne in einem Satz: wer die Software nutzt und wofür.>
+<The domain in one sentence: who uses the software and what for.>
 
 ## Subdomains
 
-| Subdomain | Type | Status | Glossary | Description |
-|---|---|---|---|---|
-| <Subdomäne> | <Core \| Supporting \| Generic \| open> | <established \| provisional in <Trägerin>> | [<datei>.md](../glossaries/<datei>.md) | <was fachlich dazugehört, ein Satz> |
+| Subdomain | Type | Glossary | Description |
+|---|---|---|---|
+| <subdomain> | <Core \| Supporting \| Generic \| open> | [<file>.md](../glossaries/<file>.md) | <what belongs to it in business terms, one sentence> |
 
 ## Relationships
 
 | From | To | Description |
 |---|---|---|
-| <Subdomäne> | <Subdomäne> | <was fachlich fließt oder ausgelöst wird, in Glossarbegriffen> |
+| <subdomain> | <subdomain> | <what flows or is triggered, in glossary terms> |

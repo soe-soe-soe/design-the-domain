@@ -14,8 +14,8 @@ You read the problem space (stories, FRs, domain map) and never write into it. T
 your report, the input of `test-definition` and the implementation in the same session; you
 write no file for it. You write two things: the bridge – the solution-space columns
 (`Solution space`, `Identifier`) of glossary rows whose code name you decide – and the **shell**
-of the placement (step 4), which changes no behaviour. Everything you write is English;
-questions to the user are in `‹content-language›`.
+of the placement (step 4), which changes no behaviour. Everything you write is in
+`‹solution-space-language›`; questions to the user are in `‹problem-space-language›`.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -44,7 +44,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
      them, and
      each domain event a command must raise for a policy.
    - **Schema change:** each new table or column, as a migration (`‹migrations›`).
-   - **Names:** English identifiers for new terms; enter them in the solution-space columns of
+   - **Names:** identifiers in `‹solution-space-language›` for new terms; enter them in the solution-space columns of
      the term's glossary row.
    - **Stored values:** a scenario that names a value of a set (a kind, a status) whose stored
      form a test must write or read – a data migration, a query filtering on it – gets that
@@ -97,15 +97,15 @@ Your last message, exactly in this form:
 Example (from a Python backend):
 
 ```
-Placement US-0042: Gültigkeit von Gutachten
+Placement US-0042: Validity of expert reports
 | Scenario | Type | Context / aggregate | Building block → file |
 |---|---|---|---|
-| FR-genehmigung-020/S1 | Domain Service | permits / evidence | domain service → aggregates/evidence/model/services/validity_end.py (new) |
-| FR-fristen-021/S1 | Query | deadlines (not migrated) | query → service.py `DeadlineService.get_all`; target application/queries/start_page_deadlines.py |
+| FR-permits-020/S1 | Domain Service | permits / evidence | domain service → aggregates/evidence/model/services/validity_end.py (new) |
+| FR-deadlines-021/S1 | Query | deadlines (not migrated) | query → service.py `DeadlineService.get_all`; target application/queries/start_page_deadlines.py |
 Interfaces:
 - facade: PermitsFacade.get_expiring_evidences (new), used by deadlines
 Schema: evidence.valid_until (date, nullable)
-Glossary: genehmigung.md „Gültig bis“ → Value Object, `Evidence.valid_until`
+Glossary: permits.md "valid until" → Value Object, `Evidence.valid_until`
 Shell:
 - backend/domain/permits/aggregates/evidence/model/services/validity_end.py (new) `calculate_validity_end`
 - backend/domain/permits/facade/facade.py `PermitsFacade.get_expiring_evidences` (new method)
@@ -118,10 +118,10 @@ column, `Shell` is omitted (nothing is built yet), and the questions follow:
 
 ```
 Questions:
-1. Story: US-0042 · Ref: FR-genehmigung-021/S1 · Type: Query · Case: boundary
-   Question: Soll der Antrag die Anschrift der Projektgesellschaft über die Fassade des Projekts lesen, statt eine eigene Kopie am Antrag zu speichern?
-   Recommendation: Ja, die Projektgesellschaft gehört dem Projekt; eine Kopie am Antrag veraltet unbemerkt.
+1. Story: US-0042 · Ref: FR-permits-021/S1 · Type: Query · Case: boundary
+   Question: Should the application read the address of the project company through the project's facade instead of storing its own copy?
+   Recommendation: Yes, the project company belongs to the project; a copy on the application goes stale unnoticed.
 ```
 
 Omit `Interfaces`, `Schema`, `Glossary` or `Shell` when empty. Phrase each question so that
-"ja" accepts your recommendation.
+"yes" in `‹problem-space-language›` accepts your recommendation.

@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: clear-decisions-no-questions
 expected_outcome: |
-  Eine neue Story unter domain-model/problem-space/requirements/planned/ mit Why und deutschen Gherkin-AC zu allen sechs Entscheidungen, Status draft, kein Abschnitt Open, Rückmeldung listet nur die Story.
+  A new story under domain-model/problem-space/requirements/planned/ with Why and German Gherkin AC for all six decisions, status draft, no Open section, the report lists only the story.
 context:
   scaffold_script: place-files.sh

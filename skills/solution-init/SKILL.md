@@ -13,7 +13,8 @@ plan per context under `‹refactorings›`, carried out later per context. Afte
 `pts:solution-definition` places new requirements into a structure that holds.
 
 You plan, you do not move code. You conduct: each bounded context is handled by a subagent of
-its own, all at once. Everything you write is English; questions to the user are in `‹content-language›`.
+its own, all at once. Everything you write is in `‹solution-space-language›`; questions to the user are in
+`‹problem-space-language›`.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -39,7 +40,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 3. **Reconcile** once all reports are in:
    - **Cross-context moves:** if two plans claim the same module, or one plan moves code into
-     another context (e.g. Planungsrecht from `projects` to `areas`), keep the move in the
+     another context (e.g. planning law from `projects` to `areas`), keep the move in the
      receiving context's plan and reference it from the other.
    - **Facade usage:** every call a plan routes through another context's facade must exist in
      that context's planned facade (`‹structure›`).

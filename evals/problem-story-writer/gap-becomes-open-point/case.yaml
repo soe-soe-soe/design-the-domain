@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: gap-becomes-open-point
+tags: [problem-space]
 expected_outcome: |
   Eine Story im Status draft. Wie viele Tage vor Ablauf erinnert wird (und ob bei Fristen ohne Verantwortliche) ist nicht entschieden und steht als offener Punkt unter Open in der Story, statt geraten zu werden. Die Rückmeldung stellt keine Fragen.
 context:

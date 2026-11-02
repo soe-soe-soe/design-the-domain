@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: close-with-deferred-point
+tags: [problem-space]
 expected_outcome: |
   Die Abschlussrunde ist beantwortet, Q9 (Sammelmail) vertagt: US-0050 wird ready, US-0051 bleibt draft mit dem vertagten Punkt, die Session ist abgeschlossen, der nächste Workflow-Schritt wird genannt.
 context:

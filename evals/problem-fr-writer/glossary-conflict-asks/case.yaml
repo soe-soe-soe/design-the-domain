@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: glossary-conflict-asks
+tags: [problem-space]
 expected_outcome: |
   US-0010 widerspricht dem Glossar (Problem: Notiz ist Pflicht). problem-fr-writer stellt eine Frage im Case glossary mit Ref auf den Begriff Problem (fristen.md: Problem) und ändert das Glossar nicht.
 context:

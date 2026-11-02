@@ -66,8 +66,8 @@ file. The ticket ID is kept in the story as `External`.
 
 Load the working copy instead of the installed plugin with `claude --plugin-dir <this repo>`
 and `/reload-plugins` after an edit. Evals live under `evals/<skill>/<case>/` and run with
-`claude plugin eval . --scaffold --allow-tools Bash Write Edit` (`--tag problem-space` for the
-problem space); shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. The
+`claude plugin eval . --scaffold --allow-tools Bash Write Edit` (`--tag problem-space`, `solution-space` or `test-space` for one
+space; every case carries its tag in `case.yaml`); shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. The
 `problem-definition` cases need a project checkout with `.claude/pts.md`: its path in
 `evals/.pts-eval-project` (not committed; the runner does not pass the environment to scaffold
 scripts) or in `PTS_EVAL_PROJECT`. They switch the ticket sync off, so no eval creates real

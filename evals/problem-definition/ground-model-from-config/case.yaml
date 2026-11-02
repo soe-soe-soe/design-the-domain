@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: ground-model-from-config
+tags: [problem-space]
 expected_outcome: |
   Mit model-ground haiku in .claude/pts.md startet problem-definition den Subagent für die Ausgangslage mit dem Modell haiku und stellt danach Runde 1.
 context:

@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: in-progress-story-falls-back
+tags: [problem-space]
 expected_outcome: |
   US-0012 ist in Umsetzung (in-progress). Die neue Antwort ändert ihren Vorlauf: Die Story wird fortgeschrieben, fällt auf draft zurück, und die Rückmeldung sagt, dass Hülle und Tests nachzuarbeiten sind. Keine neue Story.
 context:

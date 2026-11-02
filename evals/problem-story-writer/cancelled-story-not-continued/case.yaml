@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: cancelled-story-not-continued
+tags: [problem-space]
 expected_outcome: |
   Eine verworfene Story US-0013 zum selben Thema liegt in cancelled/. Sie bleibt unverändert, die Antworten landen in einer neuen Story US-0014 in planned/, ohne Supersedes auf die verworfene Story.
 context:

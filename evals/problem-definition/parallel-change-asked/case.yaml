@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: parallel-change-asked
+tags: [problem-space]
 expected_outcome: |
   Der Writer-Bericht meldet eine parallele Änderung an FR-fristen-009/S6 durch US-0039. Runde 2 stellt dazu eine Frage unter der Story mit den Optionen zusammenführen, nacheinander, herausnehmen und einer Empfehlung, mit Herkunft problem-fr-writer.
 context:

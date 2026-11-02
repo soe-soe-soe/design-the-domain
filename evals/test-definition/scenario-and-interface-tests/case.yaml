@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: scenario-and-interface-tests
+tags: [test-space]
 expected_outcome: |
   One scenario test for FR-fristen-013/S1 at the integration level, mirroring the current file of the not-migrated context deadlines (backend/tests/integration/domain/deadlines/test_service.py), marked fr("FR-fristen-013/S1"), named after the scenario in English, arranging one rejected evidence and asserting the literal 1 problem through DeadlineService.get_signals. One interface test for PermitsFacade.get_rejected_evidences in backend/tests/domain/permits/facade/test_facade.py, marked story("US-0044"). The existing fixtures are used, no production code or problem-space file changes, and the report follows the skill's form.
 context:

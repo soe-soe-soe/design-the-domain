@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: new-story-creates-frs
+tags: [problem-space]
 expected_outcome: |
   Geplante FR-Dateien unter domain-model/problem-space/fristen/**/planned/ mit DDD-Typ und Change-Zeile für US-0001, Szenarien mit @US-0001 @planned, die Story nennt ihre FRs unter Functional requirements mit AC → S, keine aktive FR geändert, Rückmeldung 'Questions: none'.
 context:

@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: policy-through-command
+tags: [test-space]
 expected_outcome: |
   FR-genehmigung-025/S1 is a policy: one integration test at backend/tests/domain/permits/aggregates/procedure/application/policies/test_on_evidence_rejected.py, marked fr("FR-genehmigung-025/S1"). It arranges a submitted procedure with an evidence in review, acts through the command transition_evidence (not by calling on_evidence_rejected directly), and asserts ProcedureStatus.REWORK read through PermitsFacade.get_procedure. No interface test (the placement lists no facade method), no production code changes.
 context:

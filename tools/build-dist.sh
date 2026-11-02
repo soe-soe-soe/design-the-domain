@@ -4,7 +4,8 @@
 #
 #   tools/build-dist.sh [<ref>]     default ref: HEAD
 #
-# The allowlist below is the published plugin. Everything else stays in the development branches.
+# The allowlist below is the published plugin, without the decision records of the skills.
+# Everything else stays in the development branches.
 set -euo pipefail
 
 ref="${1:-HEAD}"
@@ -31,7 +32,7 @@ existing=()
 for path in "${include[@]}"; do
   if git cat-file -e "$source_commit:$path" 2>/dev/null; then existing+=("$path"); fi
 done
-git ls-tree -r "$source_commit" -- "${existing[@]}" | GIT_INDEX_FILE="$index" git update-index --index-info
+git ls-tree -r "$source_commit" -- "${existing[@]}" | grep -v "/decision-records/" | GIT_INDEX_FILE="$index" git update-index --index-info
 tree="$(GIT_INDEX_FILE="$index" git write-tree)"
 
 parent="$(git rev-parse -q --verify "refs/heads/$branch" || true)"

@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: invariant-reuses-existing-file
+tags: [solution-space]
 expected_outcome: |
   Placement for US-0042: FR-genehmigung-014/S1 and S2 are an invariant of the aggregate evidence in the existing file aggregates/evidence/model/invariants/permitted_transitions.py; the value object EvidenceStatus gets a rejected status. No questions, no placement file, no problem-space file changed, no existing function body changed.
 context:

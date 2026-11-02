@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: ripple-asks-question
+tags: [problem-space]
 expected_outcome: |
   The planned file of FR-fristen-001 changes S1 to the new threshold (@US-0008 @planned @base-US-0007), the story names FR-fristen-001 under Functional requirements. The active FRs stay unchanged; the planned file of FR-fristen-002 holds a copy of the affected scenario with @open and a question (case ripple) whether the problem signal on the due date goes away.
 context:

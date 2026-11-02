@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: round-2-merges-open-points
+tags: [problem-space]
 expected_outcome: |
   Round 2 grouped by story (US-0050, US-0051, cross-cutting last), numbered throughout, rendered by scripts/round.py, contains both open points from the FRs exactly once with 🗣️ Alex or Alex/grilling, 🧩 problem-fr-writer (possibly grilling + problem-fr-writer) and the reference with type icon (📋) and 📐 from the report; own questions with 🗣️ grilling 🧩 grilling.
 context:

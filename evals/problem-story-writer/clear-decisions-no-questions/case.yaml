@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: clear-decisions-no-questions
+tags: [problem-space]
 expected_outcome: |
   A new story under domain-model/problem-space/requirements/planned/ with Why and German Gherkin AC for all six decisions, status draft, no Open section, the report lists only the story.
 context:

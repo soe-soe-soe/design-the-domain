@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: changed-scenario-updates-test
+tags: [test-space]
 expected_outcome: |
   FR-fristen-001/S1 already has a test with its marker in the legacy file backend/tests/unit/domain/deadlines/test_signals.py. The skill changes that test in place – asserting that a deadline due on 16.10.2026 is not overdue on 16.10.2026 – renames it after the new statement and keeps the marker; it neither adds a second test for S1 nor moves the file. Tests of S2–S4 stay unchanged. Red because of the assertion (is_overdue exists).
 context:

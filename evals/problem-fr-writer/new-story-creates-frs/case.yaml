@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: new-story-creates-frs
+tags: [problem-space]
 expected_outcome: |
   Planned FR files under domain-model/problem-space/fristen/**/planned/ with DDD type and a change line for US-0001, scenarios with @US-0001 @planned, the story names its FRs under Functional requirements with AC → S, no active FR changed, report 'Questions: none'.
 context:

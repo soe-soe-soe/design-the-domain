@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: implemented-story-gets-successor
+tags: [problem-space]
 expected_outcome: |
   US-0007 (done) stays unchanged. A new story US-0008 refers to it with 'Supersedes in part: US-0007 (AC1)' and describes the new threshold with boundary cases.
 context:

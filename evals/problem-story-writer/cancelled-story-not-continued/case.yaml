@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: cancelled-story-not-continued
+tags: [problem-space]
 expected_outcome: |
   A cancelled story US-0013 on the same topic lies in cancelled/. It stays unchanged; the answers go into a new story US-0014 in planned/, without Supersedes on the cancelled story.
 context:

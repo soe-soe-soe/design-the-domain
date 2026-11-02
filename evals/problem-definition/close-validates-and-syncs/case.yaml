@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: close-validates-and-syncs
+tags: [problem-space]
 expected_outcome: |
   Close: US-0050 has no open points, but `requirements.py check` reports a parallel change (stale base of FR-fristen-009/S6) – it stays draft and the report names the output. US-0051 stays draft with its deferred point. The ticket sync to Linear (team EVAL) is not possible without a connector: the run says so, invents no External ID and writes none.
 context:

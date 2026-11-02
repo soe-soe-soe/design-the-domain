@@ -12,8 +12,9 @@ The script's tests run with `python3 -m unittest discover scripts`.
 ## Evals
 
 Evals live under `evals/<skill>/<case>/` and run with
-`claude plugin eval . --scaffold --allow-tools Bash Write Edit` (`--tag problem-space` for the
-problem space). Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They simulate a
+`claude plugin eval . --scaffold --allow-tools Bash Write Edit`. Every case carries the tag of its
+space in `case.yaml` (`tags: [problem-space]`, `solution-space`, `test-space`); `--tag problem-space`
+runs only the problem space. A new case needs its tag, or the filter skips it. Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They simulate a
 project with a German problem space and an English solution space (`evals/fixtures/pts.md`):
 case descriptions and graders are English, fixtures and user prompts German. The
 `problem-definition` cases need a project checkout with `.claude/pts.md`: its path in
@@ -28,7 +29,7 @@ separately.
 ## Publishing
 
 `tools/build-dist.sh [<ref>]` builds the local branch `dist` from a ref (default `HEAD`). It holds
-only the allowlist in the script: `.claude-plugin/`, `skills/`, `templates/`,
+only the allowlist in the script: `.claude-plugin/`, `skills/` without the decision records, `templates/`,
 `scripts/requirements.py`, `scripts/round.py`, `README.md`, `LICENSE` and `THIRD_PARTY_LICENSES.md`. Each run adds one commit, so `dist` keeps a
 history of the releases.
 

@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: parallel-change-reported
+tags: [problem-space]
 expected_outcome: |
   US-0039 (ready) already changed S1 in the planned file of FR-fristen-001. US-0008 changes S1 too: problem-fr-writer adds its change, leaves the one of US-0039 untouched, reports the overlap under Parallel and makes no open point of it.
 context:

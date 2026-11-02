@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: implemented-not-overwritten
+tags: [problem-space]
 expected_outcome: |
   US-0009 contradicts the implemented S1 (@US-0007) without 'Supersedes in part'. The active S1 stays unchanged; the planned file of FR-fristen-001 holds a copy of S1 with @open and a question in case 'overwrite-implemented'.
 context:

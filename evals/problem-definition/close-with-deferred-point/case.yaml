@@ -1,5 +1,6 @@
 schema_version: "1.1"
 name: close-with-deferred-point
+tags: [problem-space]
 expected_outcome: |
   The closing round is answered, Q9 (Sammelmail) deferred: US-0050 becomes ready, US-0051 stays draft with the deferred point, the session is closed, the next workflow step is named.
 context:

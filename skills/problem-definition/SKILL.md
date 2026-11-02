@@ -99,26 +99,24 @@ FR stays untouched until its story is done. Its brief:
    - **Closing round.** When your frontier is empty and no FR of the session has an open point
      left, ask the open points still listed in the session's stories. If none are left, go to
      step 4.
-   - **Group by story.** From round 2 on, put each question under the story it belongs to,
-     `### 📘 US-0042: <Titel>`, questions without a story last under `### 🌐 Übergreifend`.
-     Number the questions across the whole session: round 1 starts at Q1, every later round
-     continues with the number after the last question of the previous round, across all groups.
-     Only a new session starts again at Q1.
-   - **Provenance line.** The last line of every question, below the ➡️ recommendation and below
-     any answer options – nothing of the question follows it. Its entries are separated by a
-     space; entries that do not exist yet are left out:
-
-     🗣️ ‹user›/Pocock 🧩 problem-fr-writer 📋 FR-fristen-003/S2 📐 Domain Service
-
-     🗣️ is `‹user›` for an open point, `Pocock` for a question only your grilling frontier has,
-     and `‹user›/Pocock` only when your frontier already held the same question before you read
-     the open points (ask it once). 🧩 names the skill that raised it: `grilling` for your own,
-     the source skill of the open point for its questions, both joined with ` + ` for a shared
-     one (`grilling + problem-fr-writer`). The reference entry uses the icon of the referenced
-     artifact's type from the context block: for an open point its reference
-     (`📋 FR-fristen-002/S1`, `📘 US-0042/AC2`), and 📐 its field `Type`; your own questions may
-     carry a reference to the artifact they rest on (`📘 ‹refactorings›/planungsrecht-zur-flaeche.md`,
-     `⚙️ Nachweis-Zeitstrahl`), never to a glossary term.
+   - **Render every round with the script.** You decide the content of your own questions; the
+     script `${CLAUDE_PLUGIN_ROOT}/scripts/round.py` adds the open points from the files, numbers,
+     groups and writes each provenance line. Write the round as JSON to a scratch file and run
+     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/round.py <file>`; its standard output, after the context block,
+     is your message for the round – change nothing in it, add nothing between the questions. The keys (see the script's header):
+     `start` – the next question number: Q1 in round 1, afterwards the number the previous run
+     printed on standard error (`next question number: N`), so numbering runs across the whole session;
+     `group` – `false` for round 1, `true` from round 2 on (headings per story, questions without
+     a story last); `closing` – `true` for the closing round; `stories` – the session's stories;
+     `deferred` – the open points the user deferred (`FR-fristen-013/S2`, `US-0051/AC2`);
+     `questions` – your own frontier: `title`, `body` (options included), `recommendation`, and
+     where they apply `story`, `ref` (the artifact the question rests on, never a glossary term),
+     `type` (FR type), `source` (a skill other than `grilling` that raised it) and `same_as` (the
+     open point your frontier already held before you read it – the script asks it once).
+     Never write an open point of the writers into `questions` yourself: the script reads them.
+   - **Provenance line** (written by the script, for reading it): 🗣️ who raised the question –
+     `‹user›` for an open point, `grilling` for your own, `‹user›/grilling` for a shared one;
+     🧩 the skill; the referenced artifact with the icon of its type; 📐 the FR type.
    - **Parallel changes.** A `Parallel` entry of the writers (or a `Geplant` entry of step 1 the
      session's changes touch) means another story changes the same scenario. Ask it in the next
      round under its story, with these options and your recommendation:
@@ -127,7 +125,7 @@ FR stays untouched until its story is done. Its brief:
      a story that closes first makes the later one fail `requirements.py check` and come back here;
      **take out** – the overlapping part becomes a story of its own and stays `draft` with the
      point deferred, so this session can close without it.
-     Provenance `🧩 problem-fr-writer` with the scenario as reference.
+     Pass it in `questions` with `source` `problem-fr-writer`, `ref` the scenario and its `story`.
    - **Deferring.** The user may defer an open point instead of answering it. It stays in its
      story or FR, and you do not ask it again in this session.
    - **Cancelling.** If the user drops a story of the session altogether, run

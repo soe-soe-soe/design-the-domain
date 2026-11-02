@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-The questions use the Fristen glossary's terms (e.g. Frist, manuelle Frist, abgeleitete Frist, Verantwortlicher) rather than avoided words like Aufgabe or Termin as a business term
+The questions use the terms of the Fristen glossary (e.g. Frist, abgeleitete Frist, manuelle Frist, Projekttermin, Persönlicher Termin, Zieltermin, Verantwortlicher) and no word the glossary lists under "Avoid:" as a business term

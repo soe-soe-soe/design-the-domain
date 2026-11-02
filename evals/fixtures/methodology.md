@@ -194,5 +194,5 @@ _Avoid_: E2E test per story
 _Code_: `frontend/e2e/journeys/<subdomain>/<business-object>.spec.ts`, step tag `@US-NNNN`
 
 **Provenance line**:
-The last line of every question in a grill session: who raised it (Alex, Pocock or both), which skill it comes from and, where available, reference and FR type.
+The last line of every question in a grill session: who raised it (Alex, grilling or both), which skill it comes from and, where available, reference and FR type.
 _Code_: format in the skill `problem-definition`, step "Run the rounds"

@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-Questions the run raised itself carry 🗣️ Pocock and 🧩 grilling
+Questions the run raised itself carry 🗣️ grilling and 🧩 grilling

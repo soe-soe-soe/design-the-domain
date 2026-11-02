@@ -47,7 +47,9 @@ folders) is English as the project config states.
 
 The type folder follows the FR type ([references/fr-types.md](references/fr-types.md)); a
 changed type moves the FR. Which business objects a subdomain has stands in the sections of its glossary
-(`‹glossaries›/<subdomain>.md`). The number `NNN` counts per subdomain, across active and planned
+(`‹glossaries›/<subdomain>.md`). The `<subdomain>` in an FR ID and file name is the subdomain's folder name in the problem
+space (`‹problem-space-language›`, e.g. `fristen`), never the code name of its bounded context
+(e.g. `deadlines`), even where the two differ. The number `NNN` counts per subdomain, across active and planned
 FRs. One planned file per FR holds the changes of every story touching it; its format, the
 change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
 [assets/planned-functional-requirement.md](assets/planned-functional-requirement.md) – read it.

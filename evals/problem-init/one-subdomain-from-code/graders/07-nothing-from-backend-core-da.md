@@ -4,4 +4,4 @@ focus: files
 weight: 1
 ---
 
-No new or changed file concerns backend/core (in particular dates.py is unchanged)
+No file in the list of new or changed files lies under backend/core

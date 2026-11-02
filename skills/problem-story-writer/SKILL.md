@@ -97,7 +97,9 @@ You are done when every decision of the input stands in an AC or is marked open.
 
 ## Report
 
-Your last message is the report, exactly in this form; it names what changed, not what is open:
+Your last message is the report, exactly in this form and nothing else – no notes, assumptions
+or explanations before or after it; it names what changed, not what is open (that stands in the
+story):
 
 ```
 Stories:

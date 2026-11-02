@@ -51,6 +51,9 @@ states.
    `‹problem-space›/<subdomain>/[<business-object>/]<type-folder>/`, each Policy in a process
    (`skills/problem-fr-writer/assets/process.md` in the plugin root), template
    `skills/problem-fr-writer/assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
+   The `<subdomain>` in an FR ID and file name is the subdomain's folder name in the problem
+   space (`‹problem-space-language›`, e.g. `fristen`), never the code name of its bounded context
+   (e.g. `deadlines`), even where the two differ.
    FRs contain no code locations.
 
 4. **Write scenarios.** Per test (or parametrised group) one scenario in Gherkin by

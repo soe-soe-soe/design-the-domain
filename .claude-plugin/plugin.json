@@ -1,6 +1,6 @@
 {
   "name": "pts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Problem, test and solution space skills for domain-driven development: stories and functional requirements, behaviour-free solution shells, red tests before implementation.",
   "author": {
     "name": "Sören Bock",

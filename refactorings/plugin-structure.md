@@ -17,9 +17,10 @@ Which skill belongs to which space is only written in the README. The same holds
 - `skills/<skill>/`, flat; the default scan of `skills/` finds them, `plugin.json` names no paths.
 - `evals/<skill>/<case>/`, flat; fixtures in `evals/fixtures/`, reached as `../../fixtures` from
   each `place-files.sh`.
-- `scripts/` (requirements.py, round.py and their tests) and `templates/` shared by several spaces.
+- `scripts/` (requirements.py, round.py and their tests) and `assets/`, `references/` shared by several spaces.
 - Paths into the plugin stand in the skills as `${CLAUDE_PLUGIN_ROOT}/skills/<skill>/...`,
-  `${CLAUDE_PLUGIN_ROOT}/scripts/...` and `${CLAUDE_PLUGIN_ROOT}/templates/...`.
+  `${CLAUDE_PLUGIN_ROOT}/scripts/...`, `${CLAUDE_PLUGIN_ROOT}/assets/...` and
+  `${CLAUDE_PLUGIN_ROOT}/references/...`.
 
 ## Target state
 
@@ -36,7 +37,8 @@ skills/
 ├── workflow/        story-workflow
 └── craft/           grilling, domain-modeling, codebase-design, tdd, code-review
 scripts/             requirements.py, round.py (+ tests) – used by problem-definition and story-workflow
-templates/           shared by several skills
+assets/              shared templates: config, glossary, glossary map
+references/          shared guidance: output format, ticket sync
 evals/
 ├── fixtures/
 ├── problem-space/   problem-definition/, problem-story-writer/, problem-fr-writer/, problem-init/
@@ -50,7 +52,7 @@ evals/
   `evals/<space>/<skill>/<case>/` works. `--eval-dir evals/problem-space` runs one space;
   the tags in `case.yaml` stay as the filter for a run over everything.
 - Not chosen: one root folder per space with its own `skills/`, `scripts/` and `evals/`. The
-  eval runner knows one eval folder per run, `scripts/` and `templates/` serve several spaces, and
+  eval runner knows one eval folder per run, `scripts/`, `assets/` and `references/` serve several spaces, and
   `story-workflow` belongs to none.
 
 ## Steps

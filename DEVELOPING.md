@@ -29,18 +29,21 @@ separately.
 ## Publishing
 
 `tools/build-dist.sh [<ref>]` builds the local branch `dist` from a ref (default `HEAD`). It holds
-only the allowlist in the script: `.claude-plugin/`, `skills/` without the decision records, `templates/`,
+only the allowlist in the script: `.claude-plugin/`, `skills/` without the decision records, `assets/`, `references/`,
 `scripts/requirements.py`, `scripts/round.py`, `README.md`, `LICENSE` and `THIRD_PARTY_LICENSES.md`. Each run adds one commit, so `dist` keeps a
 history of the releases.
 
+The marketplace entry in `.claude-plugin/marketplace.json` points at `dist`, not at `main`:
+
+```json
+{ "name": "pts", "source": { "source": "github", "repo": "soe-soe-soe/problem-test-solution-skills", "ref": "dist" } }
+```
+
+Projects get a change only once it is released, and only with a new version – a plugin with a
+`version` updates when that number changes. To release:
+
 1. Bump `version` in `.claude-plugin/plugin.json` on `main`.
 2. `tools/build-dist.sh main` and `git push origin dist`.
-3. Once the plugin is public: point the plugin entry in `.claude-plugin/marketplace.json` at the
-   distribution branch instead of the repository root:
 
-   ```json
-   { "name": "pts", "source": { "source": "github", "repo": "soe-soe-soe/problem-test-solution-skills", "ref": "dist" } }
-   ```
-
-   Until then the entry stays `"source": "./"`, so projects using the plugin get `main` directly
-   without a build step.
+To try a change in a project before the release, start Claude there with
+`claude --plugin-dir <this repo>`.

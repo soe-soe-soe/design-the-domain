@@ -8,7 +8,11 @@
   "plugins": [
     {
       "name": "pts",
-      "source": "./",
+      "source": {
+        "source": "github",
+        "repo": "soe-soe-soe/problem-test-solution-skills",
+        "ref": "dist"
+      },
       "description": "Problem, test and solution space skills for domain-driven development."
     }
   ]

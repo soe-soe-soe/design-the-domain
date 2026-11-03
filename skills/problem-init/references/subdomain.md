@@ -28,8 +28,8 @@ states.
    joined by hyphens (`manual-deadline`).
 
 2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format by
-   `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md` unless `‹project-rules›` sets its own; a new glossary
-   gets its row in `‹glossary-map›` by `${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`):
+   `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md` unless `‹project-rules›` sets its own; a new glossary
+   gets its row in `‹glossary-map›` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary-map.md`):
    one section per business object with its row `Business Object | … | Aggregate Root`. Add
    rows for terms your FRs need that are missing: entities, values, domain events, commands,
    queries, derived concepts. The description comes from code, docstrings and tests; what you

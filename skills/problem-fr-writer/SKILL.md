@@ -16,7 +16,7 @@ You write what is decided and mark what is still open, in the FR itself. You ask
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 You write only planned FRs (`planned/` below an FR folder), the domain map, and in a story the
 section `## Functional requirements`. Active FRs, the rest of a story, glossaries and ADRs you

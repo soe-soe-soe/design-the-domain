@@ -18,7 +18,7 @@ Status flow – this comment is guidance for the skills and is not copied into a
 done and cancelled are final: the file is never edited again. A change to a done story is a new
 story that names it under `Supersedes in part`.
 
-Header fields: `External` only with a ticket system (`‹ticket-system›`, synced by templates/ticket.md of the plugin), `doneAt` only once done,
+Header fields: `External` only with a ticket system (`‹ticket-system›`, synced by references/ticket.md of the plugin), `doneAt` only once done,
 `Supersedes in part` only when there is something to enter.
 
 Language: headings and field labels stay English (methodology); title, role sentence, texts,

@@ -13,7 +13,8 @@ branch="dist"
 include=(
   .claude-plugin
   skills
-  templates
+  assets
+  references
   scripts/requirements.py
   scripts/round.py
   README.md

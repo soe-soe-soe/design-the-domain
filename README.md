@@ -14,7 +14,7 @@ A Claude Code plugin for domain-driven feature work in three spaces:
 
 ## Setup in a project
 
-1. Copy [templates/config.md](templates/config.md) to `.claude/pts.md` in the project and fill in
+1. Copy [assets/config.md](assets/config.md) to `.claude/pts.md` in the project and fill in
    paths, commands and conventions. The skills read it first and stop without it; the plugin
    itself knows no project.
 2. Keep the code structure (building blocks, test levels, markers) in the document the config
@@ -62,7 +62,7 @@ the provenance lines.
 
 Optional, one way from the repository: with `ticket-system` set in `.claude/pts.md`, every story
 gets a ticket (Linear or Jira through the project's connector) by
-[templates/ticket.md](templates/ticket.md) – title, team, project, assignee, labels per subdomain,
+[references/ticket.md](references/ticket.md) – title, team, project, assignee, labels per subdomain,
 mapped status, and a description with role sentence, why, AC titles, FRs and a link to the story
 file. The ticket ID is kept in the story as `External`.
 

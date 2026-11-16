@@ -18,7 +18,7 @@ Die Tabelle listet Ergebnisse, nicht Methodik. ✅ erfüllt · ◐ teilweise · 
 | **Interview** | ✅ Entscheidungsbaum, Empfehlung je Frage | ◐ Explore optional, danach Entwurf | ✅ Coaching je Abschnitt / Fast mit Annahmen |
 | **Offene Punkte nachverfolgt** | ✅ `@open` + Folgerunden | ❌ | ✅ Assumption- und Open-question-Zeilen |
 | **Formatsicherheit** | ◐ Templates; Validator geplant ([Refactoring 001](../refactorings/archive/001-planned-frs-and-story-housekeeping.md)) | ✅ CLI-Validierung | ◐ Prüfung durch LLM |
-| **Einstieg in ein bestehendes System** | ✅ `problem-init` | ◐ Specs wachsen mit den Changes | ◐ nur Agenten-Kontext (`AGENTS.md`) |
+| **Einstieg in ein bestehendes System** | ✅ `problem-space-initialization` | ◐ Specs wachsen mit den Changes | ◐ nur Agenten-Kontext (`AGENTS.md`) |
 
 ## Quellen
 

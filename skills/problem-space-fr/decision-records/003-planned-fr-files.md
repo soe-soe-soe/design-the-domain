@@ -12,7 +12,7 @@ already say.
 ## Decision
 
 - An **active FR** is the implemented state. Only `scripts/requirements.py complete` writes it, when
-  its story is done (problem-init writes active FRs for code taken over).
+  its story is done (problem-space-initialization writes active FRs for code taken over).
 - problem-space-fr writes **one planned file per FR** in `planned/` below the active FR's folder,
   same file name: a line per story under `## Changes` (Kind new, edit or deletion; Rule changed or
   unchanged) and only the scenarios a story changes, adds or drops.

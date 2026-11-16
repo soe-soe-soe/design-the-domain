@@ -8,7 +8,7 @@ or `‹domain-map›` lists which glossary belongs to which subdomain, not both.
 ## Why
 
 Both files list every subdomain with a link to its glossary. A new subdomain means two rows in
-two files written by different skills (problem-space-fr the domain map, problem-init and the
+two files written by different skills (problem-space-fr the domain map, problem-space-initialization and the
 grilling the glossary map); sooner or later they disagree, and nobody notices because no skill
 compares them.
 
@@ -22,7 +22,7 @@ compares them.
   Description; plus the relationships.
 - `assets/glossary-map.md`: per glossary file the Subdomain and what it covers; plus the
   methodology glossary.
-- Readers: requirement reads `‹glossary-map›` first to find the glossaries; problem-init
+- Readers: requirement reads `‹glossary-map›` first to find the glossaries; problem-space-initialization
   and problem-space-fr read `‹domain-map›`. `assets/output-format.md` lists both as problem
   artifacts.
 
@@ -42,5 +42,5 @@ Pick one of these (recommendation first):
 
 - `pts:domain-modeling` is part of the plugin: change it together with the chosen option.
 - Option 1 or 2 changes `assets/config.md`, `evals/fixtures/pts.md`,
-  `assets/output-format.md`, requirement step 1 and 2, problem-init and the
+  `assets/output-format.md`, requirement step 1 and 2, problem-space-initialization and the
   domain-map fixtures of the evals.

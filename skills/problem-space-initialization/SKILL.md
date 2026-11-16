@@ -1,10 +1,10 @@
 ---
-name: problem-init
+name: problem-space-initialization
 description: Builds the problem-space model for existing code – glossary, business objects and FRs per subdomain, in parallel.
 disable-model-invocation: true
 ---
 
-# FR-Init
+# Problem-Space-Initialization
 
 You derive the problem-space model (`‹problem-space›`, `‹glossaries›`) for code that already exists:
 glossary, business objects and FRs per subdomain, the scenarios from the existing tests, and in
@@ -25,7 +25,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 1. **Clarify scope.** Read `‹domain-map›` and ask the user with
    AskUserQuestion whether to initialise one subdomain, several or all; for several, let them
-   choose. If the call already names subdomains (`/define-the-domain:problem-init deadlines project`), skip the
+   choose. If the call already names subdomains (`/define-the-domain:problem-space-initialization deadlines project`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
 2. **Start subagents**, all in **one** message so they run in parallel, each with the model
@@ -49,7 +49,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 4. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios,
    tests with reference, scenarios without test. Below that the subagents' questions in the
-   question format of `/define-the-domain:requirement` (provenance line with `🧩 problem-init`), grouped per subdomain.
+   question format of `/define-the-domain:requirement` (provenance line with `🧩 problem-space-initialization`), grouped per subdomain.
    Finally the question which subdomains they confirm as a block.
 
 5. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its

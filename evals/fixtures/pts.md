@@ -99,4 +99,4 @@ can be set per project.
 |---|---|---|
 | `model-ground` | Subagent reading the ground in /define-the-domain:requirement (reads and summarises) | `inherit` |
 | `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
-| `model-init` | Subagents of /define-the-domain:problem-init and /define-the-domain:solution-init, one per subdomain or context | `inherit` |
+| `model-init` | Subagents of /define-the-domain:problem-space-initialization and /define-the-domain:solution-init, one per subdomain or context | `inherit` |

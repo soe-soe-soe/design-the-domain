@@ -418,7 +418,7 @@ def cmd_history(cfg: dict[str, str], fr_id: str) -> int:
             print(f"  {r}")
     active = [p for p in problem_space.rglob(f"{fr_id}-*.md") if p.parent.name != "planned"]
     if active and "@existing" in active[0].read_text(encoding="utf-8"):
-        print("- existing: taken over from code (problem-init)")
+        print("- existing: taken over from code (problem-space-initialization)")
     if not entries and not active:
         print("- none")
     return 0

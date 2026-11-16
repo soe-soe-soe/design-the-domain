@@ -4,7 +4,7 @@ and requirement read it from that key. Links are relative to the project root.
 A glossary-map format in ‹project-rules› overrides this template.
 
 - One row per glossary file, the methodology glossary first. Whoever creates a glossary
-  (problem-init, the grilling of requirement) adds its row in the same change.
+  (problem-space-initialization, the grilling of requirement) adds its row in the same change.
 - Subdomain and its type stand in ‹domain-map›; this map only says where to look up a term.
 Texts in ‹problem-space-language›, column headings English (methodology).
 This comment is not copied into the map.

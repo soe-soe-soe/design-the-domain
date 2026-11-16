@@ -142,7 +142,7 @@ subdomain and relationship you used stands in the domain map.
 | Tag | Meaning |
 |---|---|
 | `@US-0042` | Active FR: story that last changed the scenario. Planned file: story the change belongs to |
-| `@existing` | Taken from existing code (problem-init), without story |
+| `@existing` | Taken from existing code (problem-space-initialization), without story |
 | `@planned` | Planned file only: the change is not implemented yet |
 | `@base-US-0042` | Planned file only: story tag of the active scenario the change was written against (`@base-existing`) |
 | `@unconfirmed` | Derived from code, not yet confirmed by the user |

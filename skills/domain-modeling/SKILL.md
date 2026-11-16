@@ -1,6 +1,6 @@
 ---
 name: domain-modeling
-description: Build and sharpen the project's domain model while designing – challenge terms, invent edge-case scenarios, write glossary rows into the subdomain glossaries and record ADRs. Use from /define-the-domain:new-requirement, or when the user discusses the project's terminology, edits a glossary or records an ADR.
+description: Build and sharpen the project's domain model while designing – challenge terms, invent edge-case scenarios, write glossary rows into the subdomain glossaries and record ADRs. Use from /define-the-domain:requirement, or when the user discusses the project's terminology, edits a glossary or records an ADR.
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/domain-modeling` (MIT, © 2026 Matt Pocock),

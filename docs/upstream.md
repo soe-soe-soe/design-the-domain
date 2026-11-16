@@ -12,7 +12,7 @@ Last synced: commit `4ae2317` (2026-10-31).
 
 | define-the-domain skill | Upstream | Status | Changed for define-the-domain |
 |---|---|---|---|
-| `grilling` | `skills/productivity/grilling` | unchanged | – (grouping, numbering and the provenance line live in `new-requirement`) |
+| `grilling` | `skills/productivity/grilling` | unchanged | – (grouping, numbering and the provenance line live in `requirement`) |
 | `codebase-design` | `skills/engineering/codebase-design` (+ `DEEPENING.md`, `DESIGN-IT-TWICE.md`) | unchanged | – |
 | `domain-modeling` | `skills/engineering/domain-modeling` (+ `ADR-FORMAT.md`) | adapted | one glossary per subdomain as a table (format in `templates/glossary.md`, upstream `GLOSSARY-FORMAT.md` dropped), domain map for new subdomains and relationships, paths from `.claude/pts.md`, ADR numbering and rules as the project keeps them |
 | `tdd` | `skills/engineering/tdd` (+ `tests.md`, `mocking.md`) | adapted | seams agreed once in `‹structure›` instead of per session; scenario tests of `test-definition` written before the loop as a named exception to horizontal slicing; Dann literals as source of truth; migration tests may read stored data; `define-the-domain:codebase-design` |

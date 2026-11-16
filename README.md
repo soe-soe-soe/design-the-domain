@@ -2,7 +2,7 @@
 
 A Claude Code plugin for domain-driven feature work in three spaces:
 
-- **Problem space:** `/define-the-domain:new-requirement` grills a requirement into ready user stories and
+- **Problem space:** `/define-the-domain:requirement` grills a requirement into ready user stories and
   functional requirements (FRs) with Gherkin scenarios; `problem-space-story` and
   `problem-space-fr` write them, `/define-the-domain:problem-init` derives the model from existing code.
 - **Solution space:** `solution-definition` places a story's scenarios into bounded contexts,
@@ -54,7 +54,7 @@ python3 scripts/requirements.py cancel   US-0042
 python3 scripts/requirements.py history  FR-deadlines-003
 ```
 
-[scripts/round.py](scripts/round.py) renders each round of `/define-the-domain:new-requirement`: the model
+[scripts/interview-round.py](scripts/interview-round.py) renders each round of `/define-the-domain:requirement`: the model
 supplies its own questions, the script adds the writers' open points, numbers, groups and writes
 the provenance lines.
 

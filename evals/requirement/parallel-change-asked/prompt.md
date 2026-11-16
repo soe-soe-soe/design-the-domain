@@ -1,11 +1,11 @@
 ---
-tags: [skill-creator, problem-space]
+tags: [requirement, problem-space]
 max_turns: 30
 timeout_seconds: 900
 allowed_tools: [Read, Glob, Grep, Skill, Write, Edit, Bash, Agent]
 ---
 
-/define-the-domain:new-requirement Requirement: Verantwortliche sollen vor Ablauf einer Frist per E-Mail erinnert werden.
+/define-the-domain:requirement Requirement: Verantwortliche sollen vor Ablauf einer Frist per E-Mail erinnert werden.
 
 Runde 1 (gestellt vom Grilling):
 Q1 – Wer bekommt die Erinnerung? → Antwort: die verantwortliche Person der Frist.
@@ -22,6 +22,9 @@ Stories:
 FRs:
 - FR-fristen-013: Fristerinnerung per E-Mail (new, S2 open)
 - FR-fristen-014: Erinnerungen abbestellen (new, S1 open)
+- FR-fristen-009: Manuelle Frist verwalten (edit, S6 changed)
+Parallel:
+- FR-fristen-009/S6: also changed by US-0039 (ready)
 Domain map: unchanged
 ```
 

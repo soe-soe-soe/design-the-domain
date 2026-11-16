@@ -31,7 +31,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py check US-0042`. If it reports a
    conflict – another story changed the same scenario since this one was written – set the story
    back to `Status: draft`, show the report and stop: the conflict goes back to
-   `/define-the-domain:new-requirement`.
+   `/define-the-domain:requirement`.
    Otherwise set `Status: in-progress` in the story header and, unless `‹ticket-system›` is
    `none`, sync the story by `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md`. Note the current commit as the review's fixed
    point.
@@ -64,14 +64,14 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    checks the base once more, merges the story's planned changes into the active FRs, sets
    `Status: done` and `doneAt`, and moves the story to `‹requirements›/` – all or nothing. On a
    conflict it writes nothing: show its report and stop before committing; the story stays
-   `in-progress` until `/define-the-domain:new-requirement` settled the conflict. Then commit placement,
+   `in-progress` until `/define-the-domain:requirement` settled the conflict. Then commit placement,
    tests, implementation and the problem-space changes together by the commit convention in
    `‹project-rules›`; regenerate the context map with `‹context-map-command›` if the project has
    no hook doing it. Unless `‹ticket-system›` is `none`, sync the story by
    `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md` – status done, link to its new path.
 
 8. **Report.** What was built, the commit, and for every question you asked in steps 2, 3 and
-   5: whether the grilling could have settled it, and which check in `new-requirement` or
+   5: whether the grilling could have settled it, and which check in `requirement` or
    `problem-space-fr` was missing. Without questions: `Lessons: none`.
 
 You are done when every planned scenario of the story has a passing test with its marker, every

@@ -49,7 +49,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 4. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios,
    tests with reference, scenarios without test. Below that the subagents' questions in the
-   question format of `/define-the-domain:new-requirement` (provenance line with `🧩 problem-init`), grouped per subdomain.
+   question format of `/define-the-domain:requirement` (provenance line with `🧩 problem-init`), grouped per subdomain.
    Finally the question which subdomains they confirm as a block.
 
 5. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its

@@ -14,7 +14,7 @@ include=(
   skills
   templates
   scripts/requirements.py
-  scripts/round.py
+  scripts/interview-round.py
   LICENSE
   THIRD_PARTY_LICENSES.md
 )

@@ -16,7 +16,7 @@ Evals live under `evals/<skill>/<case>/` and run with
 problem space). Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They simulate a
 project with a German problem space and an English solution space (`evals/fixtures/pts.md`):
 case descriptions and graders are English, fixtures and user prompts German. The
-`new-requirement` cases need a project checkout with `.claude/pts.md`: its path in
+`requirement` cases need a project checkout with `.claude/pts.md`: its path in
 `evals/.pts-eval-project` (not committed; the runner does not pass the environment to scaffold
 scripts) or in `PTS_EVAL_PROJECT`. They switch the ticket sync off, so no eval creates real
 tickets. The others bring their files.
@@ -29,7 +29,7 @@ separately.
 
 `tools/build-dist.sh [<ref>]` builds the local branch `dist` from a ref (default `HEAD`). It holds
 only what the plugin needs to run: `.claude-plugin/plugin.json`, `skills/` without their
-`decision-records/`, `templates/`, `scripts/requirements.py`, `scripts/round.py`, `LICENSE` and
+`decision-records/`, `templates/`, `scripts/requirements.py`, `scripts/interview-round.py`, `LICENSE` and
 `THIRD_PARTY_LICENSES.md`. No evals, refactorings, docs or development tooling. Each run adds one
 commit, so `dist` keeps a history of the releases.
 

@@ -1,6 +1,6 @@
 ---
 name: problem-space-story
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /new-requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Problem-Story-Writer
@@ -10,7 +10,7 @@ criteria (AC) in Gherkin. A story describes a **change**; the living target stat
 the functional requirements (skill `define-the-domain:problem-space-fr`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/define-the-domain:new-requirement` reads the open points and decides when to ask them.
+`/define-the-domain:requirement` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -76,7 +76,7 @@ template [assets/story.md](assets/story.md); read it.
 You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
-`/define-the-domain:new-requirement` sets `ready` when the session closes, the implementation workflow sets
+`/define-the-domain:requirement` sets `ready` when the session closes, the implementation workflow sets
 `in-progress`, `requirements.py complete` sets `done`, `requirements.py cancel` sets `cancelled`.
 
 ## Story file

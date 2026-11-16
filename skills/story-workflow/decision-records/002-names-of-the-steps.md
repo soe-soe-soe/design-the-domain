@@ -4,6 +4,6 @@
 
 ## Decision
 
-The steps are named after what they define: `new-requirement` (formerly `grill-story`),
+The steps are named after what they define: `requirement` (formerly `grill-story`),
 `solution-definition` (formerly `solution-sync`), `test-definition`. Only `tdd` and `code-review`,
 Pocock's skills, build and check.

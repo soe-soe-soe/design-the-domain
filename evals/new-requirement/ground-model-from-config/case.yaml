@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: ground-model-from-config
-expected_outcome: |
-  With model-ground haiku in .claude/pts.md, new-requirement starts the subagent for the ground with the model haiku and then asks round 1.
-context:
-  scaffold_script: place-files.sh

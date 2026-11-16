@@ -1,10 +1,10 @@
 ---
-name: new-requirement
+name: requirement
 description: Grills a requirement into ready stories – grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-space-story and problem-space-fr, their open points asked in the following rounds.
 disable-model-invocation: true
 ---
 
-# New-Requirement
+# Requirement
 
 You interview the user about a requirement until its problem space is settled: stories with
 acceptance criteria, FR scenarios, glossary terms. The craft comes from the skills
@@ -16,7 +16,7 @@ questions are asked.
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
-Called as `/define-the-domain:new-requirement <requirement>`. Everything you say to the user is in
+Called as `/define-the-domain:requirement <requirement>`. Everything you say to the user is in
 `‹problem-space-language›`.
 
 ## Open points
@@ -103,9 +103,9 @@ FR stays untouched until its story is done. Its brief:
      left, ask the open points still listed in the session's stories. If none are left, go to
      step 4.
    - **Render every round with the script.** You decide the content of your own questions; the
-     script `${CLAUDE_PLUGIN_ROOT}/scripts/round.py` adds the open points from the files, numbers,
+     script `${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py` adds the open points from the files, numbers,
      groups and writes each provenance line. Write the round as JSON to a scratch file and run
-     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/round.py <file>`; its standard output, after the context block,
+     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-interview-round.py <file>`; its standard output, after the context block,
      is your message for the round – change nothing in it, add nothing between the questions. The keys (see the script's header):
      `start` – the next question number: Q1 in round 1, afterwards the number the previous run
      printed on standard error (`next question number: N`), so numbering runs across the whole session;

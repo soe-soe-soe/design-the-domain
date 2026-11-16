@@ -1,6 +1,6 @@
 ---
 name: problem-space-fr
-description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /new-requirement after problem-space-story, or when the user wants stories "taken into FRs" or the FR set reconciled.
+description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /requirement after problem-space-story, or when the user wants stories "taken into FRs" or the FR set reconciled.
 ---
 
 # Problem-FR-Writer
@@ -12,7 +12,7 @@ merged into it only when the story is done – and look for **contradictions wit
 state** the conversation cannot see.
 
 You write what is decided and mark what is still open, in the FR itself. You ask nothing:
-`/define-the-domain:new-requirement` reads the open points and decides when to ask them.
+`/define-the-domain:requirement` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -92,7 +92,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    A difference to the code is no open point: it is the delta to be implemented. Contradictions
    with ADRs the grilling asks itself. A planned file that already holds a change of **another
    story** to the same scenario is no open point of yours either: report it under `Parallel`,
-   and `/define-the-domain:new-requirement` takes it into the interview.
+   and `/define-the-domain:requirement` takes it into the interview.
 
 4. **Write.** For each AC, into the planned file of its FR by the template
    [assets/planned-functional-requirement.md](assets/planned-functional-requirement.md),
@@ -156,7 +156,7 @@ The FR header knows `Status: valid` or `Status: obsolete` for an active FR and
 
 Your last message is the report, exactly in this form and nothing else – no notes, assumptions or
 explanations before or after it: what is open stands in the files. It names what changed; `Sn open` marks a
-scenario that got a new open point, so `/define-the-domain:new-requirement` knows which FRs to read – the point itself
+scenario that got a new open point, so `/define-the-domain:requirement` knows which FRs to read – the point itself
 stands only in the FR:
 
 ```

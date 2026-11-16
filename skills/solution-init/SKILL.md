@@ -50,7 +50,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 4. **Report.** To the user, per context: aggregates, number of modules per building block,
    boundary violations found (imports bypassing a facade). Below that the subagents' questions
-   in the question format of `/define-the-domain:new-requirement` (provenance line with `🧩 solution-init`), grouped per
+   in the question format of `/define-the-domain:requirement` (provenance line with `🧩 solution-init`), grouped per
    context. Finally the
    question which context to migrate first.
 

@@ -1,6 +1,6 @@
-# Refactoring 003: Epics in new-requirement
+# Refactoring 003: Epics in requirement
 
-Status: open · Skill: new-requirement
+Status: open · Skill: requirement
 
 Open question: does the problem space need a level above the story?
 

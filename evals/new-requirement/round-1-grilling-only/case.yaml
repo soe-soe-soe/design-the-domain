@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: round-1-grilling-only
-expected_outcome: |
-  Round 1 in German, only grilling questions (grilling's format with numbered questions and a recommendation, rendered by scripts/round.py), each with the provenance line `🗣️ grilling   🧩 grilling`, without story grouping, without a writing subagent and without written stories.
-context:
-  scaffold_script: place-files.sh

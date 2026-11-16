@@ -1,4 +1,4 @@
-"""Tests for round.py – run with `python3 -m unittest discover scripts`."""
+"""Tests for interview-round.py – run with `python3 -m unittest discover scripts`."""
 
 import os
 import sys
@@ -7,7 +7,12 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-import round as rnd  # noqa: E402
+import importlib.util  # noqa: E402
+
+_spec = importlib.util.spec_from_file_location("interview_round", Path(__file__).parent / "interview-round.py")
+rnd = importlib.util.module_from_spec(_spec)
+sys.modules["interview_round"] = rnd
+_spec.loader.exec_module(rnd)
 
 CONFIG = """
 | Key | Meaning | Value |

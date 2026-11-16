@@ -3,7 +3,7 @@ name: problem-space-story
 description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
-# Problem-Story-Writer
+# Problem-Space-Story
 
 You package business decisions into **stories**: short, with a why, followed by acceptance
 criteria (AC) in Gherkin. A story describes a **change**; the living target state is kept by

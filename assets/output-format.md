@@ -29,7 +29,7 @@ anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-d
 |---|---|---|---|
 | Problem | 📘 | story | `‹requirements›/` and its `planned/`, `cancelled/` |
 | Problem | 📋 | FR | `‹problem-space›/<subdomain>/`, planned changes in its `planned/` |
-| Problem | 📄 | domain-map, glossary, glossary-map | `‹domain-map›`, `‹glossaries›`, `‹glossary-map›` |
+| Problem | 📄 | domain-map, glossary | `‹domain-map›`, `‹glossaries›` |
 | Solution | 🗂️ | structure, context-map | `‹structure›`, `‹context-map›` |
 | Solution | 🏛️ | ADR, decision-record | `‹adr›`, `decision-records/` of a skill |
 | Solution | 📘 | refactoring | `‹refactorings›` |

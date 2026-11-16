@@ -65,8 +65,8 @@ FR stays untouched until its story is done. Its brief:
 1. **Read the ground** in one subagent with the model `‹model-ground›`, so the files stay out
    of the interview. Its brief:
 
-   > Read `‹glossary-map›`, the glossaries it names for the subdomains this requirement touches:
-   > <requirement>, `‹domain-map›`, the stories under
+   > Read `‹domain-map›`, the glossaries it names for the subdomains this requirement touches:
+   > <requirement>, the stories under
    > `‹requirements›/planned/` on the same topic, the planned FR files (`planned/` below the FR
    > folders) of the subdomains it touches, and whatever
    > else the requirement points to. Change nothing. Your last message has exactly these parts:
@@ -77,6 +77,9 @@ FR stays untouched until its story is done. Its brief:
    > FR change of another story on the topic (`FR-…/Sn – US-…, Status`), or `none`. Labels
    > English, content in `‹problem-space-language›`.
 
+   This is the **ground** every skill reads before it changes the problem space; other skills
+   refer to it instead of listing the files again.
+
    The session may continue those stories, including their open points; a `ready` or
    `in-progress` one falls back to `draft` when it changes (its template says so). `done` and
    `cancelled` stories are final: a change to them is a new story. When a question needs more
@@ -85,7 +88,7 @@ FR stays untouched until its story is done. Its brief:
 2. **Load the craft.** Call the Skill tool with `define-the-domain:grilling` and with
    `define-the-domain:domain-modeling`, and follow both. `domain-modeling` writes glossary rows into the
    subdomain glossaries under `‹glossaries›/` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`
-   (unless `‹project-rules›` sets its own format) and a new glossary's row into `‹glossary-map›`.
+   (unless `‹project-rules›` sets its own format) and a new glossary's row into `‹domain-map›`.
    This skill decides on top of `grilling` how rounds are grouped, numbered and what each
    question carries.
 

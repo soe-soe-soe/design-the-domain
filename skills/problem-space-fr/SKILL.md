@@ -3,7 +3,7 @@ name: problem-space-fr
 description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /requirement after problem-space-story, or when the user wants stories "taken into FRs" or the FR set reconciled.
 ---
 
-# Problem-FR-Writer
+# Problem-Space-FR
 
 An **FR** is the implemented target state of one rule or capability, assigned to exactly one
 subdomain. Stories describe changes, FRs the result of all changes. You carry the acceptance
@@ -49,8 +49,10 @@ The type folder follows the FR type ([functional-requirement-types.md](../../ass
 changed type moves the FR. Which business objects a subdomain has stands in the sections of its glossary
 (`‹glossaries›/<subdomain>.md`). The `<subdomain>` in an FR ID and file name is the subdomain's folder name in the problem
 space (`‹problem-space-language›`, e.g. `fristen`), never the code name of its bounded context
-(e.g. `deadlines`), even where the two differ. The number `NNN` counts per subdomain, across active and planned
-FRs. One planned file per FR holds the changes of every story touching it; its format, the
+(e.g. `deadlines`), even where the two differ. Folder names of subdomains and business objects are in
+`‹problem-space-language›`, lower case, special letters spelled out, words joined by hyphens
+(`manual-deadline`). The number `NNN` counts per subdomain, across active and planned FRs, and is never
+reused: take it from `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py next-fr <subdomain>`. One planned file per FR holds the changes of every story touching it; its format, the
 change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
 [planned-functional-requirement.md](../../assets/planned-functional-requirement.md) – read it.
 
@@ -102,7 +104,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
      problem signal" becomes "Then the deadline counts as overdue" in the FR "Overdue deadline";
      the count belongs to the FR of the problem signals.
    - **Kind.** The story's line under `## Changes`: `edit` if an active FR of the same rule
-     exists, `new` if not – with the next free FR number of the subdomain; for **ownership**
+     exists, `new` if not – with the number `requirements.py next-fr` gives (count up for several new FRs of one run); for **ownership**
      in the subdomain you recommend –, `deletion` if the story drops the rule altogether.
      `Rule: changed` and the new rule text under `## Rule` if the story changes the rule.
    - **Numbers stay those of the active FR.** A changed scenario keeps its `Sn` and gets
@@ -142,7 +144,7 @@ subdomain and relationship you used stands in the domain map.
 | Tag | Meaning |
 |---|---|
 | `@US-0042` | Active FR: story that last changed the scenario. Planned file: story the change belongs to |
-| `@existing` | Taken from existing code (problem-init), without story |
+| `@existing` | Taken from existing code (problem-space-initialization), without story |
 | `@planned` | Planned file only: the change is not implemented yet |
 | `@base-US-0042` | Planned file only: story tag of the active scenario the change was written against (`@base-existing`) |
 | `@unconfirmed` | Derived from code, not yet confirmed by the user |

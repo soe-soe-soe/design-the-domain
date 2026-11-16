@@ -44,7 +44,7 @@ TITLE_RE = re.compile(r"^\s*(?:Szenariogrundriss|Szenario|Scenario Outline|Scena
 
 
 def icon(ref: str) -> str:
-    """The reference with the icon of its artifact type (templates/output-format.md)."""
+    """The reference with the icon of its artifact type (assets/output-format.md)."""
     if not ref or not ref[0].isascii():
         return ref  # already carries an icon
     if ref.startswith("FR-"):

@@ -12,7 +12,7 @@ branch="dist"
 include=(
   .claude-plugin/plugin.json
   skills
-  templates
+  assets
   scripts/requirements.py
   scripts/interview-round.py
   LICENSE

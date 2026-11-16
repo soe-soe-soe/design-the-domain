@@ -16,7 +16,7 @@ You write what is decided and mark what is still open, in the FR itself. You ask
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 You write only planned FRs (`planned/` below an FR folder), the domain map, and in a story the
 section `## Functional requirements`. Active FRs, the rest of a story, glossaries and ADRs you
@@ -45,14 +45,14 @@ folders) is English as the project config states.
     <type-folder>/                 FRs without own business object, e.g. rules of a value
 ```
 
-The type folder follows the FR type ([references/fr-types.md](references/fr-types.md)); a
+The type folder follows the FR type ([functional-requirement-types.md](../../assets/functional-requirement-types.md)); a
 changed type moves the FR. Which business objects a subdomain has stands in the sections of its glossary
 (`‹glossaries›/<subdomain>.md`). The `<subdomain>` in an FR ID and file name is the subdomain's folder name in the problem
 space (`‹problem-space-language›`, e.g. `fristen`), never the code name of its bounded context
 (e.g. `deadlines`), even where the two differ. The number `NNN` counts per subdomain, across active and planned
 FRs. One planned file per FR holds the changes of every story touching it; its format, the
 change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
-[assets/planned-functional-requirement.md](assets/planned-functional-requirement.md) – read it.
+[planned-functional-requirement.md](../../assets/planned-functional-requirement.md) – read it.
 
 ## Steps
 
@@ -61,14 +61,14 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    – and the ADRs on the topic.
 
 2. **Assign.** For each AC determine the subdomain from the domain map, the business object
-   from the glossary and the FR type by [references/fr-types.md](references/fr-types.md). A
+   from the glossary and the FR type by [functional-requirement-types.md](../../assets/functional-requirement-types.md). A
    query belongs to the subdomain that supplies the data, a policy to the one that triggers it.
    Each policy belongs to one process: an existing one whose chain it continues, or a new
-   process file by [assets/process.md](assets/process.md) in the `policies/` folder where the
+   process file by [process.md](../../assets/process.md) in the `policies/` folder where the
    chain starts. Add the policy as a step to its process; a policy in another subdomain links
    the process file there.
    Does an AC need a subdomain or a relationship between subdomains the domain map lacks, add
-   it there by the template [assets/domain-map.md](assets/domain-map.md): a new subdomain with
+   it there by the template [domain-map.md](../../assets/domain-map.md): a new subdomain with
    type `open`, a relationship in business terms.
 
 3. **Check.** An AC leads to an open point in six cases only:
@@ -95,7 +95,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    and `/define-the-domain:requirement` takes it into the interview.
 
 4. **Write.** For each AC, into the planned file of its FR by the template
-   [assets/planned-functional-requirement.md](assets/planned-functional-requirement.md),
+   [planned-functional-requirement.md](../../assets/planned-functional-requirement.md),
    creating the file (and the `planned/` folder) if needed:
    - **Phrase it on the FR's rule.** A scenario checks exactly the rule of its FR. Do not take
      an AC verbatim if it checks another rule as well: "Then the project overview shows 1

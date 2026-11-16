@@ -4,7 +4,7 @@
 
 ## Context
 
-`references/scenario-to-test.md` shows how a scenario becomes a test. Its first version used the
+`scenario-to-test.md` shows how a scenario becomes a test. Its first version used the
 same stories as the evals (US-0045, US-0047, US-0048); the runs then copied the examples almost
 verbatim, so the evals measured copying, not the skill.
 

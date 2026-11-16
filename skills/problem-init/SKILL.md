@@ -19,7 +19,7 @@ project config states.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 ## Steps
 
@@ -33,7 +33,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    with this brief:
 
    > Initialise the subdomain `<subdomain>` (folders: `<from the subdomain row of its
-   > glossary>`) by `${CLAUDE_SKILL_DIR}/references/subdomain.md`
+   > glossary>`) by `${CLAUDE_SKILL_DIR}/subdomain.md`
    > (plugin root: `${CLAUDE_PLUGIN_ROOT}`, project config: `.claude/pts.md`). Write only in
    > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md`, its row in `‹glossary-map›` and in
    > tests of your folders under `‹backend-tests›`. Your last message is the

@@ -36,7 +36,7 @@ _Code_: `domain-model/problem-space/<subdomain>/subdomain-<name>/`
 **Domain map**:
 The problem-space overview: every subdomain with its type (Core, Supporting, Generic), its status and the business relationships between subdomains. Maintained by hand.
 _Avoid_: context map (that is the solution-space counterpart)
-_Code_: `domain-model/problem-space/domain-map.md`, template `assets/domain-map.md` of `problem-space-fr`
+_Code_: `domain-model/problem-space/domain-map.md`, template `assets/domain-map.md`
 
 **Bounded context**:
 The boundary in the solution space within which a model and its names are unambiguous. Its name is the English translation of its subdomain; the subdomain row of the glossary names it and the folders that implement it today.
@@ -152,7 +152,7 @@ _Code_: tag `@base-US-NNNN` or `@base-existing` on a changed or dropped scenario
 
 **FR type**:
 Which kind of rule a functional requirement describes, as a DDD term: Invariant, Domain Service, Policy, Command, Query, Anti-Corruption Layer or Data Migration (what becomes of data stored before a change). It decides the building block in the solution space, and through it the test level; the problem space names no test level.
-_Code_: header field `Type:` of the FR, table in `references/fr-types.md` of `problem-space-fr`
+_Code_: header field `Type:` of the FR, table in `assets/functional-requirement-types.md`
 
 **Scenario**:
 A testable behaviour of a functional requirement. Each scenario gets exactly one main test that references it. Numbers are never renumbered or reused. A changed scenario keeps its number in the planned FR, so tests and placements reference the same `FR-…/Sn` before and after the merge. Tags show origin and reliability: in an active FR the story that last changed it or `@existing`, `@unconfirmed` (derived from code), `@obsolete`; in a planned FR additionally `@planned`, `@base-…` and `@open` (an open point concerns it). Every scenario of an active FR counts as implemented, those with `@unconfirmed` as not yet confirmed by the user.

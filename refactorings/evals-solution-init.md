@@ -6,13 +6,13 @@
 
 ## Why
 
-No evals exist. Commit 2fc62d4 adjusted `references/context.md` to the new test layout
+No evals exist. Commit 2fc62d4 adjusted `context.md` to the new test layout
 (tests mirror `backend/` under `‹backend-tests›`, markers stay), but nothing checks that the
 migration plan actually moves tests that way.
 
 ## Current state
 
-- `skills/solution-init/SKILL.md` and `references/context.md`, no `evals/solution-init/`.
+- `skills/solution-init/SKILL.md` and `context.md`, no `evals/solution-init/`.
 - The fixtures of `evals/solution-definition/` already hold a migrated (`permits`) and a
   not-migrated context (`deadlines`) with glossaries and `structure.md` – reusable.
 

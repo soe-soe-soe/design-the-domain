@@ -29,7 +29,7 @@ separately.
 
 `tools/build-dist.sh [<ref>]` builds the local branch `dist` from a ref (default `HEAD`). It holds
 only what the plugin needs to run: `.claude-plugin/plugin.json`, `skills/` without their
-`decision-records/`, `templates/`, `scripts/requirements.py`, `scripts/interview-round.py`, `LICENSE` and
+`decision-records/`, `assets/`, `scripts/requirements.py`, `scripts/interview-round.py`, `LICENSE` and
 `THIRD_PARTY_LICENSES.md`. No evals, refactorings, docs or development tooling. Each run adds one
 commit, so `dist` keeps a history of the releases.
 

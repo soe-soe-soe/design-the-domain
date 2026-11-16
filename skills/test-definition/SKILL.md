@@ -19,7 +19,7 @@ You ask nothing; what you cannot test you report.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 ## Steps
 
@@ -38,7 +38,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 3. **Write a scenario test per planned scenario.**
    Worked examples for unit, command, policy and journey:
-   [references/scenario-to-test.md](references/scenario-to-test.md); read it before the first test.
+   [scenario-to-test.md](scenario-to-test.md); read it before the first test.
    - Level, seam and path by the table in `‹structure›`; the test imports the building block
      from the path of the placement.
    - Name and marker by `‹structure›`; one main test per scenario. A Scenario Outline becomes

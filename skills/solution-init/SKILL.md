@@ -18,7 +18,7 @@ its own, all at once. Everything you write is in `‹solution-space-language›`
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 ## Steps
 
@@ -34,7 +34,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    this brief:
 
    > Plan the migration of the bounded context `<context>` (folders: `<folders>`, subdomain
-   > `<subdomain>`) by `${CLAUDE_SKILL_DIR}/references/context.md` (project config:
+   > `<subdomain>`) by `${CLAUDE_SKILL_DIR}/context.md` (project config:
    > `.claude/pts.md`). Write only `‹refactorings›/solution-structure-<context>.md`. Your last message is the report in the
    > form the reference prescribes.
 

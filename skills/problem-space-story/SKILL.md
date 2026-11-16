@@ -14,7 +14,7 @@ You write what is decided and mark what is still open, in the story itself. You 
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 Language: story content (title, role sentence, why, scenarios with their Gherkin keywords, open
 questions) is in `‹problem-space-language›`; methodology (headings, tags, status values, IDs, field
@@ -30,7 +30,7 @@ labels) is English as the project config states.
 ```
 
 The status flow and what each transition requires stand in the comment at the top of the
-template [assets/story.md](assets/story.md); read it.
+template [story.md](../../assets/story.md); read it.
 
 ## Steps
 
@@ -59,8 +59,8 @@ template [assets/story.md](assets/story.md); read it.
    problems on an evidence count, when the input defined the problem signal through deadlines).
    Gaps that change no Then step you write in the obvious reading without recording them.
 
-4. **Write.** The story by the template [assets/story.md](assets/story.md) (without its
-   comment), the AC by [references/gherkin.md](references/gherkin.md). A Then step stands only where
+4. **Write.** The story by the template [story.md](../../assets/story.md) (without its
+   comment), the AC by [assets/acceptance-criteria.md](../../assets/acceptance-criteria.md). A Then step stands only where
    the outcome is decided; an invented outcome is a guess.
 
 5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in

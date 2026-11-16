@@ -11,7 +11,7 @@ scan. Questions referred to the same artifacts with a generic 🏷️.
 ## Decision
 
 Every message after reading artifacts not listed yet starts with a `**Kontext**` block, one
-item per artifact with an icon from a table in `.claude/skills/templates/output-format.md`, a file shared by
+item per artifact with an icon from a table in `.claude/skills/assets/output-format.md`, a file shared by
 the project's skills: one example and one table instead of prose rules. The reference entry of the
 provenance line uses the same icon, so a question points visibly at a listed artifact.
 

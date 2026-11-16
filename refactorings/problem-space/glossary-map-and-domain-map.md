@@ -18,12 +18,12 @@ compares them.
   project root and only there. Since November 2026 pts has its own `pts:domain-modeling`
   (`docs/upstream.md`), which reads `‹glossary-map›` from the config – the root constraint is
   gone, and option 2 below no longer depends on upstream.
-- `skills/problem-space-fr/assets/domain-map.md`: per subdomain Type, Glossary link,
+- `assets/domain-map.md`: per subdomain Type, Glossary link,
   Description; plus the relationships.
-- `templates/glossary-map.md`: per glossary file the Subdomain and what it covers; plus the
+- `assets/glossary-map.md`: per glossary file the Subdomain and what it covers; plus the
   methodology glossary.
 - Readers: requirement reads `‹glossary-map›` first to find the glossaries; problem-init
-  and problem-space-fr read `‹domain-map›`. `templates/output-format.md` lists both as problem
+  and problem-space-fr read `‹domain-map›`. `assets/output-format.md` lists both as problem
   artifacts.
 
 ## Target state
@@ -41,6 +41,6 @@ Pick one of these (recommendation first):
 ## Before starting
 
 - `pts:domain-modeling` is part of the plugin: change it together with the chosen option.
-- Option 1 or 2 changes `templates/config.md`, `evals/fixtures/pts.md`,
-  `templates/output-format.md`, requirement step 1 and 2, problem-init and the
+- Option 1 or 2 changes `assets/config.md`, `evals/fixtures/pts.md`,
+  `assets/output-format.md`, requirement step 1 and 2, problem-init and the
   domain-map fixtures of the evals.

@@ -67,8 +67,9 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > object yields one Command FR; a query with logic of its own yields a Query FR; a call into
    > another subdomain that reacts to something yields a Policy FR in the triggering subdomain; a
    > foreign system yields an Anti-Corruption Layer FR. Layout, header, template, process of a
-   > Policy and numbering (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py next-fr
-   > <subdomain>`, count up for several new FRs) as `define-the-domain:problem-space-fr` states.
+   > Policy and numbering (run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py next-fr
+   > <subdomain>` from the project root, not from the plugin folder; count up for several new FRs)
+   > as `define-the-domain:problem-space-fr` states.
    >
    > **Scenarios.** Per test (or parametrised group) one scenario by
    > `${CLAUDE_PLUGIN_ROOT}/assets/acceptance-criteria.md`, phrased on the level of the FR's rule,

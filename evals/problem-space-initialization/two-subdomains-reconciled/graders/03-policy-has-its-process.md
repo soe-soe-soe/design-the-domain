@@ -1,7 +1,7 @@
 ---
 type: llm
-focus: trace
+focus: files
 weight: 1
 ---
 
-The Policy FR the run kept in fristen names a process in its header line (Process: and Trigger:), and the run wrote the process file it points to next to it in the policies folder
+The new files include a process file process-<slug>.md in a policies/ folder below domain-model/problem-space/fristen/, next to the Policy FR of the reaction

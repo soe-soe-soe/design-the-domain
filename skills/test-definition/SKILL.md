@@ -1,6 +1,6 @@
 ---
 name: test-definition
-description: Writes the tests of a placed story before its implementation – one scenario test per planned FR scenario, interface tests for facade methods, migration tests, the journey step for a UI change – red against the shell of solution-definition. Use as the step after solution-definition in /pts:story-workflow, or when the user wants the tests of a story written first.
+description: Writes the tests of a placed story before its implementation – one scenario test per planned FR scenario, interface tests for facade methods, migration tests, the journey step for a UI change – red against the shell of solution-definition. Use as the step after solution-definition in /define-the-domain:story-workflow, or when the user wants the tests of a story written first.
 ---
 
 # Test-Definition
@@ -8,9 +8,9 @@ description: Writes the tests of a placed story before its implementation – on
 You turn the scenarios of a story into tests before the code exists. The scenario is the
 specification; the test makes it executable (Specification by Example). Where each test goes,
 at which level and with which marker follows from `‹structure›`,
-section Tests; why, from `‹test-strategy-adr›`. What a good test is comes from the skill `pts:tdd`.
+section Tests; why, from `‹test-strategy-adr›`. What a good test is comes from the skill `define-the-domain:tdd`.
 
-Your input is the story and the placement report of `pts:solution-definition` from the same
+Your input is the story and the placement report of `define-the-domain:solution-definition` from the same
 session, with its shell built (`Shell` section, `Questions: none`). Without it, stop and say so.
 
 You write tests and test code only: files under `‹backend-tests›`, `‹e2e-journeys›` and `‹e2e-pages›`. You never
@@ -31,7 +31,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    a UI change also the journey of its business object and the page objects in
    `‹e2e-pages›`.
 
-2. **Load the craft.** Call the Skill tool with `pts:tdd`. Follow what it says a good test is,
+2. **Load the craft.** Call the Skill tool with `define-the-domain:tdd`. Follow what it says a good test is,
    its anti-patterns, its mocking rules and its seams (agreed in `‹structure›`). You **do not run
    the loop**: no production code, no green phase – writing the scenario tests first is the
    exception `tdd` names.
@@ -96,7 +96,7 @@ Even without a single test written, your last message is the report.
 
 ## Report
 
-Your last message, exactly in this form; `/pts:story-workflow` shows it to the user for review:
+Your last message, exactly in this form; `/define-the-domain:story-workflow` shows it to the user for review:
 
 Example (from a Python backend with a TypeScript UI):
 

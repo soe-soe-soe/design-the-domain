@@ -1,7 +1,7 @@
 {
-  "name": "pts",
-  "version": "0.2.0",
-  "description": "Problem, test and solution space skills for domain-driven development: stories and functional requirements, behaviour-free solution shells, red tests before implementation.",
+  "name": "define-the-domain",
+  "version": "0.4.0",
+  "description": "Problem-space skills for domain-driven development: grill a requirement into user stories and functional requirements with Gherkin scenarios, or derive the model from existing code.",
   "author": {
     "name": "Sören Bock",
     "email": "soeren@ein-bock.de"

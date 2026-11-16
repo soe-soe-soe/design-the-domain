@@ -5,4 +5,4 @@ timeout_seconds: 1500
 allowed_tools: [Read, Glob, Grep, Skill, Write, Edit, Bash, Agent]
 ---
 
-/pts:problem-init fristen
+/define-the-domain:problem-init fristen

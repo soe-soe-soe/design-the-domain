@@ -10,7 +10,7 @@ depend on each other's output in the same session.
 
 ## Decision
 
-`/problem-definition` runs on its own. `/story-workflow` runs the rest in order:
+`/new-requirement` runs on its own. `/story-workflow` runs the rest in order:
 `solution-definition` → `test-definition` → the user reviews the tests → `tdd` → `code-review` →
 close and one commit. Questions it has to ask are reported as lessons for the problem definition.
 

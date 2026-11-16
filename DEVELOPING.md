@@ -1,4 +1,4 @@
-# Developing pts
+# Developing define-the-domain
 
 This file, `evals/`, `refactorings/`, `tools/` and the script tests are for development only.
 They are not part of the published plugin (see Publishing).
@@ -16,7 +16,7 @@ Evals live under `evals/<skill>/<case>/` and run with
 problem space). Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They simulate a
 project with a German problem space and an English solution space (`evals/fixtures/pts.md`):
 case descriptions and graders are English, fixtures and user prompts German. The
-`problem-definition` cases need a project checkout with `.claude/pts.md`: its path in
+`new-requirement` cases need a project checkout with `.claude/pts.md`: its path in
 `evals/.pts-eval-project` (not committed; the runner does not pass the environment to scaffold
 scripts) or in `PTS_EVAL_PROJECT`. They switch the ticket sync off, so no eval creates real
 tickets. The others bring their files.
@@ -37,7 +37,7 @@ The marketplace (`.claude-plugin/marketplace.json` on `main`) points the plugin 
 `dist` of this repository, so projects get exactly that build:
 
 ```json
-{ "name": "pts", "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain", "ref": "dist" } }
+{ "name": "define-the-domain", "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain", "ref": "dist" } }
 ```
 
 Release:

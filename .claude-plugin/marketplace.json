@@ -1,19 +1,19 @@
 {
   "name": "define-the-domain",
-  "description": "Marketplace for the pts plugin: problem, test and solution space skills.",
+  "description": "Marketplace for the define-the-domain plugin.",
   "owner": {
     "name": "Sören Bock",
     "email": "soeren@ein-bock.de"
   },
   "plugins": [
     {
-      "name": "pts",
+      "name": "define-the-domain",
       "source": {
         "source": "github",
         "repo": "soe-soe-soe/define-the-domain",
         "ref": "dist"
       },
-      "description": "Problem, test and solution space skills for domain-driven development."
+      "description": "Problem-space skills for domain-driven development."
     }
   ]
 }

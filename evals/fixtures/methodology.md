@@ -36,7 +36,7 @@ _Code_: `domain-model/problem-space/<subdomain>/subdomain-<name>/`
 **Domain map**:
 The problem-space overview: every subdomain with its type (Core, Supporting, Generic), its status and the business relationships between subdomains. Maintained by hand.
 _Avoid_: context map (that is the solution-space counterpart)
-_Code_: `domain-model/problem-space/domain-map.md`, template `assets/domain-map.md` of `problem-fr-writer`
+_Code_: `domain-model/problem-space/domain-map.md`, template `assets/domain-map.md` of `problem-space-fr`
 
 **Bounded context**:
 The boundary in the solution space within which a model and its names are unambiguous. Its name is the English translation of its subdomain; the subdomain row of the glossary names it and the folders that implement it today.
@@ -122,7 +122,7 @@ _Code_: `backend/domain/<context>/{model,application}/` beside `aggregates/`
 **User story**:
 A business change with its why and its acceptance criteria, born in a grill session. It records what should change, not the current state: once done it stays unchanged, a later change is a new story. It names the functional requirements it changes, with the kind of change and which AC became which scenario. Status flow `draft ⇄ ready → in-progress → done`, each open status `→ cancelled`; done and cancelled are final. A changed `ready` or `in-progress` story falls back to `draft`. The checks per transition stand in the comment of the story template.
 _Avoid_: ticket, requirement (for the story)
-_Code_: `domain-model/problem-space/requirements/US-NNNN-<slug>.md` (done), `requirements/planned/` (draft, ready, in-progress), `requirements/cancelled/`; header fields `Status`, `createdAt`, `doneAt`, `External` (ID in a ticket system); section `## Functional requirements`; template `assets/story.md` of `problem-story-writer`
+_Code_: `domain-model/problem-space/requirements/US-NNNN-<slug>.md` (done), `requirements/planned/` (draft, ready, in-progress), `requirements/cancelled/`; header fields `Status`, `createdAt`, `doneAt`, `External` (ID in a ticket system); section `## Functional requirements`; template `assets/story.md` of `problem-space-story`
 
 **Acceptance criterion (AC)**:
 A testable behaviour of a user story, written as a German Gherkin scenario with exactly one trigger. Its number stays fixed even if it is dropped.
@@ -130,7 +130,7 @@ _Avoid_: test case (the test comes later)
 _Code_: `Szenario: ACn – …` in the story, reference `US-NNNN/ACn`
 
 **Open point**:
-Something a story or an FR cannot decide without an answer: in a story a gap that changes the outcome of an acceptance criterion (problem-story-writer), in a planned FR a contradiction with the existing state (problem-fr-writer); an active FR never carries one. The writers only mark it; `/problem-definition` asks it – FR points in the next round, story points in the closing round – and the user may defer it. One format in stories and FRs: the concerned scenario or AC carries the tag `@open` – an open point under `## Open` concerns it. A new scenario or AC whose outcome hangs on the answer has no Dann; an existing one keeps its Dann until the answer is in, and no other scenario states a contradicting Dann meanwhile. The artefact lists the point under `## Open` as
+Something a story or an FR cannot decide without an answer: in a story a gap that changes the outcome of an acceptance criterion (problem-space-story), in a planned FR a contradiction with the existing state (problem-space-fr); an active FR never carries one. The writers only mark it; `/new-requirement` asks it – FR points in the next round, story points in the closing round – and the user may defer it. One format in stories and FRs: the concerned scenario or AC carries the tag `@open` – an open point under `## Open` concerns it. A new scenario or AC whose outcome hangs on the answer has no Dann; an existing one keeps its Dann until the answer is in, and no other scenario states a contradicting Dann meanwhile. The artefact lists the point under `## Open` as
 `- **<ACn or Sn>** (<source skill>): <Frage, mit „ja“ annehmbar> – Recommendation: <Antwort> – <Field>: <value> · …`
 with the fields `Changes` (story) or `Story`, `Case`, `Type` and, for case glossary, `Glossary` (FR). Question and recommendation are German, labels English.
 _Avoid_: assumption (nothing is guessed)
@@ -139,28 +139,28 @@ _Code_: tag `@open`, section `## Open` in the story or planned FR
 **Functional requirement (FR)**:
 The implemented target state of one business rule or capability (the active FR), assigned to exactly one subdomain and, if it hangs on one, to one business object. Stories change it through a planned FR; only completing the story merges the change in. It keeps no history: which stories changed it follows from the done stories that name it (`requirements.py history`). It contains no code locations: the link to the code is the test.
 _Avoid_: specification, feature
-_Code_: `domain-model/problem-space/<subdomain>/<business-object>/FR-<subdomain>-NNN-<slug>.md` (rules of a value without own business object directly in the subdomain folder), `Status: valid` or `obsolete`, template `assets/functional-requirement.md` of `problem-fr-writer`
+_Code_: `domain-model/problem-space/<subdomain>/<business-object>/FR-<subdomain>-NNN-<slug>.md` (rules of a value without own business object directly in the subdomain folder), `Status: valid` or `obsolete`, template `assets/functional-requirement.md` of `problem-space-fr`
 
 **Planned FR**:
 The changes of a functional requirement not implemented yet, next to the active FR in `planned/`: one file per FR for every story touching it. A line per story names the kind – new (the FR does not exist yet), edit, deletion (the whole FR becomes obsolete) – and whether the rule text changes; below stand only the scenarios a story changes, adds or drops, numbered as in the active FR. `requirements.py complete` merges one story's changes into the active FR when the story is done; `requirements.py cancel` drops them.
 _Avoid_: delta FR (as a file per story)
-_Code_: `<FR folder>/planned/FR-<subdomain>-NNN-<slug>.md` (same file name as the active FR), `Status: planned`, section `## Changes` with `- US-NNNN · Kind: new|edit|deletion · Rule: changed|unchanged`, template `assets/planned-functional-requirement.md` of `problem-fr-writer`
+_Code_: `<FR folder>/planned/FR-<subdomain>-NNN-<slug>.md` (same file name as the active FR), `Status: planned`, section `## Changes` with `- US-NNNN · Kind: new|edit|deletion · Rule: changed|unchanged`, template `assets/planned-functional-requirement.md` of `problem-space-fr`
 
 **Base tag**:
-The story tag an active scenario carried when a planned change to it was written. If the active scenario carries another tag by the time the change is checked or merged, another story changed it in between – a parallel change, which blocks completing the story until `/problem-definition` settled it.
+The story tag an active scenario carried when a planned change to it was written. If the active scenario carries another tag by the time the change is checked or merged, another story changed it in between – a parallel change, which blocks completing the story until `/new-requirement` settled it.
 _Code_: tag `@base-US-NNNN` or `@base-existing` on a changed or dropped scenario of a planned FR; checked by `requirements.py check`
 
 **FR type**:
 Which kind of rule a functional requirement describes, as a DDD term: Invariant, Domain Service, Policy, Command, Query, Anti-Corruption Layer or Data Migration (what becomes of data stored before a change). It decides the building block in the solution space, and through it the test level; the problem space names no test level.
-_Code_: header field `Type:` of the FR, table in `references/fr-types.md` of `problem-fr-writer`
+_Code_: header field `Type:` of the FR, table in `references/fr-types.md` of `problem-space-fr`
 
 **Scenario**:
 A testable behaviour of a functional requirement. Each scenario gets exactly one main test that references it. Numbers are never renumbered or reused. A changed scenario keeps its number in the planned FR, so tests and placements reference the same `FR-…/Sn` before and after the merge. Tags show origin and reliability: in an active FR the story that last changed it or `@existing`, `@unconfirmed` (derived from code), `@obsolete`; in a planned FR additionally `@planned`, `@base-…` and `@open` (an open point concerns it). Every scenario of an active FR counts as implemented, those with `@unconfirmed` as not yet confirmed by the user.
 _Code_: `Szenario: Sn – …` in the FR, reference `FR-<subdomain>-NNN/Sn`, in the test `@pytest.mark.fr("FR-<subdomain>-NNN/Sn")`
 
 **Ripple**:
-A change from a story touches another functional requirement the story says nothing about, e.g. a new overdue threshold and the FR of the problem signals. problem-fr-writer marks it as an open point in the planned FR of the other requirement, as well as when a story changes an implemented scenario without superseding it, or when a scenario contradicts a glossary term.
-_Code_: field `Case: ripple`, `Case: overwrite-implemented` or `Case: glossary` of an open point in the FR; besides these, problem-fr-writer marks `Case: ownership` (which subdomain owns a term or rule), `Case: consistency` (must a rule across two business objects hold at once or may it follow), so boundary questions are settled in the problem space, and `Case: existing-data` (what becomes of data stored before the change)
+A change from a story touches another functional requirement the story says nothing about, e.g. a new overdue threshold and the FR of the problem signals. problem-space-fr marks it as an open point in the planned FR of the other requirement, as well as when a story changes an implemented scenario without superseding it, or when a scenario contradicts a glossary term.
+_Code_: field `Case: ripple`, `Case: overwrite-implemented` or `Case: glossary` of an open point in the FR; besides these, problem-space-fr marks `Case: ownership` (which subdomain owns a term or rule), `Case: consistency` (must a rule across two business objects hold at once or may it follow), so boundary questions are settled in the problem space, and `Case: existing-data` (what becomes of data stored before the change)
 
 ## Tests
 
@@ -195,4 +195,4 @@ _Code_: `frontend/e2e/journeys/<subdomain>/<business-object>.spec.ts`, step tag 
 
 **Provenance line**:
 The last line of every question in a grill session: who raised it (Alex, grilling or both), which skill it comes from and, where available, reference and FR type.
-_Code_: format in the skill `problem-definition`, step "Run the rounds"
+_Code_: format in the skill `new-requirement`, step "Run the rounds"

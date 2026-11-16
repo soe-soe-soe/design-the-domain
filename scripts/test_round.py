@@ -36,7 +36,7 @@ Funktionalität: Erinnerung
 
 ## Open
 
-- **AC2** (problem-story-writer): Gibt es eine Sammelmail? – Recommendation: Nein. – Changes: welche Mails Petra erhält
+- **AC2** (problem-space-story): Gibt es eine Sammelmail? – Recommendation: Nein. – Changes: welche Mails Petra erhält
 """
 
 PLANNED = """# FR-fristen-013: Fristerinnerung
@@ -60,7 +60,7 @@ Funktionalität: Fristerinnerung
 
 ## Open
 
-- **S2** (problem-fr-writer): Gilt die Erinnerung auch für abgeleitete Fristen? – Recommendation: Ja. – Story: US-0050 · Case: glossary · Type: Policy · Glossary: fristen.md: Abgeleitete Frist
+- **S2** (problem-space-fr): Gilt die Erinnerung auch für abgeleitete Fristen? – Recommendation: Ja. – Story: US-0050 · Case: glossary · Type: Policy · Glossary: fristen.md: Abgeleitete Frist
 """
 
 
@@ -99,7 +99,7 @@ class RoundTest(unittest.TestCase):
         out = rnd.render({"start": 5, "stories": ["US-0050"], "questions": [self.own()]}, self.cfg)
         self.assertIn("### 📘 US-0050: Erinnerung vor Fristablauf", out)
         self.assertIn("**Q5** - **Abgeleitete Frist sieben Tage vor Fälligkeit**", out)
-        self.assertIn("🗣️ Alex 🧩 problem-fr-writer 📋 FR-fristen-013/S2 📄 fristen.md: Abgeleitete Frist 📐 Policy", out)
+        self.assertIn("🗣️ Alex 🧩 problem-space-fr 📋 FR-fristen-013/S2 📄 fristen.md: Abgeleitete Frist 📐 Policy", out)
         self.assertLess(out.index("US-0050"), out.index("### 🌐 Cross-cutting"))
         self.assertIn("**Q6** - **Absender**", out)
         self.assertNotIn("Sammelmail", out)  # story points wait for the closing round
@@ -108,18 +108,18 @@ class RoundTest(unittest.TestCase):
         q = self.own(title="Abgeleitete Fristen", story="US-0050", same_as="FR-fristen-013/S2")
         out = rnd.render({"start": 1, "stories": ["US-0050"], "questions": [q]}, self.cfg)
         self.assertEqual(out.count("❓"), 1)
-        self.assertIn("🗣️ Alex/grilling 🧩 grilling + problem-fr-writer 📋 FR-fristen-013/S2", out)
+        self.assertIn("🗣️ Alex/grilling 🧩 grilling + problem-space-fr 📋 FR-fristen-013/S2", out)
 
     def test_closing_round_asks_story_points_and_skips_deferred(self):
         out = rnd.render({"start": 9, "stories": ["US-0050"], "closing": True, "deferred": ["FR-fristen-013/S2"], "questions": []}, self.cfg)
         self.assertIn("**Q9** - **Sammelmail**: Gibt es eine Sammelmail?", out)
-        self.assertIn("🗣️ Alex 🧩 problem-story-writer 📘 US-0050/AC2", out)
+        self.assertIn("🗣️ Alex 🧩 problem-space-story 📘 US-0050/AC2", out)
         self.assertNotIn("FR-fristen-013/S2", out)
 
     def test_parallel_change_from_writer(self):
-        q = self.own(title="Parallele Änderung", story="US-0050", source="problem-fr-writer", ref="FR-fristen-009/S6", type="Command")
+        q = self.own(title="Parallele Änderung", story="US-0050", source="problem-space-fr", ref="FR-fristen-009/S6", type="Command")
         out = rnd.render({"start": 1, "stories": ["US-0050"], "deferred": ["FR-fristen-013/S2"], "questions": [q]}, self.cfg)
-        self.assertIn("🗣️ Alex 🧩 problem-fr-writer 📋 FR-fristen-009/S6 📐 Command", out)
+        self.assertIn("🗣️ Alex 🧩 problem-space-fr 📋 FR-fristen-009/S6 📐 Command", out)
 
     def test_provenance_is_the_last_line_of_each_question(self):
         out = rnd.render({"start": 1, "group": False, "stories": [], "questions": [self.own(), self.own()]}, self.cfg)

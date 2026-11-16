@@ -1,15 +1,15 @@
-# pts – problem, test and solution space skills
+# define-the-domain – problem, test and solution space skills
 
 A Claude Code plugin for domain-driven feature work in three spaces:
 
-- **Problem space:** `/pts:problem-definition` grills a requirement into ready user stories and
-  functional requirements (FRs) with Gherkin scenarios; `problem-story-writer` and
-  `problem-fr-writer` write them, `/pts:problem-init` derives the model from existing code.
+- **Problem space:** `/define-the-domain:new-requirement` grills a requirement into ready user stories and
+  functional requirements (FRs) with Gherkin scenarios; `problem-space-story` and
+  `problem-space-fr` write them, `/define-the-domain:problem-init` derives the model from existing code.
 - **Solution space:** `solution-definition` places a story's scenarios into bounded contexts,
-  aggregates and building blocks and builds a shell without behaviour; `/pts:solution-init`
+  aggregates and building blocks and builds a shell without behaviour; `/define-the-domain:solution-init`
   plans the migration of existing code into that structure.
 - **Tests:** `test-definition` writes red scenario, interface, migration and journey tests
-  against the shell; `/pts:story-workflow` runs placement, tests, implementation, review and
+  against the shell; `/define-the-domain:story-workflow` runs placement, tests, implementation, review and
   closing for one story.
 
 ## Setup in a project
@@ -28,7 +28,7 @@ A Claude Code plugin for domain-driven feature work in three spaces:
          "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain" }
        }
      },
-     "enabledPlugins": { "pts@define-the-domain": true }
+     "enabledPlugins": { "define-the-domain@define-the-domain": true }
    }
    ```
 
@@ -42,7 +42,7 @@ check against upstream, stand in [docs/upstream.md](docs/upstream.md).
 ## Requirements and FRs
 
 Stories live in `‹requirements›/` (done), `planned/` (draft, ready, in-progress) and `cancelled/`;
-the status flow stands in [skills/problem-story-writer/assets/story.md](skills/problem-story-writer/assets/story.md).
+the status flow stands in [skills/problem-space-story/assets/story.md](skills/problem-space-story/assets/story.md).
 An active FR is the implemented state; the writers put changes into one planned file per FR in
 `planned/` next to it. [scripts/requirements.py](scripts/requirements.py) (Python 3, standard
 library) checks, completes and cancels stories and prints an FR's history:
@@ -54,7 +54,7 @@ python3 scripts/requirements.py cancel   US-0042
 python3 scripts/requirements.py history  FR-deadlines-003
 ```
 
-[scripts/round.py](scripts/round.py) renders each round of `/pts:problem-definition`: the model
+[scripts/round.py](scripts/round.py) renders each round of `/define-the-domain:new-requirement`: the model
 supplies its own questions, the script adds the writers' open points, numbers, groups and writes
 the provenance lines.
 

@@ -1,10 +1,10 @@
 ---
 name: code-review
-description: "Review the changes since a fixed point along two axes – Standards (does the code follow the project's documented standards, its structure document and test strategy?) and Spec (does it do what the story and its FR scenarios ask?) – in parallel sub-agents, reported side by side. Use from /pts:story-workflow, or when the user wants a branch, a PR or work-in-progress reviewed since a commit."
+description: "Review the changes since a fixed point along two axes – Standards (does the code follow the project's documented standards, its structure document and test strategy?) and Spec (does it do what the story and its FR scenarios ask?) – in parallel sub-agents, reported side by side. Use from /define-the-domain:story-workflow, or when the user wants a branch, a PR or work-in-progress reviewed since a commit."
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/code-review` (MIT, © 2026 Matt Pocock),
-> commit `4ae2317`, adapted for pts: the spec is the story with its FR scenarios, the standards
+> commit `4ae2317`, adapted for define-the-domain: the spec is the story with its FR scenarios, the standards
 > include the structure document and the test strategy. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 **Project config.** Read `.claude/pts.md` in the project root if it exists; a name in angle quotes
@@ -31,7 +31,7 @@ Before going further, confirm the fixed point resolves (`git rev-parse <fixed-po
 
 Look for the originating spec, in this order:
 
-1. **A story** the caller names (`/pts:story-workflow` passes it): the story file under
+1. **A story** the caller names (`/define-the-domain:story-workflow` passes it): the story file under
    `‹requirements›` with its acceptance criteria, plus every FR scenario tagged with it – the
    planned changes in the `planned/` files next to the active FRs. The spec is the story *and*
    those scenarios.

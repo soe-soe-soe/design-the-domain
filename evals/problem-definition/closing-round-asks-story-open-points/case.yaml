@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: closing-round-asks-story-open-points
-expected_outcome: |
-  The grilling has no questions left, but US-0051 still has an open point: the skill asks it in a closing round as Q9 with provenance problem-story-writer and a recommendation instead of closing the session.
-context:
-  scaffold_script: place-files.sh

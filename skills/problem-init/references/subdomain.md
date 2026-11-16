@@ -37,7 +37,7 @@ states.
    description, that becomes a question. You sort existing rows into the matching section.
 
 3. **Cut FRs**, one FR per rule or capability, type by
-   `skills/problem-fr-writer/references/fr-types.md` in the plugin root:
+   `skills/problem-space-fr/references/fr-types.md` in the plugin root:
    - A rule module yields one or more FRs (Invariant, Domain Service, Policy).
    - Plain creating, changing and deleting of a business object yields **one** Command FR per
      business object ("Manage deadline") with scenarios for validations and permissions only,
@@ -47,17 +47,17 @@ states.
      triggering subdomain.
    - A foreign system (Auth0, ALKIS, e-mail) yields an Anti-Corruption Layer FR.
 
-   Layout and template as in `problem-fr-writer`:
+   Layout and template as in `problem-space-fr`:
    `‹problem-space›/<subdomain>/[<business-object>/]<type-folder>/`, each Policy in a process
-   (`skills/problem-fr-writer/assets/process.md` in the plugin root), template
-   `skills/problem-fr-writer/assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
+   (`skills/problem-space-fr/assets/process.md` in the plugin root), template
+   `skills/problem-space-fr/assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
    The `<subdomain>` in an FR ID and file name is the subdomain's folder name in the problem
    space (`‹problem-space-language›`, e.g. `fristen`), never the code name of its bounded context
    (e.g. `deadlines`), even where the two differ.
    FRs contain no code locations.
 
 4. **Write scenarios.** Per test (or parametrised group) one scenario in Gherkin by
-   `skills/problem-story-writer/references/gherkin.md` in the plugin root, phrased on the level of the FR's rule,
+   `skills/problem-space-story/references/gherkin.md` in the plugin root, phrased on the level of the FR's rule,
    with the test's concrete values. Code without a test gets a scenario from the code and is
    listed under "without test" in the report; you write no test for it. Every scenario carries
    `@existing @unconfirmed`. Write the active FR directly (template without its comment), no

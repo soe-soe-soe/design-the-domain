@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 You derive the problem-space model (`‹problem-space›`, `‹glossaries›`) for code that already exists:
 glossary, business objects and FRs per subdomain, the scenarios from the existing tests, and in
-each of those tests the reference to its scenario. Afterwards `pts:problem-fr-writer` has an existing state
+each of those tests the reference to its scenario. Afterwards `define-the-domain:problem-space-fr` has an existing state
 to find contradictions against.
 
 You conduct: each subdomain is handled by a subagent of its own, all at once. You start them,
@@ -25,7 +25,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 1. **Clarify scope.** Read `‹domain-map›` and ask the user with
    AskUserQuestion whether to initialise one subdomain, several or all; for several, let them
-   choose. If the call already names subdomains (`/pts:problem-init deadlines project`), skip the
+   choose. If the call already names subdomains (`/define-the-domain:problem-init deadlines project`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
 2. **Start subagents**, all in **one** message so they run in parallel, each with the model
@@ -49,7 +49,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 4. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios,
    tests with reference, scenarios without test. Below that the subagents' questions in the
-   question format of `/pts:problem-definition` (provenance line with `🧩 problem-init`), grouped per subdomain.
+   question format of `/define-the-domain:new-requirement` (provenance line with `🧩 problem-init`), grouped per subdomain.
    Finally the question which subdomains they confirm as a block.
 
 5. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its

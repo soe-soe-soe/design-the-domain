@@ -1,10 +1,10 @@
 ---
 name: domain-modeling
-description: Build and sharpen the project's domain model while designing – challenge terms, invent edge-case scenarios, write glossary rows into the subdomain glossaries and record ADRs. Use from /pts:problem-definition, or when the user discusses the project's terminology, edits a glossary or records an ADR.
+description: Build and sharpen the project's domain model while designing – challenge terms, invent edge-case scenarios, write glossary rows into the subdomain glossaries and record ADRs. Use from /define-the-domain:new-requirement, or when the user discusses the project's terminology, edits a glossary or records an ADR.
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/domain-modeling` (MIT, © 2026 Matt Pocock),
-> commit `4ae2317`, adapted for pts: one glossary per subdomain as a table, the domain map, paths from
+> commit `4ae2317`, adapted for define-the-domain: one glossary per subdomain as a table, the domain map, paths from
 > the project config. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 # Domain Modeling
@@ -66,7 +66,7 @@ Don't batch these up: capture them as they happen. Use the format in
 `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md`; where `‹project-rules›` sets its own glossary
 format, it wins. A new glossary gets its row in `‹glossary-map›` by
 `${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`. Leave the solution-space columns empty when the code name is not decided yet:
-`pts:solution-definition` fills them.
+`define-the-domain:solution-definition` fills them.
 
 The glossary is totally devoid of implementation details beyond the code name in its
 `Identifier` column. Do not treat it as a spec, a scratch pad, or a repository for

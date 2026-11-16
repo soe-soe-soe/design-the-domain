@@ -19,6 +19,10 @@ include=(
   THIRD_PARTY_LICENSES.md
 )
 
+# Skills of the solution space stay in the repository but are not published until it is finished.
+unreleased=(code-review codebase-design solution-definition solution-init tdd test-definition story-workflow)
+unreleased_re="^skills/($(IFS='|'; echo "${unreleased[*]}"))/"
+
 cd "$(git rev-parse --show-toplevel)"
 source_commit="$(git rev-parse --verify "$ref^{commit}")"
 
@@ -30,8 +34,14 @@ existing=()
 for path in "${include[@]}"; do
   if git cat-file -e "$source_commit:$path" 2>/dev/null; then existing+=("$path"); fi
 done
-git ls-tree -r "$source_commit" -- "${existing[@]}" | awk -F'\t' '$2 !~ /\/decision-records\//' | GIT_INDEX_FILE="$index" git update-index --index-info
+git ls-tree -r "$source_commit" -- "${existing[@]}" | awk -F'\t' -v re="$unreleased_re" '$2 !~ /\/decision-records\// && $2 !~ re' | GIT_INDEX_FILE="$index" git update-index --index-info
 tree="$(GIT_INDEX_FILE="$index" git write-tree)"
+
+# Warn about published files that still point to an unreleased skill.
+names="$(IFS='|'; echo "${unreleased[*]}")"
+git ls-tree -r --name-only "$tree" | while read -r f; do
+  git show "$tree:$f" | grep -nE "define-the-domain:($names)\b" | sed "s#^#warning: $f: #" || true
+done
 
 parent="$(git rev-parse -q --verify "refs/heads/$branch" || true)"
 if [ -n "$parent" ] && [ "$(git rev-parse "$parent^{tree}")" = "$tree" ]; then

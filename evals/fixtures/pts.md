@@ -1,4 +1,4 @@
-# pts project config – eval fixture
+# define-the-domain project config – eval fixture
 
 Project config the eval cases place at `.claude/pts.md`; it describes the sample project their
 files come from (a Python backend with a TypeScript UI). Paths are relative to the project root.
@@ -23,7 +23,7 @@ Methodology (template headings, field labels, tags, IDs, status values) stays En
 | `domain-map` | Subdomains, types, business relationships | `domain-model/problem-space/domain-map.md` |
 | `glossaries` | One glossary per subdomain | `domain-model/glossaries` |
 | `methodology-glossary` | Methodology terms, among them "Open point" | `domain-model/glossaries/_methodology.md` |
-| `glossary-map` | Index of the glossaries, read by `domain-modeling` and problem-definition | `GLOSSARY-MAP.md` |
+| `glossary-map` | Index of the glossaries, read by `domain-modeling` and new-requirement | `GLOSSARY-MAP.md` |
 
 ## Solution space
 
@@ -97,6 +97,6 @@ can be set per project.
 
 | Key | Meaning | Value |
 |---|---|---|
-| `model-ground` | Subagent reading the ground in /pts:problem-definition (reads and summarises) | `inherit` |
-| `model-writer` | Subagent running problem-story-writer and problem-fr-writer (finds open points) | `inherit` |
-| `model-init` | Subagents of /pts:problem-init and /pts:solution-init, one per subdomain or context | `inherit` |
+| `model-ground` | Subagent reading the ground in /define-the-domain:new-requirement (reads and summarises) | `inherit` |
+| `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
+| `model-init` | Subagents of /define-the-domain:problem-init and /define-the-domain:solution-init, one per subdomain or context | `inherit` |

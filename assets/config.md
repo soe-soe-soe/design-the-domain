@@ -33,7 +33,7 @@ writes or says something names the key it follows.
 | `domain-map` | Subdomains, types, business relationships | `domain-model/problem-space/domain-map.md` |
 | `glossaries` | One glossary per subdomain | `domain-model/glossaries` |
 | `methodology-glossary` | Methodology terms, among them "Open point" | `domain-model/glossaries/_methodology.md` |
-| `glossary-map` | Index of the glossaries, read by `domain-modeling` and new-requirement | `GLOSSARY-MAP.md` |
+| `glossary-map` | Index of the glossaries, read by `domain-modeling` and requirement | `GLOSSARY-MAP.md` |
 
 ## Solution space
 
@@ -77,7 +77,7 @@ Run from the project root; a value may change directory first.
 ## Ticket system
 
 Optional. The repository stays the source of truth: stories are written one way to the ticket
-system by `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md` (fields, description, when), never read
+system by `${CLAUDE_PLUGIN_ROOT}/assets/ticket.md` (fields, description, when), never read
 back. The ticket's ID goes into the story header as `External`.
 
 | Key | Meaning | Value |
@@ -107,6 +107,6 @@ can be set per project.
 
 | Key | Meaning | Value |
 |---|---|---|
-| `model-ground` | Subagent reading the ground in /define-the-domain:new-requirement (reads and summarises) | `inherit` |
+| `model-ground` | Subagent reading the ground in /define-the-domain:requirement (reads and summarises) | `inherit` |
 | `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
 | `model-init` | Subagents of /define-the-domain:problem-init and /define-the-domain:solution-init, one per subdomain or context | `inherit` |

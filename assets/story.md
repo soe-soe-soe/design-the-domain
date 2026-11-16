@@ -8,7 +8,7 @@ Status flow – this comment is guidance for the skills and is not copied into a
 | Transition | Who | Valid only if |
 |---|---|---|
 | (new) → draft | problem-space-story | next free number; file in ‹requirements›/planned/; createdAt set |
-| draft → ready | /define-the-domain:new-requirement at close | no entry under ## Open, no AC tagged @open, every AC has a Then step or is dropped, every AC maps to a scenario under ## Functional requirements, `requirements.py check` passes |
+| draft → ready | /define-the-domain:requirement at close | no entry under ## Open, no AC tagged @open, every AC has a Then step or is dropped, every AC maps to a scenario under ## Functional requirements, `requirements.py check` passes |
 | ready → draft | problem-space-story | the story changes (any edit of a ready story) |
 | ready → in-progress | /define-the-domain:story-workflow step 1 | `requirements.py check` passes |
 | in-progress → draft | problem-space-story | the story changes; story-workflow must run again, its shell and tests are reworked |
@@ -18,7 +18,7 @@ Status flow – this comment is guidance for the skills and is not copied into a
 done and cancelled are final: the file is never edited again. A change to a done story is a new
 story that names it under `Supersedes in part`.
 
-Header fields: `External` only with a ticket system (`‹ticket-system›`, synced by templates/ticket.md of the plugin), `doneAt` only once done,
+Header fields: `External` only with a ticket system (`‹ticket-system›`, synced by assets/ticket.md of the plugin), `doneAt` only once done,
 `Supersedes in part` only when there is something to enter.
 
 Language: headings and field labels stay English (methodology); title, role sentence, texts,

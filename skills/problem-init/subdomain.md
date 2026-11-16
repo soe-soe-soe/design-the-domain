@@ -28,8 +28,8 @@ states.
    joined by hyphens (`manual-deadline`).
 
 2. **Extend the glossary** (`‹glossaries›/<subdomain>.md`, format by
-   `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md` unless `‹project-rules›` sets its own; a new glossary
-   gets its row in `‹glossary-map›` by `${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`):
+   `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md` unless `‹project-rules›` sets its own; a new glossary
+   gets its row in `‹glossary-map›` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary-map.md`):
    one section per business object with its row `Business Object | … | Aggregate Root`. Add
    rows for terms your FRs need that are missing: entities, values, domain events, commands,
    queries, derived concepts. The description comes from code, docstrings and tests; what you
@@ -37,7 +37,7 @@ states.
    description, that becomes a question. You sort existing rows into the matching section.
 
 3. **Cut FRs**, one FR per rule or capability, type by
-   `skills/problem-space-fr/references/fr-types.md` in the plugin root:
+   `assets/functional-requirement-types.md` in the plugin root:
    - A rule module yields one or more FRs (Invariant, Domain Service, Policy).
    - Plain creating, changing and deleting of a business object yields **one** Command FR per
      business object ("Manage deadline") with scenarios for validations and permissions only,
@@ -49,15 +49,15 @@ states.
 
    Layout and template as in `problem-space-fr`:
    `‹problem-space›/<subdomain>/[<business-object>/]<type-folder>/`, each Policy in a process
-   (`skills/problem-space-fr/assets/process.md` in the plugin root), template
-   `skills/problem-space-fr/assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
+   (`assets/process.md` in the plugin root), template
+   `assets/functional-requirement.md` in the plugin root, numbers per subdomain from `001`.
    The `<subdomain>` in an FR ID and file name is the subdomain's folder name in the problem
    space (`‹problem-space-language›`, e.g. `fristen`), never the code name of its bounded context
    (e.g. `deadlines`), even where the two differ.
    FRs contain no code locations.
 
 4. **Write scenarios.** Per test (or parametrised group) one scenario in Gherkin by
-   `skills/problem-space-story/references/gherkin.md` in the plugin root, phrased on the level of the FR's rule,
+   `assets/acceptance-criteria.md` in the plugin root, phrased on the level of the FR's rule,
    with the test's concrete values. Code without a test gets a scenario from the code and is
    listed under "without test" in the report; you write no test for it. Every scenario carries
    `@existing @unconfirmed`. Write the active FR directly (template without its comment), no

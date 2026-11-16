@@ -1,4 +1,6 @@
-# Gherkin for acceptance criteria
+# Acceptance criteria
+
+Acceptance criteria and the scenarios of FRs are written in Gherkin; this file says how.
 
 Acceptance criteria are business text in `‹problem-space-language›`. Each scenario later becomes
 exactly one test, so each must be testable on its own.

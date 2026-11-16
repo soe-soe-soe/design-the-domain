@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Renders one round of /define-the-domain:new-requirement – deterministic numbering, grouping and provenance.
+"""Renders one round of /define-the-domain:requirement – deterministic numbering, grouping and provenance.
 
-  round.py <round.json>      (or the JSON on stdin)
+  interview-round.py <round.json>      (or the JSON on stdin)
 
 The model decides the content of its own questions; this script adds the open points of the
 writers from the files, numbers every question, groups them by story and writes each provenance
@@ -44,7 +44,7 @@ TITLE_RE = re.compile(r"^\s*(?:Szenariogrundriss|Szenario|Scenario Outline|Scena
 
 
 def icon(ref: str) -> str:
-    """The reference with the icon of its artifact type (templates/output-format.md)."""
+    """The reference with the icon of its artifact type (assets/output-format.md)."""
     if not ref or not ref[0].isascii():
         return ref  # already carries an icon
     if ref.startswith("FR-"):

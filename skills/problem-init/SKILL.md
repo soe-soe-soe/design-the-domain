@@ -19,7 +19,7 @@ project config states.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 ## Steps
 
@@ -33,7 +33,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
    with this brief:
 
    > Initialise the subdomain `<subdomain>` (folders: `<from the subdomain row of its
-   > glossary>`) by `${CLAUDE_SKILL_DIR}/references/subdomain.md`
+   > glossary>`) by `${CLAUDE_SKILL_DIR}/subdomain.md`
    > (plugin root: `${CLAUDE_PLUGIN_ROOT}`, project config: `.claude/pts.md`). Write only in
    > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md`, its row in `‹glossary-map›` and in
    > tests of your folders under `‹backend-tests›`. Your last message is the
@@ -49,7 +49,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 4. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios,
    tests with reference, scenarios without test. Below that the subagents' questions in the
-   question format of `/define-the-domain:new-requirement` (provenance line with `🧩 problem-init`), grouped per subdomain.
+   question format of `/define-the-domain:requirement` (provenance line with `🧩 problem-init`), grouped per subdomain.
    Finally the question which subdomains they confirm as a block.
 
 5. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its

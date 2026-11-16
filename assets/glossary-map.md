@@ -1,10 +1,10 @@
 <!--
 Index of the glossaries – ‹glossary-map›, by default GLOSSARY-MAP.md in the project root; `define-the-domain:domain-modeling`
-and new-requirement read it from that key. Links are relative to the project root.
+and requirement read it from that key. Links are relative to the project root.
 A glossary-map format in ‹project-rules› overrides this template.
 
 - One row per glossary file, the methodology glossary first. Whoever creates a glossary
-  (problem-init, the grilling of new-requirement) adds its row in the same change.
+  (problem-init, the grilling of requirement) adds its row in the same change.
 - Subdomain and its type stand in ‹domain-map›; this map only says where to look up a term.
 Texts in ‹problem-space-language›, column headings English (methodology).
 This comment is not copied into the map.

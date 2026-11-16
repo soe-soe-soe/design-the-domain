@@ -1,6 +1,6 @@
 ---
 name: problem-space-story
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /new-requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Problem-Story-Writer
@@ -10,11 +10,11 @@ criteria (AC) in Gherkin. A story describes a **change**; the living target stat
 the functional requirements (skill `define-the-domain:problem-space-fr`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/define-the-domain:new-requirement` reads the open points and decides when to ask them.
+`/define-the-domain:requirement` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 Language: story content (title, role sentence, why, scenarios with their Gherkin keywords, open
 questions) is in `‹problem-space-language›`; methodology (headings, tags, status values, IDs, field
@@ -30,7 +30,7 @@ labels) is English as the project config states.
 ```
 
 The status flow and what each transition requires stand in the comment at the top of the
-template [assets/story.md](assets/story.md); read it.
+template [story.md](../../assets/story.md); read it.
 
 ## Steps
 
@@ -59,8 +59,8 @@ template [assets/story.md](assets/story.md); read it.
    problems on an evidence count, when the input defined the problem signal through deadlines).
    Gaps that change no Then step you write in the obvious reading without recording them.
 
-4. **Write.** The story by the template [assets/story.md](assets/story.md) (without its
-   comment), the AC by [references/gherkin.md](references/gherkin.md). A Then step stands only where
+4. **Write.** The story by the template [story.md](../../assets/story.md) (without its
+   comment), the AC by [assets/acceptance-criteria.md](../../assets/acceptance-criteria.md). A Then step stands only where
    the outcome is decided; an invented outcome is a guess.
 
 5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in
@@ -76,7 +76,7 @@ template [assets/story.md](assets/story.md); read it.
 You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
-`/define-the-domain:new-requirement` sets `ready` when the session closes, the implementation workflow sets
+`/define-the-domain:requirement` sets `ready` when the session closes, the implementation workflow sets
 `in-progress`, `requirements.py complete` sets `done`, `requirements.py cancel` sets `cancelled`.
 
 ## Story file

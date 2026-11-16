@@ -1,6 +1,6 @@
 ---
 name: domain-modeling
-description: Build and sharpen the project's domain model while designing – challenge terms, invent edge-case scenarios, write glossary rows into the subdomain glossaries and record ADRs. Use from /define-the-domain:new-requirement, or when the user discusses the project's terminology, edits a glossary or records an ADR.
+description: Build and sharpen the project's domain model while designing – challenge terms, invent edge-case scenarios, write glossary rows into the subdomain glossaries and record ADRs. Use from /define-the-domain:requirement, or when the user discusses the project's terminology, edits a glossary or records an ADR.
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/domain-modeling` (MIT, © 2026 Matt Pocock),
@@ -17,7 +17,7 @@ model, not just consuming it.)
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹glossaries›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 ## File structure
 
@@ -25,7 +25,7 @@ template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 ‹glossary-map›              index: the glossaries, the domain map, the context map
 ‹domain-map›                subdomains, their types and business relationships
 ‹glossaries›/
-  <subdomain>.md            one glossary per subdomain, a table (templates/glossary.md)
+  <subdomain>.md            one glossary per subdomain, a table (assets/glossary.md)
   _methodology.md           methodology terms (‹methodology-glossary›), block format
 ‹adr›/                      architecture decisions, numbered as the folder already numbers them
 ```
@@ -63,9 +63,9 @@ cancellation is possible. Which is right?"
 
 When a term is resolved, add or change its row in `‹glossaries›/<subdomain>.md` right there.
 Don't batch these up: capture them as they happen. Use the format in
-`${CLAUDE_PLUGIN_ROOT}/templates/glossary.md`; where `‹project-rules›` sets its own glossary
+`${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`; where `‹project-rules›` sets its own glossary
 format, it wins. A new glossary gets its row in `‹glossary-map›` by
-`${CLAUDE_PLUGIN_ROOT}/templates/glossary-map.md`. Leave the solution-space columns empty when the code name is not decided yet:
+`${CLAUDE_PLUGIN_ROOT}/assets/glossary-map.md`. Leave the solution-space columns empty when the code name is not decided yet:
 `define-the-domain:solution-definition` fills them.
 
 The glossary is totally devoid of implementation details beyond the code name in its

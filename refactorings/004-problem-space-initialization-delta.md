@@ -1,6 +1,6 @@
 # Refactoring 004: problem-space-initialization describes only its delta
 
-Status: Implemented (evals not green yet) · Date: 2026-11-16 · Skills: problem-space-initialization, problem-space-fr,
+Status: Implemented · Date: 2026-11-16 · Skills: problem-space-initialization, problem-space-fr,
 requirement, domain-modeling · Script: requirements.py, interview-round.py
 
 ## Goal
@@ -99,7 +99,13 @@ Global index: `GLOSSARY-MAP.md` (`‹glossary-map›`) and `domain-map.md` both 
 
 Steps 1–11 are in the repository: next-fr, Command granularity and folder naming in the core, the
 ground named in `requirement`, glossary map and its key removed, `interview-round.py` groups by
-`headings`, init as one `SKILL.md`, eval cases adjusted. Left: run the evals several times.
+`headings`, init as one `SKILL.md`, eval cases adjusted.
+
+Eval runs (2026-11-16, 2–3 runs per case): `confirm-keeps-open-question` and `one-subdomain-from-code`
+100 %; `numbering-continues` and `two-subdomains-reconciled` about 2 of 3 runs fully green. Seen
+variation: the subagents sometimes start one after the other instead of in one message, and the
+reconciliation of a shared policy sometimes leaves two FRs. Left: look at these two once more and
+run the whole suite of the plugin.
 
 ## Decided
 

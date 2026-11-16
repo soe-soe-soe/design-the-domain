@@ -10,12 +10,11 @@ set -euo pipefail
 ref="${1:-HEAD}"
 branch="dist"
 include=(
-  .claude-plugin
+  .claude-plugin/plugin.json
   skills
   templates
   scripts/requirements.py
   scripts/round.py
-  README.md
   LICENSE
   THIRD_PARTY_LICENSES.md
 )
@@ -31,7 +30,7 @@ existing=()
 for path in "${include[@]}"; do
   if git cat-file -e "$source_commit:$path" 2>/dev/null; then existing+=("$path"); fi
 done
-git ls-tree -r "$source_commit" -- "${existing[@]}" | GIT_INDEX_FILE="$index" git update-index --index-info
+git ls-tree -r "$source_commit" -- "${existing[@]}" | awk -F'\t' '$2 !~ /\/decision-records\//' | GIT_INDEX_FILE="$index" git update-index --index-info
 tree="$(GIT_INDEX_FILE="$index" git write-tree)"
 
 parent="$(git rev-parse -q --verify "refs/heads/$branch" || true)"

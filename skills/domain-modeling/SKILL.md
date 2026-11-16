@@ -5,7 +5,7 @@ description: Build and sharpen the project's domain model while designing – ch
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/domain-modeling` (MIT, © 2026 Matt Pocock),
 > commit `4ae2317`, adapted for pts: one glossary per subdomain as a table, the domain map, paths from
-> the project config. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md`.
+> the project config. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 # Domain Modeling
 

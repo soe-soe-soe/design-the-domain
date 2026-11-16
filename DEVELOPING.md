@@ -28,18 +28,21 @@ separately.
 ## Publishing
 
 `tools/build-dist.sh [<ref>]` builds the local branch `dist` from a ref (default `HEAD`). It holds
-only the allowlist in the script: `.claude-plugin/`, `skills/`, `templates/`,
-`scripts/requirements.py`, `scripts/round.py`, `README.md`, `LICENSE` and `THIRD_PARTY_LICENSES.md`. Each run adds one commit, so `dist` keeps a
-history of the releases.
+only what the plugin needs to run: `.claude-plugin/plugin.json`, `skills/` without their
+`decision-records/`, `templates/`, `scripts/requirements.py`, `scripts/round.py`, `LICENSE` and
+`THIRD_PARTY_LICENSES.md`. No evals, refactorings, docs or development tooling. Each run adds one
+commit, so `dist` keeps a history of the releases.
 
-1. Bump `version` in `.claude-plugin/plugin.json` on `main`.
-2. `tools/build-dist.sh main` and `git push origin dist`.
-3. Once the plugin is public: point the plugin entry in `.claude-plugin/marketplace.json` at the
-   distribution branch instead of the repository root:
+The marketplace (`.claude-plugin/marketplace.json` on `main`) points the plugin entry at the branch
+`dist` of this repository, so projects get exactly that build:
 
-   ```json
-   { "name": "pts", "source": { "source": "github", "repo": "soe-soe-soe/problem-test-solution-skills", "ref": "dist" } }
-   ```
+```json
+{ "name": "pts", "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain", "ref": "dist" } }
+```
 
-   Until then the entry stays `"source": "./"`, so projects using the plugin get `main` directly
-   without a build step.
+Release:
+
+1. Bump `version` in `.claude-plugin/plugin.json` on `main` (an unchanged version can keep an old
+   copy in the plugin cache).
+2. `tools/build-dist.sh main`, then `git push origin main dist`.
+3. In a project: update the marketplace and the plugin (`/plugin`), then `/reload-plugins`.

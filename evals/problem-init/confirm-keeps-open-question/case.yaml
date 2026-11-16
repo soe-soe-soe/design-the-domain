@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: confirm-keeps-open-question
+expected_outcome: |
+  problem-init for fristen with the confirmation given up front: @unconfirmed goes from every scenario except those the open question about the zero-day lead time for kind 'intern' concerns; @existing stays everywhere. The run does not ask again which subdomains the user confirms, and the question stays open in the report.
+context:
+  scaffold_script: place-files.sh

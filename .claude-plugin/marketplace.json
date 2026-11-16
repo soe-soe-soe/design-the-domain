@@ -1,5 +1,5 @@
 {
-  "name": "problem-test-solution-skills",
+  "name": "define-the-domain",
   "description": "Marketplace for the pts plugin: problem, test and solution space skills.",
   "owner": {
     "name": "Sören Bock",
@@ -8,7 +8,11 @@
   "plugins": [
     {
       "name": "pts",
-      "source": "./",
+      "source": {
+        "source": "github",
+        "repo": "soe-soe-soe/define-the-domain",
+        "ref": "dist"
+      },
       "description": "Problem, test and solution space skills for domain-driven development."
     }
   ]

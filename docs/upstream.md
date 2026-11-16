@@ -30,7 +30,7 @@ Runs once a week (a scheduled task, wherever the user keeps it) with this brief:
 > `skills/engineering/tdd`, `skills/engineering/code-review` or
 > `skills/engineering/codebase-design`, or add a skill that overlaps a step of the pts workflow.
 > For each relevant change, compare it with the pts skill named in *Taken over* of
-> `docs/upstream.md` in `soe-soe-soe/problem-test-solution-skills` and report: what changed
+> `docs/upstream.md` in `soe-soe-soe/define-the-domain` and report: what changed
 > upstream, whether pts already covers it, contradicts it on purpose (the column *Changed for
 > pts*), or should take it over – with a recommendation. Change nothing. Report "no upstream
 > changes" when there are none.

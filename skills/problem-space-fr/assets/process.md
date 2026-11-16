@@ -5,7 +5,7 @@ Every Policy FR names its process in its header; a policy of another subdomain l
 
 - Trigger: the Command FR that starts the chain, or a schedule (cron) with its time.
 - Steps: in order, one line per FR: the trigger, then each policy with what it reacts to and what
-  it sets off. problem-fr-writer adds a step when it writes the policy (planned or active) and
+  it sets off. problem-space-fr adds a step when it writes the policy (planned or active) and
   removes it when the policy is deleted; the FR files carry the status.
 - No rules and no scenarios here: they stand in the FRs.
 This comment is not copied into a process file.

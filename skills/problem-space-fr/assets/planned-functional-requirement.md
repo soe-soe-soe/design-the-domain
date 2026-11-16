@@ -50,4 +50,4 @@ Feature: <rule or capability>
 
 ## Open
 
-- **Sn** (problem-fr-writer): <question, accepted by "yes"> – Recommendation: <answer> – Story: US-NNNN · Case: <ripple | overwrite-implemented | glossary | ownership | consistency | existing-data> · Type: <FR type>
+- **Sn** (problem-space-fr): <question, accepted by "yes"> – Recommendation: <answer> – Story: US-NNNN · Case: <ripple | overwrite-implemented | glossary | ownership | consistency | existing-data> · Type: <FR type>

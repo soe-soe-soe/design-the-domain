@@ -34,6 +34,6 @@ one, and is created with its first FR.
   Command or a schedule) through the policies it sets off. The process file stands in the same
   `policies/` folder (`assets/process.md`).
 - **Out of scope:** non-functional requirements (performance, availability, security, audit)
-  and UI/UX (layout, wording, interaction) get no FR; pts does not model them.
+  and UI/UX (layout, wording, interaction) get no FR; define-the-domain does not model them.
 - **One FR, one rule.** Two rules that can change independently are two FRs, even if one
   story touches both.

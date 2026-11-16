@@ -1,6 +1,6 @@
 ---
-name: problem-fr-writer
-description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /problem-definition after problem-story-writer, or when the user wants stories "taken into FRs" or the FR set reconciled.
+name: problem-space-fr
+description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /new-requirement after problem-space-story, or when the user wants stories "taken into FRs" or the FR set reconciled.
 ---
 
 # Problem-FR-Writer
@@ -12,7 +12,7 @@ merged into it only when the story is done – and look for **contradictions wit
 state** the conversation cannot see.
 
 You write what is decided and mark what is still open, in the FR itself. You ask nothing:
-`/pts:problem-definition` reads the open points and decides when to ask them.
+`/define-the-domain:new-requirement` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -92,7 +92,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    A difference to the code is no open point: it is the delta to be implemented. Contradictions
    with ADRs the grilling asks itself. A planned file that already holds a change of **another
    story** to the same scenario is no open point of yours either: report it under `Parallel`,
-   and `/pts:problem-definition` takes it into the interview.
+   and `/define-the-domain:new-requirement` takes it into the interview.
 
 4. **Write.** For each AC, into the planned file of its FR by the template
    [assets/planned-functional-requirement.md](assets/planned-functional-requirement.md),
@@ -124,7 +124,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    scenario for a contradicting AC until the answer is in; otherwise the new scenario, without
    Then step while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that planned file, in
    the format of the term "Open point" in `‹methodology-glossary›`, with source
-   `problem-fr-writer` and the fields `Story`, `Case`, `Type`, and for **glossary**
+   `problem-space-fr` and the fields `Story`, `Case`, `Type`, and for **glossary**
    `Glossary` (glossary and term, e.g. `deadlines.md: problem`).
 
 6. **Resolve what is answered.** If a story now answers an open point (a later round decided
@@ -156,7 +156,7 @@ The FR header knows `Status: valid` or `Status: obsolete` for an active FR and
 
 Your last message is the report, exactly in this form and nothing else – no notes, assumptions or
 explanations before or after it: what is open stands in the files. It names what changed; `Sn open` marks a
-scenario that got a new open point, so `/pts:problem-definition` knows which FRs to read – the point itself
+scenario that got a new open point, so `/define-the-domain:new-requirement` knows which FRs to read – the point itself
 stands only in the FR:
 
 ```

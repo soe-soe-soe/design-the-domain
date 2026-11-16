@@ -7,11 +7,11 @@ Status flow – this comment is guidance for the skills and is not copied into a
 
 | Transition | Who | Valid only if |
 |---|---|---|
-| (new) → draft | problem-story-writer | next free number; file in ‹requirements›/planned/; createdAt set |
-| draft → ready | /pts:problem-definition at close | no entry under ## Open, no AC tagged @open, every AC has a Then step or is dropped, every AC maps to a scenario under ## Functional requirements, `requirements.py check` passes |
-| ready → draft | problem-story-writer | the story changes (any edit of a ready story) |
-| ready → in-progress | /pts:story-workflow step 1 | `requirements.py check` passes |
-| in-progress → draft | problem-story-writer | the story changes; story-workflow must run again, its shell and tests are reworked |
+| (new) → draft | problem-space-story | next free number; file in ‹requirements›/planned/; createdAt set |
+| draft → ready | /define-the-domain:new-requirement at close | no entry under ## Open, no AC tagged @open, every AC has a Then step or is dropped, every AC maps to a scenario under ## Functional requirements, `requirements.py check` passes |
+| ready → draft | problem-space-story | the story changes (any edit of a ready story) |
+| ready → in-progress | /define-the-domain:story-workflow step 1 | `requirements.py check` passes |
+| in-progress → draft | problem-space-story | the story changes; story-workflow must run again, its shell and tests are reworked |
 | in-progress → done | `requirements.py complete` (story-workflow step 7) | `requirements.py check` passes; merges the planned FR changes, sets doneAt, moves the file to ‹requirements›/ |
 | draft, ready, in-progress → cancelled | `requirements.py cancel`, on the user's decision | drops the planned FR changes, moves the file to ‹requirements›/cancelled/ |
 
@@ -58,4 +58,4 @@ Feature: <title>
 
 ## Open
 
-- **ACn** (problem-story-writer): <question, accepted by "yes"> – Recommendation: <answer> – Changes: <which Then>
+- **ACn** (problem-space-story): <question, accepted by "yes"> – Recommendation: <answer> – Changes: <which Then>

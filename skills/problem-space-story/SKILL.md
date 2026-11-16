@@ -1,16 +1,16 @@
 ---
-name: problem-story-writer
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /problem-definition after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+name: problem-space-story
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /new-requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # Problem-Story-Writer
 
 You package business decisions into **stories**: short, with a why, followed by acceptance
 criteria (AC) in Gherkin. A story describes a **change**; the living target state is kept by
-the functional requirements (skill `pts:problem-fr-writer`).
+the functional requirements (skill `define-the-domain:problem-space-fr`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/pts:problem-definition` reads the open points and decides when to ask them.
+`/define-the-domain:new-requirement` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -68,7 +68,7 @@ template [assets/story.md](assets/story.md); read it.
    open has no Then step, or is left out until decided. Open is any part of the outcome the answer
    could change – also how many, when or to whom; then the AC has no Then step at all, never a
    provisional one. Each open point gets one entry under
-   `## Open`, in the format of that term, with source `problem-story-writer` and the field `Changes`.
+   `## Open`, in the format of that term, with source `problem-space-story` and the field `Changes`.
 
 6. **Resolve what is answered.** If the input answers an open point, take the answer into the
    AC, remove `@open` and the entry under `## Open`.
@@ -76,7 +76,7 @@ template [assets/story.md](assets/story.md); read it.
 You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
-`/pts:problem-definition` sets `ready` when the session closes, `/pts:story-workflow` sets
+`/define-the-domain:new-requirement` sets `ready` when the session closes, the implementation workflow sets
 `in-progress`, `requirements.py complete` sets `done`, `requirements.py cancel` sets `cancelled`.
 
 ## Story file
@@ -88,7 +88,7 @@ You are done when every decision of the input stands in an AC or is marked open.
   not yours – leave them out of a new story.
 - The role sentence (`As a … I want …`, in `‹problem-space-language›`) has no "so that": the why
   has its own section.
-- `## Functional requirements` belongs to `pts:problem-fr-writer`: leave it out of a new story
+- `## Functional requirements` belongs to `define-the-domain:problem-space-fr`: leave it out of a new story
   and do not change it.
 - `Supersedes in part` and `## Open` are omitted when there is nothing to enter.
 - AC numbers are fixed: a dropped AC stays as `Scenario: AC2 – dropped` (keyword and word in

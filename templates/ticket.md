@@ -1,6 +1,6 @@
 # Ticket template
 
-Shared by `/pts:problem-definition` and `/pts:story-workflow` when `‹ticket-system›` is not
+Shared by `/define-the-domain:new-requirement` and `/define-the-domain:story-workflow` when `‹ticket-system›` is not
 `none`; not a skill itself. Values in angle quotes are keys of the project config
 `.claude/pts.md`. The ticket system is reached through the project's connector for it (e.g. the
 Linear MCP server).
@@ -21,10 +21,10 @@ Linear MCP server).
 
 | Moment | Who | Sync |
 |---|---|---|
-| Session closes | `/pts:problem-definition` step 4 | every story of the session: create without `External`, update with |
-| Story cancelled | `/pts:problem-definition` after `requirements.py cancel` | the story, status cancelled, link into `cancelled/` |
-| Implementation starts | `/pts:story-workflow` step 1 | the story, status in-progress |
-| Story done | `/pts:story-workflow` step 7, after `requirements.py complete` | the story, status done, link into `‹requirements›/` |
+| Session closes | `/define-the-domain:new-requirement` step 4 | every story of the session: create without `External`, update with |
+| Story cancelled | `/define-the-domain:new-requirement` after `requirements.py cancel` | the story, status cancelled, link into `cancelled/` |
+| Implementation starts | `/define-the-domain:story-workflow` step 1 | the story, status in-progress |
+| Story done | `/define-the-domain:story-workflow` step 7, after `requirements.py complete` | the story, status done, link into `‹requirements›/` |
 
 ## Fields
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Renders one round of /pts:problem-definition – deterministic numbering, grouping and provenance.
+"""Renders one round of /define-the-domain:new-requirement – deterministic numbering, grouping and provenance.
 
   round.py <round.json>      (or the JSON on stdin)
 

@@ -1,28 +1,27 @@
 ---
-name: problem-definition
-description: Grills a requirement into ready stories – grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-story-writer and problem-fr-writer, their open points asked in the following rounds.
+name: new-requirement
+description: Grills a requirement into ready stories – grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-space-story and problem-space-fr, their open points asked in the following rounds.
 disable-model-invocation: true
 ---
 
-# Problem-Definition
+# New-Requirement
 
 You interview the user about a requirement until its problem space is settled: stories with
 acceptance criteria, FR scenarios, glossary terms. The craft comes from the skills
-`pts:grilling` (the interview) and `pts:domain-modeling` (glossary and ADRs); this skill runs the rounds
+`define-the-domain:grilling` (the interview) and `define-the-domain:domain-modeling` (glossary and ADRs); this skill runs the rounds
 the project's way, lets the writers update the problem space in between and alone decides which
 questions are asked.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
-It is the problem-space counterpart of `/pts:story-workflow`.
 
-Called as `/pts:problem-definition <requirement>`. Everything you say to the user is in
+Called as `/define-the-domain:new-requirement <requirement>`. Everything you say to the user is in
 `‹problem-space-language›`.
 
 ## Open points
 
-The writers (`pts:problem-story-writer`, `pts:problem-fr-writer`) ask nothing; they mark what is open where it belongs. A
+The writers (`define-the-domain:problem-space-story`, `define-the-domain:problem-space-fr`) ask nothing; they mark what is open where it belongs. A
 scenario or AC with an open point carries the tag `@open`, and the story or FR lists the point
 under `## Open`, in the format of the term "Open point" in
 `‹methodology-glossary›`: reference, source skill, question, recommendation,
@@ -43,8 +42,8 @@ model `‹model-writer›` (leave the model out for `inherit`). The writers put 
 `‹requirements›/planned/` and FR changes into the planned files next to the active FRs; an active
 FR stays untouched until its story is done. Its brief:
 
-> Call the Skill tool with `pts:problem-story-writer` with the answers of this round: <answers> and the requirement that
-> started the session: <requirement>. Then call it with `pts:problem-fr-writer` for the stories its
+> Call the Skill tool with `define-the-domain:problem-space-story` with the answers of this round: <answers> and the requirement that
+> started the session: <requirement>. Then call it with `define-the-domain:problem-space-fr` for the stories its
 > report names. Write nothing yourself; the writers do. Your last message joins both reports,
 > exactly in this form:
 >
@@ -83,8 +82,8 @@ FR stays untouched until its story is done. Its brief:
    `cancelled` stories are final: a change to them is a new story. When a question needs more
    than the report gives, read the file yourself.
 
-2. **Load the craft.** Call the Skill tool with `pts:grilling` and with
-   `pts:domain-modeling`, and follow both. `domain-modeling` writes glossary rows into the
+2. **Load the craft.** Call the Skill tool with `define-the-domain:grilling` and with
+   `define-the-domain:domain-modeling`, and follow both. `domain-modeling` writes glossary rows into the
    subdomain glossaries under `‹glossaries›/` by `${CLAUDE_PLUGIN_ROOT}/templates/glossary.md`
    (unless `‹project-rules›` sets its own format) and a new glossary's row into `‹glossary-map›`.
    This skill decides on top of `grilling` how rounds are grouped, numbered and what each
@@ -129,7 +128,7 @@ FR stays untouched until its story is done. Its brief:
      a story that closes first makes the later one fail `requirements.py check` and come back here;
      **take out** – the overlapping part becomes a story of its own and stays `draft` with the
      point deferred, so this session can close without it.
-     Pass it in `questions` with `source` `problem-fr-writer`, `ref` the scenario and its `story`.
+     Pass it in `questions` with `source` `problem-space-fr`, `ref` the scenario and its `story`.
    - **Deferring.** The user may defer an open point instead of answering it. It stays in its
      story or FR, and you do not ask it again in this session.
    - **Cancelling.** If the user drops a story of the session altogether, run
@@ -141,7 +140,7 @@ FR stays untouched until its story is done. Its brief:
    is answered or deferred, and the user confirms the shared understanding (as `grilling`
    requires). Then, for every story of the session:
    - **Validate draft → ready** by the status flow in the comment of
-     `${CLAUDE_PLUGIN_ROOT}/skills/problem-story-writer/assets/story.md`: no entry under
+     `${CLAUDE_PLUGIN_ROOT}/skills/problem-space-story/assets/story.md`: no entry under
      `## Open`, no AC tagged `@open`, every AC under `## Functional requirements`, and
      `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py check US-0042` exits 0.
    - If it holds, edit its header line to `Status: ready` – the file is the record, saying it is

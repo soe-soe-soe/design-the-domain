@@ -14,7 +14,7 @@ You write what is decided and mark what is still open, in the story itself. You 
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 Language: story content (title, role sentence, why, scenarios with their Gherkin keywords, open
 questions) is in `‹problem-space-language›`; methodology (headings, tags, status values, IDs, field

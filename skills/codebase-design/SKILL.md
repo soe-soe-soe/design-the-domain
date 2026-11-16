@@ -4,7 +4,7 @@ description: Shared vocabulary for designing deep modules. Use when the user wan
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/codebase-design` (MIT, © 2026 Matt Pocock),
-> commit `4ae2317`, unchanged. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md`.
+> commit `4ae2317`, unchanged. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 # Codebase Design
 

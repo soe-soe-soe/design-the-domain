@@ -5,7 +5,7 @@ description: Test-driven development – what a good test is, where tests go, th
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/tdd` (MIT, © 2026 Matt Pocock),
 > commit `4ae2317`, adapted for pts: seams agreed in the project's structure document, scenario
-> tests written before the loop. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md`.
+> tests written before the loop. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 # Test-Driven Development
 

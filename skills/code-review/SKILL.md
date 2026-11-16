@@ -5,7 +5,7 @@ description: "Review the changes since a fixed point along two axes – Standard
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/code-review` (MIT, © 2026 Matt Pocock),
 > commit `4ae2317`, adapted for pts: the spec is the story with its FR scenarios, the standards
-> include the structure document and the test strategy. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md`.
+> include the structure document and the test strategy. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 **Project config.** Read `.claude/pts.md` in the project root if it exists; a name in angle quotes
 (`‹structure›`) is one of its keys.

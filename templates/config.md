@@ -77,7 +77,7 @@ Run from the project root; a value may change directory first.
 ## Ticket system
 
 Optional. The repository stays the source of truth: stories are written one way to the ticket
-system by `${CLAUDE_PLUGIN_ROOT}/references/ticket.md` (fields, description, when), never read
+system by `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md` (fields, description, when), never read
 back. The ticket's ID goes into the story header as `External`.
 
 | Key | Meaning | Value |

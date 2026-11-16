@@ -18,7 +18,7 @@ its own, all at once. Everything you write is in `‹solution-space-language›`
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 ## Steps
 

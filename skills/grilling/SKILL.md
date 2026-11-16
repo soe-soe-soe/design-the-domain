@@ -4,7 +4,7 @@ description: Grill the user relentlessly about a plan, decision, or idea. Use wh
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/productivity/grilling` (MIT, © 2026 Matt Pocock),
-> commit `4ae2317`, unchanged. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md`.
+> commit `4ae2317`, unchanged. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
 

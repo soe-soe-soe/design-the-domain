@@ -15,7 +15,7 @@ it, from `pts:test-definition` (`‹test-strategy-adr›`). The craft comes from
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+template `${CLAUDE_PLUGIN_ROOT}/templates/config.md`.
 
 Called as `/pts:story-workflow US-0042`. Code, comments, docstrings and commits are in `‹solution-space-language›`.
 
@@ -33,7 +33,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    back to `Status: draft`, show the report and stop: the conflict goes back to
    `/pts:problem-definition`.
    Otherwise set `Status: in-progress` in the story header and, unless `‹ticket-system›` is
-   `none`, sync the story by `${CLAUDE_PLUGIN_ROOT}/references/ticket.md`. Note the current commit as the review's fixed
+   `none`, sync the story by `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md`. Note the current commit as the review's fixed
    point.
 
 2. **Place.** Call the Skill tool with `pts:solution-definition` for the story. If it reports questions, ask
@@ -68,7 +68,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    tests, implementation and the problem-space changes together by the commit convention in
    `‹project-rules›`; regenerate the context map with `‹context-map-command›` if the project has
    no hook doing it. Unless `‹ticket-system›` is `none`, sync the story by
-   `${CLAUDE_PLUGIN_ROOT}/references/ticket.md` – status done, link to its new path.
+   `${CLAUDE_PLUGIN_ROOT}/templates/ticket.md` – status done, link to its new path.
 
 8. **Report.** What was built, the commit, and for every question you asked in steps 2, 3 and
    5: whether the grilling could have settled it, and which check in `problem-definition` or

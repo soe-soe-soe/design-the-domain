@@ -34,7 +34,7 @@ one, and is created with its first FR.
   Command or a schedule) through the policies it sets off. The process file stands in the same
   `policies/` folder (`process.md`).
 - **Out of scope:** non-functional requirements (performance, availability, security, audit)
-  and UI/UX (layout, wording, interaction) get no FR; define-the-domain does not model them.
+  and UI/UX (layout, wording, interaction) get no FR; design-the-domain does not model them.
 - **Plain create, change, delete:** one Command FR per business object ("Manage deadline"), with
   scenarios for validations and permissions only; not one FR per endpoint or per field. A command
   with a rule of its own (a status transition, a calculation) is an FR of its own.

@@ -8,11 +8,11 @@ disable-model-invocation: true
 
 You take the problem-space model (`‹problem-space›`, `‹glossaries›`) over from code that already
 exists: glossary, business objects and FRs per subdomain, the scenarios from the existing tests.
-Afterwards `define-the-domain:problem-space-fr` has an existing state to find contradictions against.
+Afterwards `design-the-domain:problem-space-fr` has an existing state to find contradictions against.
 
-This skill only states what differs from `define-the-domain:requirement`: the source is code, not
+This skill only states what differs from `design-the-domain:requirement`: the source is code, not
 an interview, and the FRs are active at once, because the code implements them. Layout, naming,
-numbering and templates are those of `define-the-domain:problem-space-fr`, scenario format and glossary
+numbering and templates are those of `design-the-domain:problem-space-fr`, scenario format and glossary
 format those of the assets it names.
 
 You conduct: each subdomain is handled by a subagent of its own, all at once. You start them,
@@ -29,7 +29,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 1. **Clarify scope.** Read `‹domain-map›` and ask the user with
    AskUserQuestion whether to take one subdomain over, several or all; for several, let them
-   choose. If the call already names subdomains (`/define-the-domain:problem-space-initialization deadlines project`), skip the
+   choose. If the call already names subdomains (`/design-the-domain:problem-space-initialization deadlines project`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
 2. **Start subagents**, all in **one** message so they run in parallel, each with the model
@@ -40,7 +40,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > Project config: `.claude/pts.md`, plugin root: `${CLAUDE_PLUGIN_ROOT}`. You describe what the code
    > does today; you implement nothing, code and tests stay unchanged. Write only in
    > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md` and, for a new glossary, its
-   > subdomain's row in `‹domain-map›`. Read the ground as `define-the-domain:requirement` defines it
+   > subdomain's row in `‹domain-map›`. Read the ground as `design-the-domain:requirement` defines it
    > (step 1), for your subdomain, and the code below.
    >
    > **Sources, by reliability:** (1) the tests of your folders under `‹backend-tests›`, executable
@@ -54,7 +54,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > assignments) is an entity of that root and gets no folder.
    >
    > **Glossary.** Extend `‹glossaries›/<subdomain>.md` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`
-   > and the rules of `define-the-domain:domain-modeling`: one section per business object with its
+   > and the rules of `design-the-domain:domain-modeling`: one section per business object with its
    > row `Business Object | … | Aggregate Root`, rows for the terms your FRs need. Descriptions come
    > from code, docstrings and tests; what you cannot back, you do not write. You do not change
    > existing rows: if the code contradicts one, that becomes a question.
@@ -69,7 +69,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > foreign system yields an Anti-Corruption Layer FR. Layout, header, template, process of a
    > Policy and numbering (run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py next-fr
    > <subdomain>` from the project root, not from the plugin folder; count up for several new FRs)
-   > as `define-the-domain:problem-space-fr` states.
+   > as `design-the-domain:problem-space-fr` states.
    >
    > **Scenarios.** Per test (or parametrised group) one scenario by
    > `${CLAUDE_PLUGIN_ROOT}/assets/acceptance-criteria.md`, phrased on the level of the FR's rule,
@@ -116,7 +116,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its header: one
    `headings` entry per subdomain, each question with its `group`, `source`
    `problem-space-initialization`, `ref` and `type`; `start` 1). Change nothing in its output. A question whose answer
-   would change the behaviour belongs in a `define-the-domain:requirement` session, not here. Finally the question
+   would change the behaviour belongs in a `design-the-domain:requirement` session, not here. Finally the question
    which subdomains they confirm as a block.
 
 5. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its

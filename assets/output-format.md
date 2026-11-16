@@ -11,7 +11,8 @@ one list item per new artifact, linked to its file – never several artifacts i
 files of the same type. Never listed: the user's prompt (requirement text,
 ticket link, images), `‹project-rules›`, and `README.md` or other index files of a folder.
 
-The heading and the descriptions are in ‹problem-space-language› (English here).
+The heading (`Context`) and the type names are translated into ‹problem-space-language›; file
+names stay as they are. The example is in English.
 
 ```
 **Context**

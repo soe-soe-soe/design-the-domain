@@ -38,4 +38,4 @@ Runs once a week (a scheduled task, wherever the user keeps it) with this brief:
 When the user takes a change over, update the skill, the row above and *Last synced*. After every
 check, update *Last checked*.
 
-Last checked: commit `4ae2317` (2026-11-09).
+Last checked: commit `5863806` (2026-11-16).

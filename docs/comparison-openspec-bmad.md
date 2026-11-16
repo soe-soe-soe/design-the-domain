@@ -8,7 +8,7 @@ Die Tabelle listet Ergebnisse, nicht Methodik. ✅ erfüllt · ◐ teilweise · 
 | Ergebnis | Problem Definition | OpenSpec | BMAD |
 |---|---|---|---|
 | **Aktueller Soll-Zustand an einer Stelle** | ✅ FRs | ✅ `specs/` | ❌ Code ist die Quelle |
-| **Änderungen nachvollziehbar** | ◐ Story + History; Delta-Operationen geplant ([Refactoring 001](../refactorings/001-planned-frs-and-story-housekeeping.md)) | ✅ Delta-Operationen + Archiv | ◐ `Decision:`-Zeilen, aufbewahrte Pläne |
+| **Änderungen nachvollziehbar** | ◐ Story + History; Delta-Operationen geplant ([Refactoring 001](../refactorings/archive/001-planned-frs-and-story-housekeeping.md)) | ✅ Delta-Operationen + Archiv | ◐ `Decision:`-Zeilen, aufbewahrte Pläne |
 | **Was an die Umsetzung übergeben wird** | Story + FR-Referenzen | Change mit Proposal, Deltas, Design und Tasks | Story-Plan-Datei |
 | **Testbare Szenarien, im Test referenziert** | ✅ Gherkin + Marker im Test | ◐ WHEN/THEN, ohne Verknüpfung zum Test | ◐ „woran erkennbar erfüllt“ |
 | **Einheitliche Fachsprache** | ✅ Glossar je Subdomain | ❌ | ❌ |
@@ -17,7 +17,7 @@ Die Tabelle listet Ergebnisse, nicht Methodik. ✅ erfüllt · ◐ teilweise · 
 | **Bestandsdaten fachlich geklärt** | ✅ FR vom Typ Data Migration | ◐ technisch im Design (Vermutung) | ❌ |
 | **Interview** | ✅ Entscheidungsbaum, Empfehlung je Frage | ◐ Explore optional, danach Entwurf | ✅ Coaching je Abschnitt / Fast mit Annahmen |
 | **Offene Punkte nachverfolgt** | ✅ `@open` + Folgerunden | ❌ | ✅ Assumption- und Open-question-Zeilen |
-| **Formatsicherheit** | ◐ Templates; Validator geplant ([Refactoring 001](../refactorings/001-planned-frs-and-story-housekeeping.md)) | ✅ CLI-Validierung | ◐ Prüfung durch LLM |
+| **Formatsicherheit** | ◐ Templates; Validator geplant ([Refactoring 001](../refactorings/archive/001-planned-frs-and-story-housekeeping.md)) | ✅ CLI-Validierung | ◐ Prüfung durch LLM |
 | **Einstieg in ein bestehendes System** | ✅ `problem-init` | ◐ Specs wachsen mit den Changes | ◐ nur Agenten-Kontext (`AGENTS.md`) |
 
 ## Quellen

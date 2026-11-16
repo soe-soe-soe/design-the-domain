@@ -1,6 +1,6 @@
 # Refactoring 001: Geplante FRs getrennt vom Ist-Stand, Housekeeping nach Abschluss einer Story
 
-**Status:** Proposed · **Date:** 2026-10-28 · **Betrifft:** problem-fr-writer, problem-definition,
+**Status:** Implemented · **Date:** 2026-10-28 · **Betrifft:** problem-fr-writer, problem-definition,
 solution-definition, test-definition, story-workflow, neuer Skill `problem-housekeeping`,
 neuer Validator `pts validate`
 
@@ -174,3 +174,17 @@ nachholen. Damit ist das Zwischenstadium sichtbar statt still inkonsistent.
 4. Decision Record in `problem-fr-writer/decision-records/` beim Umsetzen anlegen.
 5. Validator: als Hook im Plugin ausliefern oder vom Projekt einbinden lassen? `--strict`
    standardmäßig an?
+
+## Umsetzung
+
+Umgesetzt am 2026-11-01 (Commits 027ba3c, e219423, c771cc4 auf `origin/main`), mit Abweichungen
+vom Entwurf:
+
+- Geplante FRs: **eine Planned-Datei pro FR** in `planned/` neben der aktiven FR statt Ordner pro
+  Story (Entscheidung: `problem-fr-writer/decision-records/003-planned-fr-files.md`); Tags
+  `@base-<tag>` statt `@changes`/`@drops`.
+- Housekeeping: **Skript `scripts/requirements.py`** (`check`, `complete`, `cancel`, `history`)
+  statt Skill `problem-housekeeping`, synchron vor dem Commit statt im Hintergrund
+  (`story-workflow/decision-records/003-housekeeping-by-script.md`).
+- Validator `pts validate` und Hook: nicht umgesetzt; `requirements.py check` deckt Basis- und
+  Parallelitätsprüfung ab.

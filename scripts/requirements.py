@@ -9,6 +9,7 @@ Commands (run from the project root, which holds .claude/pts.md):
   requirements.py cancel   US-0042   drop the story's planned FR changes, set it cancelled and
                                     move it to cancelled/
   requirements.py history  FR-x-NNN  the stories that changed an FR, the latest first
+  requirements.py next-fr  <subdomain>  the next free FR id of a subdomain, across active and planned FRs
 
 Exit codes: 0 ok, 1 usage or setup error, 2 conflict (nothing written).
 Python 3.9+, standard library only.
@@ -424,8 +425,17 @@ def cmd_history(cfg: dict[str, str], fr_id: str) -> int:
     return 0
 
 
+def cmd_next_fr(cfg: dict[str, str], subdomain: str) -> int:
+    """Highest number across the active and planned FR files of the subdomain, plus one."""
+    base = Path(cfg["problem-space"]) / subdomain
+    pattern = re.compile(rf"^FR-{re.escape(subdomain)}-(\d+)-")
+    numbers = [int(m.group(1)) for p in base.rglob("FR-*.md") if (m := pattern.match(p.name))]
+    print(f"FR-{subdomain}-{max(numbers, default=0) + 1:03d}")
+    return 0
+
+
 def main(argv: list[str]) -> int:
-    if len(argv) != 3 or argv[1] not in ("check", "complete", "cancel", "history"):
+    if len(argv) != 3 or argv[1] not in ("check", "complete", "cancel", "history", "next-fr"):
         print(__doc__)
         return 1
     try:
@@ -436,6 +446,8 @@ def main(argv: list[str]) -> int:
             return cmd_complete(cfg, argv[2], _dt.date.today().isoformat())
         if argv[1] == "cancel":
             return cmd_cancel(cfg, argv[2])
+        if argv[1] == "next-fr":
+            return cmd_next_fr(cfg, argv[2])
         return cmd_history(cfg, argv[2])
     except SetupError as e:
         print(f"Error: {e}")

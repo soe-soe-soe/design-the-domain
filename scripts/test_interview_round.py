@@ -109,6 +109,15 @@ class RoundTest(unittest.TestCase):
         self.assertIn("**Q6** - **Absender**", out)
         self.assertNotIn("Sammelmail", out)  # story points wait for the closing round
 
+    def test_questions_grouped_by_subdomain_headings(self):
+        qs = [self.own(title="Lead time", group="genehmigung", source="problem-space-initialization", ref="FR-genehmigung-001/S2", type="Domain Service"),
+              self.own(title="Overdue", group="fristen", source="problem-space-initialization")]
+        out = rnd.render({"start": 1, "headings": {"fristen": "🧭 Fristen", "genehmigung": "🧭 Genehmigung"}, "questions": qs}, self.cfg)
+        self.assertLess(out.index("### 🧭 Fristen"), out.index("### 🧭 Genehmigung"))
+        self.assertLess(out.index("**Q1** - **Overdue**"), out.index("**Q2** - **Lead time**"))
+        self.assertIn("🗣️ Alex 🧩 problem-space-initialization 📋 FR-genehmigung-001/S2 📐 Domain Service", out)
+        self.assertNotIn("Sammelmail", out)
+
     def test_shared_question_is_asked_once(self):
         q = self.own(title="Abgeleitete Fristen", story="US-0050", same_as="FR-fristen-013/S2")
         out = rnd.render({"start": 1, "stories": ["US-0050"], "questions": [q]}, self.cfg)

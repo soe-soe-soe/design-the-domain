@@ -1,6 +1,6 @@
 # Refactoring 004: problem-space-initialization describes only its delta
 
-Status: Proposed · Date: 2026-11-16 · Skills: problem-space-initialization, problem-space-fr,
+Status: Implemented (evals not green yet) · Date: 2026-11-16 · Skills: problem-space-initialization, problem-space-fr,
 requirement, domain-modeling · Script: requirements.py, interview-round.py
 
 ## Goal
@@ -75,15 +75,16 @@ Global index: `GLOSSARY-MAP.md` (`‹glossary-map›`) and `domain-map.md` both 
    `@unconfirmed` and reports the questions. Rendering uses `interview-round.py` (`source`
    `problem-space-initialization`, `ref`, `type`), which needs a way to group by subdomain instead
    of by story. A question whose answer changes behaviour belongs in a `requirement` session.
-9. Where the delta lives (file `subdomain.md` or inside `SKILL.md`): open, see below.
+9. The delta lives inline in `SKILL.md` as the brief of the subagents (decided 2026-11-16, like the
+   briefs of `requirement`); `subdomain.md` is gone.
 
 **Evals** (`evals/problem-space-initialization/`):
 
-10. Remove the marker graders (`one-subdomain-from-code` grader 04, `two-subdomains-reconciled`
-    grader 04 and the moving of a marker in its expected outcome).
-11. New: `numbering-continues` (a subdomain with an active FR 002 and a planned new FR 003 → init
-    writes 004); `domain-map-row` (a new subdomain gets its row with the glossary link, no glossary
-    map).
+10. The marker graders are replaced by graders that the tests stay unchanged
+    (`one-subdomain-from-code`, `two-subdomains-reconciled`).
+11. New: `numbering-continues` (active FR 001, planned new FR 002, an uncovered rule → FR 003; existing
+    FRs untouched). A case for the domain-map row of a new glossary was dropped: the conductor takes
+    the code folders from the glossary, so a subdomain without a glossary cannot be started.
 12. Run each case several times, then the whole suite.
 
 ## Before starting
@@ -94,11 +95,12 @@ Global index: `GLOSSARY-MAP.md` (`‹glossary-map›`) and `domain-map.md` both 
 - `requirements.py history` prints "existing: taken over from code (problem-space-initialization)";
   keep that line.
 
-## Open
+## Done
 
-- **Name and form of `subdomain.md`.** After the cut it holds no knowledge of its own, only the brief
-  of the subagent. Options: (a) keep a file under a better name (`take-over.md`); (b) put the brief
-  inline into `SKILL.md`, as `requirement` does with the briefs of its subagents; (c) a skill of its
-  own that the subagents call, like the writers of `requirement`; (d) spread the delta over the core
-  assets. Recommendation: (b), see the discussion of 2026-11-16: (d) puts init-only knowledge into
-  files every other skill reads, (c) adds a skill nobody calls alone.
+Steps 1–11 are in the repository: next-fr, Command granularity and folder naming in the core, the
+ground named in `requirement`, glossary map and its key removed, `interview-round.py` groups by
+`headings`, init as one `SKILL.md`, eval cases adjusted. Left: run the evals several times.
+
+## Decided
+
+- Name and form of `subdomain.md`: inline in `SKILL.md` (option b); the file is deleted.

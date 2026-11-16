@@ -14,6 +14,10 @@ line. Input (keys in English, texts in the session's language):
     "stories": ["US-0050", "US-0051"],the session's stories, in heading order
     "deferred": ["US-0051/AC2"],      open points the user deferred – never asked again
     "crosscutting": "Cross-cutting",  heading for questions without a story, in the problem-space language
+    "headings": {"fristen": "🧭 Fristen"},
+                                      optional, instead of "stories": group by subdomain (or any key)
+                                      with these headings, in this order; each question names its
+                                      group in "group" (problem-space-initialization has no stories)
     "questions": [                    the model's own questions
       {"title": "…", "body": "…", "recommendation": "…",
        "story": "US-0050",            optional; without it the question is cross-cutting
@@ -127,9 +131,10 @@ def provenance(user: str, raised_by: str, sources: list[str], refs: list[str], f
 
 def render(data: dict, cfg: dict[str, str]) -> str:
     user = cfg.get("user", "user")
-    stories = list(data.get("stories", []))
+    headings = data.get("headings") or {}
+    stories = list(headings) if headings else list(data.get("stories", []))
     deferred = set(data.get("deferred", []))
-    points = open_points(cfg, stories, bool(data.get("closing")), deferred)
+    points = open_points(cfg, [] if headings else stories, bool(data.get("closing")), deferred)
     by_ref = {p["ref"]: p for p in points}
     items = []  # (story or None, title, body, recommendation, provenance)
     for q in data.get("questions", []):
@@ -138,11 +143,11 @@ def render(data: dict, cfg: dict[str, str]) -> str:
         if same:
             line = provenance(user, f"{user}/{GRILLING}", [GRILLING, same["source"]],
                               [same["ref"], same.get("glossary") and f"{same['glossary']}"], same.get("type") or q.get("type"))
-            story = q.get("story") or same.get("story")
+            story = q.get("story") or q.get("group") or same.get("story")
         else:
             raised = GRILLING if source == GRILLING else user
             line = provenance(user, raised, [source], [q.get("ref", "")], q.get("type"))
-            story = q.get("story")
+            story = q.get("story") or q.get("group")
         items.append((story, q["title"], q["body"], q["recommendation"], line))
     for p in by_ref.values():
         line = provenance(user, user, [p["source"]], [p["ref"], p.get("glossary") and f"{p['glossary']}"], p.get("type"))
@@ -158,7 +163,10 @@ def render(data: dict, cfg: dict[str, str]) -> str:
         if not block:
             continue
         if group:
-            out.append(f"### 📘 {key}: {story_title(cfg, key)}" if key else f"### 🌐 {data.get('crosscutting', 'Cross-cutting')}")
+            if key and headings:
+                out.append(f"### {headings[key]}")
+            else:
+                out.append(f"### 📘 {key}: {story_title(cfg, key)}" if key else f"### 🌐 {data.get('crosscutting', 'Cross-cutting')}")
             out.append("")
         for k, (_, title, body, rec, line) in enumerate(block):
             if k:

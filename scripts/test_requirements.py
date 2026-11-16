@@ -214,6 +214,19 @@ class RequirementsTest(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertIn("existing: taken over from code", out)
 
+    def test_next_fr_counts_across_active_and_planned(self):
+        code, out = self.run_cmd("next-fr", "deadlines")
+        self.assertEqual((code, out.strip()), (0, "FR-deadlines-011"))
+
+    def test_next_fr_of_a_new_subdomain_starts_at_one(self):
+        code, out = self.run_cmd("next-fr", "permits")
+        self.assertEqual((code, out.strip()), (0, "FR-permits-001"))
+
+    def test_next_fr_does_not_mix_subdomains_with_a_common_prefix(self):
+        self.write("ps/deadline/FR-deadline-007-other.md", "# FR-deadline-007: Other\n")
+        code, out = self.run_cmd("next-fr", "deadline")
+        self.assertEqual(out.strip(), "FR-deadline-008")
+
 
 if __name__ == "__main__":
     unittest.main()

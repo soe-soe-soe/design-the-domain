@@ -37,7 +37,7 @@ The marketplace (`.claude-plugin/marketplace.json` on `main`) points the plugin 
 `dist` of this repository, so projects get exactly that build:
 
 ```json
-{ "name": "design-the-domain", "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain", "ref": "dist" } }
+{ "name": "design-the-domain", "source": { "source": "github", "repo": "soe-soe-soe/design-the-domain", "ref": "dist" } }
 ```
 
 Release:

@@ -24,11 +24,11 @@ A Claude Code plugin for domain-driven feature work in three spaces:
    ```json
    {
      "extraKnownMarketplaces": {
-       "define-the-domain": {
-         "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain" }
+       "design-the-domain": {
+         "source": { "source": "github", "repo": "soe-soe-soe/design-the-domain" }
        }
      },
-     "enabledPlugins": { "design-the-domain@define-the-domain": true }
+     "enabledPlugins": { "design-the-domain@design-the-domain": true }
    }
    ```
 

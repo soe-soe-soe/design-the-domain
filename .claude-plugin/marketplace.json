@@ -1,5 +1,5 @@
 {
-  "name": "define-the-domain",
+  "name": "design-the-domain",
   "description": "Marketplace for the design-the-domain plugin.",
   "owner": {
     "name": "Sören Bock",
@@ -10,7 +10,7 @@
       "name": "design-the-domain",
       "source": {
         "source": "github",
-        "repo": "soe-soe-soe/define-the-domain",
+        "repo": "soe-soe-soe/design-the-domain",
         "ref": "dist"
       },
       "description": "Problem-space skills for domain-driven development."

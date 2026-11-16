@@ -3,7 +3,7 @@ name: problem-space-fr
 description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /requirement after problem-space-story, or when the user wants stories "taken into FRs" or the FR set reconciled.
 ---
 
-# Problem-FR-Writer
+# Problem-Space-FR
 
 An **FR** is the implemented target state of one rule or capability, assigned to exactly one
 subdomain. Stories describe changes, FRs the result of all changes. You carry the acceptance

@@ -44,3 +44,8 @@ Pick one of these (recommendation first):
 - Option 1 or 2 changes `assets/config.md`, `evals/fixtures/pts.md`,
   `assets/output-format.md`, requirement step 1 and 2, problem-space-initialization and the
   domain-map fixtures of the evals.
+
+## Decision
+
+Option 2 (2026-11-16): the glossary map goes, the domain map lists the glossaries. Carried out in
+`refactorings/004-problem-space-initialization-delta.md`.

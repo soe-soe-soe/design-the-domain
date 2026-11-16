@@ -5,7 +5,7 @@ timeout_seconds: 900
 allowed_tools: [Read, Glob, Grep, Skill, Write, Edit, Bash, Agent]
 ---
 
-/define-the-domain:requirement Requirement: Verantwortliche sollen vor Ablauf einer Frist per E-Mail erinnert werden.
+/design-the-domain:requirement Requirement: Verantwortliche sollen vor Ablauf einer Frist per E-Mail erinnert werden.
 
 Runde 1 (gestellt vom Grilling):
 Q1 – Wer bekommt die Erinnerung? → Antwort: die verantwortliche Person der Frist.

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# The project context the skill reads (CLAUDE.md, glossaries, domain model, ADRs, define-the-domain config)
-# comes from a checkout of a project that uses define-the-domain, named by PTS_EVAL_PROJECT; the case's own
+# The project context the skill reads (CLAUDE.md, glossaries, domain model, ADRs, design-the-domain config)
+# comes from a checkout of a project that uses design-the-domain, named by PTS_EVAL_PROJECT; the case's own
 # files are laid over it.
 set -eu
 here="$(cd "$(dirname "$0")" && pwd)"

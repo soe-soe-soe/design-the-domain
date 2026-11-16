@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Housekeeping for define-the-domain requirements and planned FRs – deterministic, no model.
+"""Housekeeping for design-the-domain requirements and planned FRs – deterministic, no model.
 
 Commands (run from the project root, which holds .claude/pts.md):
 

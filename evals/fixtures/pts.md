@@ -1,4 +1,4 @@
-# define-the-domain project config – eval fixture
+# design-the-domain project config – eval fixture
 
 Project config the eval cases place at `.claude/pts.md`; it describes the sample project their
 files come from (a Python backend with a TypeScript UI). Paths are relative to the project root.
@@ -96,6 +96,6 @@ can be set per project.
 
 | Key | Meaning | Value |
 |---|---|---|
-| `model-ground` | Subagent reading the ground in /define-the-domain:requirement (reads and summarises) | `inherit` |
+| `model-ground` | Subagent reading the ground in /design-the-domain:requirement (reads and summarises) | `inherit` |
 | `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
-| `model-init` | Subagents of /define-the-domain:problem-space-initialization and /define-the-domain:solution-init, one per subdomain or context | `inherit` |
+| `model-init` | Subagents of /design-the-domain:problem-space-initialization and /design-the-domain:solution-init, one per subdomain or context | `inherit` |

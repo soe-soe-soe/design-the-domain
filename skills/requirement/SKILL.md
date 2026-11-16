@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 You interview the user about a requirement until its problem space is settled: stories with
 acceptance criteria, FR scenarios, glossary terms. The craft comes from the skills
-`define-the-domain:grilling` (the interview) and `define-the-domain:domain-modeling` (glossary and ADRs); this skill runs the rounds
+`design-the-domain:grilling` (the interview) and `design-the-domain:domain-modeling` (glossary and ADRs); this skill runs the rounds
 the project's way, lets the writers update the problem space in between and alone decides which
 questions are asked.
 
@@ -16,12 +16,12 @@ questions are asked.
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
-Called as `/define-the-domain:requirement <requirement>`. Everything you say to the user is in
+Called as `/design-the-domain:requirement <requirement>`. Everything you say to the user is in
 `‹problem-space-language›`.
 
 ## Open points
 
-The writers (`define-the-domain:problem-space-story`, `define-the-domain:problem-space-fr`) ask nothing; they mark what is open where it belongs. A
+The writers (`design-the-domain:problem-space-story`, `design-the-domain:problem-space-fr`) ask nothing; they mark what is open where it belongs. A
 scenario or AC with an open point carries the tag `@open`, and the story or FR lists the point
 under `## Open`, in the format of the term "Open point" in
 `‹methodology-glossary›`: reference, source skill, question, recommendation,
@@ -42,8 +42,8 @@ model `‹model-writer›` (leave the model out for `inherit`). The writers put 
 `‹requirements›/planned/` and FR changes into the planned files next to the active FRs; an active
 FR stays untouched until its story is done. Its brief:
 
-> Call the Skill tool with `define-the-domain:problem-space-story` with the answers of this round: <answers> and the requirement that
-> started the session: <requirement>. Then call it with `define-the-domain:problem-space-fr` for the stories its
+> Call the Skill tool with `design-the-domain:problem-space-story` with the answers of this round: <answers> and the requirement that
+> started the session: <requirement>. Then call it with `design-the-domain:problem-space-fr` for the stories its
 > report names. Write nothing yourself; the writers do. Your last message joins both reports,
 > exactly in this form:
 >
@@ -85,8 +85,8 @@ FR stays untouched until its story is done. Its brief:
    `cancelled` stories are final: a change to them is a new story. When a question needs more
    than the report gives, read the file yourself.
 
-2. **Load the craft.** Call the Skill tool with `define-the-domain:grilling` and with
-   `define-the-domain:domain-modeling`, and follow both. `domain-modeling` writes glossary rows into the
+2. **Load the craft.** Call the Skill tool with `design-the-domain:grilling` and with
+   `design-the-domain:domain-modeling`, and follow both. `domain-modeling` writes glossary rows into the
    subdomain glossaries under `‹glossaries›/` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`
    (unless `‹project-rules›` sets its own format) and a new glossary's row into `‹domain-map›`.
    This skill decides on top of `grilling` how rounds are grouped, numbered and what each

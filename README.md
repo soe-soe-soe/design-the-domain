@@ -1,15 +1,15 @@
-# define-the-domain – problem, test and solution space skills
+# design-the-domain – problem, test and solution space skills
 
 A Claude Code plugin for domain-driven feature work in three spaces:
 
-- **Problem space:** `/define-the-domain:requirement` grills a requirement into ready user stories and
+- **Problem space:** `/design-the-domain:requirement` grills a requirement into ready user stories and
   functional requirements (FRs) with Gherkin scenarios; `problem-space-story` and
-  `problem-space-fr` write them, `/define-the-domain:problem-space-initialization` derives the model from existing code.
+  `problem-space-fr` write them, `/design-the-domain:problem-space-initialization` derives the model from existing code.
 - **Solution space:** `solution-definition` places a story's scenarios into bounded contexts,
-  aggregates and building blocks and builds a shell without behaviour; `/define-the-domain:solution-init`
+  aggregates and building blocks and builds a shell without behaviour; `/design-the-domain:solution-init`
   plans the migration of existing code into that structure.
 - **Tests:** `test-definition` writes red scenario, interface, migration and journey tests
-  against the shell; `/define-the-domain:story-workflow` runs placement, tests, implementation, review and
+  against the shell; `/design-the-domain:story-workflow` runs placement, tests, implementation, review and
   closing for one story.
 
 ## Setup in a project
@@ -28,7 +28,7 @@ A Claude Code plugin for domain-driven feature work in three spaces:
          "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain" }
        }
      },
-     "enabledPlugins": { "define-the-domain@define-the-domain": true }
+     "enabledPlugins": { "design-the-domain@define-the-domain": true }
    }
    ```
 
@@ -54,7 +54,7 @@ python3 scripts/requirements.py cancel   US-0042
 python3 scripts/requirements.py history  FR-deadlines-003
 ```
 
-[scripts/interview-round.py](scripts/interview-round.py) renders each round of `/define-the-domain:requirement`: the model
+[scripts/interview-round.py](scripts/interview-round.py) renders each round of `/design-the-domain:requirement`: the model
 supplies its own questions, the script adds the writers' open points, numbers, groups and writes
 the provenance lines.
 

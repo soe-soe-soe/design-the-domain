@@ -1,4 +1,4 @@
-# Developing define-the-domain
+# Developing design-the-domain
 
 This file, `evals/`, `refactorings/`, `tools/` and the script tests are for development only.
 They are not part of the published plugin (see Publishing).
@@ -37,7 +37,7 @@ The marketplace (`.claude-plugin/marketplace.json` on `main`) points the plugin 
 `dist` of this repository, so projects get exactly that build:
 
 ```json
-{ "name": "define-the-domain", "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain", "ref": "dist" } }
+{ "name": "design-the-domain", "source": { "source": "github", "repo": "soe-soe-soe/define-the-domain", "ref": "dist" } }
 ```
 
 Release:

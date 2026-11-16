@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Renders one round of /define-the-domain:requirement – deterministic numbering, grouping and provenance.
+"""Renders one round of /design-the-domain:requirement – deterministic numbering, grouping and provenance.
 
   interview-round.py <round.json>      (or the JSON on stdin)
 

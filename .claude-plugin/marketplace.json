@@ -1,13 +1,13 @@
 {
   "name": "define-the-domain",
-  "description": "Marketplace for the define-the-domain plugin.",
+  "description": "Marketplace for the design-the-domain plugin.",
   "owner": {
     "name": "Sören Bock",
     "email": "soeren@ein-bock.de"
   },
   "plugins": [
     {
-      "name": "define-the-domain",
+      "name": "design-the-domain",
       "source": {
         "source": "github",
         "repo": "soe-soe-soe/define-the-domain",

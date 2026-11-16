@@ -10,7 +10,7 @@ You lay out, once, how the existing backend (`‹backend›`) moves into the tar
 `‹structure›`: per bounded context which aggregates it
 has, which building block every module becomes and where it goes. The result is one migration
 plan per context under `‹refactorings›`, carried out later per context. Afterwards
-`define-the-domain:solution-definition` places new requirements into a structure that holds.
+`design-the-domain:solution-definition` places new requirements into a structure that holds.
 
 You plan, you do not move code. You conduct: each bounded context is handled by a subagent of
 its own, all at once. Everything you write is in `‹solution-space-language›`; questions to the user are in
@@ -25,7 +25,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 1. **Clarify scope.** Read the subdomain rows of `‹glossaries›/*.md` (bounded
    context and its folders) and ask the user with AskUserQuestion whether to plan one context,
    several or all; for several, let them choose. If the call names contexts
-   (`/define-the-domain:solution-init permits deadlines`), skip the question. `‹backend-shared›` is out of scope.
+   (`/design-the-domain:solution-init permits deadlines`), skip the question. `‹backend-shared›` is out of scope.
    Read `‹refactorings›/solution-init-seed.md` if it exists: it lists code locations formerly
    kept in the FRs; hand each subagent its part.
 
@@ -50,7 +50,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 4. **Report.** To the user, per context: aggregates, number of modules per building block,
    boundary violations found (imports bypassing a facade). Below that the subagents' questions
-   in the question format of `/define-the-domain:requirement` (provenance line with `🧩 solution-init`), grouped per
+   in the question format of `/design-the-domain:requirement` (provenance line with `🧩 solution-init`), grouped per
    context. Finally the
    question which context to migrate first.
 

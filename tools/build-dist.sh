@@ -40,7 +40,7 @@ tree="$(GIT_INDEX_FILE="$index" git write-tree)"
 # Warn about published files that still point to an unreleased skill.
 names="$(IFS='|'; echo "${unreleased[*]}")"
 git ls-tree -r --name-only "$tree" | while read -r f; do
-  git show "$tree:$f" | grep -nE "define-the-domain:($names)\b" | sed "s#^#warning: $f: #" || true
+  git show "$tree:$f" | grep -nE "design-the-domain:($names)\b" | sed "s#^#warning: $f: #" || true
 done
 
 parent="$(git rev-parse -q --verify "refs/heads/$branch" || true)"

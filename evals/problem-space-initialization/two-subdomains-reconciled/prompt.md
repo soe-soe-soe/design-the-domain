@@ -5,4 +5,4 @@ timeout_seconds: 1800
 allowed_tools: [Read, Glob, Grep, Skill, Write, Edit, Bash, Agent]
 ---
 
-/define-the-domain:problem-space-initialization fristen genehmigung
+/design-the-domain:problem-space-initialization fristen genehmigung

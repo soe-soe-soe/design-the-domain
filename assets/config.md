@@ -1,6 +1,6 @@
-# define-the-domain project config
+# design-the-domain project config
 
-Template for the project config the define-the-domain skills read. Copy it to `.claude/pts.md` in the project
+Template for the project config the design-the-domain skills read. Copy it to `.claude/pts.md` in the project
 root and fill in the values; the skills read that file before anything else and stop if it is
 missing. The plugin knows no project: every path, command and convention of a project stands
 here, everything structural about the code (building blocks, test levels, markers, seams) in the
@@ -106,6 +106,6 @@ can be set per project.
 
 | Key | Meaning | Value |
 |---|---|---|
-| `model-ground` | Subagent reading the ground in /define-the-domain:requirement (reads and summarises) | `inherit` |
+| `model-ground` | Subagent reading the ground in /design-the-domain:requirement (reads and summarises) | `inherit` |
 | `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
-| `model-init` | Subagents of /define-the-domain:problem-space-initialization and /define-the-domain:solution-init, one per subdomain or context | `inherit` |
+| `model-init` | Subagents of /design-the-domain:problem-space-initialization and /design-the-domain:solution-init, one per subdomain or context | `inherit` |

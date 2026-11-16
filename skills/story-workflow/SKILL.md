@@ -9,15 +9,15 @@ disable-model-invocation: true
 You implement one story. Its spec lives in the problem space: the story (why and acceptance
 criteria) and its FR scenarios (the rules) – the planned changes in the `planned/` files next to
 the active FRs, tagged with the story. Where the code goes follows from
-`‹structure›`, applied by `define-the-domain:solution-definition`; which tests prove
-it, from `define-the-domain:test-definition` (`‹test-strategy-adr›`). The craft comes from the skills `define-the-domain:tdd` and
-`define-the-domain:code-review`; this skill feeds them the project's artefacts and closes the story afterwards.
+`‹structure›`, applied by `design-the-domain:solution-definition`; which tests prove
+it, from `design-the-domain:test-definition` (`‹test-strategy-adr›`). The craft comes from the skills `design-the-domain:tdd` and
+`design-the-domain:code-review`; this skill feeds them the project's artefacts and closes the story afterwards.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
 template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
-Called as `/define-the-domain:story-workflow US-0042`. Code, comments, docstrings and commits are in `‹solution-space-language›`.
+Called as `/design-the-domain:story-workflow US-0042`. Code, comments, docstrings and commits are in `‹solution-space-language›`.
 
 A question to the user here means the grilling missed something or the structure does not fit.
 Ask only what blocks the work, and report each question as a lesson (step 8).
@@ -31,23 +31,23 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py check US-0042`. If it reports a
    conflict – another story changed the same scenario since this one was written – set the story
    back to `Status: draft`, show the report and stop: the conflict goes back to
-   `/define-the-domain:requirement`.
+   `/design-the-domain:requirement`.
    Otherwise set `Status: in-progress` in the story header and, unless `‹ticket-system›` is
    `none`, sync the story by `${CLAUDE_PLUGIN_ROOT}/assets/ticket.md`. Note the current commit as the review's fixed
    point.
 
-2. **Place.** Call the Skill tool with `define-the-domain:solution-definition` for the story. If it reports questions, ask
+2. **Place.** Call the Skill tool with `design-the-domain:solution-definition` for the story. If it reports questions, ask
    them in one round and run it again with the answers. Its placement is your plan, its shell
    the ground for the tests.
 
-3. **Define the tests.** Call the Skill tool with `define-the-domain:test-definition` with the story and the placement
+3. **Define the tests.** Call the Skill tool with `design-the-domain:test-definition` with the story and the placement
    report. If it reports untestable scenarios, ask the user how each Then step is meant and run it
    again with the answers.
 
 4. **Review gate.** Show the user test-definition's report and wait. They check that each test
    says what its scenario means; change the tests by their answer before you go on.
 
-5. **Make them green.** Call the Skill tool with `define-the-domain:tdd` and follow its loop:
+5. **Make them green.** Call the Skill tool with `design-the-domain:tdd` and follow its loop:
    - The red tests of step 3 are your "red". Take them one at a time: make one green, then the
      next. Tests the implementation needs below a scenario you add by `tdd`, without marker.
    - A test of step 3 changes only if it is wrong against its scenario – then tell the user.
@@ -56,7 +56,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
      (`‹test-file›`) regularly, `‹test-all›` once at the end, and the touched journey with
      `‹e2e-file›` if the story changed one.
 
-6. **Review.** Call the Skill tool with `define-the-domain:code-review`: fixed point from step 1,
+6. **Review.** Call the Skill tool with `design-the-domain:code-review`: fixed point from step 1,
    spec = the story and its FR scenarios, standards include `‹structure›` and `‹test-strategy-adr›`. Fix what
    it finds that the spec or the repo's standards require.
 
@@ -64,7 +64,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    checks the base once more, merges the story's planned changes into the active FRs, sets
    `Status: done` and `doneAt`, and moves the story to `‹requirements›/` – all or nothing. On a
    conflict it writes nothing: show its report and stop before committing; the story stays
-   `in-progress` until `/define-the-domain:requirement` settled the conflict. Then commit placement,
+   `in-progress` until `/design-the-domain:requirement` settled the conflict. Then commit placement,
    tests, implementation and the problem-space changes together by the commit convention in
    `‹project-rules›`; regenerate the context map with `‹context-map-command›` if the project has
    no hook doing it. Unless `‹ticket-system›` is `none`, sync the story by

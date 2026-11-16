@@ -7,10 +7,10 @@ description: Writes user stories with Gherkin acceptance criteria from the decis
 
 You package business decisions into **stories**: short, with a why, followed by acceptance
 criteria (AC) in Gherkin. A story describes a **change**; the living target state is kept by
-the functional requirements (skill `define-the-domain:problem-space-fr`).
+the functional requirements (skill `design-the-domain:problem-space-fr`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/define-the-domain:requirement` reads the open points and decides when to ask them.
+`/design-the-domain:requirement` reads the open points and decides when to ask them.
 
 **Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
@@ -76,7 +76,7 @@ template [story.md](../../assets/story.md); read it.
 You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
-`/define-the-domain:requirement` sets `ready` when the session closes, the implementation workflow sets
+`/design-the-domain:requirement` sets `ready` when the session closes, the implementation workflow sets
 `in-progress`, `requirements.py complete` sets `done`, `requirements.py cancel` sets `cancelled`.
 
 ## Story file
@@ -88,7 +88,7 @@ You are done when every decision of the input stands in an AC or is marked open.
   not yours – leave them out of a new story.
 - The role sentence (`As a … I want …`, in `‹problem-space-language›`) has no "so that": the why
   has its own section.
-- `## Functional requirements` belongs to `define-the-domain:problem-space-fr`: leave it out of a new story
+- `## Functional requirements` belongs to `design-the-domain:problem-space-fr`: leave it out of a new story
   and do not change it.
 - `Supersedes in part` and `## Open` are omitted when there is nothing to enter.
 - AC numbers are fixed: a dropped AC stays as `Scenario: AC2 – dropped` (keyword and word in

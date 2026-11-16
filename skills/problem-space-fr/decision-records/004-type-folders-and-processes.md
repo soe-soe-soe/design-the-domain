@@ -15,7 +15,7 @@ reactions a policy belonged to was nowhere written down. Scheduled behaviour (cr
 - Every Policy belongs to exactly one process. The process file (`assets/process.md`) stands in
   the `policies/` folder where the chain starts; policies of other subdomains link it.
 - A scheduled reaction is a Policy with `Trigger: schedule`; it may stay inside its subdomain.
-- Non-functional requirements and UI/UX are out of scope of define-the-domain.
+- Non-functional requirements and UI/UX are out of scope of design-the-domain.
 
 ## Considered alternatives
 

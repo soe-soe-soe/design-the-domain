@@ -1,6 +1,6 @@
 ---
 name: problem-space-initialization
-description: Takes existing code over into the problem-space model – glossary, business objects and FRs per subdomain, one subagent each, in parallel.
+description: Takes existing code over into the problem-space model – drafts the domain map if missing, then glossary, subdomain map and FRs per subdomain, one subagent each, in parallel.
 disable-model-invocation: true
 ---
 
@@ -27,20 +27,52 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
 ## Steps
 
-1. **Clarify scope.** Read `‹domain-map›` and ask the user with
+1. **Domain map.** Read `‹domain-map›`. If it exists and lists a subdomain, go to step 2: it is the
+   user's decision, you do not rework it. Otherwise you draft it with the user, in the main run,
+   before any subagent starts. The code does not tell what a subdomain is, and folders are not
+   subdomains: you bring evidence, the user decides.
+   - **Read the structure, not the code:** the folders of `‹backend›` (without `‹backend-shared›`),
+     `‹structure›`, the ADRs `‹architecture-adrs›`, existing glossaries, router prefixes, the test
+     folders, which folders import which (grep), and, with a git history, which files change together.
+   - **Candidates.** Cut the code into candidate subdomains: name in `‹problem-space-language›`,
+     one sentence in business terms, code folders, business object candidates (aggregate roots).
+     Evidence for a cut: the same word means something else in two areas (strongest signal); other
+     experts or roles ask; it changes for other reasons or at another pace; several business objects
+     share rules and a lifecycle (one business object with rules is no subdomain); what must be
+     consistent at once belongs together; who is the source of truth for the data. Few imports
+     between two folders and rare common changes support a cut, many speak against it.
+   - **Show the evidence** per candidate, short: folders, business objects, language signals,
+     coupling. Where the cut is a close call, name both alternatives (merge or split) with the
+     strongest argument for each and your recommendation. Say plainly where the code gives no
+     evidence; never feign certainty.
+   - **Ask** by `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its
+     header: `group` `false`, `source` `problem-space-initialization`, `start` 1), after the evidence:
+     one question per uncertain cut, one on the types (Core, Supporting, Generic; a business
+     judgement, so the recommendation is `open` unless the user has said more), and one on whether
+     the cut stands as a whole. Change nothing in its output. Write nothing before the answers.
+   - **Write** once answered: `‹domain-map›` by `${CLAUDE_PLUGIN_ROOT}/assets/domain-map.md` – the
+     domain in one sentence, a row per subdomain with its type, the glossary link and `–` as subdomain
+     map, the relationships table empty (step 4 fills it from the reports) – and per subdomain a
+     glossary file by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md` with title, sentence and the
+     Subdomain row with its code folders. An existing glossary stays as it is. Name of the subdomain,
+     of its glossary file and of its problem-space folder is the problem-space term in
+     `‹problem-space-language›` (`fristen.md`, folder rules of `design-the-domain:problem-space-fr`),
+     never the code name (`deadlines`), which stands only in the Subdomain row.
+
+2. **Clarify scope.** Read `‹domain-map›` and ask the user with
    AskUserQuestion whether to take one subdomain over, several or all; for several, let them
    choose. If the call already names subdomains (`/design-the-domain:problem-space-initialization deadlines project`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
-2. **Start subagents**, all in **one** message so they run in parallel, each with the model
+3. **Start subagents**, all in **one** message so they run in parallel, each with the model
    `‹model-init›` (leave the model out for `inherit`): one per subdomain, with this brief
    (fill in `<subdomain>` and its folders from the subdomain row of its glossary):
 
    > Take the subdomain `<subdomain>` (code folders: `<folders>`) over into the problem space.
    > Project config: `.claude/pts.md`, plugin root: `${CLAUDE_PLUGIN_ROOT}`. You describe what the code
    > does today; you implement nothing, code and tests stay unchanged. Write only in
-   > `‹problem-space›/<subdomain>/`, `‹glossaries›/<subdomain>.md` and, for a new glossary, its
-   > subdomain's row in `‹domain-map›`. Read the ground as `design-the-domain:requirement` defines it
+   > `‹problem-space›/<subdomain>/` (the FRs and `subdomain-map.md`), `‹glossaries›/<subdomain>.md`
+   > and, for a new glossary or subdomain map, its subdomain's row in `‹domain-map›`. Read the ground as `design-the-domain:requirement` defines it
    > (step 1), for your subdomain, and the code below.
    >
    > **Sources, by reliability:** (1) the tests of your folders under `‹backend-tests›`, executable
@@ -58,6 +90,16 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > row `Business Object | … | Aggregate Root`, rows for the terms your FRs need. Descriptions come
    > from code, docstrings and tests; what you cannot back, you do not write. You do not change
    > existing rows: if the code contradicts one, that becomes a question.
+   >
+   > **Subdomain map.** Write `‹problem-space›/<subdomain>/subdomain-map.md` by
+   > `${CLAUDE_PLUGIN_ROOT}/assets/subdomain-map.md` and set its link in your subdomain's row of
+   > `‹domain-map›`: a class per business object and per entity of it, the attributes from the fields
+   > of the aggregate in business language with a glossary term as type (not code types), composition
+   > for what lives and dies with the root, association for a reference by identity to another
+   > business object of your subdomain, with multiplicities from the code (nullable fields, collections).
+   > A reference to another subdomain goes under `Relationships` of your report, not into the map.
+   > An existing map you extend; you change none of its lines: if the code contradicts one, that
+   > becomes a question (Case `glossary`).
    >
    > **FRs.** One FR per rule or capability, active at once (no planned file, no history). A rule that
    > already has an FR (active or planned) stays as it is: you change no existing FR; where the code
@@ -81,8 +123,8 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > is suspicious: unreachable, contradictory, marked TODO (`suspicious-branch`), or the same rule is
    > implemented in two places (`duplicate-rule`).
    >
-   > You are done when every rule and capability of your folders stands in an FR and every scenario
-   > carries `@existing @unconfirmed`. Your last message is the report, exactly in this form:
+   > You are done when every rule and capability of your folders stands in an FR, every business
+   > object stands in the subdomain map and every scenario carries `@existing @unconfirmed`. Your last message is the report, exactly in this form:
    >
    > ```
    > Subdomain: deadlines
@@ -103,15 +145,15 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > Without questions it reads `Questions: none`. Phrase each question so that "yes" in
    > `‹problem-space-language›` accepts your recommendation.
 
-3. **Reconcile** once all reports are in:
+4. **Reconcile** once all reports are in:
    - **Policies across boundaries:** if two subagents described the same reaction, the FR stays in
      the triggering subdomain; delete the other.
    - **Relationships:** add new relationships between subdomains from the reports to the
      relationships table of `‹domain-map›`, in business terms.
-   - **Check:** every glossary written has its subdomain's row in `‹domain-map›`, and no two FR files of a
-     subdomain share a number.
+   - **Check:** every glossary written has its subdomain's row in `‹domain-map›`, every subdomain map
+     written is linked in that row, and no two FR files of a subdomain share a number.
 
-4. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios, scenarios
+5. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios, scenarios
    without test. Below that the subagents' questions, rendered by
    `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its header: one
    `headings` entry per subdomain, each question with its `group`, `source`
@@ -119,8 +161,8 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    would change the behaviour belongs in a `design-the-domain:requirement` session, not here. Finally the question
    which subdomains they confirm as a block.
 
-5. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its
+6. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its
    scenarios. Scenarios concerned by an open question keep it until it is answered.
 
-You are done when every chosen subdomain has a glossary with its business objects and FRs for its
-rules and capabilities, and the user has given their confirmation or answers.
+You are done when the domain map lists the subdomains and every chosen subdomain has a glossary and a subdomain map with its business
+objects and FRs for its rules and capabilities, and the user has given their confirmation or answers.

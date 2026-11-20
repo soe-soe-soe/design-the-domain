@@ -1,0 +1,13 @@
+from domain.deadlines.models import Deadline, Responsible
+
+
+class DeadlineRepository:
+    def get(self, deadline_id: int) -> Deadline: ...
+
+    def save(self, deadline: Deadline) -> None: ...
+
+
+class ResponsibleRepository:
+    def get(self, responsible_id: int) -> Responsible: ...
+
+    def save(self, responsible: Responsible) -> None: ...

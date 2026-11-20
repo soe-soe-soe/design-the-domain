@@ -30,7 +30,7 @@ anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-d
 |---|---|---|---|
 | Problem | 📘 | story | `‹requirements›/` and its `planned/`, `cancelled/` |
 | Problem | 📋 | FR | `‹problem-space›/<subdomain>/`, planned changes in its `planned/` |
-| Problem | 📄 | domain-map, glossary | `‹domain-map›`, `‹glossaries›` |
+| Problem | 📄 | domain-map, subdomain-map, glossary | `‹domain-map›`, `‹problem-space›/<subdomain>/subdomain-map.md`, `‹glossaries›` |
 | Solution | 🗂️ | structure, context-map | `‹structure›`, `‹context-map›` |
 | Solution | 🏛️ | ADR, decision-record | `‹adr›`, `decision-records/` of a skill |
 | Solution | 📘 | refactoring | `‹refactorings›` |

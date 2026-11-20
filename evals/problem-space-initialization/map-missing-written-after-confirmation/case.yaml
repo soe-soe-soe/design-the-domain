@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: map-missing-written-after-confirmation
+expected_outcome: |
+  problem-space-initialization without a domain map, the user having confirmed the cut (subdomains Fristen with the folder deadlines and Genehmigung with the folder permits, both type open): the run writes the domain map with one row per subdomain (type open, glossary link, a dash as subdomain map, no relationships yet) and a glossary skeleton per subdomain with the Subdomain row and its code folder, and it writes no business object terms, subdomain maps or FRs itself.
+context:
+  scaffold_script: place-files.sh

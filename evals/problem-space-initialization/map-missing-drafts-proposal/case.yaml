@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: map-missing-drafts-proposal
+expected_outcome: |
+  problem-space-initialization without a domain map drafts one instead of stopping: it reads the structure of the backend, shows evidence for two candidate subdomains (deadlines with Frist and Verantwortlicher, permits with Genehmigung and Nachweis), does not treat the cross-cutting core as a subdomain, and asks the user through the interview script (cut as a whole, types with the recommendation open). Nothing is written and no subagent is started before the answers.
+context:
+  scaffold_script: place-files.sh

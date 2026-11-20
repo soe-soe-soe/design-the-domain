@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: open-consistency-leaves-map
+expected_outcome: |
+  The story links two business objects (Frist, Erinnerung) and does not say whether the Erinnerung must vanish together with finishing the Frist or may follow shortly after. problem-space-fr marks an open point of the case consistency on the scenario and leaves the subdomain map as it is: no relationship between Frist and Erinnerung until the answer is in.
+context:
+  scaffold_script: place-files.sh

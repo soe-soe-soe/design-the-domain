@@ -2,9 +2,9 @@
 
 ## Subdomains
 
-| Subdomain | Type | Status | Glossary | Description |
+| Subdomain | Type | Glossary | Subdomain map | Description |
 |---|---|---|---|---|
-| Fristen | open | established | [fristen.md](../glossaries/fristen.md) | Stichtage und ihre Erinnerungen. |
+| Fristen | open | [fristen.md](../glossaries/fristen.md) | – | Stichtage und ihre Erinnerungen. |
 
 ## Relationships
 

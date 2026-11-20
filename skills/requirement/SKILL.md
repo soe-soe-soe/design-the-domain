@@ -65,8 +65,8 @@ FR stays untouched until its story is done. Its brief:
 1. **Read the ground** in one subagent with the model `‹model-ground›`, so the files stay out
    of the interview. Its brief:
 
-   > Read `‹domain-map›`, the glossaries it names for the subdomains this requirement touches:
-   > <requirement>, the stories under
+   > Read `‹domain-map›`, the glossaries it names and the subdomain maps it links for the
+   > subdomains this requirement touches: <requirement>, the stories under
    > `‹requirements›/planned/` on the same topic, the planned FR files (`planned/` below the FR
    > folders) of the subdomains it touches, and whatever
    > else the requirement points to. Change nothing. Your last message has exactly these parts:

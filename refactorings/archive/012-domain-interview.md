@@ -1,6 +1,6 @@
 # Refactoring 012: the interview cut like Matt Pocock's skills – `domain-interview`
 
-Status: Implemented, evals not run · Date: 2026-11-23
+Status: Implemented · Date: 2026-11-23 · Evals stable 2026-11-23
 
 ## Why
 
@@ -62,11 +62,13 @@ artifacts come from separate skills (`to-spec`, `to-tickets`).
 Not changed on purpose: the archive, decision records, refactoring 004 (describes its own past
 state), refactoring 005 and `DEVELOPING.md` (changed in parallel by the 005 session, see below).
 
-## Open
+## Merge and evals
 
 - **Merged with 005 (2026-11-23).** 005's fixture moves (FRs under `commands/`, `policies/`) now
   sit under `evals/domain-interview/*`; its widened provenance graders (round 1 grader 02, round 2
   grader 06) gave way to "no provenance line". `DEVELOPING.md`, `evals/fixtures/README.md` and the
   sample project's `CLAUDE.md` name `domain-interview`. 005's own text keeps the old names as history.
-- **Evals not run** – the `domain-interview` cases run on the fixture of 005 now, but have not run
-  since this refactoring.
+- **Evals (2026-11-23, after 005 was closed):** all eight `domain-interview` cases, three runs each,
+  judge Haiku, about $19. Seven at 3/3; `round-1-grilling-only` 2/3 (once the final message reworded
+  a question the script had rendered, grader 09), then 3/3 in three more runs, 5/6 – stable by the
+  rule of 005.

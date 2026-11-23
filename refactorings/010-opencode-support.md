@@ -42,7 +42,7 @@ names (`/requirement`, `/domain-init`, …), the same project config
 |---|---|---|
 | Paths `${CLAUDE_PLUGIN_ROOT}/assets/x.md` → relative to the skill folder | 37 | yes: the variable does not exist in OpenCode, and moving the files alone leaves the old paths dangling |
 | Cross-references `design-the-domain:domain-interview` → the skill name | about 76 (design and implement together) | yes: the namespace is a Claude mechanism, OpenCode knows only `name:`; changes with the renaming of 011 anyway |
-| Tool terms ("Skill tool", `AskUserQuestion`, "start a subagent") | about 8, 3 and a few | **not yet decided**: Claude sees the tool list of OpenCode (`skill`, `question`, `task`) and probably maps the terms itself; try the skills unchanged first and abstract only what fails |
+| Tool terms ("Skill tool", `AskUserQuestion`, "start a subagent") | about 8, 3 and a few | **partly settled by the trial below**: "Skill tool" and "start a subagent" map by themselves (`skill`, `task`); `AskUserQuestion` still open – the one question in the trial was not asked |
 
 ## Decisions
 
@@ -90,10 +90,40 @@ names (`/requirement`, `/domain-init`, …), the same project config
 | Base directory, scripts, symlinks | yes; symlinks work in a project, not verified in a plugin cache |
 | `npx skills add … -a opencode` | yes, complete, into `.agents/skills/` |
 
+## Trial of the unchanged skills (2026-11-23)
+
+Plugin 0.9.0 (after 012) installed the way `apm install` lays it out: the skill folders in
+`.agents/skills/<name>/`, `assets/` and `scripts/` under `design-the-domain/` in the project,
+`${CLAUDE_PLUGIN_ROOT}` replaced by `design-the-domain`. OpenCode 1.15.10, Sonnet 5.5 through
+OpenRouter, headless (`opencode run --format json`), on the eval fixtures: `domain-interview` on
+`evals/fixtures/project/` (round 1, then round 2 by `--session` with answers), `domain-init` on the
+files of `evals/domain-init/two-subdomains-reconciled` (`model-init: sonnet`), called without
+subdomains.
+
+| Question | Result |
+|---|---|
+| Skill by name, also with `disable-model-invocation: true` | yes, without a command wrapper ("Nutze den Skill domain-interview") |
+| "Call the Skill tool" for `domain-grilling` and `glossary` | yes, mapped to `skill` by the model |
+| Assets and scripts under `design-the-domain/…` | yes, found; `interview-round.py` renders rounds 1 and 2 (references after the title, grouping, numbering) |
+| Subagents (ground, writer, one per subdomain) | yes, `task` with `subagent_type: general`, two in one message in parallel, report back |
+| Writers write | yes: 2 stories, 4 FRs, a deferred point stays `@open` in the story |
+| **Model per subagent** | **no**: `task` has no model parameter; `model-init: sonnet` was dropped silently, the subagents ran on the main model, and the final report still said "Subagenten (`sonnet`)" |
+| **`AskUserQuestion` (domain-init step 3)** | **not asked**: the run took both subdomains ("Ihr Auftrag nennt keine Subdomain"); open whether `question` is missing in `run` or the model skipped the step |
+| Permissions in `run` | a bash call needing approval is rejected and **ends the run** (a `for … cat` loop in domain-init); an eval runner needs a permission config per project |
+
+Seen in passing, probably the same in Claude Code (check with the evals of 005): the main run writes a
+"Kontext/Stand" block before the round; FRs without a business object stand directly in
+`‹subdomain›/<type>/planned/`.
+
+Environment: the local OpenCode database had been migrated by a newer version (`session_message.seq`
+NOT NULL error with 1.15.10); the trial ran with its own `XDG_DATA_HOME`.
+
 ## Open
 
 - Spike addendum (step 1 of the plan): `disable-model-invocation: true` skill through a command, model
-  per agent as `provider/model`, `question` headless, permission prompts in `run`.
+  per agent as `provider/model`, `question` headless, permission prompts in `run`. The trial confirms
+  that the model needs agent files (the decision above stands) and leaves `question`: test it
+  interactively.
 - Whether `npx skills add` from a GitHub source behaves like the local one (probably yes).
 - Install route for the commands (the `skills` installer does not know commands).
 - Whether the model keys need a mapping file per harness.

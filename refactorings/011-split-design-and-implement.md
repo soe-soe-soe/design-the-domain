@@ -64,6 +64,32 @@ of their own, `implement-the-domain`. Each plugin has one job, a smaller surface
 
 The deny-list check itself is not built yet (belongs to 010, which needs it for OpenCode).
 
+## Renames and evals
+
+Refactoring 005 (stable evals) was planned to run **before** the renames and writes the skill names
+of its time into graders, prompts and `expected_outcome` (`grilling`, `domain-modeling`). Whoever
+renames a skill in 011 carries every reference in the evals along:
+
+- `case.yaml` (`expected_outcome`), `graders/*.md`, `prompt.md`, `files/` and `evals/fixtures/` –
+  search with `grep -rn '<old-name>' evals/` (for implement: `implement-the-domain/evals/`).
+- Most affected: `evals/requirement/round-1-grilling-only/graders/02-*` (provenance line with
+  `🧩 grilling` or `domain-modeling`).
+- Afterwards the affected cases run once.
+
+State (2026-11-23): the design renames (`grilling` → `domain-grilling`, `domain-modeling` →
+`glossary`) came before 005, in commit `0247c7b`; their eval references are carried along (the
+provenance lines in `evals/requirement/*`, `scripts/test_interview_round.py`, the methodology
+fixture), a grep for the old names in `evals/` finds none. The affected cases have **not run** yet
+(`evals/requirement/*`, `evals/problem-space-initialization/config-*`). The rule holds for every
+further rename, the three craft skills of implement included, and for 005 if it starts after
+this: it uses the new names.
+
+**Fixtures (decision, 2026-11-23).** `evals/fixtures/` and `implement-the-domain/evals/fixtures/`
+are kept separately, not synchronised. 005 builds out `evals/fixtures/` only. Where 011 splits the
+config (`adr`, `structure`, `architecture-adrs` and the code paths of the solution space to
+implement; `backend`, `backend-shared`, `backend-tests` stay with design), the fixture config of
+each plugin is adjusted on its own.
+
 ## Done (2026-11-23)
 
 - Solution-space skills, their evals (with a copy of `evals/fixtures/`), licenses and a manifest in
@@ -96,8 +122,9 @@ Points of implement-the-domain, parked while design comes first.
    `implement-story`.
 4. **Publishing:** implement needs its own build (or a parameterised `build-dist.sh`), its own `dist`
    branch or path, and its own marketplace entry.
-5. **Evals:** `implement-the-domain/evals/fixtures/` is a copy of `evals/fixtures/`, two states to
-   keep in step. Whether `claude plugin eval .` at the root also finds `implement-the-domain/evals/`
+5. **Evals:** `implement-the-domain/evals/fixtures/` started as a copy of `evals/fixtures/` and is
+   kept on its own (section "Renames and evals"); its config still holds the full key set and
+   needs `model-solution-init`. Whether `claude plugin eval .` at the root also finds `implement-the-domain/evals/`
    is not checked [Vermutung: no, it looks in `./evals`]. No eval covers the calls to design's
    interfaces yet.
 6. **The pilot project:** where the solution-space skills stand today stays as it is (they were never in

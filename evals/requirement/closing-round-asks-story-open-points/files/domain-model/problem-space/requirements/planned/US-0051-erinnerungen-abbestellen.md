@@ -31,4 +31,4 @@ Funktionalität: Erinnerungen abbestellen
 
 ## Open
 
-- **AC2** (problem-space-story): Gibt es statt einzelner Mails eine wöchentliche Sammelmail für alle, die Erinnerungen abbestellt haben? – Recommendation: Nein, wer abbestellt, bekommt keine Mails; eine Sammelmail wäre eine eigene Story. – Changes: welche Mails Petra erhält
+- **AC2** (user-story): Gibt es statt einzelner Mails eine wöchentliche Sammelmail für alle, die Erinnerungen abbestellt haben? – Recommendation: Nein, wer abbestellt, bekommt keine Mails; eine Sammelmail wäre eine eigene Story. – Changes: welche Mails Petra erhält

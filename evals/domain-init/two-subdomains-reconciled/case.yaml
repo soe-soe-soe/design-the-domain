@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: two-subdomains-reconciled
+expected_outcome: |
+  domain-init for fristen and genehmigung: one subagent per subdomain, started in one message without asking for the scope. The reaction "a done deadline appears in the evidence history" is described by both subagents; the run keeps one Policy FR in the triggering subdomain fristen, deletes the one of genehmigung; no test is changed. The relationship Fristen → Genehmigung enters the domain map in business terms.
+context:
+  scaffold_script: place-files.sh

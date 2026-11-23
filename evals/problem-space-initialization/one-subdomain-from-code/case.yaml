@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: one-subdomain-from-code
-expected_outcome: |
-  problem-space-initialization for fristen: active FRs with @existing @unconfirmed from rules and tests, tests unchanged, a question on the suspicious branch (TODO), nothing from backend/core, the subagent on the model of model-init.
-context:
-  scaffold_script: place-files.sh

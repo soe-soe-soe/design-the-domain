@@ -32,4 +32,4 @@ Funktionalität: Fristerinnerung per E-Mail
 
 ## Open
 
-- **S2** (problem-space-fr): Gilt die Erinnerung auch für abgeleitete Fristen, also Fristen aus Nachweis- und Antragsstatus? – Recommendation: Ja, das Glossar fasst unter „Frist“ beide Arten zusammen. – Story: US-0050 · Case: glossary · Type: Policy · Glossary: fristen.md: Frist
+- **S2** (functional-requirement): Gilt die Erinnerung auch für abgeleitete Fristen, also Fristen aus Nachweis- und Antragsstatus? – Recommendation: Ja, das Glossar fasst unter „Frist“ beide Arten zusammen. – Story: US-0050 · Case: glossary · Type: Policy · Glossary: fristen.md: Frist

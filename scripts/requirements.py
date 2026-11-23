@@ -46,7 +46,7 @@ class SetupError(Exception):
 
 def read_config() -> dict[str, str]:
     if not CONFIG.exists():
-        raise SetupError(f"{CONFIG} missing – fill it in first (/design-the-domain:problem-space-initialization does it with you); run from the project root")
+        raise SetupError(f"{CONFIG} missing – fill it in first (/design-the-domain:domain-init does it with you); run from the project root")
     values = {}
     for line in CONFIG.read_text(encoding="utf-8").splitlines():
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
@@ -419,7 +419,7 @@ def cmd_history(cfg: dict[str, str], fr_id: str) -> int:
             print(f"  {r}")
     active = [p for p in problem_space.rglob(f"{fr_id}-*.md") if p.parent.name != "planned"]
     if active and "@existing" in active[0].read_text(encoding="utf-8"):
-        print("- existing: taken over from code (problem-space-initialization)")
+        print("- existing: taken over from code (domain-init)")
     if not entries and not active:
         print("- none")
     return 0

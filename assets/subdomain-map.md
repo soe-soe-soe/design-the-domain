@@ -2,7 +2,7 @@
 Map of one subdomain – ‹problem-space›/<subdomain>/subdomain-map.md, beside the business object
 folders; the domain map links it. It shows the structure of the subdomain: its business objects,
 what each holds and how they relate, like a class diagram of the problem space. Whoever creates it
-(problem-space-initialization, problem-space-fr) sets its link in the domain map in the same change.
+(domain-init, functional-requirement) sets its link in the domain map in the same change.
 
 - A class per business object (aggregate root) and per entity of it that the structure needs. A
   value is no class: it is the type of an attribute.

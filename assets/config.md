@@ -1,6 +1,6 @@
 # design-the-domain project config
 
-Template for the project config the design-the-domain skills read. `/design-the-domain:problem-space-initialization` fills it in with you; or copy it to `domain-model/config.md` in the project
+Template for the project config the design-the-domain skills read. `/design-the-domain:domain-init` fills it in with you; or copy it to `domain-model/config.md` in the project
 root and fill in the values; the skills read that file before anything else and stop if it is
 missing. The plugin knows no project: every path and convention of a project stands here.
 
@@ -38,7 +38,7 @@ writes or says something names the key it follows.
 
 ## Code
 
-The code the problem space is taken over from (`/design-the-domain:problem-space-initialization`).
+The code the problem space is taken over from (`/design-the-domain:domain-init`).
 
 | Key | Meaning | Value |
 |---|---|---|
@@ -80,5 +80,5 @@ can be set per project.
 | Key | Meaning | Value |
 |---|---|---|
 | `model-ground` | Subagent reading the ground in /design-the-domain:requirement (reads and summarises) | `inherit` |
-| `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
-| `model-init` | Subagents of /design-the-domain:problem-space-initialization, one per subdomain | `inherit` |
+| `model-writer` | Subagent running user-story and functional-requirement (finds open points) | `inherit` |
+| `model-init` | Subagents of /design-the-domain:domain-init, one per subdomain | `inherit` |

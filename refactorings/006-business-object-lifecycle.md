@@ -38,13 +38,13 @@ and only whoever reads all FRs of the business object sees the whole.
 - States use terms of the glossary (the enumeration values of the status Value); a transition
   names its command or domain event by its glossary term, never a rule: the rule stays in the FR.
 - Open: is the lifecycle derived from the FRs (and only checked), or maintained by the writers like
-  the rest of the map? `problem-space-initialization` can read it from status enumerations and
-  guards in the code; `problem-space-fr` decides it with the "consistency" case.
+  the rest of the map? `domain-init` can read it from status enumerations and
+  guards in the code; `functional-requirement` decides it with the "consistency" case.
 - Open: `requirements.py check` could verify that every command named in a transition exists as an
   FR of type Command.
 
 ## Before starting
 
 - The subdomain map with relationships and attributes exists and is used by
-  `problem-space-initialization`, `problem-space-fr` and the ground read of `requirement`.
+  `domain-init`, `functional-requirement` and the ground read of `requirement`.
 - Decide whether a business object without a status (no states) simply has no lifecycle section.

@@ -9,7 +9,7 @@ Status: Proposed · Date: 2026-11-23 · Corrected after the spike (`docs/spikes/
 
 The skills of the plugin run in Claude Code and in OpenCode (Claude as the model; tested with 1.15.10
 and 1.19.6, no version calls itself "V2") from one repository: the same skill text, the same slash
-names (`/requirement`, `/problem-space-initialization`, …), the same project config
+names (`/requirement`, `/domain-init`, …), the same project config
 `domain-model/config.md`.
 
 ## Research (2026-11-23, from the docs; the points marked *spike* were tried out)

@@ -17,7 +17,7 @@ line. Input (keys in English, texts in the session's language):
     "headings": {"fristen": "🧭 Fristen"},
                                       optional, instead of "stories": group by subdomain (or any key)
                                       with these headings, in this order; each question names its
-                                      group in "group" (problem-space-initialization has no stories)
+                                      group in "group" (domain-init has no stories)
     "questions": [                    the model's own questions
       {"title": "…", "body": "…", "recommendation": "…",
        "story": "US-0050",            optional; without it the question is cross-cutting

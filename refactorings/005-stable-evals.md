@@ -33,9 +33,9 @@ Since then (2026-11-23):
 
 - The config moved to `domain-model/config.md` (refactoring 009); the `requirement` evals still copy
   it from the external checkout at the old place, so they **do not run at all** at the moment.
-- More flaky cases showed up: `problem-space-fr/new-story-creates-frs` (grader 02 flaky before the
-  changes, grader 07 failed two of three runs afterwards), `problem-space-story/implemented-story-gets-successor`
-  (grader 01, one of three), `problem-space-initialization/map-from-code` (grader 08: relationship to a
+- More flaky cases showed up: `functional-requirement/new-story-creates-frs` (grader 02 flaky before the
+  changes, grader 07 failed two of three runs afterwards), `user-story/implemented-story-gets-successor`
+  (grader 01, one of three), `domain-init/map-from-code` (grader 08: relationship to a
   subdomain that is not in the domain map, one of three).
 
 ## Current state

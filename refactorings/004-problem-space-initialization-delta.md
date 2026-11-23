@@ -1,22 +1,22 @@
-# Refactoring 004: problem-space-initialization describes only its delta
+# Refactoring 004: domain-init describes only its delta
 
-Status: Implemented · Date: 2026-11-16 · Skills: problem-space-initialization, problem-space-fr,
+Status: Implemented · Date: 2026-11-16 · Skills: domain-init, functional-requirement,
 requirement, domain-modeling · Script: requirements.py, interview-round.py
 
 ## Goal
 
 Each piece of knowledge about the problem space stands in exactly one place, in the core skills and
-assets. `problem-space-initialization` describes only what is different when the model is taken over
+assets. `domain-init` describes only what is different when the model is taken over
 from existing code instead of grilled from a requirement. The domain map is the only index of
 subdomains and glossaries.
 
 ## Why
 
-`skills/problem-space-initialization/subdomain.md` repeats rules the core skills own: layout, folder
+`skills/domain-init/subdomain.md` repeats rules the core skills own: layout, folder
 and ID naming, numbering, template, scenario format, glossary rules, the question format. Two rules
 stand only there although they hold for every FR: how a plain create/change/delete is cut (one
 Command FR per business object) and how a folder name is spelled. Numbering is described in two
-places; `subdomain.md` says "from 001" while `problem-space-fr` counts across active and planned FRs,
+places; `subdomain.md` says "from 001" while `functional-requirement` counts across active and planned FRs,
 so a subdomain with a planned new FR gets a duplicate number.
 
 The glossary map was needed because Pocock's `domain-modeling` looked for it in the project root.
@@ -31,11 +31,11 @@ with nobody comparing them (see `refactorings/problem-space/glossary-map-and-dom
 | Sources: cross-check (glossary, methodology, domain map, ADRs) | init and `requirement` step 1 | one definition of the "ground", both refer to it |
 | Business object = aggregate root, entities belong to it | `assets/glossary.md` | unchanged |
 | Heuristic: own repository, service or router | init | init (delta) |
-| Folder name: language, lower case, special letters spelled out, hyphens | init | `problem-space-fr`, section Layout |
+| Folder name: language, lower case, special letters spelled out, hyphens | init | `functional-requirement`, section Layout |
 | Glossary rows from code, nothing unbacked, no change to existing rows | init | init (delta); format by `domain-modeling` and `assets/glossary.md` |
 | Cut FRs: code construct → FR type | init | init (delta) |
 | Cut FRs: one Command FR per business object, scenarios for validations and permissions only | init | `assets/functional-requirement-types.md` |
-| Layout, template, numbering, subdomain name rule | init (copy) | `problem-space-fr`, refer only |
+| Layout, template, numbering, subdomain name rule | init (copy) | `functional-requirement`, refer only |
 | Scenarios: format | `assets/acceptance-criteria.md` | unchanged |
 | Scenarios: one per test, test values, active FR directly, `@existing @unconfirmed` | init | init (delta) |
 | Marker in the tests, `test-collect` check | init | **dropped**, see below |
@@ -51,9 +51,9 @@ Global index: `GLOSSARY-MAP.md` (`‹glossary-map›`) and `domain-map.md` both 
 
 1. `assets/functional-requirement-types.md`: granularity of Command FRs (one per business object for
    plain create/change/delete, scenarios only for validations and permissions; no FR per endpoint).
-2. `problem-space-fr`, Layout: the folder-name rule.
+2. `functional-requirement`, Layout: the folder-name rule.
 3. `requirements.py next-fr <subdomain>`: highest `NNN` across active and planned FRs plus one, never
-   a reused number; `problem-space-fr` and init call it instead of describing the rule.
+   a reused number; `functional-requirement` and init call it instead of describing the rule.
 4. The ground (what a skill reads before it writes: glossaries, domain map, ADRs, drafts, planned FRs)
    is defined once, in `requirement`, step 1; init reads the same for its subdomain, plus code.
 5. Domain map instead of two maps (option 2 of the existing refactoring): the Glossary column of
@@ -62,7 +62,7 @@ Global index: `GLOSSARY-MAP.md` (`‹glossary-map›`) and `domain-map.md` both 
    init and `assets/output-format.md`, the fixtures, and `GLOSSARY-MAP.md` in projects. Whoever
    creates a glossary adds the subdomain's row in the same change.
 
-**Then init** (`problem-space-initialization`):
+**Then init** (`domain-init`):
 
 6. Only the delta: sources from code, business-object heuristic, code construct → FR type, scenarios
    from tests, the five question cases, report. The vocabulary is "take over" (as in the tag history
@@ -71,14 +71,14 @@ Global index: `GLOSSARY-MAP.md` (`‹glossary-map›`) and `domain-map.md` both 
    *source*. The report drops "Tests with reference" and keeps "Without test" (scenarios from code
    only). Linking tests to scenarios becomes a step of the test space later. Config keys
    `scenario-marker`, `backend-tests` and `test-collect` are no longer needed by init.
-8. Questions are not open points: an active FR carries no `@open` (`problem-space-fr`), init marks
+8. Questions are not open points: an active FR carries no `@open` (`functional-requirement`), init marks
    `@unconfirmed` and reports the questions. Rendering uses `interview-round.py` (`source`
-   `problem-space-initialization`, `ref`, `type`), which needs a way to group by subdomain instead
+   `domain-init`, `ref`, `type`), which needs a way to group by subdomain instead
    of by story. A question whose answer changes behaviour belongs in a `requirement` session.
 9. The delta lives inline in `SKILL.md` as the brief of the subagents (decided 2026-11-16, like the
    briefs of `requirement`); `subdomain.md` is gone.
 
-**Evals** (`evals/problem-space-initialization/`):
+**Evals** (`evals/domain-init/`):
 
 10. The marker graders are replaced by graders that the tests stay unchanged
     (`one-subdomain-from-code`, `two-subdomains-reconciled`).
@@ -92,7 +92,7 @@ Global index: `GLOSSARY-MAP.md` (`‹glossary-map›`) and `domain-map.md` both 
 - Order: 1–4 and 5 (independent of each other), then 6–8, then evals.
 - The pilot project: delete `GLOSSARY-MAP.md` and the key `glossary-map` in `.claude/pts.md` when it adopts
   the plugin version with this change; its `_methodology.md` names the glossary map in its terms.
-- `requirements.py history` prints "existing: taken over from code (problem-space-initialization)";
+- `requirements.py history` prints "existing: taken over from code (domain-init)";
   keep that line.
 
 ## Done

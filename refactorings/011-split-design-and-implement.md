@@ -36,14 +36,18 @@ of their own, `implement-the-domain`. Each plugin has one job, a smaller surface
 - **`model-init`** stays with design (its init only); implement gets `model-solution-init`.
 - No project names the renamed skills today; the README's release notes suffice. Version 0.9.0.
 - implement's `story-workflow` is renamed `implement-story`, so the two plugins share no skill name.
+- The prefix `problem-space-` goes: `problem-space-story` → `user-story`, `problem-space-fr` →
+  `functional-requirement`, `problem-space-initialization` → `domain-init` (still in 0.9.0, before it
+  reaches `dist`). Not `story` and `initialization`: too generic for OpenCode, where the name is the
+  only ID.
 
 ## Assignment of the skills
 
 | Skill | Plugin | Remark |
 |---|---|---|
 | `requirement` | design | entry skill; now also holds the scenario and code techniques |
-| `problem-space-story`, `problem-space-fr` | design | writers; no ADRs any more |
-| `problem-space-initialization` | design | entry skill; fills the design part of the config, domain map, glossary, subdomain map, FRs |
+| `user-story`, `functional-requirement` | design | writers; no ADRs any more |
+| `domain-init` | design | entry skill; fills the design part of the config, domain map, glossary, subdomain map, FRs |
 | `story-workflow` | design | new; status transitions after ready; interface |
 | `domain-grilling` | design | was `grilling` |
 | `glossary` | design | was `domain-modeling` without ADRs, scenarios and code check; interface `set-solution` |
@@ -51,10 +55,12 @@ of their own, `implement-the-domain`. Each plugin has one job, a smaller surface
 | `implement-story` (was `story-workflow`), `test-definition` | implement | `implement-story` calls design's `story-workflow` |
 | `tdd`, `code-review`, `codebase-design` | implement | all three collide with Matt Pocock's skills; `code-review` also with Claude's built-in |
 
-## Name rule (proposal)
+## Name rule
 
-1. A name says its area and its function: `problem-space-…`, `domain-…` in design; `implement-…` in
-   implement.
+1. A name says its area and its function: `domain-…` (`domain-grilling`, `domain-init`) or the
+   artefact it works on (`user-story`, `functional-requirement`, `glossary`, `story-workflow`) in
+   design; `implement-…` or `solution-…` in implement. A plain generic word (`story`, `init`) is not
+   enough.
 2. A name is in no known collection: Matt Pocock, Anthropic, Superpowers, built-ins of Claude Code and
    OpenCode. The build checks every name against a deny list and against doubles in the own plugin
    and in the other plugin (OpenCode overrides a duplicate `name` silently, see refactoring 010).
@@ -79,8 +85,10 @@ renames a skill in 011 carries every reference in the evals along:
 State (2026-11-23): the design renames (`grilling` → `domain-grilling`, `domain-modeling` →
 `glossary`) came before 005, in commit `0247c7b`; their eval references are carried along (the
 provenance lines in `evals/requirement/*`, `scripts/test_interview_round.py`, the methodology
-fixture), a grep for the old names in `evals/` finds none. The affected cases have **not run** yet
-(`evals/requirement/*`, `evals/problem-space-initialization/config-*`). The rule holds for every
+fixture), a grep for the old names in `evals/` finds none. The second round of renames (`problem-space-…` → `user-story`,
+`functional-requirement`, `domain-init`) moved the eval folders and carried the references and
+provenance lines along the same way. The affected cases have **not run** yet
+(`evals/requirement/*`, `evals/domain-init/config-*`). The rule holds for every
 further rename, the three craft skills of implement included, and for 005 if it starts after
 this: it uses the new names.
 
@@ -116,7 +124,7 @@ Points of implement-the-domain, parked while design comes first.
 1. **Names of the three colliding craft skills:** `implement-tdd`, `implement-review`,
    `implement-design`.
 2. **Config step:** implement has its template part but no skill that fills it; its skills still
-   point to `/design-the-domain:problem-space-initialization` when the config is missing.
+   point to `/design-the-domain:domain-init` when the config is missing.
 3. **Dependency on design:** implement only works with design enabled; Claude Code plugins have no
    declared dependency [Vermutung, not checked]. Say so in its README and check it at the start of
    `implement-story`.

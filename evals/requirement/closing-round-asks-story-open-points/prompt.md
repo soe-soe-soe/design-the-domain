@@ -40,13 +40,13 @@ So sind die bisherigen Runden gelaufen (alle beantwortet):
 
 ➡️ (beantwortet)
 
-🗣️ Alex   🧩 problem-space-fr   📄 fristen.md: Abgeleitete Frist   📐 Policy
+🗣️ Alex   🧩 functional-requirement   📄 fristen.md: Abgeleitete Frist   📐 Policy
 
 ❓ **Q6** - **Verschobene Fälligkeit**: Wird nach dem Verschieben erneut erinnert?
 
 ➡️ (beantwortet)
 
-🗣️ Alex/domain-grilling   🧩 domain-grilling + problem-space-fr   📋 FR-fristen-006/S9   📐 Policy
+🗣️ Alex/domain-grilling   🧩 domain-grilling + functional-requirement   📋 FR-fristen-006/S9   📐 Policy
 
 ### 🌐 Übergreifend
 ❓ **Q7** - **Absender-Adresse**: Von welcher Adresse gehen die Mails raus?

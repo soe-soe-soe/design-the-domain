@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: config-missing-points-to-init
 expected_outcome: |
-  requirement in a project without domain-model/config.md stops at once and says in one short statement that domain-model/config.md has to be filled in first and that /design-the-domain:problem-space-initialization does it with the user; it asks no grilling questions, starts no subagent, guesses no value and writes no file.
+  requirement in a project without domain-model/config.md stops at once and says in one short statement that domain-model/config.md has to be filled in first and that /design-the-domain:domain-init does it with the user; it asks no grilling questions, starts no subagent, guesses no value and writes no file.
 context:
   scaffold_script: place-files.sh

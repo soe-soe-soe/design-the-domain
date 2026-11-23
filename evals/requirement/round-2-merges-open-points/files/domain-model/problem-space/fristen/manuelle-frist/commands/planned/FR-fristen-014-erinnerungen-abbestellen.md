@@ -26,4 +26,4 @@ Funktionalität: Erinnerungen abbestellen
 
 ## Open
 
-- **S1** (problem-space-fr): Gehört das Abbestellen als Einstellung des Nutzers zur Subdomäne Zugang statt zu Fristen? – Recommendation: Ja, es ist eine Einstellung des Nutzers, keine Eigenschaft der Frist. – Story: US-0051 · Case: ownership · Type: Command
+- **S1** (functional-requirement): Gehört das Abbestellen als Einstellung des Nutzers zur Subdomäne Zugang statt zu Fristen? – Recommendation: Ja, es ist eine Einstellung des Nutzers, keine Eigenschaft der Frist. – Story: US-0051 · Case: ownership · Type: Command

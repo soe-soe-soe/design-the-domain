@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: glossary-conflict-asks
-expected_outcome: |
-  US-0010 contradicts the glossary (Problem: a note is mandatory). problem-space-fr asks a question in case glossary with a ref to the term Problem (fristen.md: Problem) and does not change the glossary.
-context:
-  scaffold_script: place-files.sh

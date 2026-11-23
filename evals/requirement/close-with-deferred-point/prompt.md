@@ -40,13 +40,13 @@ So sind die bisherigen Runden gelaufen (alle beantwortet):
 
 ➡️ (beantwortet)
 
-🗣️ Alex   🧩 problem-space-fr   📄 fristen.md: Abgeleitete Frist   📐 Policy
+🗣️ Alex   🧩 functional-requirement   📄 fristen.md: Abgeleitete Frist   📐 Policy
 
 ❓ **Q6** - **Verschobene Fälligkeit**: Wird nach dem Verschieben erneut erinnert?
 
 ➡️ (beantwortet)
 
-🗣️ Alex/domain-grilling   🧩 domain-grilling + problem-space-fr   📋 FR-fristen-006/S9   📐 Policy
+🗣️ Alex/domain-grilling   🧩 domain-grilling + functional-requirement   📋 FR-fristen-006/S9   📐 Policy
 
 ### 🌐 Übergreifend
 ❓ **Q7** - **Absender-Adresse**: Von welcher Adresse gehen die Mails raus?
@@ -70,7 +70,7 @@ Der letzte Bericht der Writer meldet: Stories: US-0050 (continued, draft), US-00
 
 ➡️ Nein, wer abbestellt, bekommt keine Mails; eine Sammelmail wäre eine eigene Story.
 
-🗣️ Alex 🧩 problem-space-story 📘 US-0051/AC2
+🗣️ Alex 🧩 user-story 📘 US-0051/AC2
 
 Meine Antwort auf Q9: „Das vertage ich, darüber entscheide ich später.“
 

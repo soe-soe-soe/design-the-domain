@@ -1,6 +1,6 @@
 ---
 name: requirement
-description: Grills a requirement into ready stories – domain-grilling and glossary for the interview, after every round a subagent writes stories and FRs with problem-space-story and problem-space-fr, their open points asked in the following rounds.
+description: Grills a requirement into ready stories – domain-grilling and glossary for the interview, after every round a subagent writes stories and FRs with user-story and functional-requirement, their open points asked in the following rounds.
 disable-model-invocation: true
 ---
 
@@ -14,14 +14,14 @@ questions are asked.
 
 **Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
-user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:domain-init` does it with them. Guess no value.
 
 Called as `/design-the-domain:requirement <requirement>`. Everything you say to the user is in
 `‹problem-space-language›`.
 
 ## Open points
 
-The writers (`design-the-domain:problem-space-story`, `design-the-domain:problem-space-fr`) ask nothing; they mark what is open where it belongs. A
+The writers (`design-the-domain:user-story`, `design-the-domain:functional-requirement`) ask nothing; they mark what is open where it belongs. A
 scenario or AC with an open point carries the tag `@open`, and the story or FR lists the point
 under `## Open`, in the format of the term "Open point" in
 `‹methodology-glossary›`: reference, source skill, question, recommendation,
@@ -42,8 +42,8 @@ model `‹model-writer›` (leave the model out for `inherit`). The writers put 
 `‹requirements›/planned/` and FR changes into the planned files next to the active FRs; an active
 FR stays untouched until its story is done. Its brief:
 
-> Call the Skill tool with `design-the-domain:problem-space-story` with the answers of this round: <answers> and the requirement that
-> started the session: <requirement>. Then call it with `design-the-domain:problem-space-fr` for the stories its
+> Call the Skill tool with `design-the-domain:user-story` with the answers of this round: <answers> and the requirement that
+> started the session: <requirement>. Then call it with `design-the-domain:functional-requirement` for the stories its
 > report names. Write nothing yourself; the writers do. Your last message joins both reports,
 > exactly in this form:
 >
@@ -138,7 +138,7 @@ FR stays untouched until its story is done. Its brief:
      a story that closes first makes the later one fail `requirements.py check` and come back here;
      **take out** – the overlapping part becomes a story of its own and stays `draft` with the
      point deferred, so this session can close without it.
-     Pass it in `questions` with `source` `problem-space-fr`, `ref` the scenario and its `story`.
+     Pass it in `questions` with `source` `functional-requirement`, `ref` the scenario and its `story`.
    - **Deferring.** The user may defer an open point instead of answering it. It stays in its
      story or FR, and you do not ask it again in this session.
    - **Cancelling.** If the user drops a story of the session altogether, call the Skill tool

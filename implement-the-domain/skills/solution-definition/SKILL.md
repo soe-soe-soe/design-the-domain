@@ -20,7 +20,7 @@ changes no behaviour. A decision worth an ADR you offer (section ADRs). Everythi
 
 **Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
-user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:domain-init` does it with them. Guess no value.
 
 ## Steps
 

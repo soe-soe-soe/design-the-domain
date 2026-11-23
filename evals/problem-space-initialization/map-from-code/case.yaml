@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: map-from-code
-expected_outcome: |
-  problem-space-initialization for fristen writes domain-model/problem-space/fristen/subdomain-map.md from the code: a Mermaid classDiagram with a class per business object (Frist, Verantwortlicher) and for the entity Verlängerung, composition for the extensions, association for the reference to the responsible person, attributes with glossary terms as types and the optional ones marked, no class for the permit of another subdomain; the domain map links the map and holds the relationship Fristen → Genehmigung.
-context:
-  scaffold_script: place-files.sh

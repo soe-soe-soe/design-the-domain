@@ -2,8 +2,8 @@
 
 A Claude Code plugin for the problem space of domain-driven feature work:
 `/design-the-domain:requirement` grills a requirement into ready user stories and functional
-requirements (FRs) with Gherkin scenarios; `problem-space-story` and `problem-space-fr` write them,
-`/design-the-domain:problem-space-initialization` derives the model from existing code;
+requirements (FRs) with Gherkin scenarios; `user-story` and `functional-requirement` write them,
+`/design-the-domain:domain-init` derives the model from existing code;
 `/design-the-domain:story-workflow` moves a story to in-progress, done or cancelled.
 
 The solution and test space (placement, tests first, implementation, review) is moving into a
@@ -15,7 +15,7 @@ interfaces below.
 
 1. `domain-model/config.md` holds the paths and conventions of the project; the plugin itself
    knows no project. Every skill reads it first and, without it, says to fill it in first.
-   `/design-the-domain:problem-space-initialization` fills it in with you, from the template
+   `/design-the-domain:domain-init` fills it in with you, from the template
    [assets/config.md](assets/config.md) and what it finds in the project. Another plugin may add
    its own part below, under a heading of its own; design-the-domain leaves it alone.
 2. Add the marketplace and enable the plugin in the project's `.claude/settings.json`:
@@ -64,7 +64,9 @@ code names through `glossary set-solution`.
 ## Release notes
 
 **0.9.0** – The solution-space skills move into implement-the-domain (not published yet). Renamed:
-`grilling` → `domain-grilling`, `domain-modeling` → `glossary`; its ADR part moved to
+`grilling` → `domain-grilling`, `domain-modeling` → `glossary`, `problem-space-story` →
+`user-story`, `problem-space-fr` → `functional-requirement`, `problem-space-initialization` →
+`domain-init`; its ADR part moved to
 implement-the-domain, its scenario and code techniques into `requirement`. New:
 `story-workflow` for start, done and cancel of a story. The config template holds only the keys of
 design-the-domain (Solution space, Commands and the code keys of the solution space left it); an

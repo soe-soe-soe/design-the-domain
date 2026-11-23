@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: attribute-updates-map
-expected_outcome: |
-  problem-space-fr writes planned FRs for US-0002 and brings the subdomain map of fristen up to date: the class Frist gets an attribute Priorität typed with the glossary term; existing attributes, the domain map and the glossary stay as they are; no open point, because AC3 says what becomes of existing deadlines.
-context:
-  scaffold_script: place-files.sh

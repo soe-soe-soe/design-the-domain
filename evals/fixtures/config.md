@@ -97,5 +97,5 @@ can be set per project.
 | Key | Meaning | Value |
 |---|---|---|
 | `model-ground` | Subagent reading the ground in /design-the-domain:requirement (reads and summarises) | `inherit` |
-| `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
-| `model-init` | Subagents of /design-the-domain:problem-space-initialization and /design-the-domain:solution-init, one per subdomain or context | `inherit` |
+| `model-writer` | Subagent running user-story and functional-requirement (finds open points) | `inherit` |
+| `model-init` | Subagents of /design-the-domain:domain-init and /design-the-domain:solution-init, one per subdomain or context | `inherit` |

@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: numbering-continues
-expected_outcome: |
-  problem-space-initialization for fristen, where FR-fristen-001 is active and FR-fristen-002 exists only as a planned file: the rule escalation_level, which has no FR yet, becomes FR-fristen-003 (numbering across active and planned FRs, taken from requirements.py next-fr). The rule is_overdue already has an FR and the planned FR stays as it is: neither is changed or duplicated.
-context:
-  scaffold_script: place-files.sh

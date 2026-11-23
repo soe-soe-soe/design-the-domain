@@ -15,7 +15,7 @@ it, from `implement-the-domain:test-definition` (`‹test-strategy-adr›`). The
 
 **Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
-user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:domain-init` does it with them. Guess no value.
 
 Called as `/implement-the-domain:implement-story US-0042`. Code, comments, docstrings and commits are in `‹solution-space-language›`.
 
@@ -67,7 +67,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
 
 8. **Report.** What was built, the commit, and for every question you asked in steps 2, 3 and
    5: whether the grilling could have settled it, and which check in `requirement` or
-   `problem-space-fr` was missing. Without questions: `Lessons: none`.
+   `functional-requirement` was missing. Without questions: `Lessons: none`.
 
 You are done when every planned scenario of the story has a passing test with its marker, every
 facade method of the placement its interface test, the full suite and `‹typecheck›` are green, the

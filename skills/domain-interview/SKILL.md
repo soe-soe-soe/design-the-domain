@@ -38,10 +38,10 @@ every reference. Artifacts the ground subagent read count as read by you.
    > else the requirement points to. Change nothing. Your last message has exactly these parts:
    > `Context:` one line per file read, in the format of `${CLAUDE_PLUGIN_ROOT}/assets/output-format.md`;
    > `State:` the current state of the topic in at most 15 lines; `Terms:` every glossary
-   > term the requirement touches with its one-line description; `Drafts:` each story in
-   > `planned/` on the topic with its status and open points, or `none`; `Planned:` each planned
-   > FR change of another story on the topic (`FR-…/Sn – US-…, Status`), or `none`. Labels
-   > English, content in `‹problem-space-language›`.
+   > term the requirement touches with its one-line description and its `Avoid:` words;
+   > `Drafts:` each story in `planned/` on the topic with its status and open points, or `none`;
+   > `Planned:` each planned FR change of another story on the topic (`FR-…/Sn – US-…, Status`),
+   > or `none`. Labels English, content in `‹problem-space-language›`.
 
    This is the **ground** every skill reads before it changes the problem space; other skills
    refer to it instead of listing the files again.
@@ -50,6 +50,7 @@ every reference. Artifacts the ground subagent read count as read by you.
    `in-progress` one falls back to `draft` when it changes (its template says so). `done` and
    `cancelled` stories are final: a change to them is a new story. When a question needs more
    than the report gives, read the file yourself.
+   Your questions use the terms of `Terms:` and never one of their `Avoid:` words on its own.
 
 2. **Load the craft.** Call the Skill tool with `design-the-domain:domain-grilling` and with
    `design-the-domain:glossary`, and follow both. The first round is grilling alone, on the

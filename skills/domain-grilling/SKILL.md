@@ -48,8 +48,8 @@ and what happens between rounds; you decide how it is asked. Everything you say 
   (📋 FR-fristen-013/S2): …`). Write the round as JSON to a scratch file and run
   `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` from the project root; its
   standard output is your message for the round – change nothing in it, add nothing between the
-  questions. It needs the project config; before it exists (`domain-init`, step 1) you write the
-  format above by hand.
+  questions. To change a question, change the JSON and run the script again. It needs the
+  project config; before it exists (`domain-init`, step 1) you write the format above by hand.
 - **The keys** (see the script's header): `start` – the next question number: Q1 in the first
   round, afterwards the number the previous run printed on standard error (`next question number:
   N`), so numbering runs across the whole session; `group` – `false` for the first round, `true`

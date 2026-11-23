@@ -1,6 +1,6 @@
 # Refactoring 005: stable evals for requirement and the problem-space skills
 
-Status: Proposed · Date: 2026-11-16 · Narrowed and decided 2026-11-23
+Status: Done · Date: 2026-11-16 · Narrowed and decided 2026-11-23 · Done 2026-11-23
 
 Narrowed because the solution-space skills leave for `implement-the-domain` (refactoring 011): their
 evals (`solution-definition`, `test-definition`) move with them and are no part of this refactoring.
@@ -120,14 +120,20 @@ Stable (3/3): the 21 of the full run, `close-validates-and-syncs`, `close-with-d
 `round-2-merges-open-points`, `glossary-conflict-asks`, `clear-decisions-no-questions`;
 `map-from-code` 3/3 after the `domain-init` fix with grader 08 checked again on the saved maps.
 
-Open:
-- `round-1-grilling-only` 4/6: once the round differs from the output of `interview-round.py`
-  (grader 09), once a question says "Termin" alone (grader 05). Both are model slips, not grader
-  faults.
-- The changes to `user-story` and `functional-requirement` came after the full run; their 12 cases
-  did not run again with them.
-- `domain-init/config-filled-after-answers` grader 01 lists the config sections without Confluence;
-  it fails once the Confluence section of the template is committed.
+Closed (2026-11-23, after the merge of refactoring 012, which renamed the `requirement` evals to
+`domain-interview`):
+- `round-1-grilling-only` was 4/6. Defect in the skill: the ground report listed the glossary terms
+  without their `Avoid:` words, so the main run could not know that "Termin" alone is to be
+  avoided. `domain-interview` now asks for the `Avoid:` words and forbids them in questions;
+  `domain-grilling` says to change the JSON and rerun the script instead of editing its output.
+  Then 3/3.
+- The 12 `user-story` and `functional-requirement` cases ran again with the report rule
+  (`evals/results/005-writers/`, $17.50): 10 at 3/3. `clear-decisions-no-questions` 2/3 (one run
+  wrote prose around the report), 5/6 after three more runs. `implemented-not-overwritten` 2/3 by a
+  judge error (the message had no Questions section); grader 05 replaced by two regex graders
+  (report starts with `FRs:` and the FR; no Questions), which pass all three saved messages.
+- `domain-init/config-filled-after-answers` grader 01 names the Confluence section of the template
+  (committed in 9e1e84d); 3/3.
 
 ## Done when
 

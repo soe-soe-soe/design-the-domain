@@ -1,10 +1,10 @@
 # design-the-domain – problem space skills
 
 A Claude Code plugin for the problem space of domain-driven feature work:
-`/design-the-domain:requirement` grills a requirement into ready user stories and functional
+`/design-the-domain:domain-interview` grills a requirement into ready user stories and functional
 requirements (FRs) with Gherkin scenarios; `user-story` and `functional-requirement` write them,
 `/design-the-domain:domain-init` derives the model from existing code;
-`/design-the-domain:story-workflow` moves a story to in-progress, done or cancelled.
+`/design-the-domain:story-workflow` moves a story to ready, in-progress, done or cancelled.
 
 The solution and test space (placement, tests first, implementation, review) is moving into a
 plugin of its own, [implement-the-domain](implement-the-domain/README.md) (refactoring 011, not
@@ -33,15 +33,18 @@ interfaces below.
 
 ## Craft skills
 
-`domain-grilling` (the interview) and `glossary` (the ubiquitous language) come with the plugin.
-They are based on [mattpocock/skills](https://github.com/mattpocock/skills) (MIT,
+`domain-interview` is built like Matt Pocock's `grill-with-docs`: it composes `domain-grilling`
+(how the interview is asked: design tree, rounds, open points, closing round) and `glossary` (the
+ubiquitous language, concrete scenarios, the check against code), and adds the problem-space
+structure – the ground, the writers after every round, the close. `domain-init` asks through
+`domain-grilling` too. They are based on [mattpocock/skills](https://github.com/mattpocock/skills) (MIT,
 [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)); what was taken over and changed, and the weekly
 check against upstream, stand in [docs/upstream.md](docs/upstream.md).
 
 ## Interfaces
 
 What another plugin – implement-the-domain or one of your own – may rely on. Everything else
-(the writers, the rounds of `requirement`, the init) is internal and may change in any release.
+(the writers, the interview and its rounds, the init, the transition `ready`) is internal and may change in any release.
 The contract of a skill is the section `## Interface` of its `SKILL.md`; this list only points
 there. Both plugins must be enabled; the caller uses the Skill tool with the full name.
 
@@ -66,9 +69,11 @@ code names through `glossary set-solution`.
 **0.9.0** – The solution-space skills move into implement-the-domain (not published yet). Renamed:
 `grilling` → `domain-grilling`, `domain-modeling` → `glossary`, `problem-space-story` →
 `user-story`, `problem-space-fr` → `functional-requirement`, `problem-space-initialization` →
-`domain-init`; its ADR part moved to
-implement-the-domain, its scenario and code techniques into `requirement`. New:
-`story-workflow` for start, done and cancel of a story. The config template holds only the keys of
+`domain-init`, `requirement` → `domain-interview`; the ADR part of `domain-modeling` moved to
+implement-the-domain. New: `story-workflow` for ready, start, done and cancel of a story (it now
+also validates a story at the close of an interview and syncs its ticket). `domain-grilling` holds
+the rounds of the interview and is used by `domain-interview` and `domain-init`; the questions no
+longer carry a provenance line, the artifact a question rests on stands after its title. The config template holds only the keys of
 design-the-domain (Solution space, Commands and the code keys of the solution space left it); an
 existing `domain-model/config.md` stays valid.
 
@@ -88,9 +93,9 @@ python3 scripts/requirements.py cancel   US-0042
 python3 scripts/requirements.py history  FR-deadlines-003
 ```
 
-[scripts/interview-round.py](scripts/interview-round.py) renders each round of `/design-the-domain:requirement`: the model
-supplies its own questions, the script adds the writers' open points, numbers, groups and writes
-the provenance lines.
+[scripts/interview-round.py](scripts/interview-round.py) renders each round of `domain-grilling`: the model
+supplies its own questions, the script adds the writers' open points, numbers, groups and puts
+the artifact a question rests on after its title.
 
 ## Ticket system
 

@@ -20,7 +20,7 @@ $7 per run instead of $0.50, reruns too (Sonnet was not steadier). Each case run
 no case sets `runs`). Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They
 simulate a project with a German problem space and an English solution space
 (`evals/fixtures/config.md`): case descriptions and graders are English, fixtures and user prompts
-German. The `requirement` cases copy the invented sample project `evals/fixtures/project/` (see
+German. The `domain-interview` cases copy the invented sample project `evals/fixtures/project/` (see
 `evals/fixtures/README.md`) and lay their own files over it; the other cases bring their files.
 No eval reads a real project, and none syncs to a real ticket system (`ticket-system` is `none`,
 or `linear` without a connector).

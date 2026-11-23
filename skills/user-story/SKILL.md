@@ -1,6 +1,6 @@
 ---
 name: user-story
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /domain-interview after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
 # User-Story
@@ -10,7 +10,7 @@ criteria (AC) in Gherkin. A story describes a **change**; the living target stat
 the functional requirements (skill `design-the-domain:functional-requirement`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/design-the-domain:requirement` reads the open points and decides when to ask them.
+`/design-the-domain:domain-interview` reads the open points and decides when to ask them.
 
 **Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
 angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
@@ -76,8 +76,8 @@ template [story.md](../../assets/story.md); read it.
 You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
-`/design-the-domain:requirement` sets `ready` when the session closes, `design-the-domain:story-workflow`
-sets `in-progress`, `done` and `cancelled`.
+`design-the-domain:story-workflow` sets `ready` (when `/design-the-domain:domain-interview` closes its
+session), `in-progress`, `done` and `cancelled`.
 
 ## Story file
 

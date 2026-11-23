@@ -1,6 +1,6 @@
 # Eval fixtures
 
-`project/` is an invented sample project for the `requirement` evals: software for project developers that keeps
+`project/` is an invented sample project for the `domain-interview` evals: software for project developers that keeps
 deadlines (Fristen) and permit procedures (Genehmigung). German problem space, English solution
 space, as `config.md` says. The `place-files.sh` of a case copies `project/` into the run
 directory, then `config.md` and `methodology.md`, then the case's own `files/`.

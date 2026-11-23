@@ -3,7 +3,9 @@
 Status: In progress · Date: 2026-11-23
 
 The problem-space part is done (design-the-domain 0.9.0, 2026-11-23); the solution-space part is a
-scaffold, its points stand under "Solution space (open)".
+scaffold, its points stand under "Solution space (open)". Refactoring 012 cut the interview anew
+afterwards: `requirement` became `domain-interview`, the scenario and code techniques went back
+into `glossary`, the close into `story-workflow ready`; this document keeps the state of 011.
 
 ## Goal
 
@@ -45,7 +47,7 @@ of their own, `implement-the-domain`. Each plugin has one job, a smaller surface
 
 | Skill | Plugin | Remark |
 |---|---|---|
-| `requirement` | design | entry skill; now also holds the scenario and code techniques |
+| `requirement` (since 012 `domain-interview`) | design | entry skill; now also holds the scenario and code techniques (since 012 in `glossary`) |
 | `user-story`, `functional-requirement` | design | writers; no ADRs any more |
 | `domain-init` | design | entry skill; fills the design part of the config, domain map, glossary, subdomain map, FRs |
 | `story-workflow` | design | new; status transitions after ready; interface |
@@ -64,7 +66,7 @@ of their own, `implement-the-domain`. Each plugin has one job, a smaller surface
 2. A name is in no known collection: Matt Pocock, Anthropic, Superpowers, built-ins of Claude Code and
    OpenCode. The build checks every name against a deny list and against doubles in the own plugin
    and in the other plugin (OpenCode overrides a duplicate `name` silently, see refactoring 010).
-3. Entry skills the user types keep a short name as long as they pass the check (`requirement`,
+3. Entry skills the user types keep a short name as long as they pass the check (`domain-interview`,
    `glossary`, `story-workflow`).
 4. Folder name and `name:` are the same; `npx skills` names the target folder after `name:`.
 

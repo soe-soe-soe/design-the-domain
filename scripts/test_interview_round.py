@@ -92,56 +92,54 @@ class RoundTest(unittest.TestCase):
         q.update(kw)
         return q
 
-    def test_round_one_has_no_headings_and_grilling_provenance(self):
+    def test_round_one_has_no_headings_and_no_references(self):
         out = rnd.render({"start": 1, "group": False, "stories": [], "questions": [self.own(), self.own(title="Vorlauf")]}, self.cfg)
         self.assertNotIn("###", out)
         self.assertIn("❓ **Q1** - **Absender**: Von welcher Adresse?", out)
-        self.assertIn("❓ **Q2** - **Vorlauf**", out)
-        self.assertEqual(out.count("🗣️ domain-grilling 🧩 domain-grilling\n"), 2)
+        self.assertIn("❓ **Q2** - **Vorlauf**: ", out)
+        self.assertNotIn("🗣️", out)
+        self.assertNotIn("🧩", out)
         self.assertNotIn("next question number", out)
 
-    def test_fr_open_point_is_asked_under_its_story_with_full_provenance(self):
+    def test_fr_open_point_is_asked_under_its_story_with_its_references(self):
         out = rnd.render({"start": 5, "stories": ["US-0050"], "questions": [self.own()]}, self.cfg)
         self.assertIn("### 📘 US-0050: Erinnerung vor Fristablauf", out)
-        self.assertIn("**Q5** - **Abgeleitete Frist sieben Tage vor Fälligkeit**", out)
-        self.assertIn("🗣️ Alex 🧩 functional-requirement 📋 FR-fristen-013/S2 📄 fristen.md: Abgeleitete Frist 📐 Policy", out)
+        self.assertIn("❓ **Q5** - **Abgeleitete Frist sieben Tage vor Fälligkeit** (📋 FR-fristen-013/S2, 📄 fristen.md: Abgeleitete Frist): Gilt die Erinnerung", out)
         self.assertLess(out.index("US-0050"), out.index("### 🌐 Cross-cutting"))
         self.assertIn("**Q6** - **Absender**", out)
         self.assertNotIn("Sammelmail", out)  # story points wait for the closing round
 
     def test_questions_grouped_by_subdomain_headings(self):
-        qs = [self.own(title="Lead time", group="genehmigung", source="domain-init", ref="FR-genehmigung-001/S2", type="Domain Service"),
-              self.own(title="Overdue", group="fristen", source="domain-init")]
+        qs = [self.own(title="Lead time", group="genehmigung", ref="FR-genehmigung-001/S2"),
+              self.own(title="Overdue", group="fristen")]
         out = rnd.render({"start": 1, "headings": {"fristen": "🧭 Fristen", "genehmigung": "🧭 Genehmigung"}, "questions": qs}, self.cfg)
         self.assertLess(out.index("### 🧭 Fristen"), out.index("### 🧭 Genehmigung"))
         self.assertLess(out.index("**Q1** - **Overdue**"), out.index("**Q2** - **Lead time**"))
-        self.assertIn("🗣️ Alex 🧩 domain-init 📋 FR-genehmigung-001/S2 📐 Domain Service", out)
+        self.assertIn("❓ **Q2** - **Lead time** (📋 FR-genehmigung-001/S2): ", out)
         self.assertNotIn("Sammelmail", out)
 
     def test_shared_question_is_asked_once(self):
         q = self.own(title="Abgeleitete Fristen", story="US-0050", same_as="FR-fristen-013/S2")
         out = rnd.render({"start": 1, "stories": ["US-0050"], "questions": [q]}, self.cfg)
         self.assertEqual(out.count("❓"), 1)
-        self.assertIn("🗣️ Alex/domain-grilling 🧩 domain-grilling + functional-requirement 📋 FR-fristen-013/S2", out)
+        self.assertIn("❓ **Q1** - **Abgeleitete Fristen** (📋 FR-fristen-013/S2, 📄 fristen.md: Abgeleitete Frist): ", out)
 
     def test_closing_round_asks_story_points_and_skips_deferred(self):
         out = rnd.render({"start": 9, "stories": ["US-0050"], "closing": True, "deferred": ["FR-fristen-013/S2"], "questions": []}, self.cfg)
-        self.assertIn("**Q9** - **Sammelmail**: Gibt es eine Sammelmail?", out)
-        self.assertIn("🗣️ Alex 🧩 user-story 📘 US-0050/AC2", out)
+        self.assertIn("❓ **Q9** - **Sammelmail** (📘 US-0050/AC2): Gibt es eine Sammelmail?", out)
         self.assertNotIn("FR-fristen-013/S2", out)
 
     def test_parallel_change_from_writer(self):
-        q = self.own(title="Parallele Änderung", story="US-0050", source="functional-requirement", ref="FR-fristen-009/S6", type="Command")
+        q = self.own(title="Parallele Änderung", story="US-0050", ref="FR-fristen-009/S6")
         out = rnd.render({"start": 1, "stories": ["US-0050"], "deferred": ["FR-fristen-013/S2"], "questions": [q]}, self.cfg)
-        self.assertIn("🗣️ Alex 🧩 functional-requirement 📋 FR-fristen-009/S6 📐 Command", out)
+        self.assertIn("❓ **Q1** - **Parallele Änderung** (📋 FR-fristen-009/S6): ", out)
 
-    def test_provenance_is_the_last_line_of_each_question(self):
+    def test_recommendation_is_the_last_line_of_each_question(self):
         out = rnd.render({"start": 1, "group": False, "stories": [], "questions": [self.own(), self.own()]}, self.cfg)
         blocks = [b.strip() for b in out.split("---")]
         for b in blocks:
             lines = [l for l in b.splitlines() if l]
-            self.assertTrue(lines[-1].startswith("🗣️"), lines[-1])
-
+            self.assertTrue(lines[-1].startswith("➡️"), lines[-1])
 
 if __name__ == "__main__":
     unittest.main()

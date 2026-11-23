@@ -1,6 +1,6 @@
 # Ticket template
 
-Shared by `/design-the-domain:requirement` and `/design-the-domain:story-workflow` when `‹ticket-system›` is not
+Used by `/design-the-domain:story-workflow` when `‹ticket-system›` is not
 `none`; not a skill itself. Values in angle quotes are keys of the project config
 `domain-model/config.md`. The ticket system is reached through the project's connector for it (e.g. the
 Linear MCP server).
@@ -21,7 +21,7 @@ Linear MCP server).
 
 | Moment | Who | Sync |
 |---|---|---|
-| Session closes | `/design-the-domain:requirement` step 4 | every story of the session: create without `External`, update with |
+| Session closes | `/design-the-domain:story-workflow ready`, called by `/design-the-domain:domain-interview` for every story of the session, also when it stays draft | the story: create without `External`, update with |
 | Story cancelled | `/design-the-domain:story-workflow cancel` | the story, status cancelled, link into `cancelled/` |
 | Implementation starts | `/design-the-domain:story-workflow start` | the story, status in-progress |
 | Story done | `/design-the-domain:story-workflow done`, after `requirements.py complete` | the story, status done, link into `‹requirements›/` |

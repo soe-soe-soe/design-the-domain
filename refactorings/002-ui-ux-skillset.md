@@ -11,7 +11,7 @@ Comparison point: BMAD keeps a UX specification of its own next to the PRD, Open
 ## To decide
 
 - Which artefacts the skillset produces (UX spec, user journeys, screen states, design tokens).
-- Where it sits in the workflow: after `requirement`, before `solution-definition`, or
+- Where it sits in the workflow: after `domain-interview`, before `solution-definition`, or
   alongside both.
 - How UI decisions reference stories and FR scenarios without mixing them into the problem
   space.

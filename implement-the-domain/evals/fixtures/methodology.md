@@ -130,7 +130,7 @@ _Avoid_: test case (the test comes later)
 _Code_: `Szenario: ACn – …` in the story, reference `US-NNNN/ACn`
 
 **Open point**:
-Something a story or an FR cannot decide without an answer: in a story a gap that changes the outcome of an acceptance criterion (user-story), in a planned FR a contradiction with the existing state (functional-requirement); an active FR never carries one. The writers only mark it; `/requirement` asks it – FR points in the next round, story points in the closing round – and the user may defer it. One format in stories and FRs: the concerned scenario or AC carries the tag `@open` – an open point under `## Open` concerns it. A new scenario or AC whose outcome hangs on the answer has no Dann; an existing one keeps its Dann until the answer is in, and no other scenario states a contradicting Dann meanwhile. The artefact lists the point under `## Open` as
+Something a story or an FR cannot decide without an answer: in a story a gap that changes the outcome of an acceptance criterion (user-story), in a planned FR a contradiction with the existing state (functional-requirement); an active FR never carries one. The writers only mark it; `/domain-interview` asks it – FR points in the next round, story points in the closing round – and the user may defer it. One format in stories and FRs: the concerned scenario or AC carries the tag `@open` – an open point under `## Open` concerns it. A new scenario or AC whose outcome hangs on the answer has no Dann; an existing one keeps its Dann until the answer is in, and no other scenario states a contradicting Dann meanwhile. The artefact lists the point under `## Open` as
 `- **<ACn or Sn>** (<source skill>): <Frage, mit „ja“ annehmbar> – Recommendation: <Antwort> – <Field>: <value> · …`
 with the fields `Changes` (story) or `Story`, `Case`, `Type` and, for case glossary, `Glossary` (FR). Question and recommendation are German, labels English.
 _Avoid_: assumption (nothing is guessed)
@@ -147,7 +147,7 @@ _Avoid_: delta FR (as a file per story)
 _Code_: `<FR folder>/planned/FR-<subdomain>-NNN-<slug>.md` (same file name as the active FR), `Status: planned`, section `## Changes` with `- US-NNNN · Kind: new|edit|deletion · Rule: changed|unchanged`, template `assets/planned-functional-requirement.md` of `functional-requirement`
 
 **Base tag**:
-The story tag an active scenario carried when a planned change to it was written. If the active scenario carries another tag by the time the change is checked or merged, another story changed it in between – a parallel change, which blocks completing the story until `/requirement` settled it.
+The story tag an active scenario carried when a planned change to it was written. If the active scenario carries another tag by the time the change is checked or merged, another story changed it in between – a parallel change, which blocks completing the story until `/domain-interview` settled it.
 _Code_: tag `@base-US-NNNN` or `@base-existing` on a changed or dropped scenario of a planned FR; checked by `requirements.py check`
 
 **FR type**:
@@ -193,6 +193,7 @@ The end-to-end test of one business object with a UI: its life cycle on the happ
 _Avoid_: E2E test per story
 _Code_: `frontend/e2e/journeys/<subdomain>/<business-object>.spec.ts`, step tag `@US-NNNN`
 
-**Provenance line**:
-The last line of every question in a grill session: who raised it (Alex, grilling or both), which skill it comes from and, where available, reference and FR type.
-_Code_: format in the skill `requirement`, step "Run the rounds"
+**Question reference**:
+The artifacts a question of a grill session rests on, with their icons, in parentheses after the question's title: `❓ **Q5** - **<title>** (📋 FR-fristen-013/S2): …`.
+_Avoid_: provenance line
+_Code_: format in the skill `domain-grilling`, section "Rounds in this project"

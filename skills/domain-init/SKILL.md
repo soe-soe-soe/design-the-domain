@@ -10,8 +10,10 @@ You take the problem-space model (`‹problem-space›`, `‹glossaries›`) ove
 exists: glossary, business objects and FRs per subdomain, the scenarios from the existing tests.
 Afterwards `design-the-domain:functional-requirement` has an existing state to find contradictions against.
 
-This skill only states what differs from `design-the-domain:requirement`: the source is code, not
-an interview, and the FRs are active at once, because the code implements them. Layout, naming,
+This skill only states what differs from `design-the-domain:domain-interview`: the source is code, not
+an interview, and the FRs are active at once, because the code implements them. Questions to the
+user follow `design-the-domain:domain-grilling`: call the Skill tool with it before your first
+question. Layout, naming,
 numbering and templates are those of `design-the-domain:functional-requirement`, scenario format and glossary
 format those of the assets it names.
 
@@ -37,7 +39,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
      `CLAUDE.md`, `AGENTS.md` and the README (project rules, languages), build files and scripts
      (`pyproject.toml`, `package.json`, `Makefile`) for the source and test folders, an existing `domain-model/`. A value you do not find you do not guess: it stays open and is
      asked without a recommendation. The names of the people and the languages are always asked.
-   - **Ask** in the question format of the interview, by hand: the script `interview-round.py` reads
+   - **Ask** in the question format of `domain-grilling`, by hand: the script `interview-round.py` reads
      the config itself and cannot run without it. One question per group of the template – Project,
      Problem space, Code, Ticket system, Models – numbered from Q1 as
      `❓ **Qn** - **<group>**: …` with the open keys, each with its proposed value and source, and
@@ -70,7 +72,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
      strongest argument for each and your recommendation. Say plainly where the code gives no
      evidence; never feign certainty.
    - **Ask** by `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its
-     header: `group` `false`, `source` `domain-init`, `start` 1), after the evidence:
+     header: `group` `false`, `start` 1), after the evidence:
      one question per uncertain cut, one on the types (Core, Supporting, Generic; a business
      judgement, so the recommendation is `open` unless the user has said more), and one on whether
      the cut stands as a whole. Change nothing in its output. Write nothing before the answers.
@@ -96,7 +98,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    > Project config: `domain-model/config.md`, plugin root: `${CLAUDE_PLUGIN_ROOT}`. You describe what the code
    > does today; you implement nothing, code and tests stay unchanged. Write only in
    > `‹problem-space›/<subdomain>/` (the FRs and `subdomain-map.md`), `‹glossaries›/<subdomain>.md`
-   > and, for a new glossary or subdomain map, its subdomain's row in `‹domain-map›`. Read the ground as `design-the-domain:requirement` defines it
+   > and, for a new glossary or subdomain map, its subdomain's row in `‹domain-map›`. Read the ground as `design-the-domain:domain-interview` defines it
    > (step 1), for your subdomain, and the code below.
    >
    > **Sources, by reliability:** (1) the tests of your folders under `‹backend-tests›`, executable
@@ -161,7 +163,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    > Relationships:
    > - Deadlines → Permits: done deadlines appear in the evidence history
    > Questions:
-   > 1. Ref: <glossary>.md: <term> or FR-<subdomain>-NNN/Sn · Type: <FR type> · Case: <glossary | adr | test-vs-code | suspicious-branch | duplicate-rule>
+   > 1. Ref: <glossary>.md: <term> or FR-<subdomain>-NNN/Sn · Type: <FR type> · Case: <glossary | test-vs-code | suspicious-branch | duplicate-rule>
    >    Question: <what stands out, phrased as a decision>?
    >    Recommendation: <answer with reason>.
    > ```
@@ -183,9 +185,8 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
 6. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios, scenarios
    without test. Below that the subagents' questions, rendered by
    `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its header: one
-   `headings` entry per subdomain, each question with its `group`, `source`
-   `domain-init`, `ref` and `type`; `start` 1). Change nothing in its output. A question whose answer
-   would change the behaviour belongs in a `design-the-domain:requirement` session, not here. Finally the question
+   `headings` entry per subdomain, each question with its `group` and `ref`; `start` 1). Change nothing in its output. A question whose answer
+   would change the behaviour belongs in a `design-the-domain:domain-interview` session, not here. Finally the question
    which subdomains they confirm as a block.
 
 7. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its

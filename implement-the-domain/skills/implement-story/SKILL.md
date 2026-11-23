@@ -29,7 +29,7 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    and the active FRs they change. The story must be `ready` – or `in-progress` when a previous
    run stopped; if not, stop and name its open points.
    Call the Skill tool with `design-the-domain:story-workflow US-0042 start`. If it reports
-   `refused`, show its report and stop: a conflict goes back to `/design-the-domain:requirement`.
+   `refused`, show its report and stop: a conflict goes back to `/design-the-domain:domain-interview`.
    Note the current commit as the review's fixed point.
 
 2. **Place.** Call the Skill tool with `implement-the-domain:solution-definition` for the story. If it reports questions, ask
@@ -60,13 +60,13 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    the story's planned changes into the active FRs, sets `Status: done` and moves the story to
    `‹requirements›/` – all or nothing – and syncs its ticket. If it reports `refused`, show its
    report and stop before committing; the story stays `in-progress` until
-   `/design-the-domain:requirement` settled the conflict. Then commit placement,
+   `/design-the-domain:domain-interview` settled the conflict. Then commit placement,
    tests, implementation and the problem-space changes together by the commit convention in
    `‹project-rules›`; regenerate the context map with `‹context-map-command›` if the project has
    no hook doing it.
 
 8. **Report.** What was built, the commit, and for every question you asked in steps 2, 3 and
-   5: whether the grilling could have settled it, and which check in `requirement` or
+   5: whether the grilling could have settled it, and which check in `domain-interview` or
    `functional-requirement` was missing. Without questions: `Lessons: none`.
 
 You are done when every planned scenario of the story has a passing test with its marker, every

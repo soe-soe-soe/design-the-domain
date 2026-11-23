@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: round-2-merges-open-points
+expected_outcome: |
+  Round 2 grouped by story (US-0050, US-0051, cross-cutting last), numbered throughout, rendered by scripts/interview-round.py, contains both open points from the FRs exactly once, each with its reference with type icon (📋) in parentheses after the title; no question carries a provenance line (🗣️, 🧩).
+context:
+  scaffold_script: place-files.sh

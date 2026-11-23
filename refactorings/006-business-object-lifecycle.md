@@ -46,5 +46,5 @@ and only whoever reads all FRs of the business object sees the whole.
 ## Before starting
 
 - The subdomain map with relationships and attributes exists and is used by
-  `domain-init`, `functional-requirement` and the ground read of `requirement`.
+  `domain-init`, `functional-requirement` and the ground read of `domain-interview`.
 - Decide whether a business object without a status (no states) simply has no lifecycle section.

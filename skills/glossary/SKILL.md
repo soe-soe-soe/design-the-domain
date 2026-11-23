@@ -1,12 +1,11 @@
 ---
 name: glossary
-description: Keeps the ubiquitous language of the project – challenges terms against the subdomain glossaries, sharpens fuzzy ones, writes glossary rows and a new subdomain's row and relationships into the domain map. Use from /design-the-domain:requirement, when the user discusses the project's terminology or edits a glossary, or from another plugin that sets the solution-space columns of a term (interface, see below).
+description: Keeps the ubiquitous language of the project – challenges terms against the subdomain glossaries, sharpens fuzzy ones, stress-tests them with concrete scenarios and against the code, writes glossary rows and a new subdomain's row and relationships into the domain map. Use from /design-the-domain:domain-interview, when the user discusses the project's terminology or edits a glossary, or from another plugin that sets the solution-space columns of a term (interface, see below).
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/domain-modeling` (MIT, © 2026 Matt Pocock),
-> commit `4ae2317`, adapted for design-the-domain: only the glossary part (one glossary per subdomain as a table, the
-> domain map, paths from the project config); scenarios and the code check went to `requirement`, ADRs to
-> implement-the-domain. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
+> commit `4ae2317`, adapted for design-the-domain: one glossary per subdomain as a table, the domain map, paths from
+> the project config, an interface for the solution-space columns; ADRs went to implement-the-domain. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 # Glossary
 
@@ -44,6 +43,19 @@ Which is it?"
 
 When the user uses vague or overloaded terms, propose a precise canonical term. "You're saying
 'account': do you mean the Customer or the User? Those are different things."
+
+### Discuss concrete scenarios
+
+When domain relationships are being discussed, stress-test them with specific scenarios. Invent
+scenarios that probe edge cases and force the user to be precise about the boundaries between
+concepts; they become ACs and FR scenarios.
+
+### Cross-reference with code
+
+When the user states how something works, check whether the code agrees. If you find a
+contradiction, surface it: "Your code cancels entire Orders, but you just said partial cancellation
+is possible. Which is right?" The code tells what is, not what should be: a difference the user
+confirms is the delta to implement.
 
 ### Update the glossary inline
 

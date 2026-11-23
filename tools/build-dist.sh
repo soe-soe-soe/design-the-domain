@@ -44,7 +44,7 @@ done
 # Interfaces): a call is `design-the-domain:<skill>` without a leading slash; `/design-the-domain:…`
 # only tells the user what to run.
 git ls-tree -r --name-only "$source_commit" -- implement-the-domain/skills | while read -r f; do
-  git show "$source_commit:$f" | grep -noE '(^|[^/])design-the-domain:[a-z-]+' | while IFS=: read -r line ref; do
+  { git show "$source_commit:$f" | grep -noE '(^|[^/])design-the-domain:[a-z-]+' || true; } | while IFS=: read -r line ref; do
     skill="${ref##*design-the-domain:}"
     if ! git show "$source_commit:skills/$skill/SKILL.md" 2>/dev/null | grep -q '^## Interface'; then
       echo "warning: $f:$line: calls design-the-domain:$skill, which has no ## Interface"

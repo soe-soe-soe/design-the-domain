@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Housekeeping for design-the-domain requirements and planned FRs – deterministic, no model.
 
-Commands (run from the project root, which holds .claude/pts.md):
+Commands (run from the project root, which holds domain-model/config.md):
 
   requirements.py check    US-0042   base and parallel check of the story's planned FR changes
   requirements.py complete US-0042   merge the story's planned FR changes into the active FRs,
@@ -23,7 +23,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-CONFIG = Path(".claude/pts.md")
+CONFIG = Path("domain-model/config.md")
 # Any Gherkin dialect: a keyword (letters and spaces) followed by ": S<n>" – the plugin numbers
 # scenarios S1, S2, …, so the keyword itself does not matter (‹problem-space-language›).
 SCENARIO_RE = re.compile(r"^(\s*)([^\W\d_][^\W\d_ ]*(?: [^\W\d_]+)*):\s*S(\d+)\b")
@@ -46,7 +46,7 @@ class SetupError(Exception):
 
 def read_config() -> dict[str, str]:
     if not CONFIG.exists():
-        raise SetupError(f"{CONFIG} missing – run from the project root")
+        raise SetupError(f"{CONFIG} missing – fill it in first (/design-the-domain:problem-space-initialization does it with you); run from the project root")
     values = {}
     for line in CONFIG.read_text(encoding="utf-8").splitlines():
         cells = [c.strip() for c in line.strip().strip("|").split("|")]

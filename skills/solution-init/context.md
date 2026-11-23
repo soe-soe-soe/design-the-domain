@@ -2,7 +2,7 @@
 
 You classify the existing code of one bounded context into aggregates and building blocks and
 write the migration plan. You change no code. Values in angle quotes are keys of the project
-config `.claude/pts.md`. Target structure and FR type mapping:
+config `domain-model/config.md`. Target structure and FR type mapping:
 `‹structure›`; terms:
 `‹methodology-glossary›`.
 

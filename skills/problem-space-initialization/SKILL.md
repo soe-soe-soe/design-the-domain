@@ -21,13 +21,35 @@ descriptions, FR rules, scenarios, questions to the user) is in `‹problem-spac
 glossary identifiers in `‹solution-space-language›` as in the code; methodology is English as the
 project config states.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹domain-map›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹domain-map›`) is one of its keys. Without the file, or while a key holds no value
+or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is read before that.
 
 ## Steps
 
-1. **Domain map.** Read `‹domain-map›`. If it exists and lists a subdomain, go to step 2: it is the
+1. **Config.** Read `domain-model/config.md`. If it exists and every key has a value that is not
+   empty and not only a placeholder in angle brackets (`<name>`), go to step 2. Otherwise you fill it
+   with the user, first of all and in the main run; a key that does not apply gets `–`.
+   - **Start from the template** `${CLAUDE_PLUGIN_ROOT}/assets/config.md`; values already filled stay.
+   - **Derive a proposal** per open key from the project, with its source: the layout of the root,
+     `CLAUDE.md`, `AGENTS.md` and the README (project rules, languages), build files and scripts
+     (`pyproject.toml`, `package.json`, `Makefile`) for commands, the test folders, ADR folders,
+     an existing `domain-model/`. A value you do not find you do not guess: it stays open and is
+     asked without a recommendation. The names of the people and the languages are always asked.
+   - **Ask** in the question format of the interview, by hand: the script `interview-round.py` reads
+     the config itself and cannot run without it. One question per group of the template – Project,
+     Problem space, Solution space, Code, Commands, Ticket system, Models – numbered from Q1 as
+     `❓ **Qn** - **<group>**: …` with the open keys, each with its proposed value and source, and
+     below it `➡️` the recommendation (take the proposals, name what is still open). In the
+     language of the user. Write nothing before the answers and do not draft the domain map in the
+     same message, not even name candidate subdomains or folders as a preview: the domain map follows
+     in step 2, once the config is written.
+   - **Write** `domain-model/config.md` as a copy of the template with the answers filled in, no
+     placeholder left except in a value that is a pattern (`FR-<subdomain>-NNN`). A key the user
+     leaves open stays a placeholder: then say which keys are still open and stop, the skill
+     continues with the next call.
+
+2. **Domain map.** Read `‹domain-map›`. If it exists and lists a subdomain, go to step 3: it is the
    user's decision, you do not rework it. Otherwise you draft it with the user, in the main run,
    before any subagent starts. The code does not tell what a subdomain is, and folders are not
    subdomains: you bring evidence, the user decides.
@@ -52,24 +74,24 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
      the cut stands as a whole. Change nothing in its output. Write nothing before the answers.
    - **Write** once answered: `‹domain-map›` by `${CLAUDE_PLUGIN_ROOT}/assets/domain-map.md` – the
      domain in one sentence, a row per subdomain with its type, the glossary link and `–` as subdomain
-     map, the relationships table empty (step 4 fills it from the reports) – and per subdomain a
+     map, the relationships table empty (step 5 fills it from the reports) – and per subdomain a
      glossary file by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md` with title, sentence and the
      Subdomain row with its code folders. An existing glossary stays as it is. Name of the subdomain,
      of its glossary file and of its problem-space folder is the problem-space term in
      `‹problem-space-language›` (`fristen.md`, folder rules of `design-the-domain:problem-space-fr`),
      never the code name (`deadlines`), which stands only in the Subdomain row.
 
-2. **Clarify scope.** Read `‹domain-map›` and ask the user with
+3. **Clarify scope.** Read `‹domain-map›` and ask the user with
    AskUserQuestion whether to take one subdomain over, several or all; for several, let them
    choose. If the call already names subdomains (`/design-the-domain:problem-space-initialization deadlines project`), skip the
    question. Cross-cutting code in `‹backend-shared›` is out of scope.
 
-3. **Start subagents**, all in **one** message so they run in parallel, each with the model
+4. **Start subagents**, all in **one** message so they run in parallel, each with the model
    `‹model-init›` (leave the model out for `inherit`): one per subdomain, with this brief
    (fill in `<subdomain>` and its folders from the subdomain row of its glossary):
 
    > Take the subdomain `<subdomain>` (code folders: `<folders>`) over into the problem space.
-   > Project config: `.claude/pts.md`, plugin root: `${CLAUDE_PLUGIN_ROOT}`. You describe what the code
+   > Project config: `domain-model/config.md`, plugin root: `${CLAUDE_PLUGIN_ROOT}`. You describe what the code
    > does today; you implement nothing, code and tests stay unchanged. Write only in
    > `‹problem-space›/<subdomain>/` (the FRs and `subdomain-map.md`), `‹glossaries›/<subdomain>.md`
    > and, for a new glossary or subdomain map, its subdomain's row in `‹domain-map›`. Read the ground as `design-the-domain:requirement` defines it
@@ -145,15 +167,16 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    > Without questions it reads `Questions: none`. Phrase each question so that "yes" in
    > `‹problem-space-language›` accepts your recommendation.
 
-4. **Reconcile** once all reports are in:
+5. **Reconcile** once all reports are in:
    - **Policies across boundaries:** if two subagents described the same reaction, the FR stays in
      the triggering subdomain; delete the other.
    - **Relationships:** add new relationships between subdomains from the reports to the
-     relationships table of `‹domain-map›`, in business terms.
+     relationships table of `‹domain-map›`, in business terms; also one to a subdomain that is not in
+     the map yet (named as the report names it): its row follows when that subdomain is taken over.
    - **Check:** every glossary written has its subdomain's row in `‹domain-map›`, every subdomain map
      written is linked in that row, and no two FR files of a subdomain share a number.
 
-5. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios, scenarios
+6. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios, scenarios
    without test. Below that the subagents' questions, rendered by
    `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its header: one
    `headings` entry per subdomain, each question with its `group`, `source`
@@ -161,8 +184,8 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
    would change the behaviour belongs in a `design-the-domain:requirement` session, not here. Finally the question
    which subdomains they confirm as a block.
 
-6. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its
+7. **Confirm.** For each subdomain the user confirms, remove `@unconfirmed` from all its
    scenarios. Scenarios concerned by an open question keep it until it is answered.
 
-You are done when the domain map lists the subdomains and every chosen subdomain has a glossary and a subdomain map with its business
+You are done when `domain-model/config.md` is filled in, the domain map lists the subdomains and every chosen subdomain has a glossary and a subdomain map with its business
 objects and FRs for its rules and capabilities, and the user has given their confirmation or answers.

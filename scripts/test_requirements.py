@@ -128,7 +128,7 @@ class RequirementsTest(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.old = os.getcwd()
         os.chdir(self.tmp.name)
-        self.write(".claude/pts.md", CONFIG)
+        self.write("domain-model/config.md", CONFIG)
         self.write("ps/deadlines/deadline/policies/FR-deadlines-003-reminder.md", ACTIVE)
         self.write("ps/deadlines/deadline/policies/planned/FR-deadlines-003-reminder.md", PLANNED)
         self.write("ps/deadlines/deadline/policies/planned/FR-deadlines-010-digest.md", NEW_FR)

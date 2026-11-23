@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: config-missing-asks
+expected_outcome: |
+  problem-space-initialization in a project without domain-model/config.md starts by filling the config: it derives proposals from the project (backend folders, test command from the README, ADR folder, languages from CLAUDE.md), names the source of each, guesses nothing it cannot find, asks one question per group through the interview script and writes nothing and starts no subagent before the answers; it does not yet draft the domain map.
+context:
+  scaffold_script: place-files.sh

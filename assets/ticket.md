@@ -2,7 +2,7 @@
 
 Shared by `/design-the-domain:requirement` and `/design-the-domain:story-workflow` when `‹ticket-system›` is not
 `none`; not a skill itself. Values in angle quotes are keys of the project config
-`.claude/pts.md`. The ticket system is reached through the project's connector for it (e.g. the
+`domain-model/config.md`. The ticket system is reached through the project's connector for it (e.g. the
 Linear MCP server).
 
 ## Rules
@@ -35,7 +35,7 @@ Linear MCP server).
 | Project | `‹ticket-project›`; none for `–` |
 | Assignee | `‹ticket-assignee›`; none for `–` |
 | Labels | one per subdomain of the story's FRs (`## Functional requirements`), named as in the column `Subdomain` of `‹domain-map›`; a provisional subdomain takes its host's label. A label missing in the ticket system: see *Missing label*. None when `‹ticket-labels›` is `–`. |
-| Status | the story status mapped by the table *Ticket status* in `.claude/pts.md` |
+| Status | the story status mapped by the table *Ticket status* in `domain-model/config.md` |
 | Description | the template below, its texts in `‹problem-space-language›` |
 
 ## Missing label

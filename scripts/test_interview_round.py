@@ -75,7 +75,7 @@ class RoundTest(unittest.TestCase):
         self.old = os.getcwd()
         os.chdir(self.tmp.name)
         for path, text in {
-            ".claude/pts.md": CONFIG,
+            "domain-model/config.md": CONFIG,
             "ps/requirements/planned/US-0050-erinnerung.md": STORY,
             "ps/fristen/frist/planned/FR-fristen-013-fristerinnerung.md": PLANNED,
         }.items():

@@ -7,7 +7,7 @@ description: "Review the changes since a fixed point along two axes – Standard
 > commit `4ae2317`, adapted for design-the-domain: the spec is the story with its FR scenarios, the standards
 > include the structure document and the test strategy. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
-**Project config.** Read `.claude/pts.md` in the project root if it exists; a name in angle quotes
+**Project config.** Read `domain-model/config.md` in the project root if it exists; a name in angle quotes
 (`‹structure›`) is one of its keys.
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:

@@ -17,9 +17,9 @@ You write tests and test code only: files under `‹backend-tests›`, `‹e2e-j
 touch production code, the problem space or the glossaries. Code and comments are in `‹solution-space-language›`.
 You ask nothing; what you cannot test you report.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
 
 ## Steps
 

@@ -16,9 +16,9 @@ You plan, you do not move code. You conduct: each bounded context is handled by 
 its own, all at once. Everything you write is in `‹solution-space-language›`; questions to the user are in
 `‹problem-space-language›`.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
 
 ## Steps
 
@@ -35,7 +35,7 @@ template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
 
    > Plan the migration of the bounded context `<context>` (folders: `<folders>`, subdomain
    > `<subdomain>`) by `${CLAUDE_SKILL_DIR}/context.md` (project config:
-   > `.claude/pts.md`). Write only `‹refactorings›/solution-structure-<context>.md`. Your last message is the report in the
+   > `domain-model/config.md`). Write only `‹refactorings›/solution-structure-<context>.md`. Your last message is the report in the
    > form the reference prescribes.
 
 3. **Reconcile** once all reports are in:

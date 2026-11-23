@@ -1,6 +1,6 @@
 # design-the-domain project config – eval fixture
 
-Project config the eval cases place at `.claude/pts.md`; it describes the sample project their
+Project config the eval cases place at `domain-model/config.md`; it describes the sample project their
 files come from (a Python backend with a TypeScript UI). Paths are relative to the project root.
 
 ## Project

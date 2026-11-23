@@ -13,9 +13,9 @@ the active FRs, tagged with the story. Where the code goes follows from
 it, from `design-the-domain:test-definition` (`‹test-strategy-adr›`). The craft comes from the skills `design-the-domain:tdd` and
 `design-the-domain:code-review`; this skill feeds them the project's artefacts and closes the story afterwards.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
 
 Called as `/design-the-domain:story-workflow US-0042`. Code, comments, docstrings and commits are in `‹solution-space-language›`.
 

@@ -1,6 +1,6 @@
 # design-the-domain project config
 
-Template for the project config the design-the-domain skills read. Copy it to `.claude/pts.md` in the project
+Template for the project config the design-the-domain skills read. `/design-the-domain:problem-space-initialization` fills it in with you; or copy it to `domain-model/config.md` in the project
 root and fill in the values; the skills read that file before anything else and stop if it is
 missing. The plugin knows no project: every path, command and convention of a project stands
 here, everything structural about the code (building blocks, test levels, markers, seams) in the

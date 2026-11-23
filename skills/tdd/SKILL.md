@@ -13,7 +13,7 @@ TDD is the red → green loop. This skill is the reference that makes that loop 
 keeping: what a good test is, where tests go, the anti-patterns, and the rules of the loop. Every
 section applies on every cycle: consult them before and during the loop, not after.
 
-**Project config.** Read `.claude/pts.md` in the project root if it exists; a name in angle quotes
+**Project config.** Read `domain-model/config.md` in the project root if it exists; a name in angle quotes
 (`‹structure›`) is one of its keys. Without it, the project has no agreed seams: agree them with
 the user as described below.
 

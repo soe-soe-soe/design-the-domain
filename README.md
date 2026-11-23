@@ -14,9 +14,10 @@ A Claude Code plugin for domain-driven feature work in three spaces:
 
 ## Setup in a project
 
-1. Copy [assets/config.md](assets/config.md) to `.claude/pts.md` in the project and fill in
-   paths, commands and conventions. The skills read it first and stop without it; the plugin
-   itself knows no project.
+1. `domain-model/config.md` holds the paths, commands and conventions of the project; the plugin
+   itself knows no project. Every skill reads it first and, without it, says to fill it in first.
+   `/design-the-domain:problem-space-initialization` fills it in with you, from the template
+   [assets/config.md](assets/config.md) and what it finds in the project.
 2. Keep the code structure (building blocks, test levels, markers) in the document the config
    names under `structure`.
 3. Add the marketplace and enable the plugin in the project's `.claude/settings.json`:
@@ -60,7 +61,7 @@ the provenance lines.
 
 ## Ticket system
 
-Optional, one way from the repository: with `ticket-system` set in `.claude/pts.md`, every story
+Optional, one way from the repository: with `ticket-system` set in `domain-model/config.md`, every story
 gets a ticket (Linear or Jira through the project's connector) by
 [assets/ticket.md](assets/ticket.md) – title, team, project, assignee, labels per subdomain,
 mapped status, and a description with role sentence, why, AC titles, FRs and a link to the story

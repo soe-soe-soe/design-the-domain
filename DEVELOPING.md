@@ -14,9 +14,9 @@ The script's tests run with `python3 -m unittest discover scripts`.
 Evals live under `evals/<skill>/<case>/` and run with
 `claude plugin eval . --scaffold --allow-tools Bash Write Edit` (`--tag problem-space` for the
 problem space). Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They simulate a
-project with a German problem space and an English solution space (`evals/fixtures/pts.md`):
+project with a German problem space and an English solution space (`evals/fixtures/config.md`):
 case descriptions and graders are English, fixtures and user prompts German. The
-`requirement` cases need a project checkout with `.claude/pts.md`: its path in
+`requirement` cases need a project checkout with `domain-model/config.md`: its path in
 `evals/.pts-eval-project` (not committed; the runner does not pass the environment to scaffold
 scripts) or in `PTS_EVAL_PROJECT`. They switch the ticket sync off, so no eval creates real
 tickets. The others bring their files.

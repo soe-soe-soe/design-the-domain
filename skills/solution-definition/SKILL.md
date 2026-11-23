@@ -17,9 +17,9 @@ write no file for it. You write two things: the bridge – the solution-space co
 of the placement (step 4), which changes no behaviour. Everything you write is in
 `‹solution-space-language›`; questions to the user are in `‹problem-space-language›`.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
 
 ## Steps
 

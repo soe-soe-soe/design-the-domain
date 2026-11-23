@@ -2,7 +2,7 @@
 
 Shared by the design-the-domain skills for what they show the user; not a skill itself. A skill that uses it
 says so and reads this file once per session. Values in angle quotes are keys of the project
-config `.claude/pts.md`.
+config `domain-model/config.md`.
 
 ## Context block
 

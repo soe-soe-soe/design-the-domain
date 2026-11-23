@@ -14,9 +14,9 @@ state** the conversation cannot see.
 You write what is decided and mark what is still open, in the FR itself. You ask nothing:
 `/design-the-domain:requirement` reads the open points and decides when to ask them.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
 
 You write only planned FRs (`planned/` below an FR folder), the domain map, the subdomain maps
 (`<subdomain>/subdomain-map.md`), and in a story the section `## Functional requirements`. Active FRs, the rest of a story, glossaries and ADRs you

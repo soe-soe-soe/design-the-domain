@@ -2,9 +2,11 @@
 
 Template for the project config the design-the-domain skills read. `/design-the-domain:problem-space-initialization` fills it in with you; or copy it to `domain-model/config.md` in the project
 root and fill in the values; the skills read that file before anything else and stop if it is
-missing. The plugin knows no project: every path, command and convention of a project stands
-here, everything structural about the code (building blocks, test levels, markers, seams) in the
-project's structure document (key `structure`).
+missing. The plugin knows no project: every path and convention of a project stands here.
+
+The file may hold more parts below this one: another plugin that works on the same problem space
+(e.g. implement-the-domain for the solution space) adds its sections under a heading of its own.
+The design-the-domain skills read and fill only the sections of this template.
 
 A skill names a value by its key in angle quotes: `‹requirements›/US-0042-*.md` means the folder
 under key `requirements`. Paths are relative to the project root. The values in the table are the
@@ -34,44 +36,15 @@ writes or says something names the key it follows.
 | `glossaries` | One glossary per subdomain | `domain-model/glossaries` |
 | `methodology-glossary` | Methodology terms, among them "Open point" | `domain-model/glossaries/_methodology.md` |
 
-## Solution space
-
-| Key | Meaning | Value |
-|---|---|---|
-| `structure` | Target structure of the code: building blocks, naming, test levels and markers | `domain-model/solution-space/structure.md` |
-| `context-map` | Generated map of the bounded contexts | `domain-model/solution-space/context-map.md` |
-| `context-map-command` | Command that regenerates `context-map` from the code | <command> |
-| `refactorings` | Migration plans per bounded context | `refactorings` |
-| `adr` | Architecture decision records | `docs/adr` |
-| `architecture-adrs` | ADRs on building blocks and boundaries that placement must follow | <ADR numbers> |
-| `test-strategy-adr` | ADR on the test strategy | <ADR number> |
-
 ## Code
+
+The code the problem space is taken over from (`/design-the-domain:problem-space-initialization`).
 
 | Key | Meaning | Value |
 |---|---|---|
 | `backend` | Backend source root | <path> |
 | `backend-shared` | Cross-cutting backend code, out of scope for the init skills | <path> |
 | `backend-tests` | Backend tests | <path> |
-| `test-fixtures` | Shared test fixtures, registered in the root `conftest` or equivalent | <path> |
-| `e2e-journeys` | UI journeys, one per business object: `‹e2e-journeys›/<subdomain>/<business-object>.<ext>` | <path> |
-| `e2e-pages` | Page objects of the UI tests | <path> |
-| `scenario-marker` | How a test references its FR scenario | <e.g. a decorator with the scenario ID> |
-| `not-implemented` | Body of a shell symbol that has no behaviour yet | <e.g. raise NotImplementedError> |
-| `migrations` | Schema migration tool and folder | <tool, path> |
-
-## Commands
-
-Run from the project root; a value may change directory first.
-
-| Key | Meaning | Value |
-|---|---|---|
-| `typecheck` | Static type check of the backend | <command> |
-| `test-all` | Full backend suite | <command> |
-| `test-file` | One backend test file | <command with <file>> |
-| `test-collect` | Collect backend tests without running them | <command> |
-| `e2e-list` | List the UI tests without running them | <command> |
-| `e2e-file` | Run one UI test file | <command with <file>> |
 
 ## Ticket system
 
@@ -108,4 +81,4 @@ can be set per project.
 |---|---|---|
 | `model-ground` | Subagent reading the ground in /design-the-domain:requirement (reads and summarises) | `inherit` |
 | `model-writer` | Subagent running problem-space-story and problem-space-fr (finds open points) | `inherit` |
-| `model-init` | Subagents of /design-the-domain:problem-space-initialization and /design-the-domain:solution-init, one per subdomain or context | `inherit` |
+| `model-init` | Subagents of /design-the-domain:problem-space-initialization, one per subdomain | `inherit` |

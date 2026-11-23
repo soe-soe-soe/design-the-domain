@@ -46,3 +46,9 @@ Release:
    copy in the plugin cache).
 2. `tools/build-dist.sh main`, then `git push origin main dist`.
 3. In a project: update the marketplace and the plugin (`/plugin`), then `/reload-plugins`.
+
+## implement-the-domain (refactoring 011)
+
+The solution-space skills and their evals live in `implement-the-domain/`, a plugin of its own
+(scaffold, not published). Load it with `claude --plugin-dir implement-the-domain`; its evals run
+from that folder.

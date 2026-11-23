@@ -1,6 +1,6 @@
 ---
 name: requirement
-description: Grills a requirement into ready stories – grilling and domain-modeling for the interview, after every round a subagent writes stories and FRs with problem-space-story and problem-space-fr, their open points asked in the following rounds.
+description: Grills a requirement into ready stories – domain-grilling and glossary for the interview, after every round a subagent writes stories and FRs with problem-space-story and problem-space-fr, their open points asked in the following rounds.
 disable-model-invocation: true
 ---
 
@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 You interview the user about a requirement until its problem space is settled: stories with
 acceptance criteria, FR scenarios, glossary terms. The craft comes from the skills
-`design-the-domain:grilling` (the interview) and `design-the-domain:domain-modeling` (glossary and ADRs); this skill runs the rounds
+`design-the-domain:domain-grilling` (the interview) and `design-the-domain:glossary` (the language); this skill runs the rounds
 the project's way, lets the writers update the problem space in between and alone decides which
 questions are asked.
 
@@ -85,18 +85,25 @@ FR stays untouched until its story is done. Its brief:
    `cancelled` stories are final: a change to them is a new story. When a question needs more
    than the report gives, read the file yourself.
 
-2. **Load the craft.** Call the Skill tool with `design-the-domain:grilling` and with
-   `design-the-domain:domain-modeling`, and follow both. `domain-modeling` writes glossary rows into the
+2. **Load the craft.** Call the Skill tool with `design-the-domain:domain-grilling` and with
+   `design-the-domain:glossary`, and follow both. `glossary` writes glossary rows into the
    subdomain glossaries under `‹glossaries›/` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`
    (unless `‹project-rules›` sets its own format) and a new glossary's row into `‹domain-map›`.
-   This skill decides on top of `grilling` how rounds are grouped, numbered and what each
-   question carries.
+   This skill decides on top of `domain-grilling` how rounds are grouped, numbered and what each
+   question carries. Two techniques belong to every round:
+   - **Concrete scenarios.** When domain relationships are being discussed, stress-test them with
+     specific scenarios. Invent scenarios that probe edge cases and force the user to be precise
+     about the boundaries between concepts; they become ACs and FR scenarios.
+   - **Cross-reference with code.** When the user states how something works, check whether the
+     code agrees. If you find a contradiction, surface it: "Your code cancels entire Orders, but
+     you just said partial cancellation is possible. Which is right?" The code tells what is, not
+     what should be: a difference the user confirms is the delta to implement.
 
 3. **Run the rounds.**
-   - **Rounds follow `grilling`:** each round asks its frontier, so its length depends on what is
-     open, in grilling's question format (`❓ **Qn** - **<title>**: …`, then `➡️` with a
+   - **Rounds follow `domain-grilling`:** each round asks its frontier, so its length depends on what is
+     open, in its question format (`❓ **Qn** - **<title>**: …`, then `➡️` with a
      recommendation for every question).
-   - **Round 1** is grilling alone, on the requirement and what step 1 found.
+   - **Round 1** is domain-grilling alone, on the requirement and what step 1 found.
    - **After every answered round** start one subagent with the brief below and wait for it.
      Then read the `## Open` sections of the stories and FRs its report names, and build the
      next round: your
@@ -117,11 +124,11 @@ FR stays untouched until its story is done. Its brief:
      `deferred` – the open points the user deferred (`FR-deadlines-013/S2`, `US-0051/AC2`);
      `questions` – your own frontier: `title`, `body` (options included), `recommendation`, and
      where they apply `story`, `ref` (the artifact the question rests on, never a glossary term),
-     `type` (FR type), `source` (a skill other than `grilling` that raised it) and `same_as` (the
+     `type` (FR type), `source` (a skill other than `domain-grilling` that raised it) and `same_as` (the
      open point your frontier already held before you read it – the script asks it once).
      Never write an open point of the writers into `questions` yourself: the script reads them.
    - **Provenance line** (written by the script, for reading it): 🗣️ who raised the question –
-     `‹user›` for an open point, `grilling` for your own, `‹user›/grilling` for a shared one;
+     `‹user›` for an open point, `domain-grilling` for your own, `‹user›/domain-grilling` for a shared one;
      🧩 the skill; the referenced artifact with the icon of its type; 📐 the FR type.
    - **Parallel changes.** A `Parallel` entry of the writers (or a `Planned` entry of step 1 the
      session's changes touch) means another story changes the same scenario. Ask it in the next
@@ -134,13 +141,12 @@ FR stays untouched until its story is done. Its brief:
      Pass it in `questions` with `source` `problem-space-fr`, `ref` the scenario and its `story`.
    - **Deferring.** The user may defer an open point instead of answering it. It stays in its
      story or FR, and you do not ask it again in this session.
-   - **Cancelling.** If the user drops a story of the session altogether, run
-     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py cancel US-0042`; it removes the
-     story's planned FR changes and moves it to `‹requirements›/cancelled/`. With a ticket
-     system, sync the story by `${CLAUDE_PLUGIN_ROOT}/assets/ticket.md`.
+   - **Cancelling.** If the user drops a story of the session altogether, call the Skill tool
+     with `design-the-domain:story-workflow US-0042 cancel`; it removes the story's planned FR
+     changes, moves it to `‹requirements›/cancelled/` and syncs its ticket.
 
 4. **Close.** The session is done when your frontier is empty, every open point of the session
-   is answered or deferred, and the user confirms the shared understanding (as `grilling`
+   is answered or deferred, and the user confirms the shared understanding (as `domain-grilling`
    requires). Then, for every story of the session:
    - **Validate draft → ready** by the status flow in the comment of
      `${CLAUDE_PLUGIN_ROOT}/assets/story.md`: no entry under

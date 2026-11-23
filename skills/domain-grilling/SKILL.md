@@ -1,10 +1,10 @@
 ---
-name: grilling
+name: domain-grilling
 description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/productivity/grilling` (MIT, © 2026 Matt Pocock),
-> commit `4ae2317`, unchanged. See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
+> commit `4ae2317`, unchanged except the name (upstream `grilling`). See `THIRD_PARTY_LICENSES.md` and `docs/upstream.md` in the source repository.
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
 

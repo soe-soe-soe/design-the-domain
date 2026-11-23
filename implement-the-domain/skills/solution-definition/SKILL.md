@@ -1,6 +1,6 @@
 ---
 name: solution-definition
-description: Places the planned FR scenarios of a ready story into the backend's solution space – bounded context, aggregate, building block, file, interfaces, schema – builds the shell of new files and symbols without behaviour, and reports boundary conflicts as questions. Use as the first step of /design-the-domain:story-workflow, or when the user asks where a requirement goes in the backend.
+description: Places the planned FR scenarios of a ready story into the backend's solution space – bounded context, aggregate, building block, file, interfaces, schema – builds the shell of new files and symbols without behaviour, and reports boundary conflicts as questions. Use as the first step of /implement-the-domain:implement-story, or when the user asks where a requirement goes in the backend.
 ---
 
 # Solution-Definition
@@ -12,9 +12,10 @@ for **boundary conflicts** the problem space cannot see. Only those become quest
 
 You read the problem space (stories, FRs, domain map) and never write into it. The placement is
 your report, the input of `test-definition` and the implementation in the same session; you
-write no file for it. You write two things: the bridge – the solution-space columns
-(`Solution space`, `Identifier`) of glossary rows whose code name you decide – and the **shell**
-of the placement (step 4), which changes no behaviour. Everything you write is in
+write no file for it. You change two things: the bridge – the solution-space columns
+(`Solution space`, `Identifier`) of glossary rows whose code name you decide, set through the
+interface of `design-the-domain:glossary` – and the **shell** of the placement (step 4), which
+changes no behaviour. A decision worth an ADR you offer (section ADRs). Everything you write is in
 `‹solution-space-language›`; questions to the user are in `‹problem-space-language›`.
 
 **Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
@@ -44,12 +45,14 @@ user, in their language and nothing else: fill in `domain-model/config.md` first
      them, and
      each domain event a command must raise for a policy.
    - **Schema change:** each new table or column, as a migration (`‹migrations›`).
-   - **Names:** identifiers in `‹solution-space-language›` for new terms; enter them in the solution-space columns of
-     the term's glossary row.
+   - **Names:** identifiers in `‹solution-space-language›` for new terms; set them in the solution-space columns of
+     the term's glossary row: call the Skill tool with `design-the-domain:glossary set-solution
+     <subdomain>` (one line per term) once the placement stands, and name its `missing` terms as a
+     question of Case glossary-identifier.
    - **Stored values:** a scenario that names a value of a set (a kind, a status) whose stored
      form a test must write or read – a data migration, a query filtering on it – gets that
-     form into the `Identifier` column of the value's glossary row, from the code or decided
-     here (`EvidenceKind.SOUND_REPORT` = `sound_report`). Otherwise `design-the-domain:test-definition` would have
+     form into the `Identifier` column of the value's glossary row (same call), from the code or decided
+     here (`EvidenceKind.SOUND_REPORT` = `sound_report`). Otherwise `implement-the-domain:test-definition` would have
      to guess it.
 
 3. **Check for conflicts.** A question arises in four cases only:
@@ -89,6 +92,19 @@ it.
 You are done when every planned scenario of the story has a building block and file, or waits
 for one of your questions, and – without open questions – the shell stands and the suite is
 unchanged.
+
+## ADRs
+
+Offer an ADR only when all three are true (format and examples in [ADR-FORMAT.md](./ADR-FORMAT.md)):
+
+1. **Hard to reverse**: the cost of changing your mind later is meaningful
+2. **Surprising without context**: a future reader will wonder "why did they do it this way?"
+3. **The result of a real trade-off**: there were genuine alternatives and you picked one for
+   specific reasons
+
+If any of the three is missing, skip the ADR. The folder is `‹adr›`, and what `‹project-rules›`
+says about ADRs (e.g. updating one in place instead of superseding it) wins over the format. ADRs
+belong to the solution space: the problem space (stories, FRs, glossaries) never refers to one.
 
 ## Report
 

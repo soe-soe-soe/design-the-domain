@@ -10,7 +10,7 @@ You lay out, once, how the existing backend (`‹backend›`) moves into the tar
 `‹structure›`: per bounded context which aggregates it
 has, which building block every module becomes and where it goes. The result is one migration
 plan per context under `‹refactorings›`, carried out later per context. Afterwards
-`design-the-domain:solution-definition` places new requirements into a structure that holds.
+`implement-the-domain:solution-definition` places new requirements into a structure that holds.
 
 You plan, you do not move code. You conduct: each bounded context is handled by a subagent of
 its own, all at once. Everything you write is in `‹solution-space-language›`; questions to the user are in
@@ -25,12 +25,12 @@ user, in their language and nothing else: fill in `domain-model/config.md` first
 1. **Clarify scope.** Read the subdomain rows of `‹glossaries›/*.md` (bounded
    context and its folders) and ask the user with AskUserQuestion whether to plan one context,
    several or all; for several, let them choose. If the call names contexts
-   (`/design-the-domain:solution-init permits deadlines`), skip the question. `‹backend-shared›` is out of scope.
+   (`/implement-the-domain:solution-init permits deadlines`), skip the question. `‹backend-shared›` is out of scope.
    Read `‹refactorings›/solution-init-seed.md` if it exists: it lists code locations formerly
    kept in the FRs; hand each subagent its part.
 
 2. **Start subagents**, all in **one** message so they run in parallel, each with the model
-   `‹model-init›` (leave the model out for `inherit`): one per context, with
+   `‹model-solution-init›` (leave the model out for `inherit`): one per context, with
    this brief:
 
    > Plan the migration of the bounded context `<context>` (folders: `<folders>`, subdomain

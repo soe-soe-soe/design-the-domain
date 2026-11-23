@@ -27,24 +27,26 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
 
 ## Steps
 
-1. **Config.** Read `domain-model/config.md`. If it exists and every key has a value that is not
-   empty and not only a placeholder in angle brackets (`<name>`), go to step 2. Otherwise you fill it
+1. **Config.** Read `domain-model/config.md`. If it exists and every key of the template
+   `${CLAUDE_PLUGIN_ROOT}/assets/config.md` has a value that is not empty and not only a placeholder
+   in angle brackets (`<name>`), go to step 2. Parts of other plugins in the file (under a heading of
+   their own) are not yours: you neither check, fill nor change them. Otherwise you fill it
    with the user, first of all and in the main run; a key that does not apply gets `–`.
    - **Start from the template** `${CLAUDE_PLUGIN_ROOT}/assets/config.md`; values already filled stay.
    - **Derive a proposal** per open key from the project, with its source: the layout of the root,
      `CLAUDE.md`, `AGENTS.md` and the README (project rules, languages), build files and scripts
-     (`pyproject.toml`, `package.json`, `Makefile`) for commands, the test folders, ADR folders,
-     an existing `domain-model/`. A value you do not find you do not guess: it stays open and is
+     (`pyproject.toml`, `package.json`, `Makefile`) for the source and test folders, an existing `domain-model/`. A value you do not find you do not guess: it stays open and is
      asked without a recommendation. The names of the people and the languages are always asked.
    - **Ask** in the question format of the interview, by hand: the script `interview-round.py` reads
      the config itself and cannot run without it. One question per group of the template – Project,
-     Problem space, Solution space, Code, Commands, Ticket system, Models – numbered from Q1 as
+     Problem space, Code, Ticket system, Models – numbered from Q1 as
      `❓ **Qn** - **<group>**: …` with the open keys, each with its proposed value and source, and
      below it `➡️` the recommendation (take the proposals, name what is still open). In the
      language of the user. Write nothing before the answers and do not draft the domain map in the
      same message, not even name candidate subdomains or folders as a preview: the domain map follows
      in step 2, once the config is written.
-   - **Write** `domain-model/config.md` as a copy of the template with the answers filled in, no
+   - **Write** `domain-model/config.md` as a copy of the template with the answers filled in (an
+     existing file keeps the parts of other plugins below yours), no
      placeholder left except in a value that is a pattern (`FR-<subdomain>-NNN`). A key the user
      leaves open stays a placeholder: then say which keys are still open and stop, the skill
      continues with the next call.
@@ -54,7 +56,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    before any subagent starts. The code does not tell what a subdomain is, and folders are not
    subdomains: you bring evidence, the user decides.
    - **Read the structure, not the code:** the folders of `‹backend›` (without `‹backend-shared›`),
-     `‹structure›`, the ADRs `‹architecture-adrs›`, existing glossaries, router prefixes, the test
+     existing glossaries, router prefixes, the test
      folders, which folders import which (grep), and, with a git history, which files change together.
    - **Candidates.** Cut the code into candidate subdomains: name in `‹problem-space-language›`,
      one sentence in business terms, code folders, business object candidates (aggregate roots).
@@ -99,8 +101,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    >
    > **Sources, by reliability:** (1) the tests of your folders under `‹backend-tests›`, executable
    > examples of behaviour; one test or parametrised group yields one scenario; (2) the rules in the
-   > code of your folders under `‹backend›`, or the building blocks of `‹structure›` (ADRs
-   > `‹architecture-adrs›`); (3) facade, routers and services: commands, queries and what other
+   > code of your folders under `‹backend›`; (3) facade, routers and services: commands, queries and what other
    > subdomains call.
    >
    > **Business objects.** A business object is an aggregate root: it changes on its own and usually
@@ -108,7 +109,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    > assignments) is an entity of that root and gets no folder.
    >
    > **Glossary.** Extend `‹glossaries›/<subdomain>.md` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`
-   > and the rules of `design-the-domain:domain-modeling`: one section per business object with its
+   > and the rules of `design-the-domain:glossary`: one section per business object with its
    > row `Business Object | … | Aggregate Root`, rows for the terms your FRs need. Descriptions come
    > from code, docstrings and tests; what you cannot back, you do not write. You do not change
    > existing rows: if the code contradicts one, that becomes a question.
@@ -140,8 +141,8 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    > with the test's concrete values. Code without a test gets a scenario from the code and is
    > listed under "without test". Every scenario carries `@existing @unconfirmed`.
    >
-   > **Questions.** A question arises only if code or test contradicts a glossary description or an
-   > ADR (Case `glossary` or `adr`), test and code say different things (`test-vs-code`), a branch
+   > **Questions.** A question arises only if code or test contradicts a glossary description
+   > (Case `glossary`), test and code say different things (`test-vs-code`), a branch
    > is suspicious: unreachable, contradictory, marked TODO (`suspicious-branch`), or the same rule is
    > implemented in two places (`duplicate-rule`).
    >

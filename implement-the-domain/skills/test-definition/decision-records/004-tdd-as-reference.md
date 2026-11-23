@@ -12,7 +12,7 @@ updates.
 
 `test-definition` loads `mattpocock-skills:tdd` for its test-quality rules and puts two project
 rules on top: the seams are fixed by the target structure, and the red → green loop is not run.
-`story-workflow` loads the same skill for the loop. What the workflow relies on and overrides is
+`implement-story` loads the same skill for the loop. What the workflow relies on and overrides is
 listed in `.claude/pocock-skills.md`; a weekly scheduled task compares Pocock's changes against
 that list.
 

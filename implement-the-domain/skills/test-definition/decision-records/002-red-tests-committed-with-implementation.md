@@ -11,7 +11,7 @@ Between `test-definition` and the end of the implementation, the new tests fail.
 
 The tests stay plainly red (they fail with `NotImplementedError` from the shell or with their
 assertion) and are never committed on their own: shell, tests and implementation land in one
-commit at the end of `story-workflow`.
+commit at the end of `implement-story`.
 
 ## Considered alternatives
 

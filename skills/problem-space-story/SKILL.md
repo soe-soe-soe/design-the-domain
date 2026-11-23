@@ -36,7 +36,7 @@ template [story.md](../../assets/story.md); read it.
 
 1. **Read the situation.** The input (the answers of the last round plus the requirement that started
    the session), `‹domain-map›`, the glossaries of the subdomains
-   involved (`‹glossaries›/`), the ADRs under `‹adr›` that touch the topic, and
+   involved (`‹glossaries›/`), and
    all stories under `‹requirements›/` and its subfolders.
 
 2. **Assign.** A story is a change a business person recognises as one thing. For each change
@@ -50,7 +50,7 @@ template [story.md](../../assets/story.md); read it.
    - Otherwise create a new story with the next free number (`US-0001`, `US-0002`, … across
      all stories in all three folders).
 
-3. **Check.** Every statement in an AC is **backed** (conversation, glossary, ADR, code) or
+3. **Check.** Every statement in an AC is **backed** (conversation, glossary, code) or
    **inconsequential** (wording, order, example names). Everything else is a **gap**. A gap is
    an open point only if a different answer would change a **Then** step, i.e. observable
    behaviour, and it concerns the topic of a decision in the input without being settled by
@@ -76,8 +76,8 @@ template [story.md](../../assets/story.md); read it.
 You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
-`/design-the-domain:requirement` sets `ready` when the session closes, the implementation workflow sets
-`in-progress`, `requirements.py complete` sets `done`, `requirements.py cancel` sets `cancelled`.
+`/design-the-domain:requirement` sets `ready` when the session closes, `design-the-domain:story-workflow`
+sets `in-progress`, `done` and `cancelled`.
 
 ## Story file
 

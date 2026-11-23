@@ -97,7 +97,7 @@ class RoundTest(unittest.TestCase):
         self.assertNotIn("###", out)
         self.assertIn("❓ **Q1** - **Absender**: Von welcher Adresse?", out)
         self.assertIn("❓ **Q2** - **Vorlauf**", out)
-        self.assertEqual(out.count("🗣️ grilling 🧩 grilling\n"), 2)
+        self.assertEqual(out.count("🗣️ domain-grilling 🧩 domain-grilling\n"), 2)
         self.assertNotIn("next question number", out)
 
     def test_fr_open_point_is_asked_under_its_story_with_full_provenance(self):
@@ -122,7 +122,7 @@ class RoundTest(unittest.TestCase):
         q = self.own(title="Abgeleitete Fristen", story="US-0050", same_as="FR-fristen-013/S2")
         out = rnd.render({"start": 1, "stories": ["US-0050"], "questions": [q]}, self.cfg)
         self.assertEqual(out.count("❓"), 1)
-        self.assertIn("🗣️ Alex/grilling 🧩 grilling + problem-space-fr 📋 FR-fristen-013/S2", out)
+        self.assertIn("🗣️ Alex/domain-grilling 🧩 domain-grilling + problem-space-fr 📋 FR-fristen-013/S2", out)
 
     def test_closing_round_asks_story_points_and_skips_deferred(self):
         out = rnd.render({"start": 9, "stories": ["US-0050"], "closing": True, "deferred": ["FR-fristen-013/S2"], "questions": []}, self.cfg)

@@ -1,0 +1,11 @@
+{
+  "name": "implement-the-domain",
+  "version": "0.1.0",
+  "description": "Solution-space skills for domain-driven development: place a ready story's FR scenarios into bounded contexts and building blocks, write its tests first, implement, review and close it. Works on the problem space of design-the-domain.",
+  "author": {
+    "name": "Sören Bock",
+    "email": "soeren@ein-bock.de"
+  },
+  "repository": "https://github.com/soe-soe-soe/design-the-domain",
+  "license": "MIT"
+}

@@ -19,7 +19,7 @@ angle quotes (`‹requirements›`) is one of its keys. Without the file, or whe
 user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
 
 You write only planned FRs (`planned/` below an FR folder), the domain map, the subdomain maps
-(`<subdomain>/subdomain-map.md`), and in a story the section `## Functional requirements`. Active FRs, the rest of a story, glossaries and ADRs you
+(`<subdomain>/subdomain-map.md`), and in a story the section `## Functional requirements`. Active FRs, the rest of a story and glossaries you
 only read: an active FR changes only through `requirements.py complete` when its story is done. FRs contain no code locations; the link to the code is the
 test that references a scenario.
 
@@ -61,8 +61,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
 ## Steps
 
 1. **Read the situation.** The stories from the input (new or continued),
-   `‹domain-map›`, the glossaries, the subdomain maps and all FRs of the subdomains they touch – active and planned
-   – and the ADRs on the topic.
+   `‹domain-map›`, the glossaries, the subdomain maps and all FRs of the subdomains they touch – active and planned.
 
 2. **Assign.** For each AC determine the subdomain from the domain map, the business object
    from the glossary and the FR type by [functional-requirement-types.md](../../assets/functional-requirement-types.md). A
@@ -102,8 +101,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
      derived (a new Wert, a changed status set), instances of it already exist, and no AC says
      what becomes of them. The answer is a scenario of an FR of type Data Migration.
 
-   A difference to the code is no open point: it is the delta to be implemented. Contradictions
-   with ADRs the grilling asks itself. A planned file that already holds a change of **another
+   A difference to the code is no open point: it is the delta to be implemented. A planned file that already holds a change of **another
    story** to the same scenario is no open point of yours either: report it under `Parallel`,
    and `/design-the-domain:requirement` takes it into the interview.
 

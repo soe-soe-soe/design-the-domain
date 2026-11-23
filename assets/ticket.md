@@ -22,9 +22,9 @@ Linear MCP server).
 | Moment | Who | Sync |
 |---|---|---|
 | Session closes | `/design-the-domain:requirement` step 4 | every story of the session: create without `External`, update with |
-| Story cancelled | `/design-the-domain:requirement` after `requirements.py cancel` | the story, status cancelled, link into `cancelled/` |
-| Implementation starts | `/design-the-domain:story-workflow` step 1 | the story, status in-progress |
-| Story done | `/design-the-domain:story-workflow` step 7, after `requirements.py complete` | the story, status done, link into `‹requirements›/` |
+| Story cancelled | `/design-the-domain:story-workflow cancel` | the story, status cancelled, link into `cancelled/` |
+| Implementation starts | `/design-the-domain:story-workflow start` | the story, status in-progress |
+| Story done | `/design-the-domain:story-workflow done`, after `requirements.py complete` | the story, status done, link into `‹requirements›/` |
 
 ## Fields
 

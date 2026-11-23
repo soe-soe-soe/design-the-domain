@@ -1,26 +1,24 @@
-# design-the-domain – problem, test and solution space skills
+# design-the-domain – problem space skills
 
-A Claude Code plugin for domain-driven feature work in three spaces:
+A Claude Code plugin for the problem space of domain-driven feature work:
+`/design-the-domain:requirement` grills a requirement into ready user stories and functional
+requirements (FRs) with Gherkin scenarios; `problem-space-story` and `problem-space-fr` write them,
+`/design-the-domain:problem-space-initialization` derives the model from existing code;
+`/design-the-domain:story-workflow` moves a story to in-progress, done or cancelled.
 
-- **Problem space:** `/design-the-domain:requirement` grills a requirement into ready user stories and
-  functional requirements (FRs) with Gherkin scenarios; `problem-space-story` and
-  `problem-space-fr` write them, `/design-the-domain:problem-space-initialization` derives the model from existing code.
-- **Solution space:** `solution-definition` places a story's scenarios into bounded contexts,
-  aggregates and building blocks and builds a shell without behaviour; `/design-the-domain:solution-init`
-  plans the migration of existing code into that structure.
-- **Tests:** `test-definition` writes red scenario, interface, migration and journey tests
-  against the shell; `/design-the-domain:story-workflow` runs placement, tests, implementation, review and
-  closing for one story.
+The solution and test space (placement, tests first, implementation, review) is moving into a
+plugin of its own, [implement-the-domain](implement-the-domain/README.md) (refactoring 011, not
+published yet). design-the-domain works without it; an implementing plugin of your own uses the
+interfaces below.
 
 ## Setup in a project
 
-1. `domain-model/config.md` holds the paths, commands and conventions of the project; the plugin
-   itself knows no project. Every skill reads it first and, without it, says to fill it in first.
+1. `domain-model/config.md` holds the paths and conventions of the project; the plugin itself
+   knows no project. Every skill reads it first and, without it, says to fill it in first.
    `/design-the-domain:problem-space-initialization` fills it in with you, from the template
-   [assets/config.md](assets/config.md) and what it finds in the project.
-2. Keep the code structure (building blocks, test levels, markers) in the document the config
-   names under `structure`.
-3. Add the marketplace and enable the plugin in the project's `.claude/settings.json`:
+   [assets/config.md](assets/config.md) and what it finds in the project. Another plugin may add
+   its own part below, under a heading of its own; design-the-domain leaves it alone.
+2. Add the marketplace and enable the plugin in the project's `.claude/settings.json`:
 
    ```json
    {
@@ -35,10 +33,42 @@ A Claude Code plugin for domain-driven feature work in three spaces:
 
 ## Craft skills
 
-`grilling`, `domain-modeling`, `tdd`, `code-review` and `codebase-design` come with the plugin.
+`domain-grilling` (the interview) and `glossary` (the ubiquitous language) come with the plugin.
 They are based on [mattpocock/skills](https://github.com/mattpocock/skills) (MIT,
 [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md)); what was taken over and changed, and the weekly
 check against upstream, stand in [docs/upstream.md](docs/upstream.md).
+
+## Interfaces
+
+What another plugin – implement-the-domain or one of your own – may rely on. Everything else
+(the writers, the rounds of `requirement`, the init) is internal and may change in any release.
+The contract of a skill is the section `## Interface` of its `SKILL.md`; this list only points
+there. Both plugins must be enabled; the caller uses the Skill tool with the full name.
+
+| Interface | Kind | Use it to | Contract |
+|---|---|---|---|
+| `design-the-domain:story-workflow <story> start\|done\|cancel` | skill | move a story to in-progress when implementation starts, to done when it is implemented (merges its planned FR changes into the active FRs), or cancel it; syncs the ticket | [skills/story-workflow/SKILL.md](skills/story-workflow/SKILL.md) |
+| `design-the-domain:glossary set-solution <subdomain>` | skill | set the columns `Solution space` and `Identifier` of existing glossary terms once their code name is decided | [skills/glossary/SKILL.md](skills/glossary/SKILL.md) |
+| `scripts/requirements.py history <FR>` | script | print the history of an FR | [scripts/requirements.py](scripts/requirements.py) |
+| Story file | format | read the story, its status, ACs and `## Functional requirements` | [assets/story.md](assets/story.md) |
+| FR and planned FR file | format | read rules and scenarios; a scenario's ID `FR-<subdomain>-NNN/Sn` is what a test references | [assets/functional-requirement.md](assets/functional-requirement.md), [assets/planned-functional-requirement.md](assets/planned-functional-requirement.md) |
+| Glossary, domain map | format | map subdomains to bounded contexts, business objects to aggregates | [assets/glossary.md](assets/glossary.md), [assets/domain-map.md](assets/domain-map.md) |
+
+Read the problem space only through these formats and change it only through the two skills: an
+implementing plugin never edits stories, FRs or the problem-space columns of a glossary itself.
+
+Without implement-the-domain, wire your own workflow the same way: call `story-workflow … start`
+before you implement a ready story and `story-workflow … done` once its scenarios pass, and report
+code names through `glossary set-solution`.
+
+## Release notes
+
+**0.9.0** – The solution-space skills move into implement-the-domain (not published yet). Renamed:
+`grilling` → `domain-grilling`, `domain-modeling` → `glossary`; its ADR part moved to
+implement-the-domain, its scenario and code techniques into `requirement`. New:
+`story-workflow` for start, done and cancel of a story. The config template holds only the keys of
+design-the-domain (Solution space, Commands and the code keys of the solution space left it); an
+existing `domain-model/config.md` stays valid.
 
 ## Requirements and FRs
 
@@ -46,7 +76,8 @@ Stories live in `‹requirements›/` (done), `planned/` (draft, ready, in-progr
 the status flow stands in [assets/story.md](assets/story.md).
 An active FR is the implemented state; the writers put changes into one planned file per FR in
 `planned/` next to it. [scripts/requirements.py](scripts/requirements.py) (Python 3, standard
-library) checks, completes and cancels stories and prints an FR's history:
+library) checks, completes and cancels stories and prints an FR's history; `story-workflow` runs it
+for you:
 
 ```
 python3 scripts/requirements.py check    US-0042

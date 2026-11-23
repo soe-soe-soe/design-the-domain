@@ -1,80 +1,62 @@
 ---
 name: story-workflow
-description: Implements a ready story – placed and shelled with solution-definition, tests written first with test-definition, made green with tdd, reviewed with code-review – and closes it.
-disable-model-invocation: true
+description: Moves a story along its status flow – start (ready → in-progress), done (in-progress → done, merges its planned FR changes into the active FRs) or cancel – by scripts/requirements.py, and syncs its ticket. Use when the user starts, finishes or drops a story, or from another plugin that implements stories (interface, see below).
 ---
 
 # Story-Workflow
 
-You implement one story. Its spec lives in the problem space: the story (why and acceptance
-criteria) and its FR scenarios (the rules) – the planned changes in the `planned/` files next to
-the active FRs, tagged with the story. Where the code goes follows from
-`‹structure›`, applied by `design-the-domain:solution-definition`; which tests prove
-it, from `design-the-domain:test-definition` (`‹test-strategy-adr›`). The craft comes from the skills `design-the-domain:tdd` and
-`design-the-domain:code-review`; this skill feeds them the project's artefacts and closes the story afterwards.
+A story moves through `draft ⇄ ready → in-progress → done`, or to `cancelled`. The writers and
+`/design-the-domain:requirement` handle draft and ready; this skill does the three transitions after
+that. Each is one call of `scripts/requirements.py`, which checks the base and writes all or nothing,
+plus the ticket sync. The status flow and what each transition requires stand in the comment at the
+top of `${CLAUDE_PLUGIN_ROOT}/assets/story.md`.
 
 **Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
-user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with them. Guess no value.
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no
+value or only a placeholder (`<name>`), stop and tell the user, in their language and nothing else:
+fill in `domain-model/config.md` first, `/design-the-domain:problem-space-initialization` does it with
+them. Guess no value.
 
-Called as `/design-the-domain:story-workflow US-0042`. Code, comments, docstrings and commits are in `‹solution-space-language›`.
+Everything you say to the user is in `‹problem-space-language›`. Run the script from the project
+root, not from the plugin folder.
 
-A question to the user here means the grilling missed something or the structure does not fit.
-Ask only what blocks the work, and report each question as a lesson (step 8).
+## Interface
+
+Called by the user or through the Skill tool by another plugin (`implement-the-domain` calls it at
+the start and at the end of implementing a story).
+
+- **Call:** `design-the-domain:story-workflow <story> <transition>`, e.g. `US-0042 start`.
+  `<transition>` is `start`, `done` or `cancel`.
+- **Result:** your last message, exactly one of
+  `Story-Workflow: US-0042 start → in-progress` (or `done → done`, `cancel → cancelled`), or
+  `Story-Workflow: US-0042 <transition> refused` followed by the script's report unchanged.
+- **Guarantees:** changes only the story file, the planned and active FR files of that story and,
+  with a ticket system, its ticket. On `refused` nothing was changed, except that `start` sets a
+  story whose check reports a conflict back to `draft`. Never touches code or tests.
+- **Not done here:** committing. The caller commits the problem-space changes together with its own.
 
 ## Steps
 
-1. **Read the spec.** The story `‹requirements›/planned/US-0042-*.md`, every scenario tagged
-   `@US-0042` in the planned FR files (`planned/` below the FR folders of `‹problem-space›/`),
-   and the active FRs they change. The story must be `ready` – or `in-progress` when a previous
-   run stopped; if not, stop and name its open points.
-   Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py check US-0042`. If it reports a
-   conflict – another story changed the same scenario since this one was written – set the story
-   back to `Status: draft`, show the report and stop: the conflict goes back to
-   `/design-the-domain:requirement`.
-   Otherwise set `Status: in-progress` in the story header and, unless `‹ticket-system›` is
-   `none`, sync the story by `${CLAUDE_PLUGIN_ROOT}/assets/ticket.md`. Note the current commit as the review's fixed
-   point.
+1. **Read** the story (`‹requirements›/**/US-0042-*.md`) and its status.
 
-2. **Place.** Call the Skill tool with `design-the-domain:solution-definition` for the story. If it reports questions, ask
-   them in one round and run it again with the answers. Its placement is your plan, its shell
-   the ground for the tests.
+2. **Transition.**
+   - **start** (ready → in-progress; an `in-progress` story is left as it is and reported as
+     started): run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py check US-0042`. If it exits
+     0, edit the header line to `Status: in-progress`. If it reports a conflict – another story
+     changed the same scenario since this one was written – set the header back to
+     `Status: draft` and refuse: the conflict goes back to `/design-the-domain:requirement`.
+   - **done** (in-progress → done): run
+     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py complete US-0042`. It checks the base once
+     more, merges the story's planned changes into the active FRs, sets `Status: done` and `doneAt`,
+     and moves the story to `‹requirements›/`. On a conflict it writes nothing: refuse; the conflict
+     is settled in `/design-the-domain:requirement`.
+   - **cancel** (draft, ready or in-progress → cancelled), only on the user's decision: run
+     `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py cancel US-0042`. It removes the story's
+     planned FR changes and moves it to `‹requirements›/cancelled/`.
 
-3. **Define the tests.** Call the Skill tool with `design-the-domain:test-definition` with the story and the placement
-   report. If it reports untestable scenarios, ask the user how each Then step is meant and run it
-   again with the answers.
+   Any other starting status (e.g. `start` on a draft) is refused with the status it has.
 
-4. **Review gate.** Show the user test-definition's report and wait. They check that each test
-   says what its scenario means; change the tests by their answer before you go on.
+3. **Ticket.** Unless `‹ticket-system›` is `none` and only after a transition that was not refused:
+   sync the story by `${CLAUDE_PLUGIN_ROOT}/assets/ticket.md` – status and the link to its new path.
 
-5. **Make them green.** Call the Skill tool with `design-the-domain:tdd` and follow its loop:
-   - The red tests of step 3 are your "red". Take them one at a time: make one green, then the
-     next. Tests the implementation needs below a scenario you add by `tdd`, without marker.
-   - A test of step 3 changes only if it is wrong against its scenario – then tell the user.
-     Selectors in page objects may follow the UI; assertions may not.
-   - Schema changes fill the migration of the shell. Run `‹typecheck›` and the single test file
-     (`‹test-file›`) regularly, `‹test-all›` once at the end, and the touched journey with
-     `‹e2e-file›` if the story changed one.
-
-6. **Review.** Call the Skill tool with `design-the-domain:code-review`: fixed point from step 1,
-   spec = the story and its FR scenarios, standards include `‹structure›` and `‹test-strategy-adr›`. Fix what
-   it finds that the spec or the repo's standards require.
-
-7. **Close.** Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py complete US-0042`. It
-   checks the base once more, merges the story's planned changes into the active FRs, sets
-   `Status: done` and `doneAt`, and moves the story to `‹requirements›/` – all or nothing. On a
-   conflict it writes nothing: show its report and stop before committing; the story stays
-   `in-progress` until `/design-the-domain:requirement` settled the conflict. Then commit placement,
-   tests, implementation and the problem-space changes together by the commit convention in
-   `‹project-rules›`; regenerate the context map with `‹context-map-command›` if the project has
-   no hook doing it. Unless `‹ticket-system›` is `none`, sync the story by
-   `${CLAUDE_PLUGIN_ROOT}/assets/ticket.md` – status done, link to its new path.
-
-8. **Report.** What was built, the commit, and for every question you asked in steps 2, 3 and
-   5: whether the grilling could have settled it, and which check in `requirement` or
-   `problem-space-fr` was missing. Without questions: `Lessons: none`.
-
-You are done when every planned scenario of the story has a passing test with its marker, every
-facade method of the placement its interface test, the full suite and `‹typecheck›` are green, the
-review's findings are resolved, the story is `done` – merged by `requirements.py complete` – in
-one commit, and the lessons are reported.
+4. **Report** in the form of the interface.

@@ -19,10 +19,6 @@ include=(
   THIRD_PARTY_LICENSES.md
 )
 
-# Skills of the solution space stay in the repository but are not published until it is finished.
-unreleased=(code-review codebase-design solution-definition solution-init tdd test-definition story-workflow)
-unreleased_re="^skills/($(IFS='|'; echo "${unreleased[*]}"))/"
-
 cd "$(git rev-parse --show-toplevel)"
 source_commit="$(git rev-parse --verify "$ref^{commit}")"
 
@@ -34,13 +30,25 @@ existing=()
 for path in "${include[@]}"; do
   if git cat-file -e "$source_commit:$path" 2>/dev/null; then existing+=("$path"); fi
 done
-git ls-tree -r "$source_commit" -- "${existing[@]}" | awk -F'\t' -v re="$unreleased_re" '$2 !~ /\/decision-records\// && $2 !~ re' | GIT_INDEX_FILE="$index" git update-index --index-info
+git ls-tree -r "$source_commit" -- "${existing[@]}" | awk -F'\t' '$2 !~ /\/decision-records\//' | GIT_INDEX_FILE="$index" git update-index --index-info
 tree="$(GIT_INDEX_FILE="$index" git write-tree)"
 
-# Warn about published files that still point to an unreleased skill.
-names="$(IFS='|'; echo "${unreleased[*]}")"
+# Warn about published files that point into implement-the-domain (refactoring 011): design must
+# work without it.
 git ls-tree -r --name-only "$tree" | while read -r f; do
-  git show "$tree:$f" | grep -nE "design-the-domain:($names)\b" | sed "s#^#warning: $f: #" || true
+  git show "$tree:$f" | grep -n "implement-the-domain:" | sed "s#^#warning: $f: #" || true
+done
+
+# Warn about implement-the-domain calling a design skill that is not an interface (README, section
+# Interfaces): a call is `design-the-domain:<skill>` without a leading slash; `/design-the-domain:…`
+# only tells the user what to run.
+git ls-tree -r --name-only "$source_commit" -- implement-the-domain/skills | while read -r f; do
+  git show "$source_commit:$f" | grep -noE '(^|[^/])design-the-domain:[a-z-]+' | while IFS=: read -r line ref; do
+    skill="${ref##*design-the-domain:}"
+    if ! git show "$source_commit:skills/$skill/SKILL.md" 2>/dev/null | grep -q '^## Interface'; then
+      echo "warning: $f:$line: calls design-the-domain:$skill, which has no ## Interface"
+    fi
+  done
 done
 
 parent="$(git rev-parse -q --verify "refs/heads/$branch" || true)"

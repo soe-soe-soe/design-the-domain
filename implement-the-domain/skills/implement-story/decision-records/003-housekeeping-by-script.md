@@ -10,7 +10,7 @@ When a story is done its planned FR changes go into the active FRs, the story ge
 ## Decision
 
 `scripts/requirements.py complete` does it deterministically, all or nothing, before the commit of
-story-workflow step 7, so placement, tests, code and problem space land in one commit. It checks
+implement-story step 7, so placement, tests, code and problem space land in one commit. It checks
 each `@base-` tag first and writes nothing on a conflict. `check`, `cancel` and `history` use the
 same parsing.
 

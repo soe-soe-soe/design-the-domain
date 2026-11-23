@@ -14,25 +14,25 @@ So sind die bisherigen Runden gelaufen (alle beantwortet):
 
 ➡️ (beantwortet)
 
-🗣️ grilling   🧩 grilling
+🗣️ domain-grilling   🧩 domain-grilling
 
 ❓ **Q2** - **Vorlauf**: Wie lange vor der Fälligkeit?
 
 ➡️ (beantwortet)
 
-🗣️ grilling   🧩 grilling
+🗣️ domain-grilling   🧩 domain-grilling
 
 ❓ **Q3** - **Erledigte Fristen**: Werden erledigte Fristen erinnert?
 
 ➡️ (beantwortet)
 
-🗣️ grilling   🧩 grilling
+🗣️ domain-grilling   🧩 domain-grilling
 
 ❓ **Q4** - **Abbestellen**: Kann man Erinnerungen abbestellen?
 
 ➡️ (beantwortet)
 
-🗣️ grilling   🧩 grilling
+🗣️ domain-grilling   🧩 domain-grilling
 
 ## Runde 2
 ### 📘 US-0050: Erinnerung vor Fristablauf per E-Mail
@@ -46,14 +46,14 @@ So sind die bisherigen Runden gelaufen (alle beantwortet):
 
 ➡️ (beantwortet)
 
-🗣️ Alex/grilling   🧩 grilling + problem-space-fr   📋 FR-fristen-006/S9   📐 Policy
+🗣️ Alex/domain-grilling   🧩 domain-grilling + problem-space-fr   📋 FR-fristen-006/S9   📐 Policy
 
 ### 🌐 Übergreifend
 ❓ **Q7** - **Absender-Adresse**: Von welcher Adresse gehen die Mails raus?
 
 ➡️ (beantwortet)
 
-🗣️ grilling   🧩 grilling
+🗣️ domain-grilling   🧩 domain-grilling
 
 ## Runde 3
 ### 🌐 Übergreifend
@@ -61,7 +61,7 @@ So sind die bisherigen Runden gelaufen (alle beantwortet):
 
 ➡️ (beantwortet)
 
-🗣️ grilling   🧩 grilling
+🗣️ domain-grilling   🧩 domain-grilling
 
 Der letzte Bericht der Writer meldet: Stories: US-0050 (continued, draft), US-0051 (continued, draft); FRs: unverändert, ohne offene Punkte. Dein Grilling hat keine offenen Fragen mehr.
 

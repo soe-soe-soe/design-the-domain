@@ -23,7 +23,7 @@ line. Input (keys in English, texts in the session's language):
        "story": "US-0050",            optional; without it the question is cross-cutting
        "ref": "FR-deadlines-006/S9", optional: artifact the question rests on
        "type": "Policy",              optional: FR type for 📐
-       "source": "grilling",          optional: skill that raised it (default grilling)
+       "source": "domain-grilling",          optional: skill that raised it (default domain-grilling)
        "same_as": "FR-deadlines-013/S2" optional: the open point this question also asks}
     ]
   }
@@ -42,7 +42,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from requirements import SetupError, read_config, section  # noqa: E402
 
-GRILLING = "grilling"
+GRILLING = "domain-grilling"
 OPEN_RE = re.compile(r"^- \*\*((?:AC|S)\d+)\*\* \(([^)]+)\): (.*?) – Recommendation: (.*?)(?: – (.*))?$")
 TITLE_RE = re.compile(r"^\s*(?:Szenariogrundriss|Szenario|Scenario Outline|Scenario):\s*((?:AC|S)\d+)\s*–\s*(.*)$")
 

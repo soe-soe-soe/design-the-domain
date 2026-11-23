@@ -12,7 +12,8 @@ the Problem space / Solution space kinds are methodology (English); the placehol
 - Problem space → usual Solution space: Subdomain → Bounded Context, Business Object → Aggregate
   Root, Entity → Entity, Value → Value Object, Domain Event → Domain Event, Command → Command,
   Query → Query, Derived Concept → Domain Service or Query.
-- Solution space and Identifier stay empty until solution-definition decides them.
+- Solution space and Identifier stay empty until the code name is decided: from code by
+  problem-space-initialization, otherwise by the implementing plugin through the interface of the skill glossary.
 - Description: what the term means in business terms, one or two sentences; terms to avoid as
   `Avoid: …`. No rules – they stand in the FRs.
 This comment is not copied into a glossary.

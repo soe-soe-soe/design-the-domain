@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: Test-driven development – what a good test is, where tests go, the anti-patterns and the red → green loop. Use from design-the-domain:test-definition and /design-the-domain:story-workflow, or when the user wants to build or fix something test-first.
+description: Test-driven development – what a good test is, where tests go, the anti-patterns and the red → green loop. Use from implement-the-domain:test-definition and /implement-the-domain:implement-story, or when the user wants to build or fix something test-first.
 ---
 
 > Based on [mattpocock/skills](https://github.com/mattpocock/skills) `skills/engineering/tdd` (MIT, © 2026 Matt Pocock),
@@ -44,7 +44,7 @@ so agreeing the seams up front is how testing effort lands on the critical paths
 logic instead of every edge case.
 
 When the shape of that interface is itself in question (how deep the module is, where the seam
-belongs, what the interface should expose), call the Skill tool with `design-the-domain:codebase-design` for
+belongs, what the interface should expose), call the Skill tool with `implement-the-domain:codebase-design` for
 the vocabulary. It is the shared source of the module, interface, depth, seam, adapter, leverage
 and locality terms, and it is a reference to consult, not a session to run.
 
@@ -64,7 +64,7 @@ and locality terms, and it is a reference to consult, not a session to run.
   go insensitive to real changes, and you commit to test structure before understanding the
   implementation. Work in **vertical slices** instead: one test → one implementation → repeat,
   each test a **tracer bullet** that responds to what the last cycle taught you.
-  **Exception in design-the-domain:** `design-the-domain:test-definition` writes one test per FR scenario of a story before the
+  **Exception in design-the-domain:** `implement-the-domain:test-definition` writes one test per FR scenario of a story before the
   loop. Those scenarios are settled in the problem space, not imagined; the loop then makes them
   green one at a time, and tests below a scenario that the implementation needs still follow the
   vertical rule.
@@ -73,7 +73,7 @@ and locality terms, and it is a reference to consult, not a session to run.
 
 - **Red before green.** Write the failing test first, then only enough code to pass it. Don't
   anticipate future tests or add speculative features. The red scenario tests of
-  `design-the-domain:test-definition` count as written: take them one at a time.
+  `implement-the-domain:test-definition` count as written: take them one at a time.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
-- **Refactoring is not part of the loop.** It belongs to the review stage (`design-the-domain:code-review`),
+- **Refactoring is not part of the loop.** It belongs to the review stage (`implement-the-domain:code-review`),
   not the red → green implementation cycle.

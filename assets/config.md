@@ -71,6 +71,17 @@ back. The ticket's ID goes into the story header as `External`.
 | done | Done |
 | cancelled | Canceled |
 
+## Confluence
+
+Optional. Read by `/design-the-domain:confluence-publish`, which writes the problem space one way to
+a Confluence Cloud space; the repository stays the source of truth.
+
+| Key | Meaning | Value |
+|---|---|---|
+| `confluence-space` | Key of the space the pages go into, or `–` for none | `–` |
+| `confluence-parent` | Title of the page the Domain Map page hangs under, or `–` for the top of the space | `–` |
+| `confluence-title-prefix` | Prefix of every page title, since titles are unique per space, or `–` | `–` |
+
 ## Models
 
 Model of the subagents the skills start: `inherit` (the session's model), `haiku`, `sonnet` or

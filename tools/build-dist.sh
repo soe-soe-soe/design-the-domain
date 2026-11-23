@@ -15,6 +15,7 @@ include=(
   assets
   scripts/requirements.py
   scripts/interview-round.py
+  scripts/confluence_publish.py
   LICENSE
   THIRD_PARTY_LICENSES.md
 )

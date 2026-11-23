@@ -4,7 +4,8 @@ A Claude Code plugin for the problem space of domain-driven feature work:
 `/design-the-domain:domain-interview` grills a requirement into ready user stories and functional
 requirements (FRs) with Gherkin scenarios; `user-story` and `functional-requirement` write them,
 `/design-the-domain:domain-init` derives the model from existing code;
-`/design-the-domain:story-workflow` moves a story to ready, in-progress, done or cancelled.
+`/design-the-domain:story-workflow` moves a story to ready, in-progress, done or cancelled;
+`/design-the-domain:confluence-publish` writes the problem space to Confluence Cloud as a page tree.
 
 The solution and test space (placement, tests first, implementation, review) is moving into a
 plugin of its own, [implement-the-domain](implement-the-domain/README.md) (refactoring 011, not
@@ -96,6 +97,18 @@ python3 scripts/requirements.py history  FR-deadlines-003
 [scripts/interview-round.py](scripts/interview-round.py) renders each round of `domain-grilling`: the model
 supplies its own questions, the script adds the writers' open points, numbers, groups and puts
 the artifact a question rests on after its title.
+
+## Confluence
+
+`/design-the-domain:confluence-publish` publishes the domain map (as a diagram), and per subdomain its
+map, glossary, business objects and their active FRs, one page each, one way: repository to
+Confluence. [scripts/confluence_publish.py](scripts/confluence_publish.py) builds the pages
+(`build --out <dir>` writes `manifest.json`, page bodies in storage format and the diagrams as SVG,
+rendered with Mermaid CLI `mmdc`; without it the diagrams become code blocks); the skill compares
+them with the space and syncs through the Atlassian MCP after the user's yes. A page that someone
+edited in Confluence is detected by its version and not overwritten. Config: the section
+`## Confluence` of `domain-model/config.md` (`confluence-space`, `confluence-parent`,
+`confluence-title-prefix`).
 
 ## Ticket system
 

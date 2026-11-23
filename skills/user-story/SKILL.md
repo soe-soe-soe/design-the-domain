@@ -1,20 +1,20 @@
 ---
-name: problem-space-story
-description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /requirement after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
+name: user-story
+description: Writes user stories with Gherkin acceptance criteria from the decisions of a grill session into ‹requirements›/planned/ and marks what is still open. Use from the writing subagent of /domain-interview after every answered round, or when the user wants requirements, decisions or a concept turned "into stories" or "into acceptance criteria".
 ---
 
-# Problem-Space-Story
+# User-Story
 
 You package business decisions into **stories**: short, with a why, followed by acceptance
 criteria (AC) in Gherkin. A story describes a **change**; the living target state is kept by
-the functional requirements (skill `design-the-domain:problem-space-fr`).
+the functional requirements (skill `design-the-domain:functional-requirement`).
 
 You write what is decided and mark what is still open, in the story itself. You ask nothing:
-`/design-the-domain:requirement` reads the open points and decides when to ask them.
+`/design-the-domain:domain-interview` reads the open points and decides when to ask them.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:domain-init` does it with them. Guess no value.
 
 Language: story content (title, role sentence, why, scenarios with their Gherkin keywords, open
 questions) is in `‹problem-space-language›`; methodology (headings, tags, status values, IDs, field
@@ -36,7 +36,7 @@ template [story.md](../../assets/story.md); read it.
 
 1. **Read the situation.** The input (the answers of the last round plus the requirement that started
    the session), `‹domain-map›`, the glossaries of the subdomains
-   involved (`‹glossaries›/`), the ADRs under `‹adr›` that touch the topic, and
+   involved (`‹glossaries›/`), and
    all stories under `‹requirements›/` and its subfolders.
 
 2. **Assign.** A story is a change a business person recognises as one thing. For each change
@@ -50,7 +50,7 @@ template [story.md](../../assets/story.md); read it.
    - Otherwise create a new story with the next free number (`US-0001`, `US-0002`, … across
      all stories in all three folders).
 
-3. **Check.** Every statement in an AC is **backed** (conversation, glossary, ADR, code) or
+3. **Check.** Every statement in an AC is **backed** (conversation, glossary, code) or
    **inconsequential** (wording, order, example names). Everything else is a **gap**. A gap is
    an open point only if a different answer would change a **Then** step, i.e. observable
    behaviour, and it concerns the topic of a decision in the input without being settled by
@@ -68,7 +68,7 @@ template [story.md](../../assets/story.md); read it.
    open has no Then step, or is left out until decided. Open is any part of the outcome the answer
    could change – also how many, when or to whom; then the AC has no Then step at all, never a
    provisional one. Each open point gets one entry under
-   `## Open`, in the format of that term, with source `problem-space-story` and the field `Changes`.
+   `## Open`, in the format of that term, with source `user-story` and the field `Changes`.
 
 6. **Resolve what is answered.** If the input answers an open point, take the answer into the
    AC, remove `@open` and the entry under `## Open`.
@@ -76,8 +76,8 @@ template [story.md](../../assets/story.md); read it.
 You are done when every decision of the input stands in an AC or is marked open.
 
 **Status** is not yours beyond the two moves above: a new story starts as `draft`,
-`/design-the-domain:requirement` sets `ready` when the session closes, the implementation workflow sets
-`in-progress`, `requirements.py complete` sets `done`, `requirements.py cancel` sets `cancelled`.
+`design-the-domain:story-workflow` sets `ready` (when `/design-the-domain:domain-interview` closes its
+session), `in-progress`, `done` and `cancelled`.
 
 ## Story file
 
@@ -88,7 +88,7 @@ You are done when every decision of the input stands in an AC or is marked open.
   not yours – leave them out of a new story.
 - The role sentence (`As a … I want …`, in `‹problem-space-language›`) has no "so that": the why
   has its own section.
-- `## Functional requirements` belongs to `design-the-domain:problem-space-fr`: leave it out of a new story
+- `## Functional requirements` belongs to `design-the-domain:functional-requirement`: leave it out of a new story
   and do not change it.
 - `Supersedes in part` and `## Open` are omitted when there is nothing to enter.
 - AC numbers are fixed: a dropped AC stays as `Scenario: AC2 – dropped` (keyword and word in
@@ -97,9 +97,9 @@ You are done when every decision of the input stands in an AC or is marked open.
 
 ## Report
 
-Your last message is the report, exactly in this form and nothing else – no notes, assumptions
-or explanations before or after it; it names what changed, not what is open (that stands in the
-story):
+Your last message is the report and nothing else: its first line is `Stories:`, its last line is
+the last story line – no summary, note or explanation before or after it, in any language. It names
+what changed, not what is open (that stands in the story):
 
 ```
 Stories:

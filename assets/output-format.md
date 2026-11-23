@@ -2,7 +2,7 @@
 
 Shared by the design-the-domain skills for what they show the user; not a skill itself. A skill that uses it
 says so and reads this file once per session. Values in angle quotes are keys of the project
-config `.claude/pts.md`.
+config `domain-model/config.md`.
 
 ## Context block
 
@@ -24,7 +24,7 @@ names stay as they are. The example is in English.
 ## Artifact icons
 
 The type is the artifact's name in the repository; the icon groups. A reference to an artifact
-anywhere in a message (e.g. a provenance line) carries the same icon: `📋 FR-deadlines-002/S1`.
+anywhere in a message (e.g. after a question's title) carries the same icon: `📋 FR-deadlines-002/S1`.
 
 | Space | Icon | Type | Where |
 |---|---|---|---|

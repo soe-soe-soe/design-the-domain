@@ -1,9 +1,9 @@
 <!--
 The index of the problem space: every subdomain with its type, its glossary and its subdomain map,
 and how the subdomains relate. There is no second index of the glossaries. Whoever creates a
-glossary (problem-space-initialization, the grilling of requirement) adds its subdomain's row in
+glossary (domain-init, the glossary skill in domain-interview) adds its subdomain's row in
 the same change, with `–` in the column Subdomain map; whoever creates the subdomain map
-(assets/subdomain-map.md: problem-space-initialization, problem-space-fr) sets its link. problem-space-fr adds subdomains and relationships an AC needs. The methodology glossary
+(assets/subdomain-map.md: domain-init, functional-requirement) sets its link. functional-requirement adds subdomains and relationships an AC needs. The methodology glossary
 (‹methodology-glossary›) stands in the config, not here.
 This comment is not copied into the map.
 -->

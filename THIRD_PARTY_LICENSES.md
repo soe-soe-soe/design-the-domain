@@ -1,8 +1,9 @@
 # Third-party licenses
 
-The skills `grilling`, `domain-modeling`, `tdd`, `code-review` and `codebase-design` are based on
-[mattpocock/skills](https://github.com/mattpocock/skills); `grilling` and `codebase-design` are
-taken over unchanged, the others are adapted. What was taken and changed: [docs/upstream.md](docs/upstream.md).
+The skills `domain-grilling` (upstream `grilling`, taken over with a section of our own),
+`glossary` (from upstream `domain-modeling`, adapted) and `domain-interview` (after upstream
+`grill-with-docs`) are based
+on [mattpocock/skills](https://github.com/mattpocock/skills). What was taken and changed: [docs/upstream.md](docs/upstream.md).
 
 ## mattpocock/skills
 

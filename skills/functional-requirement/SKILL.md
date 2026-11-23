@@ -1,9 +1,9 @@
 ---
-name: problem-space-fr
-description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /requirement after problem-space-story, or when the user wants stories "taken into FRs" or the FR set reconciled.
+name: functional-requirement
+description: Writes the planned changes of functional requirements (FRs) under ‹problem-space›/**/planned/ from new or changed user stories and marks contradictions with the existing state as open points. Use from the writing subagent of /domain-interview after user-story, or when the user wants stories "taken into FRs" or the FR set reconciled.
 ---
 
-# Problem-Space-FR
+# Functional-Requirement
 
 An **FR** is the implemented target state of one rule or capability, assigned to exactly one
 subdomain. Stories describe changes, FRs the result of all changes. You carry the acceptance
@@ -12,14 +12,14 @@ merged into it only when the story is done – and look for **contradictions wit
 state** the conversation cannot see.
 
 You write what is decided and mark what is still open, in the FR itself. You ask nothing:
-`/design-the-domain:requirement` reads the open points and decides when to ask them.
+`/design-the-domain:domain-interview` reads the open points and decides when to ask them.
 
-**Project config.** Read `.claude/pts.md` in the project root before anything else; a name in
-angle quotes (`‹requirements›`) is one of its keys. Without the file, stop and point the user to the
-template `${CLAUDE_PLUGIN_ROOT}/assets/config.md`.
+**Project config.** Read `domain-model/config.md` in the project root before anything else; a name in
+angle quotes (`‹requirements›`) is one of its keys. Without the file, or when a key you need holds no value or only a placeholder (`<name>`), stop and tell the
+user, in their language and nothing else: fill in `domain-model/config.md` first, `/design-the-domain:domain-init` does it with them. Guess no value.
 
 You write only planned FRs (`planned/` below an FR folder), the domain map, the subdomain maps
-(`<subdomain>/subdomain-map.md`), and in a story the section `## Functional requirements`. Active FRs, the rest of a story, glossaries and ADRs you
+(`<subdomain>/subdomain-map.md`), and in a story the section `## Functional requirements`. Active FRs, the rest of a story and glossaries you
 only read: an active FR changes only through `requirements.py complete` when its story is done. FRs contain no code locations; the link to the code is the
 test that references a scenario.
 
@@ -61,8 +61,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
 ## Steps
 
 1. **Read the situation.** The stories from the input (new or continued),
-   `‹domain-map›`, the glossaries, the subdomain maps and all FRs of the subdomains they touch – active and planned
-   – and the ADRs on the topic.
+   `‹domain-map›`, the glossaries, the subdomain maps and all FRs of the subdomains they touch – active and planned.
 
 2. **Assign.** For each AC determine the subdomain from the domain map, the business object
    from the glossary and the FR type by [functional-requirement-types.md](../../assets/functional-requirement-types.md). A
@@ -102,10 +101,9 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
      derived (a new Wert, a changed status set), instances of it already exist, and no AC says
      what becomes of them. The answer is a scenario of an FR of type Data Migration.
 
-   A difference to the code is no open point: it is the delta to be implemented. Contradictions
-   with ADRs the grilling asks itself. A planned file that already holds a change of **another
+   A difference to the code is no open point: it is the delta to be implemented. A planned file that already holds a change of **another
    story** to the same scenario is no open point of yours either: report it under `Parallel`,
-   and `/design-the-domain:requirement` takes it into the interview.
+   and `/design-the-domain:domain-interview` takes it into the interview.
 
 4. **Write.** For each AC, into the planned file of its FR by the template
    [planned-functional-requirement.md](../../assets/planned-functional-requirement.md),
@@ -137,7 +135,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    scenario for a contradicting AC until the answer is in; otherwise the new scenario, without
    Then step while its outcome hangs on the answer. Each open point gets one entry under `## Open` of that planned file, in
    the format of the term "Open point" in `‹methodology-glossary›`, with source
-   `problem-space-fr` and the fields `Story`, `Case`, `Type`, and for **glossary**
+   `functional-requirement` and the fields `Story`, `Case`, `Type`, and for **glossary**
    `Glossary` (glossary and term, e.g. `deadlines.md: problem`).
 
 6. **Resolve what is answered.** If a story now answers an open point (a later round decided
@@ -156,7 +154,7 @@ and relationship of the subdomain you used in its subdomain map.
 | Tag | Meaning |
 |---|---|
 | `@US-0042` | Active FR: story that last changed the scenario. Planned file: story the change belongs to |
-| `@existing` | Taken from existing code (problem-space-initialization), without story |
+| `@existing` | Taken from existing code (domain-init), without story |
 | `@planned` | Planned file only: the change is not implemented yet |
 | `@base-US-0042` | Planned file only: story tag of the active scenario the change was written against (`@base-existing`) |
 | `@unconfirmed` | Derived from code, not yet confirmed by the user |
@@ -168,9 +166,10 @@ The FR header knows `Status: valid` or `Status: obsolete` for an active FR and
 
 ## Report
 
-Your last message is the report, exactly in this form and nothing else – no notes, assumptions or
-explanations before or after it: what is open stands in the files. It names what changed; `Sn open` marks a
-scenario that got a new open point, so `/design-the-domain:requirement` knows which FRs to read – the point itself
+Your last message is the report and nothing else: its first line is `FRs:`, its last line is
+`Domain map: …` – no summary, note or explanation before or after it, in any language; what is
+open stands in the files. It names what changed; `Sn open` marks a
+scenario that got a new open point, so `/design-the-domain:domain-interview` knows which FRs to read – the point itself
 stands only in the FR:
 
 ```

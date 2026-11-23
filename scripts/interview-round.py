@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Renders one round of /design-the-domain:requirement – deterministic numbering, grouping and provenance.
+"""Renders one round of design-the-domain:domain-grilling – deterministic numbering, grouping and references.
 
   interview-round.py <round.json>      (or the JSON on stdin)
 
 The model decides the content of its own questions; this script adds the open points of the
-writers from the files, numbers every question, groups them by story and writes each provenance
-line. Input (keys in English, texts in the session's language):
+writers from the files, numbers every question, groups them by story and puts the artifact a
+question rests on after its title. Input (keys in English, texts in the session's language):
 
   {
     "start": 5,                       first question number of this round
@@ -17,13 +17,11 @@ line. Input (keys in English, texts in the session's language):
     "headings": {"fristen": "🧭 Fristen"},
                                       optional, instead of "stories": group by subdomain (or any key)
                                       with these headings, in this order; each question names its
-                                      group in "group" (problem-space-initialization has no stories)
+                                      group in "group" (domain-init has no stories)
     "questions": [                    the model's own questions
       {"title": "…", "body": "…", "recommendation": "…",
        "story": "US-0050",            optional; without it the question is cross-cutting
        "ref": "FR-deadlines-006/S9", optional: artifact the question rests on
-       "type": "Policy",              optional: FR type for 📐
-       "source": "grilling",          optional: skill that raised it (default grilling)
        "same_as": "FR-deadlines-013/S2" optional: the open point this question also asks}
     ]
   }
@@ -42,7 +40,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from requirements import SetupError, read_config, section  # noqa: E402
 
-GRILLING = "grilling"
 OPEN_RE = re.compile(r"^- \*\*((?:AC|S)\d+)\*\* \(([^)]+)\): (.*?) – Recommendation: (.*?)(?: – (.*))?$")
 TITLE_RE = re.compile(r"^\s*(?:Szenariogrundriss|Szenario|Scenario Outline|Scenario):\s*((?:AC|S)\d+)\s*–\s*(.*)$")
 
@@ -121,37 +118,30 @@ def story_title(cfg: dict[str, str], story: str) -> str:
     return story
 
 
-def provenance(user: str, raised_by: str, sources: list[str], refs: list[str], ftype: str | None) -> str:
-    entries = [f"🗣️ {raised_by}", "🧩 " + " + ".join(sources)]
-    entries += [icon(r) for r in refs if r]
-    if ftype:
-        entries.append(f"📐 {ftype}")
-    return " ".join(entries)
+def references(refs: list[str | None]) -> str:
+    """The artifacts a question rests on, with their icons, after the title: ` (📋 FR-…/S2)`."""
+    shown = [icon(r) for r in refs if r]
+    return f" ({', '.join(shown)})" if shown else ""
 
 
 def render(data: dict, cfg: dict[str, str]) -> str:
-    user = cfg.get("user", "user")
     headings = data.get("headings") or {}
     stories = list(headings) if headings else list(data.get("stories", []))
     deferred = set(data.get("deferred", []))
     points = open_points(cfg, [] if headings else stories, bool(data.get("closing")), deferred)
     by_ref = {p["ref"]: p for p in points}
-    items = []  # (story or None, title, body, recommendation, provenance)
+    items = []  # (story or None, title, body, recommendation, references)
     for q in data.get("questions", []):
-        source = q.get("source") or GRILLING
         same = by_ref.pop(q["same_as"], None) if q.get("same_as") else None
         if same:
-            line = provenance(user, f"{user}/{GRILLING}", [GRILLING, same["source"]],
-                              [same["ref"], same.get("glossary") and f"{same['glossary']}"], same.get("type") or q.get("type"))
+            refs = references([same["ref"], same.get("glossary")])
             story = q.get("story") or q.get("group") or same.get("story")
         else:
-            raised = GRILLING if source == GRILLING else user
-            line = provenance(user, raised, [source], [q.get("ref", "")], q.get("type"))
+            refs = references([q.get("ref")])
             story = q.get("story") or q.get("group")
-        items.append((story, q["title"], q["body"], q["recommendation"], line))
+        items.append((story, q["title"], q["body"], q["recommendation"], refs))
     for p in by_ref.values():
-        line = provenance(user, user, [p["source"]], [p["ref"], p.get("glossary") and f"{p['glossary']}"], p.get("type"))
-        items.append((p["story"], p["title"], p["question"], p["recommendation"], line))
+        items.append((p["story"], p["title"], p["question"], p["recommendation"], references([p["ref"], p.get("glossary")])))
 
     group = bool(data.get("group", True))
     order = stories + [None] if group else [None]
@@ -168,10 +158,10 @@ def render(data: dict, cfg: dict[str, str]) -> str:
             else:
                 out.append(f"### 📘 {key}: {story_title(cfg, key)}" if key else f"### 🌐 {data.get('crosscutting', 'Cross-cutting')}")
             out.append("")
-        for k, (_, title, body, rec, line) in enumerate(block):
+        for k, (_, title, body, rec, refs) in enumerate(block):
             if k:
                 out += ["---", ""]
-            out += [f"❓ **Q{n}** - **{title}**: {body}", "", f"➡️ {rec}", "", line, ""]
+            out += [f"❓ **Q{n}** - **{title}**{refs}: {body}", "", f"➡️ {rec}", ""]
             n += 1
     print(f"next question number: {n}", file=sys.stderr)
     return "\n".join(out).rstrip() + "\n"

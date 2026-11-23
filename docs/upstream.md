@@ -53,4 +53,4 @@ When the user takes a change over, update the skill, its row above (for a split 
 *Split skills*) and *Last synced*. After every
 check, update *Last checked*.
 
-Last checked: commit `5863806` (2026-11-16).
+Last checked: commit `abeeaf9` (2026-11-23).

@@ -1,6 +1,6 @@
 # Refactoring 005: stable evals for requirement and the problem-space skills
 
-Status: Done · Date: 2026-11-16 · Narrowed and decided 2026-11-23 · Done 2026-11-23
+Status: Implemented · Date: 2026-11-16 · Narrowed and decided 2026-11-23 · Done 2026-11-23
 
 Narrowed because the solution-space skills leave for `implement-the-domain` (refactoring 011): their
 evals (`solution-definition`, `test-definition`) move with them and are no part of this refactoring.

@@ -1,15 +1,16 @@
 # Refactoring 010: one neutral core, built for Claude Code and OpenCode
 
-Status: Proposed · Date: 2026-11-23 · Corrected after the spike (`docs/spikes/opencode-v2.md`), adjusted to 011 and 005
+Status: Proposed · Date: 2026-11-23 · Corrected after the spike (`docs/spikes/opencode-v2.md`), adjusted to 011, 012 and 005 · Trial and apm research 2026-11-23
 
-**Order:** after refactoring 011 (split into design and implement) and 005 (stable evals). It works on
-`design-the-domain` only; `implement-the-domain` follows the same build and adapter later.
+**Order:** after refactoring 011 (split into design and implement) and 005 (stable evals). 005 is done,
+012 too (its evals stable), and design 0.9.0 is in `dist`; 011 is open only on the implement side, which
+does not block this one. It works on `design-the-domain` only; `implement-the-domain` follows the same build and adapter later.
 
 ## Goal
 
 The skills of the plugin run in Claude Code and in OpenCode (Claude as the model; tested with 1.15.10
 and 1.19.6, no version calls itself "V2") from one repository: the same skill text, the same slash
-names (`/requirement`, `/domain-init`, …), the same project config
+names (`/domain-interview`, `/domain-init`, …), the same project config
 `domain-model/config.md`.
 
 ## Research (2026-11-23, from the docs; the points marked *spike* were tried out)
@@ -35,14 +36,33 @@ names (`/requirement`, `/domain-init`, …), the same project config
   harness, abstract action names in the skills, a mapping per harness (OpenCode: a plugin injects it).
   `npx skills` installs skills only, no commands, agents or hooks. The Agent Skills standard allows
   `scripts/`, `references/`, `assets/` inside a skill folder.
+- **apm (Microsoft Agent Package Manager, docs read 2026-11-23, about 0.38):** dependencies in
+  `apm.yml` (GitHub `owner/repo/path`, pinned by tag, branch, commit or semver range), `apm.lock.yaml`
+  with a hash per deployed file, `apm install`, `apm update`, `apm install --frozen`. Target `opencode`:
+  skills into `.agents/skills/<name>/`, **commands into `.opencode/commands/`, agents into
+  `.opencode/agents/`**, hooks skipped; a `model` per agent is documented only for Kiro. A Claude Code
+  plugin (`.claude-plugin/plugin.json`) is copied whole to `.agents/plugins/<plugin>/` for the targets
+  `claude` and `copilot`, where `${CLAUDE_PLUGIN_ROOT}` in commands and hooks resolves to that folder;
+  for other targets it is "split into primitives".
+- **apm tried (0.37.0, 2026-11-23):** `apm install soe-soe-soe/design-the-domain#dist --target opencode`
+  (private repo, the git credentials sufficed) resolves `dist` as a plugin, keeps the whole package in
+  `apm_modules/` (put into `.gitignore`) and copies each skill folder to `.agents/skills/<name>/`;
+  `apm.lock.yaml` pins the commit. With a local probe plugin: a skill folder is copied **with its
+  subfolders** (`scripts/`, `assets/`), for `opencode` and `claude` alike; **markdown links** to files
+  outside the skill folder are rewritten to `apm_modules/…`; relative paths **in code** (inline or
+  fenced) and `${CLAUDE_PLUGIN_ROOT}` are **not** rewritten – a script call by `${CLAUDE_PLUGIN_ROOT}`
+  breaks. `commands/` and `agents/` of the plugin go to `.opencode/commands/` and `.opencode/agents/`
+  (and `.claude/…` for `claude`); an agent's `model: haiku` is copied **verbatim**, OpenCode expects
+  `provider/model`. The user's own install on another machine (paths as `design-the-domain/…`) was
+  laid out by hand, not by apm.
 
 ## What changes in the skill texts
 
 | Kind | Places | Needed? |
 |---|---|---|
-| Paths `${CLAUDE_PLUGIN_ROOT}/assets/x.md` → relative to the skill folder | 37 | yes: the variable does not exist in OpenCode, and moving the files alone leaves the old paths dangling |
-| Cross-references `design-the-domain:domain-interview` → the skill name | about 76 (design and implement together) | yes: the namespace is a Claude mechanism, OpenCode knows only `name:`; changes with the renaming of 011 anyway |
-| Tool terms ("Skill tool", `AskUserQuestion`, "start a subagent") | about 8, 3 and a few | **partly settled by the trial below**: "Skill tool" and "start a subagent" map by themselves (`skill`, `task`); `AskUserQuestion` still open – the one question in the trial was not asked |
+| Paths `${CLAUDE_PLUGIN_ROOT}/assets/x.md` → relative to the skill folder | 28 in design (2026-11-23) | yes: the variable does not exist in OpenCode, and moving the files alone leaves the old paths dangling |
+| Cross-references `design-the-domain:domain-interview` → the skill name | in design 27 calls and 19 slash mentions (`/design-the-domain:…`); implement 6 calls, 6 slash mentions (2026-11-23) | yes: the namespace is a Claude mechanism, OpenCode knows only `name:`; changes with the renaming of 011 anyway |
+| Tool terms ("Skill tool", `AskUserQuestion`, "start a subagent") | a few; `AskUserQuestion` once in design (`domain-init`) | **partly settled by the trial below**: "Skill tool" and "start a subagent" map by themselves (`skill`, `task`); `AskUserQuestion` still open – the one question in the trial was not asked |
 
 ## Decisions
 
@@ -61,8 +81,13 @@ names (`/requirement`, `/domain-init`, …), the same project config
   `$ARGUMENTS`); a command and its skill may have the same name (*spike*).
 - **The build copies, no symlinks in the output:** symlinks work in a project (OpenCode and Claude Code,
   *spike*), not verified in the cache copy of an installed Claude plugin.
-- **Skill folders install with `npx skills add … -a opencode`** (target `.agents/skills/<name>/`, all
-  subfolders copied, *spike*); commands and agents need their own install route.
+- **Install route for OpenCode: apm** (user, 2026-11-23, after the apm trial above). It installs the
+  self-contained skill folders, the command wrappers and the agent files of the OpenCode build from one
+  GitHub source with a lockfile. Consequences: script and template paths in a skill point **inside its
+  own folder** (`scripts/…`, `assets/…` from the base directory) – the self-contained build output
+  above is what makes apm work, `${CLAUDE_PLUGIN_ROOT}` must not stay; the OpenCode agent files carry
+  `provider/model`, since apm passes `model` through unchanged. `npx skills add` (*spike*) stays
+  possible for the skills alone, without commands and agents.
 - **Model keys** in the config (`model-ground`, `model-writer`, `model-init`): Claude Code sets the
   model per call, OpenCode per agent definition. The adapter generates one agent file per model key;
   the keys must also express `provider/model`; the open names (`inherit`, `sonnet`, …) stay for Claude.
@@ -124,7 +149,12 @@ NOT NULL error with 1.15.10); the trial ran with its own `XDG_DATA_HOME`.
   per agent as `provider/model`, `question` headless, permission prompts in `run`. The trial confirms
   that the model needs agent files (the decision above stands) and leaves `question`: test it
   interactively.
-- Whether `npx skills add` from a GitHub source behaves like the local one (probably yes).
-- Install route for the commands (the `skills` installer does not know commands).
-- Whether the model keys need a mapping file per harness.
-- Version: after 009 (0.8.0) and 011; this one as 1.0.0 at the earliest.
+- **Where the OpenCode build lives:** command wrappers and agent files must not reach Claude Code –
+  a plugin's `commands/` would duplicate the slash names its skills already give, and `provider/model`
+  means nothing there. A path of its own in `dist` (apm installs `owner/repo/path#ref`) or a branch of
+  its own; to try with apm.
+- Whether the model keys need a mapping file per harness, or the OpenCode build writes one agent file
+  per key from a `provider/model` value in the project config.
+- `confluence-publish` (new in 0.9.0): needs the Atlassian MCP; whether OpenCode reaches it the same
+  way is not tried.
+- Version: design is at 0.9.0 (in `dist` since 2026-11-23); this one as 1.0.0 at the earliest.

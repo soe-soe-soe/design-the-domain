@@ -1,7 +1,9 @@
 ---
-type: llm
-focus: trace
+type: regex
+target: last_message
+match: not_contains
+pattern: "### 📘 US-"
 weight: 1
 ---
 
-Round 1 is not grouped under story headings (no `### 📘 US-` headings)
+Round 1 is not grouped under story headings.

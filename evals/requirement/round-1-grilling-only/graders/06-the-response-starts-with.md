@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-The response starts with a **Kontext** block listing every artifact the run read, one list item each in the form `<icon> <type>: <name>`, in the form of `assets/output-format.md` of the design-the-domain plugin (📄 for glossaries and the domain map), and without an entry for the requirement itself
+The final message begins, before the first question, with the line **Kontext** followed by a list of the artifacts read; the list has an entry with 📄 for the domain map (domain-map.md) and one with 📄 for the Fristen glossary (fristen.md).

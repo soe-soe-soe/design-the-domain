@@ -1,7 +1,7 @@
 # design-the-domain project config – eval fixture
 
 Project config the eval cases place at `domain-model/config.md`; it describes the sample project their
-files come from (a Python backend with a TypeScript UI). Paths are relative to the project root.
+files come from (a Python backend with a TypeScript UI); only the design-the-domain part. Paths are relative to the project root.
 
 ## Project
 
@@ -24,18 +24,6 @@ Methodology (template headings, field labels, tags, IDs, status values) stays En
 | `glossaries` | One glossary per subdomain | `domain-model/glossaries` |
 | `methodology-glossary` | Methodology terms, among them "Open point" | `domain-model/glossaries/_methodology.md` |
 
-## Solution space
-
-| Key | Meaning | Value |
-|---|---|---|
-| `structure` | Target structure of the code: building blocks, naming, test levels and markers | `domain-model/solution-space/structure.md` |
-| `context-map` | Generated map of the bounded contexts | `domain-model/solution-space/context-map.md` |
-| `context-map-command` | Command that regenerates `context-map` from the code | `python backend/ops/generate_context_map.py` |
-| `refactorings` | Migration plans per bounded context | `refactorings` |
-| `adr` | Architecture decision records | `docs/adr` |
-| `architecture-adrs` | ADRs on building blocks and boundaries that placement must follow | ADR 007–011; placement follows above all 008 and 009 |
-| `test-strategy-adr` | ADR on the test strategy | ADR 012 |
-
 ## Code
 
 | Key | Meaning | Value |
@@ -43,25 +31,6 @@ Methodology (template headings, field labels, tags, IDs, status values) stays En
 | `backend` | Backend source root | `backend` |
 | `backend-shared` | Cross-cutting backend code, out of scope for the init skills | `backend/core` |
 | `backend-tests` | Backend tests | `backend/tests` |
-| `test-fixtures` | Shared test fixtures, registered in the root `conftest` or equivalent | `backend/tests/fixtures` |
-| `e2e-journeys` | UI journeys, one per business object: `‹e2e-journeys›/<subdomain>/<business-object>.<ext>` | `frontend/e2e/journeys` (`.spec.ts`) |
-| `e2e-pages` | Page objects of the UI tests | `frontend/e2e/pages` |
-| `scenario-marker` | How a test references its FR scenario | `@pytest.mark.fr("FR-<subdomain>-NNN/Sn")` directly above `def` |
-| `not-implemented` | Body of a shell symbol that has no behaviour yet | `raise NotImplementedError` |
-| `migrations` | Schema migration tool and folder | Alembic, `backend/ops/migrations/versions` |
-
-## Commands
-
-Run from the project root; a value may change directory first.
-
-| Key | Meaning | Value |
-|---|---|---|
-| `typecheck` | Static type check of the backend | `cd backend && pyright` |
-| `test-all` | Full backend suite | `cd backend && pytest` |
-| `test-file` | One backend test file | `cd backend && pytest <file>` |
-| `test-collect` | Collect backend tests without running them | `cd backend && pytest --collect-only -q` |
-| `e2e-list` | List the UI tests without running them | `cd frontend && npx playwright test --list` |
-| `e2e-file` | Run one UI test file | `cd frontend && npx playwright test <file>` |
 
 ## Ticket system
 
@@ -88,6 +57,17 @@ back. The ticket's ID goes into the story header as `External`.
 | done | Done |
 | cancelled | Canceled |
 
+## Confluence
+
+Optional. Read by `/design-the-domain:confluence-publish`, which writes the problem space one way to
+a Confluence Cloud space; the repository stays the source of truth.
+
+| Key | Meaning | Value |
+|---|---|---|
+| `confluence-space` | Key of the space the pages go into, or `–` for none | `–` |
+| `confluence-parent` | Title of the page the Domain Map page hangs under, or `–` for the top of the space | `–` |
+| `confluence-title-prefix` | Prefix of every page title, since titles are unique per space, or `–` | `–` |
+
 ## Models
 
 Model of the subagents the skills start: `inherit` (the session's model), `haiku`, `sonnet` or
@@ -98,4 +78,4 @@ can be set per project.
 |---|---|---|
 | `model-ground` | Subagent reading the ground in /design-the-domain:requirement (reads and summarises) | `inherit` |
 | `model-writer` | Subagent running user-story and functional-requirement (finds open points) | `inherit` |
-| `model-init` | Subagents of /design-the-domain:domain-init and /design-the-domain:solution-init, one per subdomain or context | `inherit` |
+| `model-init` | Subagents of /design-the-domain:domain-init, one per subdomain | `inherit` |

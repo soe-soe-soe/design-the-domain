@@ -97,9 +97,9 @@ sets `in-progress`, `done` and `cancelled`.
 
 ## Report
 
-Your last message is the report, exactly in this form and nothing else – no notes, assumptions
-or explanations before or after it; it names what changed, not what is open (that stands in the
-story):
+Your last message is the report and nothing else: its first line is `Stories:`, its last line is
+the last story line – no summary, note or explanation before or after it, in any language. It names
+what changed, not what is open (that stands in the story):
 
 ```
 Stories:

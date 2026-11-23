@@ -120,7 +120,8 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    > of the aggregate in business language with a glossary term as type (not code types), composition
    > for what lives and dies with the root, association for a reference by identity to another
    > business object of your subdomain, with multiplicities from the code (nullable fields, collections).
-   > A reference to another subdomain goes under `Relationships` of your report, not into the map.
+   > A reference to another subdomain goes under `Relationships` of your report, not into the map,
+   > both subdomains by their business name in `‹problem-space-language›` (not `permits`).
    > An existing map you extend; you change none of its lines: if the code contradicts one, that
    > becomes a question (Case `glossary`).
    >
@@ -174,6 +175,8 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    - **Relationships:** add new relationships between subdomains from the reports to the
      relationships table of `‹domain-map›`, in business terms; also one to a subdomain that is not in
      the map yet (named as the report names it): its row follows when that subdomain is taken over.
+     Both columns name subdomains by their business name in `‹problem-space-language›`, never by a
+     code folder, bounded context or class (`permits`, `Permit`).
    - **Check:** every glossary written has its subdomain's row in `‹domain-map›`, every subdomain map
      written is linked in that row, and no two FR files of a subdomain share a number.
 

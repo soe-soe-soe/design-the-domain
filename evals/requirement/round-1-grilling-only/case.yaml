@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: round-1-grilling-only
 expected_outcome: |
-  Round 1 in German, only grilling questions (grilling's format with numbered questions and a recommendation, rendered by scripts/interview-round.py), each with the provenance line `🗣️ domain-grilling   🧩 domain-grilling`, without story grouping, without a writing subagent and without written stories.
+  Round 1 in German, only grilling questions (grilling's format with numbered questions and a recommendation, rendered by scripts/interview-round.py), each with the provenance line `🗣️ domain-grilling   🧩 domain-grilling` (🧩 glossary allowed for a question about a term), the ground read by a subagent, without story grouping, without a writing subagent and without written stories.
 context:
   scaffold_script: place-files.sh

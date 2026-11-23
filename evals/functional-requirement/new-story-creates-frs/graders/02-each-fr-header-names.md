@@ -1,7 +1,10 @@
 ---
-type: llm
-focus: trace
+type: regex
+target: trace
+flags: i
+match: contains
+pattern: "Subdomain: fristen · Business object: [^·]+ · Type: (Invariant|Domain Service|Policy|Command|Query|Anti-Corruption Layer|Data Migration) · Status: planned"
 weight: 1
 ---
 
-Each planned FR header has the form 'Subdomain: fristen · Business object: … · Type: … · Status: planned', with Type one of Invariant, Domain Service, Policy, Command, Query, Anti-Corruption Layer, and a '## Changes' line '- US-0001 · Kind: new|edit · Rule: changed|unchanged'
+A planned FR header in the form of the template, written by the run.

@@ -2,11 +2,11 @@
 
 Status: draft · Topic: Fristerinnerung · createdAt: 2026-10-27
 
-Als Verantwortliche möchte ich vor Ablauf einer Frist per E-Mail erinnert werden.
+Als Nutzer möchte ich Fristerinnerungen abbestellen, damit ich keine Mails bekomme, die ich nicht brauche.
 
 ## Why
 
-Wer viele Fristen verantwortet, will die Mails gesammelt statt einzeln.
+Wer seine Fristen anders im Blick behält, soll nicht mit E-Mails überhäuft werden.
 
 ## Content
 

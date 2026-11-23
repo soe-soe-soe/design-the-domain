@@ -1,18 +1,11 @@
 #!/usr/bin/env bash
-# The project context the skill reads (CLAUDE.md, glossaries, domain model, ADRs, design-the-domain config)
-# comes from a checkout of a project that uses design-the-domain, named by PTS_EVAL_PROJECT; the case's own
-# files are laid over it.
+# The invented fixture project (evals/fixtures/project, see evals/fixtures/README.md), the fixture
+# config and the methodology glossary; the case's own files are laid over them.
 set -eu
 here="$(cd "$(dirname "$0")" && pwd)"
-# PTS_EVAL_PROJECT, or the path in evals/.pts-eval-project (local, not committed): the eval runner
-# does not pass the shell environment to scaffold scripts.
-project="${PTS_EVAL_PROJECT:-$(cat "$here/../../.pts-eval-project" 2>/dev/null || true)}"
-: "${project:?set PTS_EVAL_PROJECT or write a project checkout with domain-model/config.md into evals/.pts-eval-project}"
-cp "$project/CLAUDE.md" .
-mkdir -p domain-model && cp "$project/domain-model/config.md" .claude/
-cp -R "$project/domain-model" .
-mkdir -p docs && cp -R "$project/docs/adr" docs/
+fixtures="$here/../../fixtures"
+cp -R "$fixtures/project/." .
+mkdir -p domain-model/glossaries
+cp "$fixtures/config.md" domain-model/config.md
+cp "$fixtures/methodology.md" domain-model/glossaries/_methodology.md
 if [ -d "$here/files" ]; then cp -R "$here/files/." .; fi
-# Never sync to a real ticket system from an eval.
-sed 's/^| `ticket-system` |\(.*\)| [^|]* |$/| `ticket-system` |\1| `none` |/' domain-model/config.md > domain-model/config.md.tmp && mv domain-model/config.md.tmp domain-model/config.md
-sed 's/^| `ticket-team` |\(.*\)| [^|]* |$/| `ticket-team` |\1| `EVAL` |/' domain-model/config.md > domain-model/config.md.tmp && mv domain-model/config.md.tmp domain-model/config.md

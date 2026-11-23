@@ -1,7 +1,9 @@
 ---
-type: llm
-focus: trace
+type: regex
+target: trace
+match: contains
+pattern: '\*\*S\d+\*\* \(functional-requirement\): [^\\]*– Story: US-0010 · Case: glossary[^\\]*Glossary: fristen\.md: Problem'
 weight: 1
 ---
 
-An FR for US-0010/AC1 has an '## Open' entry with source functional-requirement, Case: glossary, Glossary naming fristen.md and the term Problem (a note is mandatory), and Story: US-0010
+An FR written by the run has an '## Open' entry of functional-requirement for US-0010 with Case glossary and Glossary fristen.md: Problem.

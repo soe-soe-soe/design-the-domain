@@ -1,7 +1,9 @@
 ---
-type: llm
-focus: {source: file, path: domain-model/problem-space/domain-map.md}
+type: regex
+target: {source: file, path: domain-model/problem-space/domain-map.md}
+match: contains
+pattern: '\| *Fristen *\| *Genehmigung\w* *\| *[^|]*(gehör|zugeordnet|bezieh|Bezug)[^|]*\|'
 weight: 1
 ---
 
-The relationships table has a row from Fristen to Genehmigung that says in business terms that a deadline belongs to a permit; it names no class, field or identifier
+The Relationships table has a row from Fristen to the permit subdomain (Genehmigung, Genehmigungen or Genehmigungsverfahren, as the subagent's report names it) saying that a deadline belongs to it.

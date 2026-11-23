@@ -12,14 +12,37 @@ The script's tests run with `python3 -m unittest discover scripts`.
 ## Evals
 
 Evals live under `evals/<skill>/<case>/` and run with
-`claude plugin eval . --scaffold --allow-tools Bash Write Edit` (`--tag problem-space` for the
-problem space). Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They simulate a
-project with a German problem space and an English solution space (`evals/fixtures/config.md`):
-case descriptions and graders are English, fixtures and user prompts German. The
-`requirement` cases need a project checkout with `domain-model/config.md`: its path in
-`evals/.pts-eval-project` (not committed; the runner does not pass the environment to scaffold
-scripts) or in `PTS_EVAL_PROJECT`. They switch the ticket sync off, so no eval creates real
-tickets. The others bring their files.
+`claude plugin eval . --ablation none --scaffold --allow-tools Bash Write Edit`
+(`--tag problem-space` for the problem space). Without `--ablation none` the runner adds a
+no-plugin baseline arm and doubles the runs. It also finds the evals of `implement-the-domain/`
+(`--eval-dir evals` does not keep them out): run single cases with `--case <name>`. The judge is the runner's default, Haiku: a Sonnet judge costs about
+$7 per run instead of $0.50, reruns too (Sonnet was not steadier). Each case runs three times (the runner's default;
+no case sets `runs`). Shell tools run sandboxed, so Linux needs `bubblewrap` and `socat`. They
+simulate a project with a German problem space and an English solution space
+(`evals/fixtures/config.md`): case descriptions and graders are English, fixtures and user prompts
+German. The `requirement` cases copy the invented sample project `evals/fixtures/project/` (see
+`evals/fixtures/README.md`) and lay their own files over it; the other cases bring their files.
+No eval reads a real project, and none syncs to a real ticket system (`ticket-system` is `none`,
+or `linear` without a connector).
+
+A case is stable when it passes 3 of 3 runs, or at least 5 of 6 after three more runs. A case
+below that has a defect in its skill or its grader: fix it, don't rerun until it is green.
+
+### Rules for graders
+
+- One checkable claim per grader. Where the claim is a fixed text, use a `type: regex` grader
+  (`target: trace | last_message | {source: file, path: …}`, `pattern`, `match: contains |
+  not_contains | count:N`): it needs no judge, costs nothing and does not vary. The judge sees at
+  most 100,000 characters of a trace, so a long run's Write calls may be cut off; regex sees all.
+- Name the exact text, tag, file or tool call expected; no "appropriate", "sensible" or "tries to".
+- Demand nothing the skill does not prescribe; where the skill allows two ways, the grader allows
+  both.
+- `focus: {source: file, path: …}` when the claim is about one file's content; `focus: files` shows
+  the judge only the list of file paths, so use it only for which files exist; `focus: trace` for
+  what the run did (tool calls and their contents, subagents, the final message).
+- "Unchanged" means no Write or Edit call on the file, not a comparison the judge cannot make.
+- Fixtures are invented; terms, FRs and stories a grader names exist in the case's files or in
+  `evals/fixtures/project/`.
 
 `claude plugin eval` only finds evals below the plugin directory, and an install copies the whole
 plugin directory with no way to exclude files. That is why the published plugin is built

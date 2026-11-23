@@ -4,4 +4,4 @@ focus: trace
 weight: 1
 ---
 
-The glossaries and the domain map are read by a subagent, not by the main run, and the run asks its questions from that subagent's report
+The run started a subagent with the Agent tool whose brief asks it to read the domain map and the glossaries, before the main run read domain-model/problem-space/domain-map.md or a glossary itself. Whether the main run reads a file after the subagent's report does not matter.

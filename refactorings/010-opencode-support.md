@@ -41,7 +41,7 @@ names (`/requirement`, `/domain-init`, …), the same project config
 | Kind | Places | Needed? |
 |---|---|---|
 | Paths `${CLAUDE_PLUGIN_ROOT}/assets/x.md` → relative to the skill folder | 37 | yes: the variable does not exist in OpenCode, and moving the files alone leaves the old paths dangling |
-| Cross-references `design-the-domain:requirement` → the skill name | about 76 (design and implement together) | yes: the namespace is a Claude mechanism, OpenCode knows only `name:`; changes with the renaming of 011 anyway |
+| Cross-references `design-the-domain:domain-interview` → the skill name | about 76 (design and implement together) | yes: the namespace is a Claude mechanism, OpenCode knows only `name:`; changes with the renaming of 011 anyway |
 | Tool terms ("Skill tool", `AskUserQuestion`, "start a subagent") | about 8, 3 and a few | **not yet decided**: Claude sees the tool list of OpenCode (`skill`, `question`, `task`) and probably maps the terms itself; try the skills unchanged first and abstract only what fails |
 
 ## Decisions

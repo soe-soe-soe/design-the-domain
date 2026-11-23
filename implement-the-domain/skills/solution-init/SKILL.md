@@ -50,7 +50,7 @@ user, in their language and nothing else: fill in `domain-model/config.md` first
 
 4. **Report.** To the user, per context: aggregates, number of modules per building block,
    boundary violations found (imports bypassing a facade). Below that the subagents' questions
-   in the question format of `/design-the-domain:requirement` (provenance line with `🧩 solution-init`), grouped per
+   in the question format of `design-the-domain:domain-grilling` (the artifact a question rests on after its title), grouped per
    context. Finally the
    question which context to migrate first.
 

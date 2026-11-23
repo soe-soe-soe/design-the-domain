@@ -193,6 +193,7 @@ The end-to-end test of one business object with a UI: its life cycle on the happ
 _Avoid_: E2E test per story
 _Code_: `frontend/e2e/journeys/<subdomain>/<business-object>.spec.ts`, step tag `@US-NNNN`
 
-**Provenance line**:
-The last line of every question in a grill session: who raised it (Alex, grilling or both), which skill it comes from and, where available, reference and FR type.
-_Code_: format in the skill `requirement`, step "Run the rounds"
+**Question reference**:
+The artifacts a question of a grill session rests on, with their icons, in parentheses after the question's title: `❓ **Q5** - **<title>** (📋 FR-fristen-013/S2): …`.
+_Avoid_: provenance line
+_Code_: format in the skill `domain-grilling`, section "Rounds in this project"

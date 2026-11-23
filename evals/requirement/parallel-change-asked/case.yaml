@@ -1,6 +1,0 @@
-schema_version: "1.1"
-name: parallel-change-asked
-expected_outcome: |
-  The writers' report names a parallel change of FR-fristen-009/S6 by US-0039. Round 2 asks about it under the story, with the options combine, sequence and take out and a recommendation, provenance functional-requirement.
-context:
-  scaffold_script: place-files.sh

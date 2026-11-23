@@ -1,6 +1,10 @@
-# Refactoring 005: stable evals for requirement and solution-definition
+# Refactoring 005: stable evals for requirement and the problem-space skills
 
-Status: Proposed · Date: 2026-11-16
+Status: Proposed · Date: 2026-11-16 · Narrowed 2026-11-23
+
+Narrowed because the solution-space skills leave for `implement-the-domain` (refactoring 011): their
+evals (`solution-definition`, `test-definition`) move with them and are no part of this refactoring.
+This one comes **before** refactoring 010: the suite is the safety net of the build work.
 
 ## Goal
 
@@ -11,7 +15,7 @@ changed project checkout or a strict grader.
 
 Full run of 2026-11-16 (31 cases, one run each): 26 green. Four of the six failures passed two out of
 two on a rerun (`gap-becomes-open-point`, `close-validates-and-syncs`, `invariant-reuses-existing-file`,
-`journey-step-extends-journey`). Two stay red:
+`journey-step-extends-journey`). Two stayed red:
 
 - `requirement/round-1-grilling-only` (0.63–0.88 in five runs). Three causes, none of them a broken
   skill: the case reads glossaries and FRs from a checkout of the pilot project, so its verdict moves with the
@@ -22,27 +26,40 @@ two on a rerun (`gap-becomes-open-point`, `close-validates-and-syncs`, `invarian
   terms Zieltermin and Projekttermin. One real defect was found and fixed: `assets/output-format.md`
   said "(English here)" for the heading, so the main run sometimes wrote **Context** instead of
   **Kontext**.
-- `solution-definition/not-migrated-context-with-facade` (0.80 in three runs): grader 04 allows only
-  the new facade method as shell, the run also adds the query file the placement names. Both are
-  behaviour-free shells; the grader is narrower than the skill.
+- `solution-definition/not-migrated-context-with-facade` – goes to implement-the-domain (011).
+
+Since then (2026-11-23):
+
+- The config moved to `domain-model/config.md` (refactoring 009); the `requirement` evals still copy
+  it from the external checkout at the old place, so they **do not run at all** at the moment.
+- More flaky cases showed up: `problem-space-fr/new-story-creates-frs` (grader 02 flaky before the
+  changes, grader 07 failed two of three runs afterwards), `problem-space-story/implemented-story-gets-successor`
+  (grader 01, one of three), `problem-space-initialization/map-from-code` (grader 08: relationship to a
+  subdomain that is not in the domain map, one of three).
 
 ## Current state
 
-- `evals/requirement/*/place-files.sh` copy `CLAUDE.md`, glossaries, domain model and ADRs from the
-  project named in `evals/.pts-eval-project` or `PTS_EVAL_PROJECT`.
+- `evals/requirement/*/place-files.sh` copy `CLAUDE.md`, glossaries, domain model, ADRs and the config
+  from the project named in `evals/.pts-eval-project` or `PTS_EVAL_PROJECT`.
 - Single runs; judge model default.
 
 ## Target state
 
-- A small checked-in project under `evals/fixtures/` (two glossaries, a domain map, a handful of FRs,
-  one ADR) replaces the external checkout; `.pts-eval-project` is no longer needed.
-- Grader 02: the provenance line carries `🗣️` and `🧩` with `grilling`, or `domain-modeling` for a
-  glossary question. Grader 07: the glossaries and the domain map are first read by a subagent.
-  Grader 05: check the compound terms and that "Termin" is not used alone as a business term.
-  `not-migrated-context-with-facade` grader 04: allows the shell files the placement names.
-- Cases that vary between runs (the four above) run with `--runs 3` in the full suite.
+- A small checked-in project under `evals/fixtures/` replaces the external checkout
+  (`.pts-eval-project` is no longer needed). It builds on the invented sample the init evals already
+  use (subdomains Fristen and Genehmigung, German problem space): two glossaries, a domain map with a
+  subdomain map, a handful of FRs, one ADR, the config `evals/fixtures/config.md`. Invented, not a
+  frozen copy of the pilot project: more stable and no German domain knowledge needed.
+- Grader 02 of `round-1-grilling-only`: the provenance line carries `🗣️` and `🧩` with `grilling`, or
+  `domain-modeling` for a glossary question (names as renamed in 011). Grader 07: the glossaries and the
+  domain map are first read by a subagent. Grader 05: check the compound terms and that "Termin" is not
+  used alone as a business term.
+- Graders of the flaky cases above made objective (what exactly is expected, no reading of the judge into
+  the tags), as done for `map-missing-*` and `config-*`.
+- Cases that vary between runs run with `--runs 3` in the full suite.
 
-## Before starting
+## Done when
 
-- Decide whether the fixture is the pilot project's state frozen at a commit or an invented sample project
-  (invented is more stable and needs no German domain knowledge).
+The full suite of design-the-domain, run three times, shows no case that fails in some runs and
+passes in others without a change of a skill in between; the `requirement` cases run without any
+external checkout.

@@ -223,6 +223,35 @@ class Bodies(Project):
         self.assertIn("Ein &lt;Stichtag&gt; &amp; mehr", body)
 
 
+class Safety(Project):
+    def test_cdata_breakout_in_a_label_is_neutralised(self):
+        write(self.root, "ps/domain-map.md", DOMAIN_MAP.replace("| Fristen | Core", "| Fr]]><b>x | Core"))
+        _, m, _ = self.build("--no-render")
+        body = Path("out", m["pages"][0]["body_file"]).read_text(encoding="utf-8")
+        self.assertNotIn("<![CDATA[Fr]]><b>", body)
+        self.assertIn("Fr]]]]><![CDATA[><b>x", body)
+
+    def test_links_outside_the_project_are_ignored(self):
+        outside = tempfile.TemporaryDirectory()
+        self.addCleanup(outside.cleanup)
+        secret = Path(outside.name) / "secret.md"
+        secret.write_text("# Geheim\n\nTOPSECRET\n", encoding="utf-8")
+        write(self.root, "ps/domain-map.md", DOMAIN_MAP.replace("../glossaries/fristen.md", os.path.relpath(secret, self.root / "ps")))
+        _, m, _ = self.build("--no-render")
+        self.assertTrue(any("outside the project" in w for w in m["warnings"]))
+        for p in m["pages"]:
+            self.assertNotIn("TOPSECRET", Path("out", p["body_file"]).read_text(encoding="utf-8"))
+
+    def test_symlinked_fr_is_ignored(self):
+        outside = tempfile.TemporaryDirectory()
+        self.addCleanup(outside.cleanup)
+        target = Path(outside.name) / "FR-fristen-077-x.md"
+        target.write_text(FR.replace("001", "077").replace("Eine Frist hat", "TOPSECRET"), encoding="utf-8")
+        (self.root / "ps/fristen/frist/FR-fristen-077-x.md").symlink_to(target)
+        _, m, _ = self.build("--no-render")
+        self.assertFalse([p for p in m["pages"] if "077" in p["title"]])
+
+
 class Rendering(Project):
     def fake_mmdc(self, body: str) -> Path:
         script = self.root / "fake-mmdc"

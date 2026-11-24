@@ -9,6 +9,8 @@ description: Keeps the ubiquitous language of the project – challenges terms a
 
 # Glossary
 
+Paths `assets/…` and `scripts/…` are relative to this skill's base directory (named when the skill loads; `<base directory>` below). Scripts run from the project root.
+
 Keep the project's language precise while the problem space is designed: challenge terms, sharpen
 fuzzy ones and write the glossary down the moment a term crystallises. (Merely *reading* a glossary
 for vocabulary is not this skill: that's a one-line habit any skill can do. This skill is for when
@@ -61,9 +63,9 @@ confirms is the delta to implement.
 
 When a term is resolved, add or change its row in `‹glossaries›/<subdomain>.md` right there.
 Don't batch these up: capture them as they happen. Use the format in
-`${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`; where `‹project-rules›` sets its own glossary
+`assets/glossary.md`; where `‹project-rules›` sets its own glossary
 format, it wins. A new glossary gets its subdomain's row in `‹domain-map›` (column Glossary, `–` in the column
-Subdomain map) by `${CLAUDE_PLUGIN_ROOT}/assets/domain-map.md`. Leave the solution-space columns
+Subdomain map) by `assets/domain-map.md`. Leave the solution-space columns
 (`Solution space`, `Identifier`) empty: they are set through the interface below, by whoever decides
 the code name.
 

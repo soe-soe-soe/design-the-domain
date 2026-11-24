@@ -5,8 +5,10 @@ description: Publishes the problem space to Confluence Cloud as a page tree – 
 
 # Confluence publish
 
+Paths `assets/…` and `scripts/…` are relative to this skill's base directory (named when the skill loads; `<base directory>` below). Scripts run from the project root.
+
 Make the problem space readable in Confluence. The repository stays the source of truth: pages are
-written from it, never read back into it. `${CLAUDE_PLUGIN_ROOT}/scripts/confluence_publish.py`
+written from it, never read back into it. `scripts/confluence_publish.py`
 builds the pages deterministically; you only check, show and sync them through the project's
 Confluence connector (the Atlassian MCP).
 
@@ -37,7 +39,7 @@ and `status-<status>`.
 
 ## Steps
 
-1. **Build.** Run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/confluence_publish.py build --out <scratch dir>`
+1. **Build.** Run `python3 <base directory>/scripts/confluence_publish.py build --out <scratch dir>`
    from the project root; use a scratch directory, not a folder of the repository. It writes
    `manifest.json`, one body per page (Confluence storage format) and the diagrams as SVG
    (needs `mmdc`, Mermaid CLI; env `MMDC` sets another command). Pass `--no-render` when `mmdc`

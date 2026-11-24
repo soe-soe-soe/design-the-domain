@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Domain-Interview
 
+Paths `assets/…` and `scripts/…` are relative to this skill's base directory (named when the skill loads; `<base directory>` below). Scripts run from the project root.
+
 You interview the user about a requirement until its problem space is settled: stories with
 acceptance criteria, FR scenarios, glossary terms. You compose three skills, as a grill with docs:
 `design-the-domain:domain-grilling` (how the interview is asked), `design-the-domain:glossary`
@@ -22,7 +24,7 @@ value.
 Called as `/design-the-domain:domain-interview <requirement>`. Everything you say to the user is in
 `‹problem-space-language›`.
 
-**Output format.** Read `${CLAUDE_PLUGIN_ROOT}/assets/output-format.md` before your first message
+**Output format.** Read `assets/output-format.md` before your first message
 and follow it: the context block at the start of a message after new reads, the artifact icons in
 every reference. Artifacts the ground subagent read count as read by you.
 
@@ -36,7 +38,7 @@ every reference. Artifacts the ground subagent read count as read by you.
    > `‹requirements›/planned/` on the same topic, the planned FR files (`planned/` below the FR
    > folders) of the subdomains it touches, and whatever
    > else the requirement points to. Change nothing. Your last message has exactly these parts:
-   > `Context:` one line per file read, in the format of `${CLAUDE_PLUGIN_ROOT}/assets/output-format.md`;
+   > `Context:` one line per file read, in the format of `<base directory>/assets/output-format.md` (give the subagent that path in full);
    > `State:` the current state of the topic in at most 15 lines; `Terms:` every glossary
    > term the requirement touches with its one-line description and its `Avoid:` words;
    > `Drafts:` each story in `planned/` on the topic with its status and open points, or `none`;

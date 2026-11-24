@@ -1,0 +1,109 @@
+# Skill names the plugin must not use (refactoring 011, name rule 2). One per line; `#` comments.
+# A name here exists in a known collection, or is a plain generic word: OpenCode takes the
+# `name:` as the only ID and overrides a duplicate silently (refactoring 010).
+# Source of the lists: the skill listings of a Claude Code session (2026-11-23), Matt Pocock's skills,
+# Anthropic's skills, Superpowers. Extend it when a new collision shows up.
+
+# generic words (rule 1)
+story
+init
+initialization
+requirement
+interview
+grilling
+review
+design
+implement
+domain
+config
+
+# Matt Pocock
+grill-me
+diagnosing-bugs
+tdd
+prototype
+research
+domain-modeling
+codebase-design
+code-review
+pr
+wizard
+writing-for-agents
+zoom-out
+triage
+to-prd
+to-issues
+handoff
+improve-codebase-architecture
+caveman
+write-a-skill
+
+# Anthropic skills
+docx
+pdf
+pptx
+xlsx
+skill-creator
+doc-coauthoring
+docs
+morning
+setup-claude
+deep-research
+frontend-design
+consolidate-memory
+import-memory
+explain-usage
+dataviz
+
+# built-ins of Claude Code
+security-review
+simplify
+loop
+schedule
+batch
+debug
+verify
+run
+claude-api
+update-config
+keybindings-help
+fewer-permission-prompts
+compact
+clear
+help
+doctor
+agents
+mcp
+model
+plugin-authoring
+workflow-authoring
+
+# built-ins of OpenCode
+undo
+redo
+share
+models
+themes
+connect
+new
+sessions
+export
+details
+editor
+thinking
+
+# Superpowers
+brainstorming
+writing-plans
+executing-plans
+test-driven-development
+systematic-debugging
+requesting-code-review
+receiving-code-review
+finishing-a-development-branch
+using-git-worktrees
+subagent-driven-development
+verification-before-completion
+dispatching-parallel-agents
+writing-skills
+using-superpowers

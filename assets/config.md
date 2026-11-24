@@ -49,7 +49,7 @@ The code the problem space is taken over from (`/design-the-domain:domain-init`)
 ## Ticket system
 
 Optional. The repository stays the source of truth: stories are written one way to the ticket
-system by `${CLAUDE_PLUGIN_ROOT}/assets/ticket.md` (fields, description, when), never read
+system by `assets/ticket.md` (fields, description, when), never read
 back. The ticket's ID goes into the story header as `External`.
 
 | Key | Meaning | Value |
@@ -85,7 +85,8 @@ a Confluence Cloud space; the repository stays the source of truth.
 ## Models
 
 Model of the subagents the skills start: `inherit` (the session's model), `haiku`, `sonnet` or
-`opus`. The skills themselves run on the model of whoever calls them; only a subagent's model
+`opus` in Claude Code; in OpenCode a `provider/model` value (`anthropic/claude-sonnet-5-5`), which
+`scripts/opencode-agents.py` turns into an agent file (the Claude names mean nothing there). The skills themselves run on the model of whoever calls them; only a subagent's model
 can be set per project.
 
 | Key | Meaning | Value |

@@ -4,34 +4,28 @@
 #
 #   tools/build-dist.sh [<ref>]     default ref: HEAD
 #
-# The allowlist below is the published plugin. Everything else stays in the development branches.
+# The branch holds the build output of tools/build.py; everything else stays in the development branches.
 set -euo pipefail
 
 ref="${1:-HEAD}"
 branch="dist"
-include=(
-  .claude-plugin/plugin.json
-  skills
-  assets
-  scripts/requirements.py
-  scripts/interview-round.py
-  scripts/confluence_publish.py
-  LICENSE
-  THIRD_PARTY_LICENSES.md
-)
 
 cd "$(git rev-parse --show-toplevel)"
 source_commit="$(git rev-parse --verify "$ref^{commit}")"
 
-index="$(mktemp)"
-trap 'rm -f "$index"' EXIT
-rm -f "$index"
+work="$(mktemp -d)"
+index="$work/index"
+trap 'rm -rf "$work"' EXIT
 
-existing=()
-for path in "${include[@]}"; do
-  if git cat-file -e "$source_commit:$path" 2>/dev/null; then existing+=("$path"); fi
-done
-git ls-tree -r "$source_commit" -- "${existing[@]}" | awk -F'\t' '$2 !~ /\/decision-records\//' | GIT_INDEX_FILE="$index" git update-index --index-info
+# The published plugin is the build output of tools/build.py (self-contained skill folders, refactoring
+# 010), made from the committed state of <ref>, not from the working copy.
+mkdir "$work/src"
+git archive "$source_commit" | tar -x -C "$work/src"
+python3 tools/build.py --source "$work/src" --out "$work/out"
+# The OpenCode build (command wrappers, namespace-free skills) lives in a subfolder of the same branch:
+# Claude Code loads only the root of the plugin, apm installs `owner/repo/opencode#dist`.
+python3 tools/build.py --source "$work/src" --out "$work/out/opencode" --target opencode > /dev/null
+GIT_INDEX_FILE="$index" git --work-tree="$work/out" add -A -f .
 tree="$(GIT_INDEX_FILE="$index" git write-tree)"
 
 # Warn about published files that point into implement-the-domain (refactoring 011): design must

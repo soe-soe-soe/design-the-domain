@@ -5,14 +5,21 @@ They are not part of the published plugin (see Publishing).
 
 ## Working copy
 
-Load the working copy instead of the installed plugin with `claude --plugin-dir <this repo>` and
-`/reload-plugins` after an edit. Decision records stay with their skill under `decision-records/`.
+The skills are self-contained only in the build output: their texts name `assets/…` and `scripts/…`
+relative to the skill's base directory, and `tools/build.py` copies what each skill needs into its
+folder (derived from the paths its files name, no list; see the docstring). So load the build, not the
+source: `python3 tools/build.py --with-evals`, then `claude --plugin-dir build/design-the-domain`, and
+rebuild plus `/reload-plugins` after an edit. `python3 tools/build.py --with-evals --check` fails when
+`build/` is stale. `python3 tools/build.py --target opencode` builds the OpenCode variant
+(`build/opencode/`: namespace-free skills, `commands/` wrappers; install in a test project with
+`apm install <path> --target opencode`). `python3 -m unittest tools/test_build.py` tests the build. The build also checks the skill names (folder = `name:`, no collision with
+`tools/denied-skill-names.txt` or `implement-the-domain/`). Decision records stay with their skill under `decision-records/`.
 The script's tests run with `python3 -m unittest discover scripts`.
 
 ## Evals
 
-Evals live under `evals/<skill>/<case>/` and run with
-`claude plugin eval . --ablation none --scaffold --allow-tools Bash Write Edit`
+Evals live under `evals/<skill>/<case>/` and run **from the build output** (`cd build/design-the-domain`,
+built with `--with-evals`) with `claude plugin eval . --ablation none --scaffold --allow-tools Bash Write Edit`
 (`--tag problem-space` for the problem space). Without `--ablation none` the runner adds a
 no-plugin baseline arm and doubles the runs. It also finds the evals of `implement-the-domain/`
 (`--eval-dir evals` does not keep them out): run single cases with `--case <name>`. The judge is the runner's default, Haiku: a Sonnet judge costs about
@@ -50,10 +57,10 @@ separately.
 
 ## Publishing
 
-`tools/build-dist.sh [<ref>]` builds the local branch `dist` from a ref (default `HEAD`). It holds
-only what the plugin needs to run: `.claude-plugin/plugin.json`, `skills/` without their
-`decision-records/`, `assets/`, `scripts/requirements.py`, `scripts/interview-round.py`, `LICENSE` and
-`THIRD_PARTY_LICENSES.md`. No evals, refactorings, docs or development tooling. Each run adds one
+`tools/build-dist.sh [<ref>]` builds the local branch `dist` from a ref (default `HEAD`), as the output
+of `tools/build.py` run on that ref's committed files. It holds only what the plugin needs to run:
+`.claude-plugin/plugin.json`, the OpenCode build in `opencode/`, `skills/` without their `decision-records/` and with the `assets/` and
+`scripts/` each skill needs inside its folder, `LICENSE` and `THIRD_PARTY_LICENSES.md`. No evals, refactorings, docs or development tooling. Each run adds one
 commit, so `dist` keeps a history of the releases.
 
 The marketplace (`.claude-plugin/marketplace.json` on `main`) points the plugin entry at the branch

@@ -10,6 +10,8 @@ description: The interview of design-the-domain – a design tree asked in round
 
 # Domain-Grilling
 
+Paths `assets/…` and `scripts/…` are relative to this skill's base directory (named when the skill loads; `<base directory>` below). Scripts run from the project root.
+
 Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
 
 Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled: the questions you can ask _now_ without guessing at answers you haven't heard yet. Ask the whole frontier in one round: number each question and give your recommended answer. Then wait for the user's answers before the next round.
@@ -43,10 +45,10 @@ and what happens between rounds; you decide how it is asked. Everything you say 
 `‹problem-space-language›` of `domain-model/config.md`.
 
 - **Render every round with the script.** You decide the content of your own questions; the script
-  `${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py` adds the open points from the files, numbers,
+  `scripts/interview-round.py` adds the open points from the files, numbers,
   groups and puts the artifact a question rests on after its title (`❓ **Q3** - **<title>**
   (📋 FR-fristen-013/S2): …`). Write the round as JSON to a scratch file and run
-  `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` from the project root; its
+  `python3 <base directory>/scripts/interview-round.py <file>` from the project root; its
   standard output is your message for the round – change nothing in it, add nothing between the
   questions. To change a question, change the JSON and run the script again. It needs the
   project config; before it exists (`domain-init`, step 1) you write the format above by hand.

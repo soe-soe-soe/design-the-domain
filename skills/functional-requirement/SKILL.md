@@ -5,6 +5,8 @@ description: Writes the planned changes of functional requirements (FRs) under �
 
 # Functional-Requirement
 
+Paths `assets/…` and `scripts/…` are relative to this skill's base directory (named when the skill loads; `<base directory>` below). Scripts run from the project root.
+
 An **FR** is the implemented target state of one rule or capability, assigned to exactly one
 subdomain. Stories describe changes, FRs the result of all changes. You carry the acceptance
 criteria (AC) of the stories over into **planned FRs** – the change next to the active FR,
@@ -46,7 +48,7 @@ folders) is English as the project config states.
     <type-folder>/                 FRs without own business object, e.g. rules of a value
 ```
 
-The type folder follows the FR type ([functional-requirement-types.md](../../assets/functional-requirement-types.md)); a
+The type folder follows the FR type ([functional-requirement-types.md](assets/functional-requirement-types.md)); a
 changed type moves the FR. Which business objects a subdomain has, what they hold and how they relate
 stands in its subdomain map, their terms in the sections of its glossary
 (`‹glossaries›/<subdomain>.md`). The `<subdomain>` in an FR ID and file name is the subdomain's folder name in the problem
@@ -54,9 +56,9 @@ space (`‹problem-space-language›`, e.g. `fristen`), never the code name of i
 (e.g. `deadlines`), even where the two differ. Folder names of subdomains and business objects are in
 `‹problem-space-language›`, lower case, special letters spelled out, words joined by hyphens
 (`manual-deadline`). The number `NNN` counts per subdomain, across active and planned FRs, and is never
-reused: take it from `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py next-fr <subdomain>`. One planned file per FR holds the changes of every story touching it; its format, the
+reused: take it from `python3 <base directory>/scripts/requirements.py next-fr <subdomain>`. One planned file per FR holds the changes of every story touching it; its format, the
 change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
-[planned-functional-requirement.md](../../assets/planned-functional-requirement.md) – read it.
+[planned-functional-requirement.md](assets/planned-functional-requirement.md) – read it.
 
 ## Steps
 
@@ -64,18 +66,18 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    `‹domain-map›`, the glossaries, the subdomain maps and all FRs of the subdomains they touch – active and planned.
 
 2. **Assign.** For each AC determine the subdomain from the domain map, the business object
-   from the glossary and the FR type by [functional-requirement-types.md](../../assets/functional-requirement-types.md). A
+   from the glossary and the FR type by [functional-requirement-types.md](assets/functional-requirement-types.md). A
    query belongs to the subdomain that supplies the data, a policy to the one that triggers it.
    Each policy belongs to one process: an existing one whose chain it continues, or a new
-   process file by [process.md](../../assets/process.md) in the `policies/` folder where the
+   process file by [process.md](assets/process.md) in the `policies/` folder where the
    chain starts. Add the policy as a step to its process; a policy in another subdomain links
    the process file there.
    Does an AC need a subdomain or a relationship between subdomains the domain map lacks, add
-   it there by the template [domain-map.md](../../assets/domain-map.md): a new subdomain with
+   it there by the template [domain-map.md](assets/domain-map.md): a new subdomain with
    type `open`, a relationship in business terms.
    Does an AC add or change a business object, an entity, an attribute or a relationship between
    business objects of the subdomain, bring its subdomain map up to date by the template
-   [subdomain-map.md](../../assets/subdomain-map.md), creating the file and setting its link in
+   [subdomain-map.md](assets/subdomain-map.md), creating the file and setting its link in
    the domain map if it does not exist. The map carries what is decided, like the domain map; where
    the answer is still open (cases **existing-data**), you mark the open point and change the map
    only when the answer is in. For **consistency** the relationship between the two business
@@ -106,7 +108,7 @@ change kinds (new, edit, deletion) and the `@base-` tag stand in the comment of
    and `/design-the-domain:domain-interview` takes it into the interview.
 
 4. **Write.** For each AC, into the planned file of its FR by the template
-   [planned-functional-requirement.md](../../assets/planned-functional-requirement.md),
+   [planned-functional-requirement.md](assets/planned-functional-requirement.md),
    creating the file (and the `planned/` folder) if needed:
    - **Phrase it on the FR's rule.** A scenario checks exactly the rule of its FR. Do not take
      an AC verbatim if it checks another rule as well: "Then the project overview shows 1

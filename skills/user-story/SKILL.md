@@ -5,6 +5,8 @@ description: Writes user stories with Gherkin acceptance criteria from the decis
 
 # User-Story
 
+Paths `assets/…` and `scripts/…` are relative to this skill's base directory (named when the skill loads; `<base directory>` below). Scripts run from the project root.
+
 You package business decisions into **stories**: short, with a why, followed by acceptance
 criteria (AC) in Gherkin. A story describes a **change**; the living target state is kept by
 the functional requirements (skill `design-the-domain:functional-requirement`).
@@ -30,7 +32,7 @@ labels) is English as the project config states.
 ```
 
 The status flow and what each transition requires stand in the comment at the top of the
-template [story.md](../../assets/story.md); read it.
+template [story.md](assets/story.md); read it.
 
 ## Steps
 
@@ -59,8 +61,8 @@ template [story.md](../../assets/story.md); read it.
    problems on an evidence count, when the input defined the problem signal through deadlines).
    Gaps that change no Then step you write in the obvious reading without recording them.
 
-4. **Write.** The story by the template [story.md](../../assets/story.md) (without its
-   comment), the AC by [assets/acceptance-criteria.md](../../assets/acceptance-criteria.md). A Then step stands only where
+4. **Write.** The story by the template [story.md](assets/story.md) (without its
+   comment), the AC by [assets/acceptance-criteria.md](assets/acceptance-criteria.md). A Then step stands only where
    the outcome is decided; an invented outcome is a guess.
 
 5. **Mark what is open.** An AC an open point concerns carries the tag `@open`, meaning as in

@@ -98,11 +98,61 @@ names (`/domain-interview`, `/domain-init`, …), the same project config
 
 1. **Spike** (done, see below) and a small **addendum**: load a skill with `disable-model-invocation: true`
    through a command wrapper; model per agent file; the `question` tool headless.
-2. **Package 1a, neutral core:** build script with derived dependencies, relative paths, names per 011,
+2. **Package 1a, neutral core (done 2026-11-23, see below):** build script with derived dependencies, relative paths, names per 011,
    Claude Code output as before; all Claude evals stay green (basis: refactoring 005).
-3. **Package 1b, tool terms:** only what the trial of the unchanged skills in OpenCode shows to fail.
-4. **Package 2, OpenCode adapter:** command wrappers, agent files, installation, eval runner, tests on a
+3. **Package 1b, tool terms (done 2026-11-24, see below):** only what the trial of the unchanged skills in OpenCode shows to fail.
+4. **Package 2, OpenCode adapter (built 2026-11-24, eval runner and real-model test open, see below):** command wrappers, agent files, installation, eval runner, tests on a
    real OpenCode installation.
+
+## Package 1a, done (2026-11-23)
+
+- `tools/build.py`: builds `build/design-the-domain/` (gitignored) with `assets/` and `scripts/`
+  inside each skill folder, derived from the paths a skill's files name (`assets/<file>`,
+  `scripts/<file>`, `<base directory>/scripts/<file>`), from what those files name themselves and from
+  script imports; a path to a missing file fails. `--with-evals` adds `evals/`, `--check` compares an
+  existing build with a fresh one. The name rule of 011 is checked (folder = `name:`, lowercase words,
+  `tools/denied-skill-names.txt`, no double in `implement-the-domain/`).
+- `tools/build-dist.sh` builds `dist` from that output; the dist tree is no longer `assets/` and
+  `scripts/` at the root but the self-contained skill folders.
+- Skill texts: `${CLAUDE_PLUGIN_ROOT}/assets/x` → `assets/x`, script calls →
+  `python3 <base directory>/scripts/x`, `../../assets/x` links → `assets/x`; each skill says once that
+  these paths are relative to its base directory. The subagent briefs hand the base directory over
+  (`domain-init`, `domain-interview`). The three fixture configs carry the same change.
+- Not done here: the cross-references `design-the-domain:<skill>` stay as they are (Claude namespace);
+  where they become bare names is a decision for 1b or the adapter (the build can rewrite them for
+  OpenCode), as the evals call the namespaced names. The deny list is a first list, to be completed.
+- **Not run:** the Claude evals against the build (`cd build/design-the-domain`, `claude plugin eval`);
+  unit tests and the build checks ran. Run at least `domain-init/*` and `domain-interview` cases
+  before the version bump.
+
+## Packages 1b and 2, built (2026-11-24)
+
+Decisions (user): the OpenCode build lives in the subfolder `opencode/` of the branch `dist`; the
+model per subagent comes from `provider/model` values of the project config.
+
+- **Build:** `python3 tools/build.py --target opencode` (`build/opencode/`). The same self-contained
+  skill folders; the `design-the-domain:` namespace is stripped in skills, assets and scripts (the
+  source keeps it, the Claude evals call the namespaced names); `commands/<skill>.md` wrappers (load the
+  skill, pass `$ARGUMENTS`); a manifest `design-the-domain-opencode`, which apm needs to take the folder as
+  a package. `tools/build-dist.sh` puts it into `dist/opencode/`.
+- **1b, tool terms:** a section "Harness notes (OpenCode)" appended to `domain-interview` and
+  `domain-init` in the OpenCode output only: `task` with a named `subagent_type`, and the `question`
+  tool for the `AskUserQuestion` step (plain text if the tool is missing, never skipped). The Claude text
+  is unchanged.
+- **Model per subagent:** `scripts/opencode-agents.py` reads `model-ground`, `model-writer`, `model-init`
+  and writes `.opencode/agents/domain-ground|domain-writer|domain-init-worker.md`; a `provider/model` value
+  becomes `model:`, `inherit` and the Claude names leave the agent on the session's model (the script
+  says so). `assets/config.md` names the new value form. The skills' notes tell the model to run it.
+- **Checked:** `apm install build/opencode --target opencode` lays out `.opencode/commands/` (8) and
+  `.agents/skills/` (8, with their `assets/` and `scripts/`); OpenCode 1.15.10 lists the skills and, after
+  the script ran, the three agents as subagents. Unit tests: `scripts/test_opencode_agents.py`,
+  `tools/test_build.py`.
+- **Not checked:** a real run with a model (a command wrapper calling `domain-interview`, a subagent
+  with its own model, `question`); whether OpenCode reads agent files written mid-session (the note says
+  restart); `apm install owner/repo/opencode#dist` from GitHub (only the local folder was installed);
+  the `description:` of the wrappers when a skill description holds characters YAML dislikes (JSON string
+  used). **Not built:** the OpenCode eval runner (`opencode run --format json`, permission config per
+  project). The Claude evals did not run on the new build either (stopped, see 1a).
 
 ## Spike (done 2026-11-23, report `docs/spikes/opencode-v2.md`)
 
@@ -149,12 +199,9 @@ NOT NULL error with 1.15.10); the trial ran with its own `XDG_DATA_HOME`.
   per agent as `provider/model`, `question` headless, permission prompts in `run`. The trial confirms
   that the model needs agent files (the decision above stands) and leaves `question`: test it
   interactively.
-- **Where the OpenCode build lives:** command wrappers and agent files must not reach Claude Code –
-  a plugin's `commands/` would duplicate the slash names its skills already give, and `provider/model`
-  means nothing there. A path of its own in `dist` (apm installs `owner/repo/path#ref`) or a branch of
-  its own; to try with apm.
-- Whether the model keys need a mapping file per harness, or the OpenCode build writes one agent file
-  per key from a `provider/model` value in the project config.
+- ~~Where the OpenCode build lives~~ decided: `opencode/` in `dist`; the local apm install works, the
+  GitHub one is not tried.
+- ~~Model keys~~ decided: `provider/model` in the config, an agent file per key by script.
 - `confluence-publish` (new in 0.9.0): needs the Atlassian MCP; whether OpenCode reaches it the same
   way is not tried.
 - Version: design is at 0.9.0 (in `dist` since 2026-11-23); this one as 1.0.0 at the earliest.

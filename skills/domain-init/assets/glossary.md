@@ -1,6 +1,6 @@
 <!--
 Glossary of one subdomain – ‹glossaries›/<subdomain>.md, file name as the subdomain folder
-(lower case, umlauts spelled out). A glossary format in ‹project-rules› overrides this template. Headings of the table columns and
+(lower case, umlauts spelled out). Headings of the table columns and
 the Problem space / Solution space kinds are methodology (English); the placeholders are English.
 
 - One table per section, always these five columns. Term and Description in ‹problem-space-language›,

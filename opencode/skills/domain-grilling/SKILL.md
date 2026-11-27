@@ -67,7 +67,9 @@ and what happens between rounds; you decide how it is asked. Everything you say 
   entry under `## Open` of the story or FR in the format of the term "Open point" in
   `‹methodology-glossary›`. The script reads them for the `stories` you pass: the points **from an
   FR** in every round, the points **from a story** only in the closing round – the grilling often
-  settles them on the way. Never write an open point into `questions` yourself.
+  settles them on the way. Never write an open point into `questions` yourself – not even as a
+  question of your own: when a question on your frontier is what an open point of a story already
+  holds (read the stories' `## Open` before each round), leave it out; the closing round asks it.
 - **Deferring.** The user may defer an open point instead of answering it. It stays in its story or
   FR; add it to `deferred`, so it is not asked again in this session.
 - **Closing round.** When your frontier is empty and no FR open point is left, run one round with

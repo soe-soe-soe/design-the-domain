@@ -1,6 +1,6 @@
 {
   "name": "design-the-domain",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Problem-space skills for domain-driven development: grill a requirement into user stories and functional requirements with Gherkin scenarios, keep the glossary, move stories through their status, or derive the model from existing code.",
   "author": {
     "name": "Sören Bock",

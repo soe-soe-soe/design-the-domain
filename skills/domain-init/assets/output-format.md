@@ -9,7 +9,7 @@ config `domain-model/config.md`.
 A message that follows reads of artifacts not yet listed in the session starts with this block,
 one list item per new artifact, linked to its file – never several artifacts in one item, not even
 files of the same type. Never listed: the user's prompt (requirement text,
-ticket link, images), `‹project-rules›`, and `README.md` or other index files of a folder.
+ticket link, images), the instruction files the harness loads (`CLAUDE.md`, `AGENTS.md`), and `README.md` or other index files of a folder.
 
 The heading (`Context`) and the type names are translated into ‹problem-space-language›; file
 names stay as they are. The example is in English.

@@ -175,7 +175,9 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
 
 5. **Reconcile** once all reports are in:
    - **Policies across boundaries:** if two subagents described the same reaction, the FR stays in
-     the triggering subdomain; delete the other.
+     the triggering subdomain; delete the other. The same reaction is also a Command FR in the
+     reacting subdomain that only carries out what the trigger reports (it records or applies the
+     event of the other subdomain): the Policy FR of the triggering subdomain holds it, the Command FR goes.
    - **Relationships:** add new relationships between subdomains from the reports to the
      relationships table of `‹domain-map›`, in business terms; also one to a subdomain that is not in
      the map yet (named as the report names it): its row follows when that subdomain is taken over.

@@ -63,8 +63,7 @@ confirms is the delta to implement.
 
 When a term is resolved, add or change its row in `‹glossaries›/<subdomain>.md` right there.
 Don't batch these up: capture them as they happen. Use the format in
-`assets/glossary.md`; where `‹project-rules›` sets its own glossary
-format, it wins. A new glossary gets its subdomain's row in `‹domain-map›` (column Glossary, `–` in the column
+`assets/glossary.md`. A new glossary gets its subdomain's row in `‹domain-map›` (column Glossary, `–` in the column
 Subdomain map) by `assets/domain-map.md`. Leave the solution-space columns
 (`Solution space`, `Identifier`) empty: they are set through the interface below, by whoever decides
 the code name.

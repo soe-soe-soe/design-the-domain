@@ -2,7 +2,7 @@
 
 Template for the part of `domain-model/config.md` the implement-the-domain skills read. It is appended
 below the design-the-domain part of the same file (heading `# implement-the-domain`); the keys of
-that part (languages, `project-rules`, problem space, `backend`, `backend-shared`, `backend-tests`,
+that part (languages, problem space, `backend`, `backend-shared`, `backend-tests`,
 ticket system) are read from there. Everything structural about the code (building blocks, test
 levels, markers, seams) stands in the project's structure document (key `structure`).
 

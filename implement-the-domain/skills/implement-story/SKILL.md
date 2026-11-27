@@ -61,8 +61,8 @@ Ask only what blocks the work, and report each question as a lesson (step 8).
    `‹requirements›/` – all or nothing – and syncs its ticket. If it reports `refused`, show its
    report and stop before committing; the story stays `in-progress` until
    `/design-the-domain:domain-interview` settled the conflict. Then commit placement,
-   tests, implementation and the problem-space changes together by the commit convention in
-   `‹project-rules›`; regenerate the context map with `‹context-map-command›` if the project has
+   tests, implementation and the problem-space changes together by the project's commit
+   convention; regenerate the context map with `‹context-map-command›` if the project has
    no hook doing it.
 
 8. **Report.** What was built, the commit, and for every question you asked in steps 2, 3 and

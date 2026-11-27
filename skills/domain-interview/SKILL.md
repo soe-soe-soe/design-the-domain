@@ -102,8 +102,8 @@ every reference. Artifacts the ground subagent read count as read by you.
    the session call the Skill tool with `design-the-domain:story-workflow US-0042 ready`. It
    validates the story, sets `ready` where it holds, leaves it `draft` otherwise and syncs its
    ticket either way. Then tell the user which stories are `ready` and which are still `draft`
-   with their deferred points or failed checks, and name the next step of the feature workflow in
-   `‹project-rules›`.
+   with their deferred points or failed checks, and name the next step where the project's
+   instructions describe a feature workflow.
 
 You are done when every decision of the session stands in a story or an FR, every term the
 stories use is in a glossary, every open point is answered or deferred, the user has confirmed,

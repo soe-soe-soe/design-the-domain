@@ -102,8 +102,8 @@ Offer an ADR only when all three are true (format and examples in [ADR-FORMAT.md
 3. **The result of a real trade-off**: there were genuine alternatives and you picked one for
    specific reasons
 
-If any of the three is missing, skip the ADR. The folder is `‹adr›`, and what `‹project-rules›`
-says about ADRs (e.g. updating one in place instead of superseding it) wins over the format. ADRs
+If any of the three is missing, skip the ADR. The folder is `‹adr›`; follow what the project's
+instructions say about ADRs (e.g. updating one in place instead of superseding it). ADRs
 belong to the solution space: the problem space (stories, FRs, glossaries) never refers to one.
 
 ## Report

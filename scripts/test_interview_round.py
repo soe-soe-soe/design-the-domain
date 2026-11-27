@@ -17,7 +17,6 @@ _spec.loader.exec_module(rnd)
 CONFIG = """
 | Key | Meaning | Value |
 |---|---|---|
-| `user` | Person | Alex |
 | `problem-space` | Root | `ps` |
 | `requirements` | Stories | `ps/requirements` |
 """

@@ -17,7 +17,7 @@ Last synced: commit `4ae2317` (2026-10-31).
 | `implement-the-domain:codebase-design` | `skills/engineering/codebase-design` (+ `DEEPENING.md`, `DESIGN-IT-TWICE.md`) | unchanged | – |
 | `design-the-domain:glossary`, `implement-the-domain:solution-definition` | `skills/engineering/domain-modeling` (+ `ADR-FORMAT.md`) | adapted, split | see *Split skills* below |
 | `implement-the-domain:tdd` | `skills/engineering/tdd` (+ `tests.md`, `mocking.md`) | adapted | seams agreed once in `‹structure›` instead of per session; scenario tests of `test-definition` written before the loop as a named exception to horizontal slicing; Dann literals as source of truth; migration tests may read stored data; `implement-the-domain:codebase-design` |
-| `implement-the-domain:code-review` | `skills/engineering/code-review` | adapted | spec = the story with its FR scenarios (planned files), standards include `‹project-rules›`, `‹structure›`, test strategy and architecture ADRs; no issue tracker setup |
+| `implement-the-domain:code-review` | `skills/engineering/code-review` | adapted | spec = the story with its FR scenarios (planned files), standards include the project's instruction files, `‹structure›`, test strategy and architecture ADRs; no issue tracker setup |
 
 ### Split skills
 
@@ -29,7 +29,7 @@ goes to the skill that holds the changed part.
 | Upstream part | Our skill | Changed by us |
 |---|---|---|
 | Challenge against the glossary, sharpen fuzzy language, discuss concrete scenarios, cross-reference with code, update the glossary inline, file structure | `design-the-domain:glossary` | one glossary per subdomain as a table (format in `assets/glossary.md`, upstream `GLOSSARY-FORMAT.md` dropped), domain map for new subdomains and relationships, paths from `domain-model/config.md`; solution-space columns set through its interface; scenarios become ACs and FR scenarios, a confirmed difference to the code is the delta to implement |
-| Offer ADRs sparingly, `ADR-FORMAT.md` | `implement-the-domain:solution-definition` (section ADRs, `ADR-FORMAT.md`) | ADRs belong to the solution space only; folder `‹adr›`, rules of `‹project-rules›` win |
+| Offer ADRs sparingly, `ADR-FORMAT.md` | `implement-the-domain:solution-definition` (section ADRs, `ADR-FORMAT.md`) | ADRs belong to the solution space only; folder `‹adr›`, the project's instructions on ADRs are followed |
 
 Not taken over: `implement` (used by projects for work without a story; install mattpocock/skills
 for it), `agents/openai.yaml` of each skill.

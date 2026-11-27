@@ -203,7 +203,7 @@ NOT NULL error with 1.15.10); the trial ran with its own `XDG_DATA_HOME`.
 - ~~Model keys~~ decided: `provider/model` in the config, an agent file per key by script.
 - `confluence-publish` (new in 0.9.0): needs the Atlassian MCP; whether OpenCode reaches it the same
   way is not tried.
-- Version: design is at 0.9.0 (in `dist` since 2026-11-23); this one as 1.0.0 at the earliest.
+- Version: released as 1.0.0 (2026-11-27), Claude and OpenCode build in `dist`.
 
 ## Claude evals against the build (2026-11-27)
 

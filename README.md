@@ -1,6 +1,6 @@
 # design-the-domain – problem space skills
 
-A Claude Code plugin for the problem space of domain-driven feature work:
+A plugin for Claude Code and OpenCode for the problem space of domain-driven feature work:
 `/design-the-domain:domain-interview` grills a requirement into ready user stories and functional
 requirements (FRs) with Gherkin scenarios; `user-story` and `functional-requirement` write them,
 `/design-the-domain:domain-init` derives the model from existing code;
@@ -31,6 +31,21 @@ interfaces below.
      "enabledPlugins": { "design-the-domain@design-the-domain": true }
    }
    ```
+
+### OpenCode
+
+The same skills, built without the `design-the-domain:` namespace, with a command per skill
+(`/domain-interview`, `/domain-init`, …). Install them with
+[apm](https://github.com/microsoft/apm) into the project:
+
+```
+apm install soe-soe-soe/design-the-domain/opencode#dist --target opencode
+```
+
+Skills go to `.agents/skills/`, commands to `.opencode/commands/`. The subagents take their model
+from `.opencode/agents/`: give `model-ground`, `model-writer` and `model-init` in
+`domain-model/config.md` as `provider/model` (`anthropic/claude-sonnet-5-5`), or leave them at
+`inherit` for the session's model; the skills write the agent files when they are missing.
 
 ## Craft skills
 
@@ -66,6 +81,17 @@ before you implement a ready story and `story-workflow … done` once its scenar
 code names through `glossary set-solution`.
 
 ## Release notes
+
+**1.0.0** – Runs in Claude Code and OpenCode from one source (refactoring 010). Each skill folder
+holds the templates and scripts it needs, and the skills name them relative to their folder
+(no `${CLAUDE_PLUGIN_ROOT}` any more). The OpenCode build lives in `opencode/` of the `dist`
+branch and installs with apm (see Setup). The config keys `user` and `project-rules` are gone:
+`domain-init` no longer asks for them, a value left in an existing `domain-model/config.md` is
+ignored. What a project wants beyond the plugin (feature workflow, commit convention, own formats)
+stands in its own instructions (`CLAUDE.md`, `AGENTS.md`) or a skill of its own; the close of an
+interview looks there for the next step. The interview leaves a story's open point
+to the closing round, names deferred points without asking them again, and `domain-init` keeps a
+reaction across subdomains as one Policy FR.
 
 **0.9.0** – The solution-space skills move into implement-the-domain (not published yet). Renamed:
 `grilling` → `domain-grilling`, `domain-modeling` → `glossary`, `problem-space-story` →

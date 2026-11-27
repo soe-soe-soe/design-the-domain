@@ -1,6 +1,6 @@
 # Refactoring 010: one neutral core, built for Claude Code and OpenCode
 
-Status: Proposed · Date: 2026-11-23 · Corrected after the spike (`docs/spikes/opencode-v2.md`), adjusted to 011, 012 and 005 · Trial and apm research 2026-11-23
+Status: In progress (1a, 1b, 2 built; Claude evals stable; OpenCode real run and eval runner open) · Date: 2026-11-23 · Corrected after the spike (`docs/spikes/opencode-v2.md`), adjusted to 011, 012 and 005 · Trial and apm research 2026-11-23
 
 **Order:** after refactoring 011 (split into design and implement) and 005 (stable evals). 005 is done,
 012 too (its evals stable), and design 0.9.0 is in `dist`; 011 is open only on the implement side, which
@@ -121,9 +121,8 @@ names (`/domain-interview`, `/domain-init`, …), the same project config
 - Not done here: the cross-references `design-the-domain:<skill>` stay as they are (Claude namespace);
   where they become bare names is a decision for 1b or the adapter (the build can rewrite them for
   OpenCode), as the evals call the namespaced names. The deny list is a first list, to be completed.
-- **Not run:** the Claude evals against the build (`cd build/design-the-domain`, `claude plugin eval`);
-  unit tests and the build checks ran. Run at least `domain-init/*` and `domain-interview` cases
-  before the version bump.
+- **Claude evals against the build:** ran 2026-11-27, all 29 cases stable after four skill fixes
+  (section at the end).
 
 ## Packages 1b and 2, built (2026-11-24)
 
@@ -152,7 +151,7 @@ model per subagent comes from `provider/model` values of the project config.
   restart); `apm install owner/repo/opencode#dist` from GitHub (only the local folder was installed);
   the `description:` of the wrappers when a skill description holds characters YAML dislikes (JSON string
   used). **Not built:** the OpenCode eval runner (`opencode run --format json`, permission config per
-  project). The Claude evals did not run on the new build either (stopped, see 1a).
+  project). The Claude evals ran on the new build on 2026-11-27, see below.
 
 ## Spike (done 2026-11-23, report `docs/spikes/opencode-v2.md`)
 
@@ -205,3 +204,22 @@ NOT NULL error with 1.15.10); the trial ran with its own `XDG_DATA_HOME`.
 - `confluence-publish` (new in 0.9.0): needs the Atlassian MCP; whether OpenCode reaches it the same
   way is not tried.
 - Version: design is at 0.9.0 (in `dist` since 2026-11-23); this one as 1.0.0 at the earliest.
+
+## Claude evals against the build (2026-11-27)
+
+All 29 design cases from `build/design-the-domain` (built `--with-evals`), three runs each, judge
+Haiku; reruns by the rule of 005. No failure came from the relative paths of 1a. Below 5/6 were four
+cases, each with a skill defect, fixed in the source:
+
+- `round-2-merges-open-points`: the main run asked a story's open point as a question of its own in
+  round 2 → `domain-grilling` leaves out a question that an open point of a story already holds.
+- `two-subdomains-reconciled`: a Command FR in the reacting subdomain stayed next to the Policy FR →
+  `domain-init` step 5 counts it as the same reaction.
+- `close-with-deferred-point`: the close asked the deferred point again; after dropping
+  `project-rules` (29d315e) it also missed the feature workflow, since the eval run does not load the
+  fixture's `CLAUDE.md` → the close names deferred points by reference and title and looks for the
+  workflow in `CLAUDE.md` / `AGENTS.md`.
+- `round-1-grilling-only`: known model slips, 3/3 in three more runs.
+
+After the fixes all 29 cases are stable (3/3, or at least 5/6). Cost about $90.
+

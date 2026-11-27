@@ -89,6 +89,11 @@ def read_config() -> dict[str, str]:
     return values
 
 
+def inside_project(path: Path) -> bool:
+    """True if the path, symlinks resolved, lies below the project root (the working directory)."""
+    return path.resolve().is_relative_to(Path.cwd().resolve())
+
+
 def optional(values: dict[str, str], key: str) -> str | None:
     v = values.get(key, "").strip()
     if not v or v in ("–", "-") or (v.startswith("<") and v.endswith(">")):
@@ -233,6 +238,15 @@ def read_model(cfg: dict[str, str], warnings: list[str]) -> tuple[Path, str, lis
         glossary = Path(os.path.normpath(map_path.parent / glossary_link.group(2))) if glossary_link else None
         map_file = Path(os.path.normpath(map_path.parent / map_link.group(2))) if map_link else None
         sub_dir = map_file.parent if map_file else map_path.parent / slug(name)
+        for label, linked in (("glossary", glossary), ("subdomain map", map_file), ("folder", sub_dir)):
+            if linked is not None and not inside_project(linked):
+                warnings.append(f"subdomain {name}: {label} {linked.as_posix()} lies outside the project, ignored")
+                if label == "glossary":
+                    glossary = None
+                elif label == "subdomain map":
+                    map_file = None
+                else:
+                    sub_dir = map_path.parent / "\0"  # not a folder: no FRs published
         if not sub_dir.is_dir():
             warnings.append(f"subdomain {name}: folder {sub_dir.as_posix()} not found, no FRs published")
             sub_dir = None
@@ -267,6 +281,9 @@ def read_subdomain(sub: Subdomain, warnings: list[str]) -> None:
     for path in sorted(sub.dir.rglob("*.md")):
         rel = path.relative_to(sub.dir)
         if "planned" in rel.parts or not FR_FILE_RE.match(path.name):
+            continue
+        if path.is_symlink() or not inside_project(path):
+            warnings.append(f"{path.as_posix()}: symlink or outside the project, ignored")
             continue
         bo_slug = rel.parts[0] if len(rel.parts) > 1 else None
         fr = parse_fr(path, bo_slug)
@@ -307,6 +324,7 @@ class Ctx:
 
 
 def page_link(title: str, label: str) -> str:
+    label = label.replace("]]>", "]]]]><![CDATA[>")
     return (
         f'<ac:link><ri:page ri:content-title="{attr(title)}" />'
         f"<ac:plain-text-link-body><![CDATA[{label}]]></ac:plain-text-link-body></ac:link>"

@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Domain-Init
 
+Paths `assets/…` and `scripts/…` are relative to this skill's base directory (named when the skill loads; `<base directory>` below). Scripts run from the project root.
+
 You take the problem-space model (`‹problem-space›`, `‹glossaries›`) over from code that already
 exists: glossary, business objects and FRs per subdomain, the scenarios from the existing tests.
 Afterwards `design-the-domain:functional-requirement` has an existing state to find contradictions against.
@@ -30,11 +32,11 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
 ## Steps
 
 1. **Config.** Read `domain-model/config.md`. If it exists and every key of the template
-   `${CLAUDE_PLUGIN_ROOT}/assets/config.md` has a value that is not empty and not only a placeholder
+   `assets/config.md` has a value that is not empty and not only a placeholder
    in angle brackets (`<name>`), go to step 2. Parts of other plugins in the file (under a heading of
    their own) are not yours: you neither check, fill nor change them. Otherwise you fill it
    with the user, first of all and in the main run; a key that does not apply gets `–`.
-   - **Start from the template** `${CLAUDE_PLUGIN_ROOT}/assets/config.md`; values already filled stay.
+   - **Start from the template** `assets/config.md`; values already filled stay.
    - **Derive a proposal** per open key from the project, with its source: the layout of the root,
      `CLAUDE.md`, `AGENTS.md` and the README (project rules, languages), build files and scripts
      (`pyproject.toml`, `package.json`, `Makefile`) for the source and test folders, an existing `domain-model/`. A value you do not find you do not guess: it stays open and is
@@ -71,15 +73,15 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
      coupling. Where the cut is a close call, name both alternatives (merge or split) with the
      strongest argument for each and your recommendation. Say plainly where the code gives no
      evidence; never feign certainty.
-   - **Ask** by `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its
+   - **Ask** by `python3 <base directory>/scripts/interview-round.py <file>` (JSON as in its
      header: `group` `false`, `start` 1), after the evidence:
      one question per uncertain cut, one on the types (Core, Supporting, Generic; a business
      judgement, so the recommendation is `open` unless the user has said more), and one on whether
      the cut stands as a whole. Change nothing in its output. Write nothing before the answers.
-   - **Write** once answered: `‹domain-map›` by `${CLAUDE_PLUGIN_ROOT}/assets/domain-map.md` – the
+   - **Write** once answered: `‹domain-map›` by `assets/domain-map.md` – the
      domain in one sentence, a row per subdomain with its type, the glossary link and `–` as subdomain
      map, the relationships table empty (step 5 fills it from the reports) – and per subdomain a
-     glossary file by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md` with title, sentence and the
+     glossary file by `assets/glossary.md` with title, sentence and the
      Subdomain row with its code folders. An existing glossary stays as it is. Name of the subdomain,
      of its glossary file and of its problem-space folder is the problem-space term in
      `‹problem-space-language›` (`fristen.md`, folder rules of `design-the-domain:functional-requirement`),
@@ -95,7 +97,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    (fill in `<subdomain>` and its folders from the subdomain row of its glossary):
 
    > Take the subdomain `<subdomain>` (code folders: `<folders>`) over into the problem space.
-   > Project config: `domain-model/config.md`, plugin root: `${CLAUDE_PLUGIN_ROOT}`. You describe what the code
+   > Project config: `domain-model/config.md`, skill folder: `<base directory>` (its `assets/` and `scripts/`). You describe what the code
    > does today; you implement nothing, code and tests stay unchanged. Write only in
    > `‹problem-space›/<subdomain>/` (the FRs and `subdomain-map.md`), `‹glossaries›/<subdomain>.md`
    > and, for a new glossary or subdomain map, its subdomain's row in `‹domain-map›`. Read the ground as `design-the-domain:domain-interview` defines it
@@ -110,14 +112,14 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    > has its own repository, service or router. What only changes with a root (history, contacts,
    > assignments) is an entity of that root and gets no folder.
    >
-   > **Glossary.** Extend `‹glossaries›/<subdomain>.md` by `${CLAUDE_PLUGIN_ROOT}/assets/glossary.md`
+   > **Glossary.** Extend `‹glossaries›/<subdomain>.md` by `assets/glossary.md`
    > and the rules of `design-the-domain:glossary`: one section per business object with its
    > row `Business Object | … | Aggregate Root`, rows for the terms your FRs need. Descriptions come
    > from code, docstrings and tests; what you cannot back, you do not write. You do not change
    > existing rows: if the code contradicts one, that becomes a question.
    >
    > **Subdomain map.** Write `‹problem-space›/<subdomain>/subdomain-map.md` by
-   > `${CLAUDE_PLUGIN_ROOT}/assets/subdomain-map.md` and set its link in your subdomain's row of
+   > `assets/subdomain-map.md` and set its link in your subdomain's row of
    > `‹domain-map›`: a class per business object and per entity of it, the attributes from the fields
    > of the aggregate in business language with a glossary term as type (not code types), composition
    > for what lives and dies with the root, association for a reference by identity to another
@@ -130,17 +132,17 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
    > **FRs.** One FR per rule or capability, active at once (no planned file, no history). A rule that
    > already has an FR (active or planned) stays as it is: you change no existing FR; where the code
    > contradicts it, that becomes a question (Case `test-vs-code`). The type
-   > by `${CLAUDE_PLUGIN_ROOT}/assets/functional-requirement-types.md`, from the code: a rule module
+   > by `assets/functional-requirement-types.md`, from the code: a rule module
    > yields Invariant, Domain Service or Policy FRs; plain creating, changing and deleting a business
    > object yields one Command FR; a query with logic of its own yields a Query FR; a call into
    > another subdomain that reacts to something yields a Policy FR in the triggering subdomain; a
    > foreign system yields an Anti-Corruption Layer FR. Layout, header, template, process of a
-   > Policy and numbering (run `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/requirements.py next-fr
+   > Policy and numbering (run `python3 <base directory>/scripts/requirements.py next-fr
    > <subdomain>` from the project root, not from the plugin folder; count up for several new FRs)
    > as `design-the-domain:functional-requirement` states.
    >
    > **Scenarios.** Per test (or parametrised group) one scenario by
-   > `${CLAUDE_PLUGIN_ROOT}/assets/acceptance-criteria.md`, phrased on the level of the FR's rule,
+   > `assets/acceptance-criteria.md`, phrased on the level of the FR's rule,
    > with the test's concrete values. Code without a test gets a scenario from the code and is
    > listed under "without test". Every scenario carries `@existing @unconfirmed`.
    >
@@ -184,7 +186,7 @@ or only a placeholder (`<name>`), step 1 fills it with the user; nothing else is
 
 6. **Report.** To the user, per subdomain: business objects, number of FRs and scenarios, scenarios
    without test. Below that the subagents' questions, rendered by
-   `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/interview-round.py <file>` (JSON as in its header: one
+   `python3 <base directory>/scripts/interview-round.py <file>` (JSON as in its header: one
    `headings` entry per subdomain, each question with its `group` and `ref`; `start` 1). Change nothing in its output. A question whose answer
    would change the behaviour belongs in a `design-the-domain:domain-interview` session, not here. Finally the question
    which subdomains they confirm as a block.
